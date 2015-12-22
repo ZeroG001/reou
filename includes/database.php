@@ -45,7 +45,7 @@ class Course {
 	 	$query = "SELECT $cols FROM courses c 
 	 	INNER JOIN course_category cc 
 	 	ON c.category_id=cc.category_id
-	 	WHERE c.category_id = ?";
+	 	WHERE c.category_id = ? AND active = 1";
 
 	 	$stmt = $this->db->prepare($query);
 
