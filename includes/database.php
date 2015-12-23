@@ -17,6 +17,7 @@ class Course {
 	 // -------- Get Corse Information -------- //
 
 	 public function get_all_corses() {
+	 	$query
 
 	 }
 
