@@ -4,7 +4,7 @@
 	define('D_ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 
-	// ----- ** MySQL settings ** ----- //
+	// --------------- ** MySQL settings ** --------------- //
 	define('DB_NAME', 'reou');
 
 	/** MySQL database username */
