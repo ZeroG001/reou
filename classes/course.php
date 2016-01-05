@@ -50,13 +50,46 @@ class Course {
 	 	$stmt->bindParam(1, $course_id);
 	 	$stmt->execute();
 	 	$result_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 	 	return $result_array;
+	 }
+
+	 public function get_class_details($class_id) {
+	 	$query = "SELECT * FROM courses WHERE course_id = ?";
+
+	 	$stmt = $this->db->prepare($query);
+	 	$stmt->bindParam(1, $class_id);
+	 	$stmt->execute();
+
+	 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	 	return $results;
+	 }
+
+	 public function get_course_details($course_id) {
+
+
+		// 	$query = "SELECT courses.*, course_schedules.* 
+		// 	FROM courses
+		// 	INNER JOIN course_schedules
+		// 	ON courses.course_id = course_schedules.course_id
+		// 	WHERE courses.course_id = ?";
+
+		// 	$stmt = $this->db->prepare($query);
+		// 	$stmt->bindParam(1, $course_id);
+		// 	$stmt->execute();
+
+		// 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		// 	return $result;
 	 }
 
 	 public function get_course_schedule($course_id) {
 	 	$cols = array(
 	 		"location",
+	 		"staff_id",
 	 		"class_date",
+	 		"active",
 	 		"class_begin_time",
 	 		"class_end_time",
 	 		"course_id",
@@ -68,8 +101,14 @@ class Course {
 		INNER JOIN courses c 
 		ON cs.course_id=c.course_id 
 		WHERE cs.course_id = ?";
-		$stmt->$this->db->prepare($query);
+
+		$stmt = $this->db->prepare($query);
 		$stmt->bindParam(1, $course_id);
+		$stmt->execute();
+
+		$resutls = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $resutls;
 	 }
 
 	// ---------- edit courses ---------- //	
