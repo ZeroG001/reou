@@ -66,7 +66,7 @@ class Course {
 	 	return $results;
 	 }
 
-	 public function get_course_details($course_id) {
+	 // public function get_course_details($course_id) {
 
 
 		// 	$query = "SELECT courses.*, course_schedules.* 
@@ -82,7 +82,7 @@ class Course {
 		// 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		// 	return $result;
-	 }
+	// }
 
 	 public function get_course_schedule($course_id) {
 	 	$cols = array(

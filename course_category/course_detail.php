@@ -6,7 +6,7 @@
 
 	$course_class_id = verify_get('id');
 	$course = new Course($db);
-	$course_detail = $course->get_course_details($course_class_id);
+	$course_detail = $course->get_class_details($course_class_id);
 	$course_schedules = $course->get_course_schedule($course_class_id);
 
 	var_dump($course_detail);
