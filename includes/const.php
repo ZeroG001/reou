@@ -23,4 +23,6 @@
 	/** Database Charset to use in creating database tables. */
 	define('DB_CHARSET', 'utf8');
 
+	date_default_timezone_set('America/Detroit');
+
 ?>

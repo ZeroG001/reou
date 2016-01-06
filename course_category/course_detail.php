@@ -9,8 +9,15 @@
 	$course_detail = $course->get_class_details($course_class_id);
 	$course_schedules = $course->get_course_schedule($course_class_id);
 
-	var_dump($course_detail);
 
+	// Debugging -------------------------
+
+	if( isset($course_details[0]) && !empty($course_details[0]) ) {
+		foreach ($course_details[0] as $key => $value) {
+				echo $k . " - ";
+			}	
+	}
+	// -----------------------------------
 ?>
 
 <html>
@@ -64,6 +71,11 @@
 
 			<h3> Location </h3>
 			<p> <?php echo $detail['course_location'] ?> </p>
+
+			<form action="register.php" method="POST">	
+
+				<input type="submit" value="Sign Up" > 
+			</form>
 
 		<?php } ?> 
 
