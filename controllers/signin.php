@@ -4,10 +4,10 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['email'])
 	&& isset($_POST['password'])) {
 
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php';
-	require_once(D_ROOT . "/reou/classes/database.php");
+	require_once(D_ROOT . "/reou/models/database.php");
 
 	function __autoload($class_name) {
-		require_once("classes/". $class_name . '.php');
+		require_once("../models/". $class_name . '.php');
 	}
 
 	// -------- Load POST Variables -------- //
@@ -20,44 +20,23 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['email'])
 	$user = new User($db);
 	$results = $user->sign_in($params); 
 
-	// -------- Load Sesion Variables -------- //
+	// -------- Load Sesion Variables and sign in -------- //
 	if($results) {
+
 		session_start();
 		foreach($results[0] as $k => $v) {
 			$_SESSION[$k] = $v;
 
 		}
+
+		echo "You have signed in successfully";
+	} 
+
+	else {
+		echo "Username or password is incorrect";
 	}
-
-// ---------------- Debugging ------------------- //
-
-session_destroy();
-echo $_SESSION['first_name'];
-
-
-	
-
 
 }
 
-// Get Post variables
-// Clean post variables
-// Run 
-// Create Session
+
 ?>
-
-
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<form method="POST" action="#">
-		<input type="text" name="email">
-		<input type="password" name="password">
-		<input type="submit" value="Log in">
-	</form>
-
-</body>
-</html>
-

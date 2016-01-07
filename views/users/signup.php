@@ -1,3 +1,7 @@
+<?php
+	$create_user_path = "../../controllers/signup.php";
+?>
+
 <html>
 
 	<head>
@@ -5,7 +9,6 @@
 	</head>
 
 	<body>
-
 
 	<!--
 
@@ -17,7 +20,7 @@
 	-->
 		<h1> Sign up </h1>
 
-		<form action="POST" action="signup.php">
+		<form method="POST" action="<?php echo $create_user_path ?>">
 
 			<!-- Full Name -->
 			<!-- Password -->
@@ -36,7 +39,7 @@
 			<input type="text" name="password">
 
 
-			<button type="submit" value="login">
+			<input type="submit" value="Sign Up">
 
 		</form>
 

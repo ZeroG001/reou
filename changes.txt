@@ -1,0 +1,9 @@
+[ Database ]
+
+|
+ -> students Table
+ 	- Renamed row_id to student_id [ ]
+ 	- Renamed Added student_number column [ ]
+
+
+Next I would like to make a student courses table. This links a student to a course.

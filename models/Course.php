@@ -1,7 +1,7 @@
 <?php 
 
-require_once("../includes/const.php");
-require_once(D_ROOT . "/reou/classes/database.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+require_once(D_ROOT . "/reou/models/database.php");
 // This is the corse class. Please do not erase it again
 
 class Course {
