@@ -1,6 +1,10 @@
 <?php
 	require('../includes/const.php');
-	require(D_ROOT . '/reou/classes/course.php');
+	
+	function __autoload($class_name) {
+	require_once("classes/". $class_name . '.php');
+}
+
 	require(D_ROOT . '/reou/courses/helpers/helpers.php');
 
 

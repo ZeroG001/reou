@@ -1,10 +1,16 @@
 <?php 
 
-require_once("../includes/const.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 require_once(D_ROOT . "/reou/classes/database.php");
 // This is the corse class. Please do not erase it again
 
 class User {
+
+	public $user_info = array(
+		"name" => "name",
+		"email" => "email",
+		"address" => "address"
+	);
 
 	// Class Dependencies
 	public $db;
@@ -32,12 +38,30 @@ class User {
 		phone, 
 		email, 
 		licensed
-		FROM  students  WHERE
-	 	WHERE username = :username and password = :password";
+		FROM  students
+	 	WHERE email = :email and password = :password";
 
 	 	$stmt = $this->db->prepare($query);
-	 	// $stmt->bindParam(':username', );
-	 	// $stmt->bindParam(':password')
+	 	$stmt->bindParam(':email', $params['email'], FILTER_SANITIZE_EMAIL);
+	 	$stmt->bindParam(':password', md5($params['password']));
+
+	 	try {
+	 		$stmt->execute();
+	 	} 
+
+	 	catch(Exception $e) {
+	 		echo "There was a problem getting user information from database";
+	 		echo $e->getMessage();
+	 	}
+
+	 	
+	 	// ------- Return Result Or False if Nothing Comes up -------- //
+	 	if($stmt->rowCount() == 1) {
+	 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	 		return $result;
+	 	} else {
+	 		return false;
+	 	}
 
 	}
 
@@ -101,8 +125,8 @@ class User {
 	 	// For the die() statement. make it so that some soft of popup shows up.
 	 	// If the User
 
-	 	$students_query = "SELECT username FROM students
-	 	WHERE username = :username";
+	 	$students_query = "SELECT email FROM students
+	 	WHERE email = :username";
 
 	 	$stmt = $this->db->prepare($students_query);
 	 	$stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -172,8 +196,10 @@ class User {
 
 // ----------------------- Testing Area ----------------------- //
 
-	$blayne = new User($db);
+	// $blayne = new User($db);
 
-	$arr = array("firstName" => "test", "lastName" => "<h1>tester</h1>", "email" => "blayne@hotmail.com", "password" => "12345");
-	$blayne->create_user($arr);
+	// $arr = array("firstName" => "test", "lastName" => "<h1>tester</h1>", "email" => "blayne@hotmail.com", "password" => "12345");
+	// $blayne->create_user($arr);
+
+// -------------------------------------------------------------- //
 ?>
