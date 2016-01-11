@@ -1,25 +1,7 @@
 <?php
-	require($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
-	
-	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	require_once(D_ROOT . "/reou/models/database.php");
-	require_once(D_ROOT . "/reou/models/Course.php");
-	require_once(D_ROOT . "/reou/helpers/courses_helper.php");
-
-
-	$course_class_id = verify_get('id');
-	$course = new Course($db);
-	$course_detail = $course->get_class_details($course_class_id);
-	$course_schedules = $course->get_course_schedule($course_class_id);
-
-
-	// Debugging -------------------------
-
-	if( isset($course_details[0]) && !empty($course_details[0]) ) {
-		foreach ($course_details[0] as $key => $value) {
-				echo $k . " - ";
-			}	
-	}
+	$course_detail = course_detail($db);
 	// -----------------------------------
 ?>
 
@@ -36,7 +18,7 @@
 
 		<h3> Course Name </h3>
 
-		<?php foreach ($course_detail as $detail) { ?>
+		<?php foreach ($course_detail['details'] as $detail) { ?>
 		
 			<p><?php echo $detail['course_name'] ?></p> 
 
@@ -62,7 +44,7 @@
 
 		<h2> Course Schedules and Availiblilty </h2>
 
-		<?php foreach ($course_schedules as $detail) { ?>
+		<?php foreach ($course_detail['schedules'] as $detail) { ?>
 			
 			<h3> Begin Date </h3>
 			<p><?php format_date($detail['class_date']) ?> </p>

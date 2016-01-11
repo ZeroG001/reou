@@ -7,3 +7,7 @@
 
 
 Next I would like to make a student courses table. This links a student to a course.
+
+[ Play for students_courses through table ]
+
+When a student signs up for a course add them to the through table

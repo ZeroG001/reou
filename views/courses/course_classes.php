@@ -1,27 +1,7 @@
 <?php
-
-	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	require_once(D_ROOT . "/reou/models/database.php");
-	require_once(D_ROOT . "/reou/models/Course.php");
-	require_once(D_ROOT . "/reou/helpers/courses_helper.php");
-
-	$course_id = verify_get('id');
-	$course = new Course($db);
-	$categories = $course->get_course_classes($course_id);
-
-
-	// Debugging -------------------------
-
-	if(isset($categories[0]) && !empty($categories[0]) ) {
-		foreach ($categories[0] as $k => $v) {
-
-			echo $k . " - ";
-
-		};		
-	};
-
-	// -----------------------------------
-
+	$categories = course_classes($db);
 ?>
 
 <html>

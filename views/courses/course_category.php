@@ -1,13 +1,10 @@
 <?php
-	require($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
-	require(D_ROOT . '/reou/helpers/courses_helper.php');
-	require(D_ROOT . "/reou/models/Course.php");
-
-	$course = new Course($db);
-	$categories = $course->get_course_category();
-
-
+	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
+	require_once(D_ROOT . "/reou/models/database.php");
+	$categories = course_category($db);
 ?>
+
+
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 
 	<div class="wrap">
