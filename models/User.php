@@ -29,7 +29,7 @@ class User {
 		}
 
 		$query = "SELECT 
-		student_id,
+		id,
 		first_name, 
 		last_name, 
 		address, city, 
@@ -38,7 +38,7 @@ class User {
 		phone, 
 		email, 
 		licensed
-		FROM  students
+		FROM  users
 	 	WHERE email = :email and password = :password";
 
 	 	$stmt = $this->db->prepare($query);
@@ -91,7 +91,7 @@ class User {
 		$params['lastName'] = filter_var(trim($params['lastName']), FILTER_SANITIZE_STRING);
 		$params['email'] = filter_var(trim($params['email']), FILTER_SANITIZE_EMAIL);
 
-		$data_enetered = date('m/d/Y');
+		$date_enetered = date('m/d/Y');
 
 		if ( $this->user_exists($params['email']) ) {
 			die("this user already exisis");
@@ -99,8 +99,8 @@ class User {
 
 		else {
 
-			// Run the INSERT QUERY -------------------------------------
-		 	$students_query = "INSERT INTO students 
+			// ------------------- Run the INSERT QUERY -------------------
+		 	$students_query = "INSERT INTO users 
 		 	(first_name, last_name, email, password, date_created) 
 		 	VALUES (:firstName, :lastName, :email, :password, :createdOn)";
 
@@ -125,7 +125,7 @@ class User {
 	 	// For the die() statement. make it so that some soft of popup shows up.
 	 	// If the User
 
-	 	$students_query = "SELECT email FROM students
+	 	$students_query = "SELECT email FROM users
 	 	WHERE email = :username";
 
 	 	$stmt = $this->db->prepare($students_query);
@@ -145,10 +145,11 @@ class User {
 
 	 // -------- Get User Information -------- //
 
-	 public function get_user_details() {
+	 public function get_user_details($id) {
 
-	 	$query = "SELECT * FROM course_category";
+	 	$query = "SELECT * FROM users WHERE id = :id";
 	 	$stmt = $this->db->prepare($query);
+	 	$stmt->bingParam(':id', $id, PDO::PARAM_INT);
 	 	$stmt->execute();
 	 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -156,15 +157,36 @@ class User {
 	 }
 
 
+	
+	public function class_signup($student_id, $course_id, $schedule_id) {
 
-	 public function get_user_classes() {
+		$query = "INSERT INTO courses_classes (id) VALUES (:student_id, :course_id, :schedule_id)";
 
-	 }
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(':student_id',1, PDO::PARAM_INT);
+		$stmt->bindParams(':course_id',2, PDO::PARAM_INT);
+		$stmt->bindParams(':schedule_id',3,PDO::PARAM_INT);
+
+		try {
+			$stmt->execute();
+			
+		} catch(Exception $e) {
+			echo "Oh no we were unable to assign you to a class </br>";
+			echo "Please send this message to helpdesk@realestateone.com <br />";
+			echo $e->getMessage();
+		}
+	}
+
+	public function get_user_classes($student_id) {
+		$query = "SELECT * FROM courses";
+	}
+
 
 
 	 // -------- Update User Information --------
 
-	public function update_user() {
+	public function update_user($params) {
+		$query = "UPDATE users () VALUES ()";
 
 	}
 
@@ -187,7 +209,9 @@ class User {
 	 		"firstName",
 	 		"lastName",
 	 		"email", 
-	 		"password"
+	 		"password",
+	 		"userId",
+	 		"courseId"
 	 	);
 	}
 

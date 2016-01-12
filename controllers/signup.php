@@ -1,6 +1,7 @@
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+require_once(D_ROOT . "/reou/models/User.php");
 require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
 if ( $_SERVER['REQUEST_METHOD'] == "POST" && signin_check_post_params()) {
@@ -11,16 +12,13 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && signin_check_post_params()) {
 
 	require_once(D_ROOT . "/reou/models/database.php");
 
-	// Old fasioned autoloading for compatibility
-	function __autoload($class_name) {
-		require_once("../models/". $class_name . '.php');
-	}
 
 	// -------- Attempt To Signup -------- //
 	$user = new User($db);
 
 	try {
 		$results = $user->create_user($params);
+		header("location: ../views/courses/course_category.php");
 	} 
 
 	catch (Exception $e) {
@@ -29,7 +27,7 @@ if ( $_SERVER['REQUEST_METHOD'] == "POST" && signin_check_post_params()) {
 		$e->getMessage();
 	}
 
-	header("location: ../views/courses/course_category.php");
+	
 }
 
 ?>

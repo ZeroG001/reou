@@ -55,6 +55,7 @@ class Course {
 	 }
 
 	 public function get_class_details($class_id) {
+
 	 	$query = "SELECT * FROM courses WHERE course_id = ?";
 
 	 	$stmt = $this->db->prepare($query);
@@ -64,25 +65,8 @@ class Course {
 	 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	 	return $results;
+
 	 }
-
-	 // public function get_course_details($course_id) {
-
-
-		// 	$query = "SELECT courses.*, course_schedules.* 
-		// 	FROM courses
-		// 	INNER JOIN course_schedules
-		// 	ON courses.course_id = course_schedules.course_id
-		// 	WHERE courses.course_id = ?";
-
-		// 	$stmt = $this->db->prepare($query);
-		// 	$stmt->bindParam(1, $course_id);
-		// 	$stmt->execute();
-
-		// 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		// 	return $result;
-	// }
 
 	 public function get_course_schedule($course_id) {
 	 	$cols = array(
@@ -97,6 +81,7 @@ class Course {
 	 		"course_name",
 	 		"course_desc",
 	 	);
+
 	 	$query = "SELECT * FROM course_schedules cs 
 		INNER JOIN courses c 
 		ON cs.course_id=c.course_id 
@@ -111,12 +96,13 @@ class Course {
 		return $resutls;
 	 }
 
-	// ---------- edit courses ---------- //	
-	 public function edit_course() {
-	 }
+	// ---------- edit courses ---------- //
 
-	 public function edit_course_category() {
-	 }
+	 public function edit_course() {}
+
+	 public function edit_course_category() {}
+
+
 	// ---------- remove courses ---------- //
 
 	public function remove_course() {
@@ -129,6 +115,7 @@ class Course {
 	 	$quert = "DELETE FROM courses_category WHERE course_id = ?";
 	 	$stmt = $this->db->prepare($query);
 	}
+	
 }
 
 ?>

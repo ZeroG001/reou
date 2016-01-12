@@ -10,4 +10,60 @@ Next I would like to make a student courses table. This links a student to a cou
 
 [ Play for students_courses through table ]
 
-When a student signs up for a course add them to the through table
+When a student signs up for a course add them to the through table;
+
+
+=========================================
+		DATABASE "MIGRATIONS"
+=========================================
+
+--------------------- Staff Table Modifications --------------------
+
+[3. Add Type Column]
+ALTER TABLE staff ADD type VARCHAR(10) NULL;
+
+[4. Set all type column text to 'staff']
+UPDATE staff SET type = 'staff';
+
+[5. Remove Staff City Column]
+"ALTER TABLE `staff` DROP `staff_city`;
+
+
+---------------- students TABLE modifications ----------------------
+
+[-2. Rename student_id to student_number]
+ALTER TABLE `students` CHANGE `student_id` `student_number` INT(11) NOT NULL AUTO_INCREMENT;
+
+[-1. renamed row_id to student_id ]
+ALTER TABLE `students` CHANGE `row_id` `student_id` INT(11) NOT NULL AUTO_INCREMENT;
+
+[1. Added type column ]
+ALTER TABLE students ADD type VARCHAR(10) NOT NULL;
+
+[2. set all type column text to 'student']
+UPDATE students SET  type = 'student';
+
+[6. Add Column profile_picture]
+ALTER TABLE `students`  ADD `profile_picture` VARCHAR(255) NULL;
+
+[7. Add Column bio ]
+ALTER TABLE `students`  ADD `bio` TEXT NULL;
+
+[8. Add Column active ]
+ALTER TABLE `students`  ADD `active` BOOLEAN NULL;
+
+[9. Add Column Title]
+ALTER TABLE `students`  ADD `title` VARCHAR(50) NULL;
+
+[10. Combine Students and Staff Table]
+INSERT INTO `students` (`first_name`,`last_name`,`phone`,`email`,`bio`,`active`,`title`,`type`) SELECT staff_fname, staff_lname, staff_phone, staff_email, staff_bio, staff_active,staff_title,type FROM staff;
+
+
+----------------------------- USERS TABLE modifications ----------------------------------------
+
+[11. Created Users table]
+Use users01122016.sql
+I used PHPmyadmin to import/export so you might run into errors.
+
+[12. rename student_id to id]
+ALTER TABLE `users` CHANGE `student_id` `id` INT(11) NOT NULL AUTO_INCREMENT;

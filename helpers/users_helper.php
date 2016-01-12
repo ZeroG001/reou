@@ -16,4 +16,10 @@
 	} // end
 
 
+	function isSignedIn() {
+		// check if a session variable is set
+		// Return true or false
+	}
+
+
 ?>

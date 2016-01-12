@@ -1,6 +1,7 @@
 <?php
 
 require($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
+require_once(D_ROOT . "/reou/models/database.php");
 require(D_ROOT . '/reou/helpers/courses_helper.php');
 require(D_ROOT . "/reou/models/Course.php");
 

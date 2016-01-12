@@ -1,8 +1,6 @@
 <?php
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
-	require_once(D_ROOT . "/reou/models/database.php");
 	$course_detail = course_detail($db);
-	// -----------------------------------
 ?>
 
 <html>
