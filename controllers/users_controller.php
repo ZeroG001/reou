@@ -43,10 +43,7 @@ function create($ObjectPDO) {
 
 	if ( $_SERVER['REQUEST_METHOD'] == "POST" && signin_check_post_params()) {
 
-		// Theres no real reson to do this. Just aliasing the POST params
 		$params = $_POST;
-
-		// -------- Attempt To Signup -------- //
 		$user = new User($ObjectPDO);
 
 		try {
@@ -62,6 +59,8 @@ function create($ObjectPDO) {
 		header("location: ../views/courses/course_category.php");
 	}
 }
+
+
 
 // --------------------------------- edit.php -----------------------------
 
