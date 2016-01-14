@@ -1,6 +1,226 @@
 @import 'normalize';
+/* @import 'animate'; */
 
-$font-stack:	Helvetica, sans-serif;
+/* SASS Variables
+------------------------------------------- */
+
+
+	/* Color Scheme
+	-------------------------- */
+	$red: red;
+	$darkblue: #106FA8;
+	$cleardarkblue: rgba(16,111,168, 0.9);
+	$lightblue: #3D96CC;
+	$lightgray: #F8F8F8;
+	$clearlightblue: rgba(97,189,244, 0.3);
+	$duskblue: #488DB6;
+	$clearduskblue: rgba(72,141,182,0.9);
+	$toadgreen: #08B599;
+	$toadgreenclear: rgba(8,181,153,0.9);
+	$orange: #F5AC49;
+	$action: #F55818;
+	$headertext: #002942;
+	$fontStack: 'Open Sans', sans-serif;
+
+	/* Font Sizes 
+	---------------------------- */
+
+
+
+/* SASS Mixins
+--------------------------------------------- */
+
+	/* Clearfix 
+	----------------------- */
+	@mixin clearfix {
+
+		&::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+	}
+
+
+	/* Radial Gradient 
+	----------------------- */
+	@mixin blueGradient {
+
+	background: rgb(210,235,249);
+	background: -moz-radial-gradient(center, ellipse cover,  rgba(210,235,249,1) 0%, rgba(254,255,255,1) 100%);
+	background: -webkit-radial-gradient(center, ellipse cover,  rgba(210,235,249,1) 0%,rgba(254,255,255,1) 100%);
+	background: radial-gradient(ellipse at center,  rgba(210,235,249,1) 0%,rgba(254,255,255,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ebf9', endColorstr='#feffff',GradientType=1 );
+
+	}
+
+
+	/* Transitions 
+	--------------------------- */
+	 @mixin transition($options) {
+
+	 	-webkit-transition: $options;
+	 	-moz-transition: $options;
+	 	-o-transition: $options;
+	 	transition: $options;
+
+	 }
+
+	 /* Transform 
+	 -------------------------- */
+
+	 @mixin transform($options) {
+
+	 	-webkit-transform: $options ;
+	 	-moz-transform: $options ;
+	 	-ms-transform: $options ;
+	 	-o-transform: $options ;
+	 	transform: $options ;
+	 }
+
+	/* Keyframe aniamtions 
+	----------------------------------------------------- */
+	@mixin keyframes($name) {
+		@-webkit-keyframes $name { @content	}
+		@-moz-keyframes $name { @content }
+		@-o-keyframes $name { @content }
+		@keyframes $name { @content }
+	}
+
+	@mixin animation($options) {
+
+		-webkit-animation: $options;
+		-moz-aniamtion: $options;
+		-o-animation: $options;
+		animation: $options;
+		
+	}
+
+
+	/* Animation properties */
+
+	@mixin animationProperty($property, $value) {
+		-webkit-animation-#{$property}: $value;
+		-moz-aniamtion-#{property}: $value;
+		-o-animation-#{property}: $value;
+		animation-#{property}: $value
+
+	}
+
+
+	/* Helper Animations */
+
+
+	@include keyframes(fadeIn) {
+		from { 
+				opacity: 0;
+				@include transform(scale(0.95, 0.95));
+			 }
+
+		to { 
+			opacity: 1;
+			@include transform(scale(1, 1));
+		}
+	}
+	
+
+
+
+
+
+	/* Font Sizes - Typography
+	---------------------------------- */
+
+	@mixin headerContent {
+		color: $darkblue;
+		font-size: 3rem;
+		margin: 0;
+		padding: 30px 0px;
+
+	}
+
+	@mixin textContent {
+		line-height: 1.5;
+		font-size: 1.5rem;
+		margin: 0;
+		padding-bottom: 30px;
+		letter-spacing: 0.1rem;
+	}
+
+	@mixin sectionHeader {
+		display: block;
+		width: 150px;
+		font-size: 1.5rem;
+		letter-spacing: 0.1rem;
+		font-weight: bold;
+		border-bottom: 4px solid $darkblue;
+		padding-bottom: 5px;
+	}
+
+
+	/* Helper Mixins 
+	----------------------- */
+
+	@mixin imageContentLeft {
+			position: relative;
+			display: inline;
+			top: 0px;
+			left: -20px;
+			float: left;
+	}
+
+	@mixin imageContentRight {
+			position: relative;
+			display: inline;
+			top: 0px;
+			right: -20px;
+			float: right;
+	}
+
+	@mixin fullBackground {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+
+	/* input items that are thin and use the same properties */
+	@mixin thinput {
+		padding: 15px;
+		font-size: 1.5rem;
+		line-height: 1;
+		margin: 0;
+		background-color: transparent;
+		border: 1px solid $darkblue;
+		color: $darkblue;
+		box-sizing: border-box;
+
+		.button-image {
+			height: 1.5rem;
+			width: 2rem;
+			margin-left: 5px;
+		}
+
+	}
+
+	@mixin tabActive {
+
+		.tab-content {
+
+			display: none;
+
+			&.tab-active {
+				display: inline;
+			}
+		}
+
+	}
+
+
+
+/* Main CSS
+------------------------------------------- */
 
 
 .wrap {
@@ -9,3 +229,9 @@ $font-stack:	Helvetica, sans-serif;
 	max-width: 500px;
 	margin:0px auto;
 }
+
+
+
+
+
+

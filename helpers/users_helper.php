@@ -16,7 +16,14 @@
 	} // end
 
 
-	function isSignedIn() {
+	function userIsSignedIn() {
+		session_start();
+
+		if( isset($_SESSION['id']) ) {
+			return true;
+		} else {
+			return false;
+		}
 		// check if a session variable is set
 		// Return true or false
 	}

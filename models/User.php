@@ -21,25 +21,37 @@ class User {
 
 	public function sign_in($params) {
 
-
+		// Make sure params are accepted params
 		foreach ($params as $param => $value) {
 		 	if(!in_array($param, $this->accepted_params())) {
 		 		die("Form Field " . $param . " is not accepted");	
 		 	}
 		}
 
-		$query = "SELECT 
-		id,
-		first_name, 
-		last_name, 
-		address, city, 
-		state, 
-		zip, 
-		phone, 
-		email, 
-		licensed
+
+		$cols = [
+			"id",
+			"first_name",
+			"last_name",
+			"address",
+			"city",
+			"state",
+			"zip",
+			"phone",
+			"email",
+			"licensed",
+			"type",
+			"bio",
+			"active",
+			"title"
+		];
+
+		$cols = implode(", ", $cols);
+
+		$query = "SELECT $cols 
 		FROM  users
 	 	WHERE email = :email and password = :password";
+
 
 	 	$stmt = $this->db->prepare($query);
 	 	$stmt->bindParam(':email', $params['email'], FILTER_SANITIZE_EMAIL);
@@ -47,6 +59,15 @@ class User {
 
 	 	try {
 	 		$stmt->execute();
+
+
+		 	if($stmt->rowCount() == 1) {
+		 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		 		return $result;
+		 	} else {
+		 		die("Error in sign_in controller code. More than one of the same record found");
+		 	}
+
 	 	} 
 
 	 	catch(Exception $e) {
@@ -56,12 +77,7 @@ class User {
 
 	 	
 	 	// ------- Return Result Or False if Nothing Comes up -------- //
-	 	if($stmt->rowCount() == 1) {
-	 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	 		return $result;
-	 	} else {
-	 		return false;
-	 	}
+
 
 	}
 
@@ -93,7 +109,7 @@ class User {
 
 		$date_enetered = date('m/d/Y');
 
-		if ( $this->user_exists($params['email']) ) {
+		if ( $this->unique_user_exists($params['email']) ) {
 			die("this user already exisis");
 		}
 
@@ -118,17 +134,21 @@ class User {
 
 	 }
 
-	 function user_exists($username) {
+	 function unique_user_exists($username) {
 	 	// String - Username to check for 'johndoe@hotmail.com'
 	 	// Check the the Student security table to see if that record exists. Alerts if there are dupes
 	 	//Well does the user exist? return true of false.
 	 	// For the die() statement. make it so that some soft of popup shows up.
 	 	// If the User
 
-	 	$students_query = "SELECT email FROM users
+	 	if(trim($username) == "") {
+	 		die("email is invalid (make me a reutrn value or flash message)");
+	 	}
+
+	 	$query = "SELECT email FROM users
 	 	WHERE email = :username";
 
-	 	$stmt = $this->db->prepare($students_query);
+	 	$stmt = $this->db->prepare($query);
 	 	$stmt->bindParam(':username', $username, PDO::PARAM_STR);
 	 	$stmt->execute();
 
@@ -147,7 +167,26 @@ class User {
 
 	 public function get_user_details($id) {
 
-	 	$query = "SELECT * FROM users WHERE id = :id";
+	 	$cols = [
+	 		"student_number",
+	 		"first_name",
+	 		"last_name",
+	 		"address",
+	 		"city",
+	 		"state",
+	 		"zip",
+	 		"phone",
+	 		"email",
+	 		"licensed",
+	 		"type",
+	 		"bio",
+	 		"active",
+	 		"title"
+	 	];
+
+	 	$cols = implode(", ", $cols);
+
+	 	$query = "SELECT $cols FROM users WHERE id = :id";
 	 	$stmt = $this->db->prepare($query);
 	 	$stmt->bingParam(':id', $id, PDO::PARAM_INT);
 	 	$stmt->execute();
@@ -186,6 +225,13 @@ class User {
 	 // -------- Update User Information --------
 
 	public function update_user($params) {
+		$cols = [];
+		
+		foreach ($params as $key => $value) {
+		
+		}
+
+
 		$query = "UPDATE users () VALUES ()";
 
 	}
@@ -194,16 +240,15 @@ class User {
 	// -------- *** Delete User *** --------
 
 	public function delete_user() {
-		// Not sure is im eveen going to code this one in. Udemy has it...so...
+	// Not sure is im eveen going to code this one in. Udemy has it...so...
 	}
-
-
-	// Deletes a class (school) that a user is assigned to
 
 	public function delete_class() {
+	// Deletes a class (school) that a user is assigned to
 
 	}
 
+	// Accepted params from user forms. list should be bigger.
 	function accepted_params() {
 		return array( 
 	 		"firstName",

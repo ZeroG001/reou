@@ -1,5 +1,5 @@
 <?php 
-require($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
 require_once(D_ROOT . "/reou/models/database.php");
 require(D_ROOT . '/reou/helpers/users_helper.php');
 require(D_ROOT . "/reou/models/User.php");
@@ -33,8 +33,6 @@ function signin($ObjectPDO) {
 	}
 }
 
-
-
 // --------------- signup.php ---------------------
 
 function create($ObjectPDO) {
@@ -56,7 +54,7 @@ function create($ObjectPDO) {
 			$e->getMessage();
 		}
 
-		header("location: ../views/courses/course_category.php");
+		// header("location: ../views/courses/course_category.php");
 	}
 }
 
@@ -67,15 +65,31 @@ function create($ObjectPDO) {
 function edit($ObjectPDO) {
 	// if(isSignedIn()) {
 		$user = new User($ObjectPDO);
-
-		$user->get
 	// }
 
 }
 
+function sign_in($ObjectPDO, $params) {
 
+	if(isset($params['email']) && isset($params['password'])) {
 
+			$user = new User($ObjectPDO);
+			$results = $user->sign_in($params);
 
+			session_start();
+
+			foreach ($results[0] as $k => $v) {
+				$_SESSION[$k] = $v;
+			}
+
+			//Or perhaps take them to the splash page.
+			header("location: ../courses/course_category.php");
+
+	} else {
+		echo "User name or password is empty";
+	}	
+
+}
 
 
 ?>
