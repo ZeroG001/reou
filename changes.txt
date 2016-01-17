@@ -41,7 +41,7 @@ ALTER TABLE `students` CHANGE `row_id` `student_id` INT(11) NOT NULL AUTO_INCREM
 ALTER TABLE students ADD type VARCHAR(10) NOT NULL;
 
 [2. set all type column text to 'student']
-UPDATE students SET  type = 'student';
+UPDATE students SET type = 'student';
 
 [6. Add Column profile_picture]
 ALTER TABLE `students`  ADD `profile_picture` VARCHAR(255) NULL;

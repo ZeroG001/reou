@@ -5,28 +5,31 @@
 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		sign_in($db, $_POST);
-	} elseif(userIsSignedIn()) {
-		header("location: ../views/courses/course_category.php");
+	} elseif(userSignedIn()) {
+		header("location: ../courses/course_category.php");
 		echo "move to the page they were just on";
 	} 
 ?>
 
 <html>
-<head>
-	<title> Sign In </title>
-</head>
-<body>
-	<form method="POST" action="#" >
 
-		<label for="email"> Email </label>
-		<input type="text" name="email">
+	<head>
+		<title> Sign In </title>
+	</head>
 
-		<label for="password"> Password </label>
-		<input type="password" name="password">
+	<body>
+		<form method="POST" action="" >
 
-		<input type="submit" value="Log in">
+			<label for="email"> Email </label>
+			<input type="text" name="email">
 
-	</form>
-</body>
+			<label for="password"> Password </label>
+			<input type="password" name="password">
+
+			<input type="submit" value="Log in">
+
+		</form>
+	</body>
+
 </html>
 

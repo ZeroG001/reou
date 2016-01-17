@@ -33,15 +33,9 @@ class User {
 			"id",
 			"first_name",
 			"last_name",
-			"address",
-			"city",
-			"state",
-			"zip",
-			"phone",
 			"email",
 			"licensed",
 			"type",
-			"bio",
 			"active",
 			"title"
 		];
@@ -64,8 +58,11 @@ class User {
 		 	if($stmt->rowCount() == 1) {
 		 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		 		return $result;
-		 	} else {
+		 	} elseif ($stmt->rowCount() > 1) {
+		 		echo $stmt->rowCount();
 		 		die("Error in sign_in controller code. More than one of the same record found");
+		 	} else {
+		 		die("Username or password invalid - make me a pop up message");
 		 	}
 
 	 	} 

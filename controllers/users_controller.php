@@ -23,7 +23,10 @@ function signin($ObjectPDO) {
 		$results = $user->sign_in($params); 
 
 		// -------- Load Sesion Variables -------- //
-		if($results) {
+		// "id","first_name", "last_name", "address", "city", "state", 
+		//"zip", "phone", "email", "licensed", "type", "bio", "active", "title"
+
+		if ($results) {
 			session_start();
 			foreach($results[0] as $k => $v) {
 				$_SESSION[$k] = $v;
@@ -83,7 +86,7 @@ function sign_in($ObjectPDO, $params) {
 			}
 
 			//Or perhaps take them to the splash page.
-			header("location: ../courses/course_category.php");
+			header("location: ../courses/course_category.php/");
 
 	} else {
 		echo "User name or password is empty";
