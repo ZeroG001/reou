@@ -2,6 +2,8 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
 require_once(D_ROOT . "/reou/models/database.php");
 require(D_ROOT . '/reou/helpers/users_helper.php');
+require(D_ROOT . '/reou/helpers/courses_helper.php');
+require(D_ROOT . '/reou/controllers/routes.php');
 require(D_ROOT . "/reou/models/User.php");
 
 
@@ -62,7 +64,6 @@ function create($ObjectPDO) {
 }
 
 
-
 // --------------------------------- edit.php -----------------------------
 
 function edit($ObjectPDO) {
@@ -81,12 +82,13 @@ function sign_in($ObjectPDO, $params) {
 
 			session_start();
 
+			//session variable names are same as column names in table.
 			foreach ($results[0] as $k => $v) {
 				$_SESSION[$k] = $v;
 			}
 
-			//Or perhaps take them to the splash page.
-			header("location: ../courses/course_category.php/");
+			//or perhaps take them to the splash page.
+			header("location:". course_route('course_category'));
 
 	} else {
 		echo "User name or password is empty";

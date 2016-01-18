@@ -4,8 +4,6 @@
 
 	// ---------- Testing ---------------
 
-	include("../../helpers/users_helper.php");
-
 	if(userSignedIn()) {
 
 		// Debug - Remove this
@@ -18,26 +16,25 @@
 
 	// ----------------------------------
 ?>
-
-
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 
 	<div class="wrap">
-	<?php  foreach ($categories as $k => $category) { ?>
+		<?php  foreach ($categories as $k => $category) { ?>
 
+			<div class="courses__box">
 
-		<div class="courses__box">
-			<a href='course_classes.php?id=<?php echo $category['category_id'] ?>'> 
-				<?php echo $category['category_name'] ?> 
-			</a>
-		</div>
+				<a href='<?php echo course_route("course_classes", ["id" => $category["category_id"] ]) ?>'> 
+					<?php echo $category['category_name'] ?> 
+				</a>
+				
+			</div>
 
-		<br />
-	<?php } ?>
+			<br />
+		<?php } ?>
 	</div>
 
-	<a href="../../users/sign-out.php"> Sign out </a> <br />
-	<a href="../../users/sign-in.php"> Sign In </a>
+	<a href="<?php echo user_route('sign-out') ?>"> Sign out </a> <br />
+	<a href="<?php echo user_route('sign-in') ?>"> Sign In </a>
 
 
 </div>

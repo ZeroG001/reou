@@ -19,40 +19,35 @@
 
 <body>
 	<form>
-
-
 		<h2> Profile Info </h2>
-		<label for="first_name">
+		<label for="first_name"> First Name </label>
 		<input type="text" id="first_name" name="first_name">
 
-		<label for="last_name">
+		<label for="last_name"> Last Name </label>
 		<input type="text" id="last_name" name="last_name">
 
-		<label for="phone">
+		<label for="phone"> Phone Number </label>
 		<input type="text" id="phone" name="phone">
 
-		<label for="email">
+		<label for="email"> Email Address </label>
 		<input type="email" id="email" name="email">
 		
-		<label for="password">
+		<label for="password"> Password </label>
 		<input type="password" name="password" id="password">
 
 
 		<!-- Only Students -->
-		<label for="licensed">
+		<label for="licensed"> Lisenced? </label>
 		<input type="checkbox" name="licensed" id="licensed">
 
-		<label for="student_number">
+		<label for="student_number"> Student Number </label> 
 		<input type="text" name="student_number" id="student_number">
 
 		<!-- Only Admins -->
-		<label for="title">
+		<label for="title"> Title </label>
 		<input type="text" id="title" name="title" id="title">
 
-		<input type="hidden" value="22"> <!-- This should only be in here for admins. -->
-
-
-
+		<input type="hidden" value="22"> <!-- This should only be in here for admins. Its the student ID -->
 	</form>
 </body>
 </html>
