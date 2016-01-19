@@ -193,25 +193,6 @@ class User {
 	 }
 
 
-	
-	public function class_signup($student_id, $course_id, $schedule_id) {
-
-		$query = "INSERT INTO courses_classes (id) VALUES (:student_id, :course_id, :schedule_id)";
-
-		$stmt = $this->db->prepare($query);
-		$stmt->bindParam(':student_id',1, PDO::PARAM_INT);
-		$stmt->bindParams(':course_id',2, PDO::PARAM_INT);
-		$stmt->bindParams(':schedule_id',3,PDO::PARAM_INT);
-
-		try {
-			$stmt->execute();
-			
-		} catch(Exception $e) {
-			echo "Oh no we were unable to assign you to a class </br>";
-			echo "Please send this message to helpdesk@realestateone.com <br />";
-			echo $e->getMessage();
-		}
-	}
 
 	public function get_user_classes($student_id) {
 		$query = "SELECT * FROM courses";

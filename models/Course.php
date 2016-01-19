@@ -12,6 +12,8 @@ class Course {
 	 	$this->db = $db;
 	 }
 
+
+
 	 // -------- Get Corse Information -------- //
 	 public function get_course_category() {
 
@@ -22,6 +24,8 @@ class Course {
 
 	 	return $result;
 	 }
+
+
 
 	 public function get_course_classes($course_id) {
 	 	$cols = array(
@@ -54,6 +58,8 @@ class Course {
 	 	return $result_array;
 	 }
 
+
+
 	 public function get_class_details($class_id) {
 
 	 	$query = "SELECT * FROM courses WHERE course_id = ?";
@@ -67,6 +73,8 @@ class Course {
 	 	return $results;
 
 	 }
+
+
 
 	 public function get_course_schedule($course_id) {
 	 	$cols = array(
@@ -97,13 +105,34 @@ class Course {
 	 }
 
 	// ---------- edit courses ---------- //
+	 public function register_course() {
+
+	 	$query = "INSERT INTO course_classes (student_id, course_id, schedule_id) 
+	 	VALUES (:course_id, :student_id, :schedule_id)";
+
+	 	$stmt = $this->db->prepare($query);
+		$stmt->bindParam(':student_id', $student_id, $course_id, $schedule_id, PDO::PARAM_INT);
+		$stmt->bindParams(':course_id', $course_id, PDO::PARAM_INT);
+		$stmt->bindParams(':schedule_id', $schedule_id, PDO::PARAM_INT);
+
+		try {
+
+			$stmt->execute();
+
+		} catch (Exception $e) {
+
+			echo "There was a problem registering for the course";
+		
+		}
+		
+	 }
 
 	 public function edit_course() {}
 
 	 public function edit_course_category() {}
 
 
-	// ---------- remove courses ---------- //
+	// ---------- remove courses (admin) ---------- //
 
 	public function remove_course() {
 		$query = "DELETE FROM courses WHERE course_id = ?";

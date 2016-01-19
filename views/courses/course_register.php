@@ -1,3 +1,11 @@
+<?php
+	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
+	course_register($db);
+?>
+
+<p> You have reistered for the C </p>
+
+
 <!-- 
 	This migth be all php
 

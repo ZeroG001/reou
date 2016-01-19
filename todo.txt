@@ -1,0 +1,14 @@
+Try to stay on task this time...
+
+------- C Register -------
+
+[ ] Courses - class_sign-up function submit to self? yes
+[ ] Courses_Model - Course sign up query();
+
+[ ] Check to see if user is already a part of class
+
+
+------- URL -------
+[ ] Reqrite Rules for pretty URLS
+[ ] Make model pages inaccessable
+
