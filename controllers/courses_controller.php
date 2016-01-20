@@ -37,6 +37,9 @@ function course_classes($ObjectPDO) {
 
 function course_detail($ObjectPDO) {
 
+	session_start();
+
+
 	$return_values = [];
 	$course_class_id = verify_get('id');
 	$course = new Course($ObjectPDO);
@@ -45,6 +48,38 @@ function course_detail($ObjectPDO) {
 	$return_values['schedules'] = $course->get_course_schedule($course_class_id);
 
 	return $return_values;
+}
+
+
+// --------------- course_register.php ---------------------
+
+function course_register($ObjectPDO) {
+	
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+		// If a user isn't sign in then it wont work
+		if( !isset($_POST['student_id']) ) {
+			die("Please sign in to continue");
+		}
+
+		//----- Debug --------
+			var_dump($_POST);
+		//-------------------
+
+		$params = $_POST;
+		$course = new Course($ObjectPDO);
+		$course->register_course($params);
+
+	} else {
+		//maybe kick the user back to the main screen...
+		die("controller_course register isnt there");
+		
+	}
+	// $params are {course_id => "#", student_id => "#", schedule_id => "#" }
+
+
+	// You were right here about to connect the controller to MODEL. Call the 
+	// reguster class fucntion
 }
 
 

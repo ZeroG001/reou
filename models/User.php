@@ -226,7 +226,7 @@ class User {
 
 	}
 
-	// Accepted params from user forms. list should be bigger.
+	// Accepted params from user forms.
 	function accepted_params() {
 		return array( 
 	 		"firstName",

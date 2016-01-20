@@ -62,12 +62,18 @@ class Course {
 
 	 public function get_class_details($class_id) {
 
-	 	$query = "SELECT * FROM courses WHERE course_id = ?";
+	 	$query = "SELECT * FROM courses WHERE course_id = ? LIMIT 1";
 
 	 	$stmt = $this->db->prepare($query);
 	 	$stmt->bindParam(1, $class_id);
-	 	$stmt->execute();
 
+	 	try {
+	 		$stmt->execute();
+	 	} 
+	 	catch (Exception $e) {
+	 		echo "There was a problem getting the class details";
+	 	}
+	 	
 	 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	 	return $results;
@@ -104,16 +110,34 @@ class Course {
 		return $resutls;
 	 }
 
-	// ---------- edit courses ---------- //
-	 public function register_course() {
 
-	 	$query = "INSERT INTO course_classes (student_id, course_id, schedule_id) 
-	 	VALUES (:course_id, :student_id, :schedule_id)";
+
+
+	// ---------- edit courses ---------- //
+
+
+
+	 public function register_course($params) {
+
+	 	// Check if the Params are in the accepted params List
+		foreach ($params as $param => $value) {
+		 	if(!in_array($param, $this->accepted_params())) {
+		 		die("Form Field " . $param . " is not accepted");	
+		 	}
+		}
+
+		if($this->userRegisteredforClass($params['student_id'], $params['course_id'], $params['schedule_id'])) {
+			die("You are already registered for this class (make a popup?)");
+		}
+
+
+	 	$query = "INSERT INTO students_courses (student_id, course_id, schedule_id) 
+	 	VALUES (:student_id, :course_id, :schedule_id)";
 
 	 	$stmt = $this->db->prepare($query);
-		$stmt->bindParam(':student_id', $student_id, $course_id, $schedule_id, PDO::PARAM_INT);
-		$stmt->bindParams(':course_id', $course_id, PDO::PARAM_INT);
-		$stmt->bindParams(':schedule_id', $schedule_id, PDO::PARAM_INT);
+		$stmt->bindParam(':student_id', $params['student_id'], PDO::PARAM_INT);
+		$stmt->bindParam(':course_id', $params['course_id'], PDO::PARAM_INT);
+		$stmt->bindParam(':schedule_id', $params['schedule_id'], PDO::PARAM_INT);
 
 		try {
 
@@ -122,10 +146,36 @@ class Course {
 		} catch (Exception $e) {
 
 			echo "There was a problem registering for the course";
-		
+			echo $e->getMessage();
 		}
-		
 	 }
+
+
+
+	 // Check to see if a user is already registered for a class
+	 public function userRegisteredforClass($student_id, $course_id, $schedule_id) {
+
+	 	$query = "SELECT * FROM students_courses 
+	 	WHERE student_id = :student_id
+	 	AND course_id = :course_id
+	 	AND schedule_id = :schedule_id LIMIT 1";
+
+	 	$stmt = $this->db->prepare($query);
+	 	$stmt->bindParam(':student_id', $student_id, PDO::PARAM_INT);
+		$stmt->bindParam(':course_id', $course_id, PDO::PARAM_INT);
+		$stmt->bindParam(':schedule_id', $schedule_id, PDO::PARAM_INT);
+
+		$stmt->execute();
+
+		if($stmt->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	 }
+
+
 
 	 public function edit_course() {}
 
@@ -134,15 +184,29 @@ class Course {
 
 	// ---------- remove courses (admin) ---------- //
 
+
+	// Remove a course
 	public function remove_course() {
 		$query = "DELETE FROM courses WHERE course_id = ?";
 		$stmt = $this->db->prepare($query);
 		$stmt->bindParam(1, $course_id);
 	}
 
+	// Remove Course category
 	public function remove_course_category() {
 	 	$quert = "DELETE FROM courses_category WHERE course_id = ?";
 	 	$stmt = $this->db->prepare($query);
+	}
+
+
+	// Accepted params from courses forms.
+	function accepted_params() {
+		return array( 
+	 		"course_id",
+	 		"student_id",
+	 		"schedule_id", 
+	 		"id"
+	 	);
 	}
 	
 }

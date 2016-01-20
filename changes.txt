@@ -59,7 +59,7 @@ ALTER TABLE `students`  ADD `title` VARCHAR(50) NULL;
 INSERT INTO `students` (`first_name`,`last_name`,`phone`,`email`,`bio`,`active`,`title`,`type`) SELECT staff_fname, staff_lname, staff_phone, staff_email, staff_bio, staff_active,staff_title,type FROM staff;
 
 
------------------------------ USERS TABLE modifications ----------------------------------------
+----------------- USERS TABLE modifications ----------------
 
 [11. Created Users table]
 Use users01122016.sql
@@ -67,3 +67,9 @@ I used PHPmyadmin to import/export so you might run into errors.
 
 [12. rename student_id to id]
 ALTER TABLE `users` CHANGE `student_id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+
+
+------------ Students_Courses table ------------
+
+[13. Add id column]
+ALTER TABLE `students_courses` ADD COLUMN `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT FIRST;

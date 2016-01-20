@@ -3,7 +3,7 @@
 	course_register($db);
 ?>
 
-<p> You have reistered for the C </p>
+<p> Thank you. You have Registered for the class </p>
 
 
 <!-- 
