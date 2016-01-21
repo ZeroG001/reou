@@ -73,6 +73,23 @@ function edit($ObjectPDO) {
 
 }
 
+function my_courses($ObjectPDO) {
+	//The student ID will be received by the user session
+
+	if(isSignedIn()) {
+		$student_id = $_SESSION['id'];
+	} else {
+		die("You must be signed in to see this page");
+	}
+
+	$user = new User($ObjectPDO);
+	$results = $user->get_user_classes($student_id);
+	$course_detail = $results[0];
+
+	return $results;
+
+}
+
 function sign_in($ObjectPDO, $params) {
 
 	if(isset($params['email']) && isset($params['password'])) {

@@ -5,6 +5,8 @@
 	// Routes for th entire program
 
 
+	// ===================== Users Routes =====================
+
 	function user_route($route, $getVars = "") {
 
 		// Takes the array you pass in and converts it into a query string
@@ -30,14 +32,20 @@
 			case 'sign-up':
 				return "/reou/views/users/sign-up.php".$querystring;
 				break;
-			
 
+			case 'my-courses':
+				return "/reou/views/users/my-courses.php".$querystring;
+				break;
+			
 			default:
 				return "/reou/views/courses/course_category.php".$querystring;
 				break;
 		}
 
 	}
+
+
+	// ===================== Courses Routes =====================
 
 	function course_route($route, $getVars = "") {
 

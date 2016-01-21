@@ -195,7 +195,29 @@ class User {
 
 
 	public function get_user_classes($student_id) {
-		$query = "SELECT * FROM courses";
+
+		// I don't feel this is the most efficient query but it works;
+		$query = "SELECT * FROM students_courses 
+		INNER JOIN users on students_courses.student_id = users.id 
+		INNER JOIN courses on students_courses.course_id = courses.course_id 
+		INNER JOIN course_schedules on students_courses.schedule_id = course_schedules.schedule_id 
+		WHERE students_courses.student_id = :student_id";
+
+		$stmt = $this->db->prepare($query);
+
+		$stmt->bindParam('student_id',$student_id ,PDO::PARAM_INT);
+
+		try {
+
+			$stmt->execute();
+
+		} catch (Exception $e) {
+			die("There was a problem getting user classes. Please try again later");
+		}
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $results;		
 	}
 
 

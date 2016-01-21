@@ -2,13 +2,28 @@ Try to stay on task this time...
 
 ------- C Register -------
 
-[ ] Courses - class_sign-up function submit to self? yes
-[ ] Courses_Model - Course sign up query();
+[ x ] Courses - class_sign-up function submit to self? yes
+[ x ] Courses_Model - Course sign up query();
 
-[ ] Check to see if user is already a part of class
+[ x ] Check to see if user is already a part of class
+
+
+------- User -----
+[ ] Show all classes they are apart of
 
 
 ------- URL -------
 [ ] Reqrite Rules for pretty URLS
 [ ] Make model pages inaccessable
+
+
+
+-------- Database -------
+[ ] The schedule database should have a register column that determines whether you can register or not.
+
+
+
+// I was last working on making it so that the users can see their classes
+// I was just about to log in as a user and see all the variables availible to be.
+// The Model controller and views are already sort of set up.
 

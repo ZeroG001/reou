@@ -18,6 +18,9 @@
 	</head>
 
 <body>
+
+
+	<!-- Form used to updated profile infotmation -->
 	<form>
 		<h2> Profile Info </h2>
 		<label for="first_name"> First Name </label>
@@ -49,5 +52,6 @@
 
 		<input type="hidden" value="22"> <!-- This should only be in here for admins. Its the student ID -->
 	</form>
+
 </body>
 </html>
