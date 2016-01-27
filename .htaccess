@@ -1,0 +1,35 @@
+RewriteEngine on
+
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # RewriteRule ^(.*)$ $1 [L,R=301]
+
+
+# ----- Users ------
+RewriteRule ^sign-in$ views/users/sign-in.php [L]
+RewriteRule ^sign-up$ views/users/sign-up.php [L]
+RewriteRule ^sign-out$ views/users/sign-out.php [L]
+
+RewriteRule ^sign-out$ views/users/sign-out.php [L]
+
+
+# ----- Courses ------
+RewriteRule ^course-category$ views/courses/course_category.php [L]
+RewriteRule ^course-category$ views/courses/course_category.php [L]
+
+RewriteCond %{QUERY_STRING} ^id=([0-9]+)$ 
+RewriteRule ^courses/([a-zA-Z0-9]+)$ views/courses/course_classes.php?id=$1
+RewriteRule ^course-detail/([a-zA-Z0-9]+)$ views/courses/course_detail.php?id=$1
+
+RewriteRule course_category.php$ course-category [L]
+
+
+# https://teamtreehouse.com/library/enhancing-a-simple-php-application/cleaning-urls-with-rewrite-rules/rewrite-rules-with-query-strings check out the link for help
+
+
+<Files "loginreport.php">
+Order Allow,Deny
+Deny from all
+</Files>
+

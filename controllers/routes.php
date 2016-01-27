@@ -11,7 +11,9 @@
 
 		// Takes the array you pass in and converts it into a query string
 		if (is_array($getVars)) {
-			$querystring = "?".http_build_query($getVars);
+			//$querystring = "?".http_build_query($getVars);
+			$querystring = $getVars['id'];
+			var_dump($querystring);
 		} else {
 			$querystring = $getVars;
 		}

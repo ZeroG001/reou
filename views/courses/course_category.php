@@ -34,7 +34,7 @@
 	</div>
 
 	<a href="<?php echo user_route('sign-out') ?>"> Sign out </a> <br />
-	<a href="<?php echo user_route('sign-in') ?>"> Sign In </a> <br />
+	<a href="<?php echo user_route('sign-in', ['id' => 'blayne']) ?>"> Sign In </a> <br />
 	<a href="<?php echo user_router('my-courses')?>"> My Courses </a>
 
 
