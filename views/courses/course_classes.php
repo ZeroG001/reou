@@ -20,7 +20,9 @@
 			<?php  foreach ($categories as $k => $category) { ?>
 			
 				<div class="courses__box">
-					<a href='course_detail.php?id=<?php echo $category['course_id'] ?>'> 
+
+
+					<a href='<?php echo course_route("course_detail", array("id" => $category['course_id'])) ?>'> 
 						<?php echo $category['course_name'] ?> 
 					</a>
 				</div>
