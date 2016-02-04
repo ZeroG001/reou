@@ -20,27 +20,27 @@
 		switch ($route) {
 
 			case 'edit':
-				return "edit/".$querystring;
+				return "/reou/edit/".$querystring;
 				break;
 
 			case 'sign-in':
-				return "sign-in.php/".$querystring;
+				return "/reou/sign-in".$querystring;
 				break;
 
 			case 'sign-out':
-				return "sign-out/".$querystring;
+				return "/reou/sign-out".$querystring;
 				break;
 
 			case 'sign-up':
-				return "sign-up/".$querystring;
+				return "/reou/sign-up".$querystring;
 				break;
 
 			case 'my-courses':
-				return "my-courses/".$querystring;
+				return "/reou/my-courses".$querystring;
 				break;
 			
 			default:
-				return "course-category/".$querystring;
+				return "/reou/course-category".$querystring;
 				break;
 
 		}
@@ -64,7 +64,7 @@
 		switch ($route) {
 
 			case 'course_category':
-				return "/reou/course-category/".$querystring;
+				return "/reou/course-category".$querystring;
 				break;
 
 			case 'course_classes':
@@ -76,7 +76,7 @@
 				break;
 
 			case 'course_register':
-				return "/reou/course-register/".$querystring;
+				return "/reou/course-register".$querystring;
 				break;
 			
 			default:

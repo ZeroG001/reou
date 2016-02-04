@@ -9,11 +9,10 @@ RewriteEngine on
 # ----- Users ------
 RewriteRule ^sign-up$ views/users/sign-up.php [L]
 RewriteRule ^sign-out$ views/users/sign-out.php [L]
-RewriteRule ^sign-in$ views/users/sign-up.php [L]
+RewriteRule ^sign-in$ views/users/sign-in.php [L]
 
 
 # ----- Courses ------
-
 
 # RewriteCond %{QUERY_STRING} ^id=([0-9]+)$
 RewriteRule ^course-register$ views/courses/course_register.php [L]
