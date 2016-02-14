@@ -6,6 +6,13 @@ require_once(D_ROOT . "/reou/models/database.php");
 
 class Course {
 
+	public static $message = array(
+		"alert" => "",
+		"error" => "",
+		"success" => "",
+		"notice" => ""
+	);
+
 	// Class Dependencies
 	 public $db;
 	 public function __construct(PDO $db) {
@@ -57,7 +64,6 @@ class Course {
 
 	 	return $result_array;
 	 }
-
 
 
 	 public function get_class_details($class_id) {
@@ -148,6 +154,22 @@ class Course {
 			echo "There was a problem registering for the course";
 			echo $e->getMessage();
 		}
+	 }
+
+
+	 // ------------- Show all classes a student is registered for ----------------------
+	 public function get_registered_courses($student_id) {
+
+	 	$query = "SELECT DISTINCT(course_name), sc.course_id from reou.courses c INNER JOIN students_courses sc ON c.course_id = sc.course_id WHERE sc.student_id = ?";
+
+	 	$stmt = $this->db->prepare($query);
+	 	$stmt->bindParam(1, $student_id);
+	 	$stmt->execute();
+
+	 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	 	return $results;
+
 	 }
 
 

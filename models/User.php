@@ -6,6 +6,13 @@ require_once(D_ROOT . "/reou/models/database.php");
 
 class User {
 
+	public static $message = array(
+			"alert" => "",
+			"error" => "",
+			"success" => "",
+			"notice" => ""
+		);
+
 	public $user_info = array(
 		"name" => "name",
 		"email" => "email",
@@ -57,12 +64,14 @@ class User {
 
 		 	if($stmt->rowCount() == 1) {
 		 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 		 		return $result;
+		 		
 		 	} elseif ($stmt->rowCount() > 1) {
 		 		echo $stmt->rowCount();
 		 		die("Error in sign_in controller code. More than one of the same record found");
 		 	} else {
-		 		die("Username or password invalid - make me a pop up message");
+		 		return false;
 		 	}
 
 	 	} 
@@ -98,16 +107,17 @@ class User {
 
 		}
 
+		// Clean Parameters
 		$params['password'] = md5(trim($params['password']));
-
 		$params['firstName'] = filter_var(trim($params['firstName']), FILTER_SANITIZE_STRING);
 		$params['lastName'] = filter_var(trim($params['lastName']), FILTER_SANITIZE_STRING);
 		$params['email'] = filter_var(trim($params['email']), FILTER_SANITIZE_EMAIL);
-
 		$date_enetered = date('m/d/Y');
 
+
+		// ------------------- Check if user is unique -------------------
 		if ( $this->unique_user_exists($params['email']) ) {
-			die("this user already exisis");
+			return false;
 		}
 
 		else {
@@ -125,7 +135,7 @@ class User {
 		 	$stmt->bindParam(':createdOn', $date_enetered, PDO::PARAM_STR);
 		 	$stmt->execute();
 
-		 	echo "updated";
+		 	return true;
 		}
 
 

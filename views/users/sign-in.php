@@ -1,14 +1,8 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
-	$sign_in_page = "../../controllers/signin.php";
-
-	if($_SERVER['REQUEST_METHOD'] == "POST") {
+	//$sign_in_page = "../../controllers/signin.php";
 		sign_in($db, $_POST);
-	} elseif(userSignedIn()) {
-		header("location: ../courses/course_category.php");
-		echo "move to the page they were just on";
-	} 
 ?>
 
 <html>
@@ -19,6 +13,11 @@
 
 	<body>
 		<form method="POST" action="" >
+
+			<!-- Alert Message  -->
+			<div class="alert">
+				<?php display_alert('alert') ?>
+			</div>
 
 			<label for="email"> Email </label>
 			<input type="text" name="email">

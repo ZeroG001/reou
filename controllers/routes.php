@@ -63,6 +63,10 @@
 
 		switch ($route) {
 
+			case 'home':
+				return "/reou/course-category".$querystring;
+				break;
+
 			case 'course_category':
 				return "/reou/course-category".$querystring;
 				break;
@@ -78,6 +82,9 @@
 			case 'course_register':
 				return "/reou/course-register".$querystring;
 				break;
+
+			case 'my_courses':
+				return "/reou/my-courses".$querystring;
 			
 			default:
 				return "/reou/course-category/".$querystring;

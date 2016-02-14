@@ -10,6 +10,7 @@ RewriteEngine on
 RewriteRule ^sign-up$ views/users/sign-up.php [L]
 RewriteRule ^sign-out$ views/users/sign-out.php [L]
 RewriteRule ^sign-in$ views/users/sign-in.php [L]
+RewriteRule ^sign-out.php$ sign-out [L]
 
 
 # ----- Courses ------
@@ -19,7 +20,7 @@ RewriteRule ^course-register$ views/courses/course_register.php [L]
 RewriteRule ^course-category$ views/courses/course_category.php [L]
 RewriteRule ^courses/([a-zA-Z0-9]+)$ views/courses/course_classes.php?id=$1 [L]
 RewriteRule ^course-detail/([a-zA-Z0-9]+)$ views/courses/course_detail.php?id=$1 [L]
-
+RewriteRule ^my-courses$ views/courses/my_courses.php [L]
 
 
 # ---------- Examples ----------
@@ -28,6 +29,10 @@ RewriteRule ^course-detail/([a-zA-Z0-9]+)$ views/courses/course_detail.php?id=$1
 # reqriteRule ^shirts/$ /shirts/shirts.php [L]
 # RewriteRule ^shirts/([0-9]+)/s /shirt/shirt.php?id=$1;
 
+# [R=301] - Redirect the user to that page
+# [L] - Tells apache not to process any more rules
+# [NC] - Tell apache that the the regex is case sensitive
+# [N] - Continue Processing Rules
 
 # <Files "loginreport.php">
 # Order Allow,Deny

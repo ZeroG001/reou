@@ -1,5 +1,9 @@
 <?php
-	$create_user_path = "../../controllers/signup.php";
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	require_once(D_ROOT . "/reou/controllers/users_controller.php");
+
+		sign_up($db, $_POST);
+
 ?>
 
 <html>
@@ -20,7 +24,11 @@
 	-->
 		<h1> Sign up </h1>
 
-		<form method="POST" action="<?php echo $create_user_path ?>">
+		<form method="POST" action="">
+
+			<div class="alert">
+				<?php display_alert('alert') ?>
+			</div>
 
 			<!-- Full Name -->
 			<!-- Password -->

@@ -8,6 +8,7 @@ require(D_ROOT . '/reou/controllers/routes.php');
 require(D_ROOT . "/reou/models/Course.php");
 
 
+
 // --------------- course_category.php ---------------------
 
 function course_category($ObjectPDO) {
@@ -33,6 +34,7 @@ function course_classes($ObjectPDO) {
 }
 
 
+
 // --------------- course_classes.php ---------------------
 
 function course_detail($ObjectPDO) {
@@ -49,6 +51,7 @@ function course_detail($ObjectPDO) {
 
 	return $return_values;
 }
+
 
 
 // --------------- course_register.php ---------------------
@@ -82,5 +85,25 @@ function course_register($ObjectPDO) {
 	// reguster class fucntion
 }
 
+
+
+// --------------- my-courses.php ---------------------
+
+function my_courses($ObjectPDO) {
+
+	if( userSignedIn() ) {
+
+		$user_id = $_SESSION['id'];
+		
+		$course = new Course($ObjectPDO);
+		$categories = $course->get_registered_courses($user_id);
+		return $categories;
+
+	} 
+	else {
+		header("Location:" . course_routes("course_category") );
+	}
+
+}
 
 ?>

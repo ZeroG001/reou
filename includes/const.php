@@ -1,7 +1,9 @@
 <?php
+
 	// Document Root Variables
 
 	define('D_ROOT', $_SERVER['DOCUMENT_ROOT']);
+	define('P_ROOT', $_SERVER['DOCUMENT_ROOT'] . "/reou");
 
 
 	// --------------- ** MySQL settings ** --------------- //
