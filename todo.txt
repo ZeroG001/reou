@@ -7,14 +7,26 @@ Try to stay on task this time...
 
 [ x ] Check to see if user is already a part of class
 
+------- Registration Process
+[ ] When a user registers for the class. Do the following
+	- Confirm, are you sure you want to register?
+	- Send email to the REO Academy Team
+	- Send email to student confirming registration happened
+
+[ ] When Academy Receives Email
+	- See list of Students to approve. Approve Application
+
 
 ------- User -----
-[ ] Show all classes they are apart of
+[ x ] Show all classes they are apart of
+
+
+------- Admin -----
 
 
 ------- URL -------
 [ ] Reqrite Rules for pretty URLS
-[ ] Make model pages inaccessable
+[ x ] Make model pages inaccessable
 
 
 

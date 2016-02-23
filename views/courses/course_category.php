@@ -1,9 +1,11 @@
 <?php
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	$categories = course_category($db);
+
+	require($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 ?>
 
-	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo W_ROOT . 'assets/css/main.css' ?> " />
 
 	<div class="wrap">
 

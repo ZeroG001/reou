@@ -99,7 +99,6 @@
 
 
 	/* Animation properties */
-
 	@mixin animationProperty($property, $value) {
 		-webkit-animation-#{$property}: $value;
 		-moz-aniamtion-#{property}: $value;
@@ -110,8 +109,6 @@
 
 
 	/* Helper Animations */
-
-
 	@include keyframes(fadeIn) {
 		from { 
 				opacity: 0;
@@ -123,9 +120,14 @@
 			@include transform(scale(1, 1));
 		}
 	}
-	
 
 
+
+	/* JavaScript-less menu 
+
+		bigSibling = menu title
+		littleSibline = sub menu
+	*/
 
 
 
@@ -229,6 +231,24 @@
 	max-width: 500px;
 	margin:0px auto;
 }
+
+
+.main_subnav {
+	
+}
+
+.main_nav--item {
+
+	&:hover{
+		background-color: red;
+	}
+
+	&:hover>.main_subnav {
+		background-color: red;
+	}
+}
+
+
 
 
 
