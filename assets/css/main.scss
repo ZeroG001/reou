@@ -161,6 +161,15 @@
 	}
 
 
+
+	/* Element Sizing
+	---------------------------------- */
+
+	@mixin smallPadding {padding: 5px 10px;}
+	@mixin mediumPadding {padding: 15px 30px;}
+	@mixin largePadding {padding: 25px 50px;}
+
+
 	/* Helper Mixins 
 	----------------------- */
 
@@ -233,19 +242,78 @@
 }
 
 
-.main_subnav {
-	
+/* ---------- Navigation ---------- */
+
+
+.main_nav {
+	@include smallPadding;
+	display: block;
+	position: relative;
+	border: 2px solid black;
+	text-align: center;
 }
 
 .main_nav--item {
 
-	&:hover{
+	display: inline-block;
+
+	&:hover {
+		
+	}
+
+	&:hover+.main_subnav {
+		display: inline-block;
+	}
+
+}
+
+.main_subnav {
+	display: none;
+	position: absolute;
+	top: 50px;
+	border: 1px solid red;
+
+
+	.main_subnav--item {
+		display: block;
+		border: 1px solid black;
+
+	}
+}
+
+
+/* Mobile first approach */
+
+
+@media screen and (min-width: 500px ) {
+	body {
 		background-color: red;
 	}
 
-	&:hover>.main_subnav {
-		background-color: red;
+}
+
+
+@media screen and (min-width: 700px ) {
+	body {
+		background-color: green;
 	}
+
+}
+
+
+@media screen and (min-width: 900px ) {
+	body {
+		background-color: yellow;
+	}
+
+}
+
+
+@media screen and (min-width: 1100px ) {
+	body {
+		background-color: blue;
+	}
+
 }
 
 
