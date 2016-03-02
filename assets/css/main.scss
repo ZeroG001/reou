@@ -34,7 +34,7 @@
 	----------------------- */
 	@mixin clearfix {
 
-		&::after {
+		&:after {
 			content: "";
 			display: table;
 			clear: both;
@@ -165,9 +165,9 @@
 	/* Element Sizing
 	---------------------------------- */
 
-	@mixin smallPadding {padding: 5px 10px;}
-	@mixin mediumPadding {padding: 15px 30px;}
-	@mixin largePadding {padding: 25px 50px;}
+	@mixin smallPadding {padding: 18px 15px;}
+	@mixin mediumPadding {padding: 25px 50px;}
+	@mixin largePadding {padding: 40px 80px;}
 
 
 	/* Helper Mixins 
@@ -229,10 +229,46 @@
 	}
 
 
+	/* Media Query Mixins 
+	------------------------ */
+
+	@mixin mquery($size) {
+
+		@if $size == small {
+			@media screen and (min-width: 20em) {
+				@content;	
+			}
+		}
+
+		@else if $size == "medium" {
+			@media screen and (min-width: 40em) {
+				@content;
+			}
+		}
+
+		@else if $size == large {
+			@media screen and (min-width: 60em) {
+				@content;
+			}
+		}
+
+		@else if $size == xlarge {
+			@media screen and (min-width: 80em) {
+				@content;
+			}
+		}
+
+	}
+
+
+
 
 /* Main CSS
 ------------------------------------------- */
 
+body {
+	background-color: #f1f1f1;
+}
 
 .wrap {
 	position: relative;
@@ -246,16 +282,39 @@
 
 
 .main_nav {
-	@include smallPadding;
 	display: block;
 	position: relative;
 	border: 2px solid black;
 	text-align: center;
+
+	@include clearfix;
+}
+
+.main_user {
+	display: block;
+	height: 20px;
+	text-align: center;
+}
+
+.main_nav--logo {
+	position: absolute;
+	height: 100%;
+	width: auto;
+
+	img {
+		height: 100%;
+	}
+}
+
+.main_nav--nav {
+	position: absolute;
 }
 
 .main_nav--item {
 
 	display: inline-block;
+	@include smallPadding;
+	
 
 	&:hover {
 		
@@ -282,39 +341,84 @@
 }
 
 
+.main_nav--menu-button {
+
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100px;
+	padding: 7px 33px;
+	height: 100%;
+	box-sizing: border-box;
+	/*padding: 20px 0px 20px 20px;*/
+
+
+	.menu-button--bar {
+
+		display: block;
+		position: relative;
+		background-color:$darkblue;
+		height: 5px;
+		margin: 5px 0px;
+		@include transition(0.4s ease);
+
+	}
+
+	.menu-button--bar:nth-child(1) {
+		@include transform(translate(0px, 0px));
+	}
+
+	.menu-button--bar:nth-child(3) {
+		@include transform(translate(0px, 0px));
+	}
+
+	&:hover {
+
+		@extend .main_nav--menu-button__active;
+		cursor: pointer;
+		background-color: $clearlightblue;
+
+
+	}
+
+}
+
+.main_nav--menu-button__active {
+
+	@include transition(0.4s ease);
+
+	.menu-button--bar:nth-child(1) {
+
+		@include transition(0.4s ease);
+		@include transform(translate(0px, 10px) rotate(-135deg));
+	}
+
+	.menu-button--bar:nth-child(2) {
+		
+		@include transition(0.4s ease);
+		@include transform(scaleX(0));
+
+	}
+
+	.menu-button--bar:nth-child(3) {
+		@include transition(0.4s ease);
+		@include transform(translate(0px, -10px) rotate(135deg));
+	}
+
+/*	& + .navbar-wrap {
+		@include transition(0.4s ease);
+		@include animation(fadeIn 0.4s ease);
+		display: inline-block;
+	}*/
+
+}
+
+
+
+
 /* Mobile first approach */
 
 
-@media screen and (min-width: 500px ) {
-	body {
-		background-color: red;
-	}
-
-}
-
-
-@media screen and (min-width: 700px ) {
-	body {
-		background-color: green;
-	}
-
-}
-
-
-@media screen and (min-width: 900px ) {
-	body {
-		background-color: yellow;
-	}
-
-}
-
-
-@media screen and (min-width: 1100px ) {
-	body {
-		background-color: blue;
-	}
-
-}
 
 
 
