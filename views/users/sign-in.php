@@ -19,7 +19,7 @@
 				<?php display_alert('alert') ?>
 			</div>
 
-			<label for="email"> Email </label>
+			<label for="email"> Emails </label>
 			<input type="text" name="email">
 
 			<label for="password"> Password </label>

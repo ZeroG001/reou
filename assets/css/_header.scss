@@ -1,0 +1,150 @@
+/* ---------- Navigation ---------- */
+
+$navHeight: 71px;
+
+
+.main_nav {
+
+	display: block;
+	position: relative;
+	text-align: center;
+	background-color: $toadgreen;
+	box-sizing: border-box;
+	@include mdlBoxShadow;
+	@include clearfix;
+
+
+}
+
+
+.main_nav--logo {
+	display: inline-block;
+	padding: 10px 0px;
+
+	img {
+		height: 50px;
+		vertical-align: middle;
+	}
+}
+
+.main_nav--nav {
+	float: right;
+	position: relative;
+}
+
+.main_nav--item {
+
+	display: inline-block;
+	vertical-align: middle;
+	box-sizing: border-box;
+	@include smallPadding;
+	
+
+	&:hover {
+		
+	}
+
+	&:hover>.main_subnav {
+		display: inline-block;
+	}
+
+}
+
+.main_nav--item__menu-button {
+	@extend .main_nav--item;
+	width: inherit;
+}
+
+.main_subnav {
+	box-sizing: border-box;
+	background-color: $lightblue;
+	display: none;
+	position: absolute;
+	right: -2px;
+	top: $navHeight;
+	@include mdlBoxShadow;
+	z-index: 10;
+
+	.main_subnav--item {
+		box-sizing: border-box;
+		display: block;
+		width: 140px;
+		color: white;
+		text-decoration: none;
+		@include smallPadding;
+
+	}
+}
+
+
+.main_nav--menu-button {
+	position: relative;
+	display: block;
+	right: 0;
+	top: 0;
+	box-sizing: border-box;
+	width: 30px;
+	/*padding: 20px 0px 20px 20px;*/
+
+
+	.menu-button--bar {
+
+		display: block;
+		position: relative;
+		background-color:$darkblue;
+		width: 100%;
+		height: 5px;
+		margin: 5px 0px;
+		box-sizing: border-box;
+		@include transition(0.4s ease);
+
+	}
+
+	.menu-button--bar:nth-child(1) {
+		@include transform(translate(0px, 0px));
+	}
+
+	.menu-button--bar:nth-child(3) {
+		@include transform(translate(0px, 0px));
+	}
+
+	&:hover {
+
+		@extend .main_nav--menu-button__active;
+		cursor: pointer;
+		background-color: $clearlightblue;
+
+
+	}
+
+}
+
+.main_nav--menu-button__active {
+
+	@include transition(0.4s ease);
+
+	.menu-button--bar:nth-child(1) {
+
+		@include transition(0.4s ease);
+		@include transform(translate(0px, 10px) rotate(-135deg));
+	}
+
+	.menu-button--bar:nth-child(2) {
+		
+		@include transition(0.4s ease);
+		@include transform(scaleX(0));
+
+	}
+
+	.menu-button--bar:nth-child(3) {
+		@include transition(0.4s ease);
+		@include transform(translate(0px, -10px) rotate(135deg));
+	}
+
+/*	& + .navbar-wrap {
+		@include transition(0.4s ease);
+		@include animation(fadeIn 0.4s ease);
+		display: inline-block;
+	}*/
+
+}

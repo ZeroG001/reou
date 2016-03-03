@@ -6,6 +6,21 @@
 
 	}
 
+	function numExtract($string) {
+		if (function_exists("filter_var")) {
+			$string = filter_var($string, FILTER_SANITIZE_NUMBER_INT);
+		} else {
+			$string = preg_replace("[^0-9\$]","",$string);
+		}
+
+		if (empty($string)) {
+			return "0";
+		} else {
+			return $string;
+		}
+
+	}
+
 	function is_arrayEmpty($arr) {
 		return count($arr) == 0;
 	}

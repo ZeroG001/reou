@@ -27,27 +27,42 @@
 
 	<head>
 
-		<title></title>
+		<title> Course Classes </title>
+
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
 	</head>
 
 	<body>
 
-		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<div class="page-banner">
+			<h1> Course Title </h1>
+			<p> This is a course description</p>
+			<div class="banner--footer">
 
-		<div class="courses wrap">
+			</div>
+		</div>
 
-			<?php  foreach ($categories as $k => $category) { ?>
-			
-				<div class="courses__box">
-					<a href='course_detail.php?id=<?php echo $category['course_id'] ?>'> 
-						<?php echo $category['course_name'] ?> 
+		<div class="main-content">
+
+			<div class="course-container">
+
+				<?php foreach ($categories as $k => $category) { ?>
+
+					<a class="course-container--box" href='course_detail.php?id=<?php echo $category['course_id'] ?>'>
+
+						<div class="course-container--box-body">
+							<p> 
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+								Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							</p>
+						</div>
+
 					</a>
-				</div>
+					
+				<?php } ?>
 
-				<br />
-				
-			<?php } ?>
+			</div>
 
 		</div>
 

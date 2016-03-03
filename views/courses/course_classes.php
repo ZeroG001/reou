@@ -1,6 +1,7 @@
 <?php
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	$categories = course_classes($db);
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 ?>
 
 <html>
@@ -13,25 +14,63 @@
 
 	<body>
 
-		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
 
-		<div class="courses wrap">
+		<div class="page-banner">
 
-			<?php  foreach ($categories as $k => $category) { ?>
-			
-				<div class="courses__box">
+			<div class="banner-title-wrapper">
+				<h1> Course Title </h1>
+				<p> This is a course description</p>
+			</div>
+			<div class="banner--footer">
+
+			</div>
+		</div>
+
+		<div class="main-content">
+
+			<div class="class-container">
+
+				<?php foreach ($categories as $k => $category) { ?>
+
+					<a class="class-container--box" href='<?php echo course_route('course_detail', ["id" => $category['course_id'] ]) ?>'>
 
 
-					<a href='<?php echo course_route("course_detail", array("id" => $category['course_id'])) ?>'> 
-						<?php echo $category['course_name'] ?> 
+						<div class="class-container--box-body">
+							<h1> 
+								<?php echo $category['course_name']; ?>
+							</h1>
+						</div>
+
+						<div class="class-container--box-footer">
+
+							<div class="box-footer--detail-box">
+								<div class="detail-box-title"> Hours </div>
+								<div class="detail-box-description"> <?php echo numExtract($category["course_duration_day"])?> </div>
+							</div>
+
+
+							<div class="box-footer--detail-box">
+								<div class="detail-box-title"> Notes </div>
+								<div class="detail-box-description"> V </div>
+							</div>
+
+
+							<div class="box-footer--detail-box">
+								<div class="detail-box-title">Price</div>
+								<div class="detail-box-description"><?php echo numExtract($category["course_cost_day"])?></div>
+							</div>
+
+						</div>
+
 					</a>
-				</div>
+					
+				<?php } ?>
 
-				<br />
-				
-			<?php } ?>
+			</div>
 
 		</div>
+
 
 	</body>
 

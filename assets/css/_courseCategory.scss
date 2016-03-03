@@ -1,0 +1,108 @@
+
+.main-content {
+	
+	@include smallPadding;
+	@include clearfix;
+	display: block;
+
+}
+
+.course-container {
+	@include clearfix;
+}
+
+.course-container--box {
+
+	box-sizing: border-box;
+	@include mdlBoxShadow;
+
+	position: relative;
+	display: block;
+
+	text-decoration: none;
+	height: 270px;
+	max-height: 270px;
+	min-height: 270px;
+	background-color: white;
+
+	margin-bottom: 15px;
+
+
+	.course-container--box-header {
+		@include smallPadding;
+		@include sectionHeader;
+		background-color: $lightblue;
+		color: white;
+
+	}
+
+	.course-container--box-body {
+		@include smallPadding;
+	}
+
+	.course-container--box-footer {
+		
+	}
+
+
+}
+
+/* Media Queries 
+===================== */
+
+
+/* ------------------------ Medium Screen Size ------------------- */
+@include mquery("medium") {
+	.main-content {
+		@include mediumPadding;
+		width: 45em;
+		margin: 0px auto;
+	}
+
+	.course-container--box {
+		display: inline-block;
+		float: left;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 47.91%;
+		vertical-align: top;
+
+	}
+	
+}
+
+@include mquery("large") {
+	.main-content {
+		@include mediumPadding;
+		width: 60em;
+		margin: 0px auto;
+		@include clearfix;
+	}
+
+	.course-container--box {
+		display: inline-block;
+		float: left;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 31.76%;
+	}
+	
+}
+
+@include mquery("xlarge") {
+	.main-content {
+		@include mediumPadding;
+		width: 75em;
+		margin: 0px auto;
+		@include clearfix;
+	}
+
+	.course-container--box {
+		display: inline-block;
+		float: left;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 23.73%;
+	}
+	
+}

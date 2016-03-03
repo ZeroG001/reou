@@ -1,3 +1,26 @@
+/*
+================ PLEASE READ THIS =============== 
+To other web dev that possibly see this. 
+I used a CSS preprocessor called SASS to create this file.
+At this time of this writing (3/2016) SASS is a handny tool that allowed me to write
+CSS rules without losing my mind. So the compiled main.scss page looks like a mess.
+
+If you aren't familliar with SASS please spend at leat 10 mins reviwing the content on this site. The
+guys that made this system made it as easy as possible to understand.
+
+[ http://sass-lang.com/guide ]
+
+Focus mainly on:
+
+- Variables
+- Import
+- Mixins
+- Partials
+
+=================================================
+*/
+
+
 @import 'normalize';
 /* @import 'animate'; */
 
@@ -34,7 +57,7 @@
 	----------------------- */
 	@mixin clearfix {
 
-		&:after {
+		&::after {
 			content: "";
 			display: table;
 			clear: both;
@@ -55,6 +78,11 @@
 
 	}
 
+	/* Box Shadow 
+	----------------------- */
+	@mixin mdlBoxShadow {
+		box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+	}
 
 	/* Transitions 
 	--------------------------- */
@@ -152,12 +180,9 @@
 
 	@mixin sectionHeader {
 		display: block;
-		width: 150px;
-		font-size: 1.5rem;
+		font-size: 1.1rem;
 		letter-spacing: 0.1rem;
 		font-weight: bold;
-		border-bottom: 4px solid $darkblue;
-		padding-bottom: 5px;
 	}
 
 
@@ -229,31 +254,33 @@
 	}
 
 
-	/* Media Query Mixins 
+	/* Media Query Mixins
 	------------------------ */
 
+
+	/* Moile Media Queries */
 	@mixin mquery($size) {
 
 		@if $size == small {
-			@media screen and (min-width: 20em) {
+			@media screen and (min-width: 10em) {
 				@content;	
 			}
 		}
 
 		@else if $size == "medium" {
-			@media screen and (min-width: 40em) {
+			@media screen and (min-width: 52em) {
 				@content;
 			}
 		}
 
 		@else if $size == large {
-			@media screen and (min-width: 60em) {
+			@media screen and (min-width: 70em) {
 				@content;
 			}
 		}
 
 		@else if $size == xlarge {
-			@media screen and (min-width: 80em) {
+			@media screen and (min-width: 88em) {
 				@content;
 			}
 		}
@@ -264,7 +291,7 @@
 
 
 /* Main CSS
-------------------------------------------- */
+---------------------------------------------------------------------------------------------------------------- */
 
 body {
 	background-color: #f1f1f1;
@@ -278,145 +305,26 @@ body {
 }
 
 
-/* ---------- Navigation ---------- */
+/* ===============================
+		    Layout -- Navigation
+================================== */
+
+@import "header";
 
 
-.main_nav {
-	display: block;
-	position: relative;
-	border: 2px solid black;
-	text-align: center;
+/* ===============================
+		    Course Category
+================================== */
 
-	@include clearfix;
-}
-
-.main_user {
-	display: block;
-	height: 20px;
-	text-align: center;
-}
-
-.main_nav--logo {
-	position: absolute;
-	height: 100%;
-	width: auto;
-
-	img {
-		height: 100%;
-	}
-}
-
-.main_nav--nav {
-	position: absolute;
-}
-
-.main_nav--item {
-
-	display: inline-block;
-	@include smallPadding;
-	
-
-	&:hover {
-		
-	}
-
-	&:hover+.main_subnav {
-		display: inline-block;
-	}
-
-}
-
-.main_subnav {
-	display: none;
-	position: absolute;
-	top: 50px;
-	border: 1px solid red;
+@import "courseCategory";
 
 
-	.main_subnav--item {
-		display: block;
-		border: 1px solid black;
+/* ===============================
+		    Course Classes
+================================== */
 
-	}
-}
+@import "courseClasses"
 
-
-.main_nav--menu-button {
-
-	position: absolute;
-	right: 0;
-	top: 0;
-	width: 100px;
-	padding: 7px 33px;
-	height: 100%;
-	box-sizing: border-box;
-	/*padding: 20px 0px 20px 20px;*/
-
-
-	.menu-button--bar {
-
-		display: block;
-		position: relative;
-		background-color:$darkblue;
-		height: 5px;
-		margin: 5px 0px;
-		@include transition(0.4s ease);
-
-	}
-
-	.menu-button--bar:nth-child(1) {
-		@include transform(translate(0px, 0px));
-	}
-
-	.menu-button--bar:nth-child(3) {
-		@include transform(translate(0px, 0px));
-	}
-
-	&:hover {
-
-		@extend .main_nav--menu-button__active;
-		cursor: pointer;
-		background-color: $clearlightblue;
-
-
-	}
-
-}
-
-.main_nav--menu-button__active {
-
-	@include transition(0.4s ease);
-
-	.menu-button--bar:nth-child(1) {
-
-		@include transition(0.4s ease);
-		@include transform(translate(0px, 10px) rotate(-135deg));
-	}
-
-	.menu-button--bar:nth-child(2) {
-		
-		@include transition(0.4s ease);
-		@include transform(scaleX(0));
-
-	}
-
-	.menu-button--bar:nth-child(3) {
-		@include transition(0.4s ease);
-		@include transform(translate(0px, -10px) rotate(135deg));
-	}
-
-/*	& + .navbar-wrap {
-		@include transition(0.4s ease);
-		@include animation(fadeIn 0.4s ease);
-		display: inline-block;
-	}*/
-
-}
-
-
-
-
-/* Mobile first approach */
 
 
 

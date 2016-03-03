@@ -9,7 +9,7 @@ RewriteRule includes - [F,L]
 RewriteRule helpers - [F,L]
 RewriteRule controllers - [F,L]
 RewriteRule models - [F,L]
-RewriteRule scrapsmode - [F,L]
+RewriteRule scraps - [F,L]
 
 
 
