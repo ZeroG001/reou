@@ -22,12 +22,23 @@ class Course {
 
 
 	 // -------- Get Corse Information -------- //
+
 	 public function get_course_category() {
 
 	 	$query = "SELECT * FROM course_category";
 	 	$stmt = $this->db->prepare($query);
 	 	$stmt->execute();
 	 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	 	return $result;
+	 }
+
+	 public function get_one_course_category($course_id) {
+	 	$query = "SELECT * FROM course_category WHERE category_id = ? LIMIT 1";
+	 	$stmt = $this->db->prepare($query);
+	 	$stmt->bindParam(1, $course_id, PDO::PARAM_INT);
+	 	$stmt->execute();
+	 	$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 	 	return $result;
 	 }
@@ -80,7 +91,7 @@ class Course {
 	 		echo "There was a problem getting the class details";
 	 	}
 	 	
-	 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	 	$results = $stmt->fetch(PDO::FETCH_ASSOC);
 
 	 	return $results;
 

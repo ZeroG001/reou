@@ -1,29 +1,42 @@
 <?php
 
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
-	$course_detail = course_detail($db);
+	
+
+	list($course_details, $course_schedules) = course_classes($db);
+
+	var_dump($course_details);
+	var_dump($course_schedules);
 
 
 	// ------------ DEBUG --------------------
-	if(userSignedIn()) {
-		var_dump($_SESSION);
-		echo "User is signed in";
-	} else {
-		echo "No one is logged in";
-	}
 
 
 	// ------------ DEBUG --------------------
+
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
 ?>
 
 <html>
 	<head>
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
 	</head>
 
 	<body>
+
+
+		<div class="page-banner">
+
+			<div class="banner-title-wrapper">
+				<h1>  </h1>
+			</div>
+			
+			<div class="banner--footer">
+
+			</div>
+		</div>
 
 		
 		<div class="wrap">
@@ -32,7 +45,7 @@
 
 			<h3> Course Name </h3>
 
-			<?php foreach ($course_detail['details'] as $detail) { ?>
+			<?php foreach ($course_details as $detail) { ?>
 			
 				<p><?php echo $detail['course_name'] ?></p> 
 
@@ -60,7 +73,7 @@
 
 			<h2> Course Schedules and Availiblilty </h2>
 
-			<?php foreach ($course_detail['schedules'] as $detail) { ?>
+			<?php foreach ($course_schedules as $detail) { ?>
 				
 				<h3> Begin Date </h3>
 				<p><?php format_date($detail['class_date']) ?> </p>

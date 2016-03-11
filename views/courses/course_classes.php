@@ -1,6 +1,9 @@
 <?php
+
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
-	$categories = course_classes($db);
+	list($categories, $one_category) = course_classes($db);
+
+	// Header HTML
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 ?>
 
@@ -19,9 +22,9 @@
 		<div class="page-banner">
 
 			<div class="banner-title-wrapper">
-				<h1> Course Title </h1>
-				<p> This is a course description</p>
+				<h1> <?php echo $one_category['category_name'] ?> </h1>
 			</div>
+
 			<div class="banner--footer">
 
 			</div>

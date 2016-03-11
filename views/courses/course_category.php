@@ -1,6 +1,9 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	$categories = course_category($db);
+
+
+	//Header HTML
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 ?>
 

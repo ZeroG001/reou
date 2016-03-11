@@ -27,29 +27,37 @@ function course_classes($ObjectPDO) {
 
 	$course_id = verify_get('id');
 	$course = new Course($ObjectPDO);
+	$result_array = Array();
+	
 	$categories = $course->get_course_classes($course_id);
+	$one_category = $course->get_one_course_category($course_id);
+	
+	array_push($result_array, $categories);
+	array_push($result_array, $one_category);
 
-	return $categories;
+	return $result_array;
 
 }
 
 
 
-// --------------- course_classes.php ---------------------
+// --------------- course_detail.php ---------------------
 
 function course_detail($ObjectPDO) {
 
 	session_start();
 
-
-	$return_values = [];
 	$course_class_id = verify_get('id');
 	$course = new Course($ObjectPDO);
+	$result_array = Array();
 
-	$return_values['details'] = $course->get_class_details($course_class_id);
-	$return_values['schedules'] = $course->get_course_schedule($course_class_id);
+	$details = $course->get_class_details($course_class_id);
+	$schedules = $course->get_course_schedule($course_class_id);
 
-	return $return_values;
+	array_push($result_array, $details);
+	array_push($result_array, $schedules);
+
+	return $result_array;
 }
 
 

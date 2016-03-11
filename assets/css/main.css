@@ -715,12 +715,12 @@ body {
 /* ===============================
 		    Course Classes
 ================================== */
+/* Has url: reou/courses/## */
 .page-banner {
   display: block; }
 
 .banner-title-wrapper {
   padding: 50px 0px;
-  border: 1px solid black;
   text-align: center;
   color: white;
   background-color: #488db6; }
@@ -826,3 +826,6 @@ body {
     margin-left: 15px;
     margin-bottom: 15px;
     width: 47.91%; } }
+/* ===============================
+		    Course Detail
+================================== */
