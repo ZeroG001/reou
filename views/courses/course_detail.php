@@ -2,17 +2,18 @@
 
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	
+	list($course_details, $course_schedules) = course_detail($db);
 
-	list($course_details, $course_schedules) = course_classes($db);
-
-	var_dump($course_details);
-	var_dump($course_schedules);
-
-
-	// ------------ DEBUG --------------------
+	
+	
 
 
 	// ------------ DEBUG --------------------
+		// var_dump($course_details);
+		// var_dump($course_schedules);
+
+	// ------------ DEBUG --------------------
+
 
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
@@ -30,7 +31,9 @@
 		<div class="page-banner">
 
 			<div class="banner-title-wrapper">
-				<h1>  </h1>
+				<h1> <?php echo $course_details['course_name'] ?> </h1>
+
+				<p><?php echo $course_details['course_desc'] ?> </p> 
 			</div>
 			
 			<div class="banner--footer">
@@ -41,34 +44,49 @@
 		
 		<div class="wrap">
 
+			<aside>
+				<h2> Course Info </h2>
+			</aside>
+
+			<div class="course_info--wrap">
+
+				<div class="course_info--item">
+					<h3> Course Number </h3>
+					<p> <?php echo $course_details['course_number'] ?> </p>
+				</div>
+
+				<div class="course_info--item">
+					<h3> Hours </h3>
+					<p> <?php echo $course_details['course_hours_day']?> </p>
+				</div>
+
+				<div class="course_info--item">
+					<h3> Cost </h3>
+					<p> <?php echo $course_details['course_cost_day'] ?> </p>
+				</div>
+
+				<div class="course_info--item"> 
+					<h3> Important Notes </h3>
+					<p> <?php echo $course_details['course_notes'] ?> </p>
+				</div>
+
+			</div>
 
 
-			<h3> Course Name </h3>
+			<h3> Days Offered </h3>
+			<p><?php echo $course_details['course_days_day'] ?></p> 
 
-			<?php foreach ($course_details as $detail) { ?>
+			<h3> Hours </h3>
+			<p><?php echo $course_details['course_hours_day'] ?> </p> 
+
+			<h3> Duration </h3>
+			<p><?php echo $course_details['course_duration_day'] ?> </p> 
+
+			<h3> Cost </h3>
+			<p><?php echo $course_details['course_cost_day'] ?></p> 
 			
-				<p><?php echo $detail['course_name'] ?></p> 
-
-				<h3> Days Offered </h3>
-				<p><?php echo $detail['course_days_day'] ?></p> 
-
-				<h3> Hours </h3>
-				<p><?php echo $detail['course_hours_day'] ?> </p> 
-
-				<h3> Duration </h3>
-				<p><?php echo $detail['course_duration_day'] ?> </p> 
-
-				<h3> Cost </h3>
-				<p><?php echo $detail['course_cost_day'] ?></p> 
-
-				<h3> Description </h3>
-				<p><?php echo $detail['course_desc'] ?> </p> 
-
-				<h3> Notes </h3>
-				<p><?php echo $detail['course_notes'] ?> </p>
-
-			<?php } ?>
-
+			<h3> Notes </h3>
+			<p><?php echo $course_details['course_notes'] ?> </p>
 
 
 			<h2> Course Schedules and Availiblilty </h2>
@@ -88,7 +106,7 @@
 
 				<form action="<?php echo course_route('course_register') ?>" method="POST">	
 					<input type="submit" value="Sign Up" > 
-					<input type="hidden" name="course_id" value="<?php echo $course_detail['details'][0]['course_id'] ?>">
+					<input type="hidden" name="course_id" value="<?php echo $course_detail['course_id'] ?>">
 					<input type="hidden" name="student_id" value="<?php echo $_SESSION['id'] ?>">
 					<input type="hidden" name="schedule_id" value="<?php echo $detail['schedule_id'] ?>">
 				</form>

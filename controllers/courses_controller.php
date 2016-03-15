@@ -56,6 +56,7 @@ function course_detail($ObjectPDO) {
 
 	array_push($result_array, $details);
 	array_push($result_array, $schedules);
+	
 
 	return $result_array;
 }

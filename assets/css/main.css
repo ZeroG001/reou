@@ -724,6 +724,8 @@ body {
   text-align: center;
   color: white;
   background-color: #488db6; }
+  .banner-title-wrapper h1 {
+    margin: 0px 0px 21.44px 0px; }
 
 .main-content {
   padding: 18px 15px;
@@ -829,3 +831,29 @@ body {
 /* ===============================
 		    Course Detail
 ================================== */
+.banner-title-wrapper p {
+  display: none; }
+
+/* Media Queries 
+===================== */
+/* ------------------------ Medium Screen Size ------------------- */
+@media screen and (min-width: 52em) {
+  .banner-title-wrapper p {
+    display: inline;
+    width: 650px;
+    display: block;
+    margin: 0px auto;
+    text-align: justify; }
+
+  .course_info--wrap {
+    text-align: center; }
+    .course_info--wrap::after {
+      content: "";
+      display: table;
+      clear: both; }
+    .course_info--wrap .course_info--item {
+      display: inline-block;
+      border: 1px solid black;
+      box-sizing: border-box;
+      float: left;
+      width: 33.33333%; } }

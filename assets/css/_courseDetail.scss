@@ -1,0 +1,51 @@
+ .banner-title-wrapper {
+ 	p {
+	    display: none;
+ 	}
+ 	
+ }
+
+/* Media Queries 
+===================== */
+
+
+/* ------------------------ Medium Screen Size ------------------- */
+@include mquery("medium") {
+
+	.banner-title-wrapper {
+
+		p {
+			display: inline;
+	 		width: 650px;
+		 	display: block;
+		    margin: 0px auto;
+		    text-align: justify;
+		}
+	 	
+	}
+
+	.course_info--wrap {
+
+		@include clearfix;
+
+		text-align: center;
+
+		.course_info--item {
+			display: inline-block;
+			border: 1px solid black;
+			box-sizing: border-box;
+			float: left;
+			width: 33.33333%;
+		}
+	}
+	
+}
+
+@include mquery("large") {
+
+	
+}
+
+@include mquery("xlarge") {
+	
+}

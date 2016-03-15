@@ -128,11 +128,7 @@ class Course {
 	 }
 
 
-
-
 	// ---------- edit courses ---------- //
-
-
 
 	 public function register_course($params) {
 
@@ -184,7 +180,6 @@ class Course {
 	 }
 
 
-
 	 // Check to see if a user is already registered for a class
 	 public function userRegisteredforClass($student_id, $course_id, $schedule_id) {
 
@@ -224,6 +219,7 @@ class Course {
 		$stmt = $this->db->prepare($query);
 		$stmt->bindParam(1, $course_id);
 	}
+
 
 	// Remove Course category
 	public function remove_course_category() {
