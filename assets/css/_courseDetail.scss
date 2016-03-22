@@ -1,9 +1,43 @@
  .banner-title-wrapper {
- 	p {
-	    display: none;
- 	}
- 	
+ 	p { display: none; }
  }
+
+ .course_into_title {
+ 	text-align: center;
+ 	display: block;
+ }
+
+	.course_info--wrap {
+
+	@include clearfix;
+	@include smallPadding;
+
+	border: 1px solid black;
+	box-sizing: border-box;
+
+	text-align: center;
+
+	.course_info--item {
+		display: block;
+		padding: 20px;
+		border-bottom: 1px solid black;
+		box-sizing: border-box;
+		max-height: 190px;
+		overflow: hidden;
+	}
+
+
+	.course_info--item__notes {
+		@extend .course_info--item;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-height: inherit;
+	}
+
+}
+
+
+
 
 /* Media Queries 
 ===================== */
@@ -35,8 +69,16 @@
 			border: 1px solid black;
 			box-sizing: border-box;
 			float: left;
+			height: 155px;
 			width: 33.33333%;
 		}
+
+
+		.course_info--item__notes {
+			display: block;
+			width: 100%;
+		}
+
 	}
 	
 }

@@ -834,6 +834,31 @@ body {
 .banner-title-wrapper p {
   display: none; }
 
+.course_into_title {
+  text-align: center;
+  display: block; }
+
+.course_info--wrap {
+  padding: 18px 15px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  text-align: center; }
+  .course_info--wrap::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .course_info--wrap .course_info--item, .course_info--wrap .course_info--item__notes {
+    display: block;
+    padding: 20px;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+    max-height: 190px;
+    overflow: hidden; }
+  .course_info--wrap .course_info--item__notes {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: inherit; }
+
 /* Media Queries 
 ===================== */
 /* ------------------------ Medium Screen Size ------------------- */
@@ -851,9 +876,13 @@ body {
       content: "";
       display: table;
       clear: both; }
-    .course_info--wrap .course_info--item {
+    .course_info--wrap .course_info--item, .course_info--wrap .course_info--item__notes {
       display: inline-block;
       border: 1px solid black;
       box-sizing: border-box;
       float: left;
-      width: 33.33333%; } }
+      height: 155px;
+      width: 33.33333%; }
+    .course_info--wrap .course_info--item__notes {
+      display: block;
+      width: 100%; } }

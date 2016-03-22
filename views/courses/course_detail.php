@@ -1,12 +1,7 @@
 <?php
 
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
-	
 	list($course_details, $course_schedules) = course_detail($db);
-
-	
-	
-
 
 	// ------------ DEBUG --------------------
 		// var_dump($course_details);
@@ -15,11 +10,18 @@
 	// ------------ DEBUG --------------------
 
 
+
+
+
+
+
+	// ---------------------------- Include Header ----------------------------
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
 ?>
 
 <html>
+
 	<head>
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
@@ -29,7 +31,6 @@
 
 
 		<div class="page-banner">
-
 			<div class="banner-title-wrapper">
 				<h1> <?php echo $course_details['course_name'] ?> </h1>
 
@@ -41,14 +42,22 @@
 			</div>
 		</div>
 
+
+
 		
 		<div class="wrap">
 
-			<aside>
-				<h2> Course Info </h2>
-			</aside>
+
+			<!-- Course Info
+			====================================================== -->
+
 
 			<div class="course_info--wrap">
+
+				<div class="course_into_title">
+					 <h2> Course Info </h2>
+					<img src="http://placehold.it/100x100" />
+				</div>
 
 				<div class="course_info--item">
 					<h3> Course Number </h3>
@@ -65,33 +74,29 @@
 					<p> <?php echo $course_details['course_cost_day'] ?> </p>
 				</div>
 
-				<div class="course_info--item"> 
+				<div class="course_info--item__notes"> 
 					<h3> Important Notes </h3>
 					<p> <?php echo $course_details['course_notes'] ?> </p>
 				</div>
 
 			</div>
+			<!-- ===================================================== -->
+
+		</div>
 
 
-			<h3> Days Offered </h3>
-			<p><?php echo $course_details['course_days_day'] ?></p> 
+		<div class="wrap">
 
-			<h3> Hours </h3>
-			<p><?php echo $course_details['course_hours_day'] ?> </p> 
-
-			<h3> Duration </h3>
-			<p><?php echo $course_details['course_duration_day'] ?> </p> 
-
-			<h3> Cost </h3>
-			<p><?php echo $course_details['course_cost_day'] ?></p> 
-			
-			<h3> Notes </h3>
-			<p><?php echo $course_details['course_notes'] ?> </p>
-
-
-			<h2> Course Schedules and Availiblilty </h2>
+			<!-- Course Schedule and Availibility
+			====================================================== -->
+			<div class="course_into_title">
+				 <h2> Course Info </h2>
+				<img src="http://placehold.it/100x100" />
+			</div>
 
 			<?php foreach ($course_schedules as $detail) { ?>
+
+			<div class="course_info--wrap">
 				
 				<h3> Begin Date </h3>
 				<p><?php format_date($detail['class_date']) ?> </p>
@@ -111,9 +116,10 @@
 					<input type="hidden" name="schedule_id" value="<?php echo $detail['schedule_id'] ?>">
 				</form>
 
+			</div>
+
 			<?php } ?> 
-
-
+			<!-- ===================================================== -->
 
 		</div>
 
