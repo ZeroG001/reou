@@ -1,11 +1,5 @@
 
-.main-content {
-	
-	@include smallPadding;
-	@include clearfix;
-	display: block;
 
-}
 
 .course-container {
 	@include clearfix;
@@ -53,11 +47,6 @@
 
 /* ------------------------ Medium Screen Size ------------------- */
 @include mquery("medium") {
-	.main-content {
-		@include mediumPadding;
-		width: 45em;
-		margin: 0px auto;
-	}
 
 	.course-container--box {
 		display: inline-block;
@@ -72,12 +61,7 @@
 }
 
 @include mquery("large") {
-	.main-content {
-		@include mediumPadding;
-		width: 60em;
-		margin: 0px auto;
-		@include clearfix;
-	}
+
 
 	.course-container--box {
 		display: inline-block;
@@ -90,12 +74,6 @@
 }
 
 @include mquery("xlarge") {
-	.main-content {
-		@include mediumPadding;
-		width: 75em;
-		margin: 0px auto;
-		@include clearfix;
-	}
 
 	.course-container--box {
 		display: inline-block;

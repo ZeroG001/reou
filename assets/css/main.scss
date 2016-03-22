@@ -304,23 +304,64 @@ body {
 	margin:0px auto;
 }
 
+.main-content {
+	
+	@include smallPadding;
+	@include clearfix;
+	display: block;
+
+}
+
+
+/* -------------------------- Media Queries -------------------------- */
+
+
+/* ---------- Medium Screen Size ---------- */
+@include mquery("medium") {
+	.main-content {
+		@include mediumPadding;
+		width: 49em;
+		margin: 0px auto;
+	}
+}
+
+/* ---------- Large Screen Size ---------- */
+@include mquery("large") {
+	.main-content {
+		@include mediumPadding;
+		width: 60em;
+		margin: 0px auto;
+		@include clearfix;
+	}
+}
+
+/* ---------- xLarge Screen Size ---------- */
+@include mquery("xlarge") {
+	.main-content {
+		@include mediumPadding;
+		width: 75em;
+		margin: 0px auto;
+		@include clearfix;
+	}
+}
+
 
 /* ===============================
-		    Layout -- Navigation
+		Layout -- Navigation
 ================================== */
 
 @import "header";
 
 
 /* ===============================
-		    Course Category
+		Course Category
 ================================== */
 
 @import "courseCategory";
 
 
 /* ===============================
-		    Course Classes
+		Course Classes
 ================================== */
 
 @import "courseClasses";

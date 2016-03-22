@@ -96,6 +96,34 @@
 
 
 
+// ===================== Asset Routes =====================
+
+		function asset_route($route) {
+
+		switch ($route) {
+
+			case 'js':
+				return "/reou/assets/js/";
+				break;
+
+			case 'css':
+				return "/reou/assets/css/";
+				break;
+
+			case 'img':
+				return "/reou/assets/img/";
+				break;
+			
+			default:
+				return "";
+				break;
+
+		}
+
+	}
+
+
+
 
 
 

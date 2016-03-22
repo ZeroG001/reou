@@ -2,17 +2,24 @@
  	p { display: none; }
  }
 
- .course_into_title {
+ .course_info_title {
  	text-align: center;
  	display: block;
+ 	color: #757575;
+
+ 	img {
+ 		margin-bottom: 19.20px;
+ 	}
  }
 
 	.course_info--wrap {
 
 	@include clearfix;
 	@include smallPadding;
+	@include mdlBoxShadow;
 
-	border: 1px solid black;
+	color: #757575;
+	background-color: white;
 	box-sizing: border-box;
 
 	text-align: center;
@@ -28,12 +35,32 @@
 
 
 	.course_info--item__notes {
-		@extend .course_info--item;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		max-height: inherit;
+		box-sizing: border-box;
 	}
 
+}
+
+
+.course_schedule--wrap {
+	@include smallPadding;
+	@include mdlBoxShadow;
+	color: #757575;
+	margin-bottom: 1.50em;
+	text-align: center;
+	background-color: white;
+
+	.course_info_title {
+		text-align: center;
+	}
+}
+
+.schedule_signup_button {
+	@include thinput;
+	display: block;
+	margin: 0px auto;
 }
 
 
@@ -62,13 +89,15 @@
 
 		@include clearfix;
 
-		text-align: center;
+		.course_info--title {
+			text-align: center;
+		}
 
 		.course_info--item {
 			display: inline-block;
-			border: 1px solid black;
 			box-sizing: border-box;
 			float: left;
+			text-align: center;
 			height: 155px;
 			width: 33.33333%;
 		}
@@ -80,14 +109,15 @@
 		}
 
 	}
-	
-}
-
-@include mquery("large") {
 
 	
 }
 
-@include mquery("xlarge") {
-	
-}
+
+/* ------------------------------- Large Screen Size ------------------------------- */
+
+@include mquery("large") {	}
+
+
+/* ------------------------------- xLarge Screen Size ------------------------------- */
+@include mquery("xlarge") {  }

@@ -10,11 +10,6 @@
 	// ------------ DEBUG --------------------
 
 
-
-
-
-
-
 	// ---------------------------- Include Header ----------------------------
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
@@ -28,7 +23,6 @@
 	</head>
 
 	<body>
-
 
 		<div class="page-banner">
 			<div class="banner-title-wrapper">
@@ -45,19 +39,18 @@
 
 
 		
-		<div class="wrap">
+		<div class="main-content">
 
 
 			<!-- Course Info
 			====================================================== -->
 
+			<div class="course_info_title">
+				 <h2> Course Info </h2>
+				<img src="<?php echo asset_route('img')?>info_icon.svg" />
+			</div>
 
 			<div class="course_info--wrap">
-
-				<div class="course_into_title">
-					 <h2> Course Info </h2>
-					<img src="http://placehold.it/100x100" />
-				</div>
 
 				<div class="course_info--item">
 					<h3> Course Number </h3>
@@ -85,18 +78,18 @@
 		</div>
 
 
-		<div class="wrap">
+		<div class="main-content">
 
 			<!-- Course Schedule and Availibility
 			====================================================== -->
-			<div class="course_into_title">
-				 <h2> Course Info </h2>
-				<img src="http://placehold.it/100x100" />
+			<div class="course_info_title">
+				 <h2> Schedule </h2>
+				<img src="<?php echo asset_route('img')?>schedule_icon.svg" />
 			</div>
 
 			<?php foreach ($course_schedules as $detail) { ?>
 
-			<div class="course_info--wrap">
+			<div class="course_schedule--wrap">
 				
 				<h3> Begin Date </h3>
 				<p><?php format_date($detail['class_date']) ?> </p>
@@ -110,8 +103,8 @@
 				<p> <?php echo $detail['course_location'] ?> </p>
 
 				<form action="<?php echo course_route('course_register') ?>" method="POST">	
-					<input type="submit" value="Sign Up" > 
-					<input type="hidden" name="course_id" value="<?php echo $course_detail['course_id'] ?>">
+					<input type="submit" class="schedule_signup_button"value="Sign Up" > 
+					<input type="hidden" name="course_id" value="<?php echo $detail['course_id'] ?>">
 					<input type="hidden" name="student_id" value="<?php echo $_SESSION['id'] ?>">
 					<input type="hidden" name="schedule_id" value="<?php echo $detail['schedule_id'] ?>">
 				</form>
