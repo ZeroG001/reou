@@ -7,8 +7,13 @@
 
 .course-container--box {
 
-	box-sizing: border-box;
 	@include mdlBoxShadow;
+	@include transition(0.3s ease);
+
+	background-repeat: no-repeat;
+	background-size: cover;
+   
+	box-sizing: border-box;
 
 	position: relative;
 	display: block;
@@ -20,6 +25,11 @@
 	background-color: white;
 
 	margin-bottom: 15px;
+
+	&:hover {
+		@include transition(0.3s ease);
+		@include transform(scale(1.03));
+	}
 
 
 	.course-container--box-header {
@@ -69,7 +79,14 @@
 		margin-left: 15px;
 		margin-bottom: 15px;
 		width: 31.76%;
+
+		&:first-child {
+			width: 65%;
+		}
+
 	}
+
+
 	
 }
 

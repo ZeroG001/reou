@@ -1,0 +1,1 @@
+To keep things simple I would like to store all images related the websites content such as profile pictures, course pictures, etc in this folder. Pretty much any image resourse store in the database is in this folder.

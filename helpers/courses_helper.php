@@ -6,6 +6,9 @@
 
 	}
 
+
+
+
 	function numExtract($string) {
 		if (function_exists("filter_var")) {
 			$string = filter_var($string, FILTER_SANITIZE_NUMBER_INT);
@@ -21,17 +24,28 @@
 
 	}
 
+
+
 	function is_arrayEmpty($arr) {
 		return count($arr) == 0;
 	}
+
+
+
 
 	function format_date($timestamp) {
 		echo date('m/d/Y', strtotime($timestamp));
 	}
 
+
+
+
 	function day_or_night() {
 		//returns boolean value
 	}
+
+
+
 
 	function verify_get($id) {
 
@@ -41,6 +55,9 @@
 			die("nope");
 		}
 	}
+
+
+
 
 	function get_class_detail($course_array) {
 		
@@ -52,5 +69,8 @@
 		return $results;
 
 	}
+
+
+
 
 ?>

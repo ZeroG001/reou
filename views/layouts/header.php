@@ -15,6 +15,7 @@
 	</div>
 
 	<div class="main_nav--nav"> 
+	
 		<?php if(!userSignedIn()) { ?>
 
 			<a class="main_nav--item" href="<?php echo user_route('sign-in') ?>"> Sign-In </a>
@@ -36,6 +37,7 @@
 
 					<a class="main_subnav--item" href="<?php echo user_route('my-courses') ?>"> My Courses </a>
 					<a class="main_subnav--item" href="<?php echo user_route('sign-out') ?>"> Sign Out</a>
+					<a class="main_subnav--item" href="http://www.calendarwiz.com/reo"> Calendar </a>
 					<a class="main_subnav--item" href="#"> My Profile </a>
 
 				<?php } ?>

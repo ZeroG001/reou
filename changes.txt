@@ -78,3 +78,6 @@ ALTER TABLE `students_courses` ADD COLUMN `id` INT PRIMARY KEY NOT NULL AUTO_INC
 ALTER TABLE `reou`.`students_courses` 
 CHANGE COLUMN `student_id` `user_id` INT(11) NOT NULL COMMENT '' ;
 
+------------------------- course_category Table --------------------
+
+14. ALTER TABLE `course_category` ADD COLUMN `image_filename` VARCHAR(255) NULL;
