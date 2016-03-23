@@ -46,7 +46,7 @@
 			====================================================== -->
 
 			<div class="course_info_title">
-				 <h2> Course Info </h2>
+				 <h1> Course Info </h1>
 				<img src="<?php echo asset_route('img')?>info_icon.svg" />
 			</div>
 
@@ -83,7 +83,7 @@
 			<!-- Course Schedule and Availibility
 			====================================================== -->
 			<div class="course_info_title">
-				 <h2> Schedule </h2>
+				 <h1> Schedule </h1>
 				<img src="<?php echo asset_route('img')?>schedule_icon.svg" />
 			</div>
 

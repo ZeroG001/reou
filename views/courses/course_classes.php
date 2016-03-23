@@ -54,12 +54,6 @@
 
 
 							<div class="box-footer--detail-box">
-								<div class="detail-box-title"> Notes </div>
-								<div class="detail-box-description"> V </div>
-							</div>
-
-
-							<div class="box-footer--detail-box">
 								<div class="detail-box-title">Price</div>
 								<div class="detail-box-description"><?php echo numExtract($category["course_cost_day"])?></div>
 							</div>
