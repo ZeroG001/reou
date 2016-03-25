@@ -671,10 +671,10 @@ body {
 
 .course-container--box {
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-  -webkit-transition: 0.3s ease;
-  -moz-transition: 0.3s ease;
-  -o-transition: 0.3s ease;
-  transition: 0.3s ease;
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
   background-repeat: no-repeat;
   background-size: cover;
   box-sizing: border-box;
@@ -687,15 +687,15 @@ body {
   background-color: white;
   margin-bottom: 15px; }
   .course-container--box:hover {
-    -webkit-transition: 0.3s ease;
-    -moz-transition: 0.3s ease;
-    -o-transition: 0.3s ease;
-    transition: 0.3s ease;
-    -webkit-transform: scale(1.03);
-    -moz-transform: scale(1.03);
-    -ms-transform: scale(1.03);
-    -o-transform: scale(1.03);
-    transform: scale(1.03); }
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    transform: scale(1.02); }
   .course-container--box .course-container--box-header {
     padding: 18px 15px;
     display: block;
@@ -733,7 +733,9 @@ body {
     float: left;
     margin-left: 15px;
     margin-bottom: 15px;
-    width: 23.73%; } }
+    width: 31.76%; }
+    .course-container--box:first-child {
+      width: 65%; } }
 /* ===============================
 		Course Classes
 ================================== */

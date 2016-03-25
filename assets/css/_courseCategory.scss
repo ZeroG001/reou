@@ -8,7 +8,7 @@
 .course-container--box {
 
 	@include mdlBoxShadow;
-	@include transition(0.3s ease);
+	@include transition(transform 0.3s ease);
 
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -27,8 +27,8 @@
 	margin-bottom: 15px;
 
 	&:hover {
-		@include transition(0.3s ease);
-		@include transform(scale(1.03));
+		@include transition(transform 0.2s ease);
+		@include transform(scale(1.02));
 	}
 
 
@@ -65,7 +65,6 @@
 		margin-bottom: 15px;
 		width: 47.91%;
 		vertical-align: top;
-
 	}
 	
 }
@@ -97,7 +96,11 @@
 		float: left;
 		margin-left: 15px;
 		margin-bottom: 15px;
-		width: 23.73%;
+		width: 31.76%;
+
+		&:first-child {
+			width: 65%;
+		}
 	}
 	
 }
