@@ -10,8 +10,9 @@
 	@include mdlBoxShadow;
 	@include transition(transform 0.3s ease);
 
-	background-repeat: no-repeat;
-	background-size: cover;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	background-position: center !important;
    
 	box-sizing: border-box;
 
@@ -29,6 +30,12 @@
 	&:hover {
 		@include transition(transform 0.2s ease);
 		@include transform(scale(1.02));
+	}
+
+
+	&:active {
+		@include transition(transform 0.2s ease);
+		@include transform(scale(1.0));
 	}
 
 

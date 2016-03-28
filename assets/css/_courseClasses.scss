@@ -29,6 +29,8 @@
 
 .class-container {
 	@include clearfix;
+
+
 }
 
 .class-container--box {
@@ -62,6 +64,17 @@
 
 	.class-container--box-footer {
 		
+	}
+
+
+	&:hover {
+		@include transition(transform 0.2s ease);
+		@include transform(scale(1.02));
+	}
+
+	&:active {
+		@include transition(transform 0.2s ease);
+		@include transform(scale(1.0));
 	}
 
 

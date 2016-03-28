@@ -70,7 +70,7 @@ function course_register($ObjectPDO) {
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		// If a user isn't sign in then it wont work
-		if( !isset($_POST['student_id']) ) {
+		if( !userSignedIn() ) {
 			die("Please sign in to continue");
 		}
 

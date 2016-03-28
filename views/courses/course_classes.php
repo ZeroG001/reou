@@ -17,10 +17,9 @@
 
 	<body>
 
-		<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css')?>main.css">
 
 		<div class="page-banner">
-
 			<div class="banner-title-wrapper">
 				<h1> <?php echo $one_category['category_name'] ?> </h1>
 			</div>
@@ -31,14 +30,11 @@
 		</div>
 
 		<div class="main-content">
-
 			<div class="class-container">
 
 				<?php foreach ($categories as $k => $category) { ?>
 
 					<a class="class-container--box" href='<?php echo course_route('course_detail', ["id" => $category['course_id'] ]) ?>'>
-
-
 						<div class="class-container--box-body">
 							<h1> 
 								<?php echo $category['course_name']; ?>
@@ -57,15 +53,13 @@
 								<div class="detail-box-title">Price</div>
 								<div class="detail-box-description"><?php echo numExtract($category["course_cost_day"])?></div>
 							</div>
-
+							
 						</div>
-
 					</a>
 					
 				<?php } ?>
 
 			</div>
-
 		</div>
 
 

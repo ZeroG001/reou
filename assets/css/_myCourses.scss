@@ -1,0 +1,171 @@
+/* Has url: reou/courses/## */
+
+
+.page-banner {
+	display: block;
+
+}
+
+.banner-title-wrapper {
+	padding: 50px 0px;
+	text-align: center;
+	color: white;
+	background-color: $duskblue;
+
+	h1 {
+		margin: 0px 0px 21.440px 0px
+	}
+
+}
+
+.main-content {
+	
+	@include smallPadding;
+	@include clearfix;
+	display: block;
+
+
+}
+
+.class-container {
+	@include clearfix;
+
+
+}
+
+.mycourse-container--box {
+
+	box-sizing: border-box;
+	@include mdlBoxShadow;
+
+	position: relative;
+	display: block;
+
+	text-decoration: none;
+	height: 270px;
+	max-height: 270px;
+	min-height: 270px;
+	background-color: white;
+
+	margin-bottom: 15px;
+
+
+	.mycourse-container--box-header {
+		@include smallPadding;
+		@include sectionHeader;
+		background-color: $lightblue;
+		color: white;
+
+	}
+
+	.mycourse-container--box-body {
+		@include smallPadding;
+	}
+
+	.mycourse-container--box-footer {
+		
+	}
+
+
+	&:hover {
+		@include transition(transform 0.2s ease);
+		@include transform(scale(1.02));
+	}
+
+	&:active {
+		@include transition(transform 0.2s ease);
+		@include transform(scale(1.0));
+	}
+
+
+}
+
+.mycourse-container--box-footer {
+	display: block;
+	box-sizing: border-box;
+	@include clearfix;
+	@include smallPadding;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	
+
+	.box-footer--detail-box {
+		box-sizing: border-box;
+
+		text-align: center;
+		float: left;
+		width: 50%;
+
+
+		.detail-box-title {
+
+		}
+
+		.detail-box-description {
+			
+		}
+	}
+
+}
+
+/* Media Queries 
+===================== */
+
+
+/* ------------------------ Medium Screen Size ------------------- */
+@include mquery("medium") {
+	.main-content {
+		@include mediumPadding;
+		width: 45em;
+		margin: 0px auto;
+	}
+
+	.mycourse-container--box {
+		display: inline-block;
+		float: left;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 47.91%;
+		vertical-align: top;
+
+	}
+	
+}
+
+@include mquery("large") {
+	.main-content {
+		@include mediumPadding;
+		width: 60em;
+		margin: 0px auto;
+		@include clearfix;
+	}
+
+	.mycourse-container--box {
+		display: inline-block;
+		float: left;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 47.91%;
+	}
+	
+}
+
+@include mquery("xlarge") {
+	.main-content {
+		@include mediumPadding;
+		width: 75em;
+		margin: 0px auto;
+		@include clearfix;
+	}
+
+	.mycourse-container--box {
+		display: inline-block;
+		float: left;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 47.91%;
+	}
+	
+}

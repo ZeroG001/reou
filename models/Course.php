@@ -139,6 +139,7 @@ class Course {
 		 	}
 		}
 
+		// If the User is already registered fot class
 		if($this->userRegisteredforClass($params['student_id'], $params['course_id'], $params['schedule_id'])) {
 			die("You are already registered for this class (make a popup?)");
 		}

@@ -1,6 +1,9 @@
 <?php
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	$courses = my_courses($db);
+
+	// Header HTML
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 ?>
 
 <html>
@@ -13,24 +16,37 @@
 
 	<body>
 
-		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css')?>main.css">
 
-		<h1> Show my courses </h1>
+		<div class="page-banner">
+			<div class="banner-title-wrapper">
+				<h1> My Courses </h1>
+			</div>
 
-		<div class="courses wrap">
+			<div class="banner--footer">
+
+			</div>
+		</div>
+
+		
+
+		<div class="main-content">
 
 			<?php  foreach ($courses as $k => $course) { ?>
-			
-				<div class="courses__box">
 
-					<a href='<?php echo course_route("course_detail", array("id" => $course['course_id'])) ?>'> 
-						<?php echo $course['course_name'] ?> 
-					</a>
-				</div>
 
-				<br />
+				<a class="mycourse-container--box" href="">
+					<div class="class-container--box-body">
+						<h1> 
+							<?php echo $course['course_name'] ?> 
+						</h1>
+					</div>
+
+					<div class="mycourse-container--box-footer"> </div>
+				</a>		
 				
 			<?php } ?>
+
 
 		</div>
 

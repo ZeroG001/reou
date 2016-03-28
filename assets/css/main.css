@@ -675,8 +675,9 @@ body {
   -moz-transition: transform 0.3s ease;
   -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
   box-sizing: border-box;
   position: relative;
   display: block;
@@ -696,6 +697,16 @@ body {
     -ms-transform: scale(1.02);
     -o-transform: scale(1.02);
     transform: scale(1.02); }
+  .course-container--box:active {
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); }
   .course-container--box .course-container--box-header {
     padding: 18px 15px;
     display: block;
@@ -785,6 +796,26 @@ body {
     color: white; }
   .class-container--box .class-container--box-body {
     padding: 18px 15px; }
+  .class-container--box:hover {
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    transform: scale(1.02); }
+  .class-container--box:active {
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); }
 
 .class-container--box-footer {
   display: block;
@@ -955,3 +986,139 @@ body {
     width: 47.91%; } }
 /* ------------------------------- Large Screen Size ------------------------------- */
 /* ------------------------------- xLarge Screen Size ------------------------------- */
+/* ===============================
+		    My Courses
+================================== */
+/* Has url: reou/courses/## */
+.page-banner {
+  display: block; }
+
+.banner-title-wrapper {
+  padding: 50px 0px;
+  text-align: center;
+  color: white;
+  background-color: #488db6; }
+  .banner-title-wrapper h1 {
+    margin: 0px 0px 21.44px 0px; }
+
+.main-content {
+  padding: 18px 15px;
+  display: block; }
+  .main-content::after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.class-container::after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.mycourse-container--box {
+  box-sizing: border-box;
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: block;
+  text-decoration: none;
+  height: 270px;
+  max-height: 270px;
+  min-height: 270px;
+  background-color: white;
+  margin-bottom: 15px; }
+  .mycourse-container--box .mycourse-container--box-header {
+    padding: 18px 15px;
+    display: block;
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+    background-color: #3d96cc;
+    color: white; }
+  .mycourse-container--box .mycourse-container--box-body {
+    padding: 18px 15px; }
+  .mycourse-container--box:hover {
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02);
+    transform: scale(1.02); }
+  .mycourse-container--box:active {
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1); }
+
+.mycourse-container--box-footer {
+  display: block;
+  box-sizing: border-box;
+  padding: 18px 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; }
+  .mycourse-container--box-footer::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .mycourse-container--box-footer .box-footer--detail-box {
+    box-sizing: border-box;
+    text-align: center;
+    float: left;
+    width: 50%; }
+
+/* Media Queries 
+===================== */
+/* ------------------------ Medium Screen Size ------------------- */
+@media screen and (min-width: 52em) {
+  .main-content {
+    padding: 25px 50px;
+    width: 45em;
+    margin: 0px auto; }
+
+  .mycourse-container--box {
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    width: 47.91%;
+    vertical-align: top; } }
+@media screen and (min-width: 70em) {
+  .main-content {
+    padding: 25px 50px;
+    width: 60em;
+    margin: 0px auto; }
+    .main-content::after {
+      content: "";
+      display: table;
+      clear: both; }
+
+  .mycourse-container--box {
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    width: 47.91%; } }
+@media screen and (min-width: 88em) {
+  .main-content {
+    padding: 25px 50px;
+    width: 75em;
+    margin: 0px auto; }
+    .main-content::after {
+      content: "";
+      display: table;
+      clear: both; }
+
+  .mycourse-container--box {
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    width: 47.91%; } }
