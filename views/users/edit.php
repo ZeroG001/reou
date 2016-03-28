@@ -51,6 +51,10 @@
 		<input type="text" id="title" name="title" id="title">
 
 		<input type="hidden" value="22"> <!-- This should only be in here for admins. Its the student ID -->
+
+		<!-- Profile Photo -->
+		<!-- <input type="file" alt="Upload Photo"> -->
+
 	</form>
 
 </body>

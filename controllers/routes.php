@@ -110,6 +110,10 @@
 				return "/reou/assets/css/";
 				break;
 
+			case 'img':
+				return "/reou/assets/img/";
+				break;
+
 			case 'dbimg':
 				return "/reou/assets/img/dbimg/";
 				break;
