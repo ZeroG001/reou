@@ -110,7 +110,7 @@ function my_courses($ObjectPDO) {
 
 	} 
 	else {
-		header("Location:" . course_routes("course_category") );
+		header("Location:" . course_route("course_category") );
 	}
 
 }

@@ -91,26 +91,57 @@ class User {
 	// ============================================================
 
 
-	 public function get_all_users($params)
+	 public function get_users_info($params) {
+
+	 	// Things needed from user search
+	 	/*
+			- Give me a list of all users
+			- Give me a list of a range of user
+			- Give me a list of users from a specified search
+	 	*/
+
+		$query = array(
+			"all_users" => "SELECT * FROM users",
+			"range_of_users" => "LIMIT 10 offse"
+			);
+
+		}
 
 	 public function get_user_details($id) {
 
-	 	$cols = [
-	 		"student_number",
-	 		"first_name",
-	 		"last_name",
-	 		"address",
-	 		"city",
-	 		"state",
-	 		"zip",
-	 		"phone",
-	 		"email",
-	 		"licensed",
-	 		"type",
-	 		"bio",
-	 		"active",
-	 		"title"
-	 	];
+	 	$cols = array(
+	 			"student_number",
+	 			"first_name",
+	 			"last_name",
+	 			"address",
+	 			"city",
+	 			"state",
+	 			"zip",
+	 			"phone",
+	 			"email",
+	 			"licensed",
+	 			"type",
+	 			"bio",
+	 			"active",
+	 			"title"
+	 		);
+
+	 	// $cols = [
+	 	// 	"student_number",
+	 	// 	"first_name",
+	 	// 	"last_name",
+	 	// 	"address",
+	 	// 	"city",
+	 	// 	"state",
+	 	// 	"zip",
+	 	// 	"phone",
+	 	// 	"email",
+	 	// 	"licensed",
+	 	// 	"type",
+	 	// 	"bio",
+	 	// 	"active",
+	 	// 	"title"
+	 	// ];
 
 	 	$cols = implode(", ", $cols);
 
