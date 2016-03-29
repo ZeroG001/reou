@@ -135,6 +135,16 @@ function edit($ObjectPDO) {
 
 }
 
+// --------------------------------- show_users.php -----------------------------
+
+function show_users($ObjectPDO) {
+	
+}
+
+
+
+
+
 
 
 function my_courses($ObjectPDO) {

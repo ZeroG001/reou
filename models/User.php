@@ -26,6 +26,178 @@ class User {
 	}
 
 
+
+
+	// Create USer Information
+	// =====================================================
+
+	public function create_user($params) {
+	 	// Accepts POST array items or an array you create.
+	 	/* 
+	 	$params = [
+	 		"firstName" => "John", 
+	 		"lastName" => "Doe", 
+	 		"email" => "test@hotmail.com",
+	 		"password" => "secret" (as hash)
+	 	]
+	 	*/
+
+	 	// Check if post variable names are acceptable
+		foreach ($params as $param => $value) {
+		 	if(!in_array($param, $this->accepted_params())) {
+		 		die("Form Field " . $param . " is not accepted");	
+		 	}
+
+		}
+
+		// Clean Parameters
+		$params['password'] = md5(trim($params['password']));
+		$params['firstName'] = filter_var(trim($params['firstName']), FILTER_SANITIZE_STRING);
+		$params['lastName'] = filter_var(trim($params['lastName']), FILTER_SANITIZE_STRING);
+		$params['email'] = filter_var(trim($params['email']), FILTER_SANITIZE_EMAIL);
+		$date_enetered = date('m/d/Y');
+
+
+		// ------------------- Check if user is unique -------------------
+		if ( $this->unique_user_exists($params['email']) ) {
+			return false;
+		}
+
+		else {
+
+			// ------------------- Run the INSERT QUERY -------------------
+		 	$students_query = "INSERT INTO users 
+		 	(first_name, last_name, email, password, date_created) 
+		 	VALUES (:firstName, :lastName, :email, :password, :createdOn)";
+
+		 	$stmt = $this->db->prepare($students_query);
+		 	$stmt->bindParam(':firstName', $params['firstName'], PDO::PARAM_STR);
+		 	$stmt->bindParam(':lastName', $params['lastName'], PDO::PARAM_STR);
+		 	$stmt->bindParam(':email', $params['email'], PDO::PARAM_STR);
+		 	$stmt->bindParam(':password', $params['password'], PDO::PARAM_STR);	
+		 	$stmt->bindParam(':createdOn', $date_enetered, PDO::PARAM_STR);
+		 	$stmt->execute();
+
+		 	return true;
+		}
+
+
+	 }
+
+
+
+
+	// Get User Information
+	// ============================================================
+
+
+	 public function get_all_users($params)
+
+	 public function get_user_details($id) {
+
+	 	$cols = [
+	 		"student_number",
+	 		"first_name",
+	 		"last_name",
+	 		"address",
+	 		"city",
+	 		"state",
+	 		"zip",
+	 		"phone",
+	 		"email",
+	 		"licensed",
+	 		"type",
+	 		"bio",
+	 		"active",
+	 		"title"
+	 	];
+
+	 	$cols = implode(", ", $cols);
+
+	 	$query = "SELECT $cols FROM users WHERE id = :id";
+	 	$stmt = $this->db->prepare($query);
+	 	$stmt->bingParam(':id', $id, PDO::PARAM_INT);
+	 	$stmt->execute();
+	 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	 	return $result;
+	 }
+
+
+
+
+
+
+
+	 // Update User Info
+	// ============================================================
+
+	public function update_user($params) {
+		$cols = [];
+		foreach ($params as $key => $value) {}
+		$query = "UPDATE users () VALUES ()";
+	}
+
+
+	// ------------------------ Delete ------------------------
+
+	public function delete_user() {
+	// Not sure is im eveen going to code this one in. Udemy has it...so...
+	}
+
+	public function delete_class() {
+	// Deletes a class (school) that a user is assigned to
+
+	}
+
+
+
+	// Other
+	// ============================================================
+
+
+	// Accepted params from user forms.
+	function accepted_params() {
+		return array( 
+	 		"firstName",
+	 		"lastName",
+	 		"email", 
+	 		"password",
+	 		"userId",
+	 		"courseId"
+	 	);
+	}
+
+
+	public function get_user_classes($student_id) {
+
+		// I don't feel this is the most efficient query but it works;
+		$query = "SELECT * FROM students_courses 
+		INNER JOIN users on students_courses.student_id = users.id 
+		INNER JOIN courses on students_courses.course_id = courses.course_id 
+		INNER JOIN course_schedules on students_courses.schedule_id = course_schedules.schedule_id 
+		WHERE students_courses.student_id = :student_id";
+
+		$stmt = $this->db->prepare($query);
+
+		$stmt->bindParam('student_id',$student_id ,PDO::PARAM_INT);
+
+		try {
+
+			$stmt->execute();
+
+		} 
+		catch (Exception $e) {
+			die("There was a problem getting user classes. Please try again later");
+		}
+
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $results;		
+	}
+
+
+
 	public function sign_in($params) {
 
 		// Make sure params are accepted params
@@ -84,62 +256,8 @@ class User {
 	 	
 	 	// ------- Return Result Or False if Nothing Comes up -------- //
 
-
 	}
 
-	public function create_user($params) {
-	 	// Accepts POST array items or an array you create.
-
-	 	/* 
-	 	$params = [
-	 		"firstName" => "John", 
-	 		"lastName" => "Doe", 
-	 		"email" => "test@hotmail.com",
-	 		"password" => "secret" (as hash)
-	 	]
-	 	*/
-
-		foreach ($params as $param => $value) {
-
-		 	if(!in_array($param, $this->accepted_params())) {
-		 		die("Form Field " . $param . " is not accepted");	
-		 	}
-
-		}
-
-		// Clean Parameters
-		$params['password'] = md5(trim($params['password']));
-		$params['firstName'] = filter_var(trim($params['firstName']), FILTER_SANITIZE_STRING);
-		$params['lastName'] = filter_var(trim($params['lastName']), FILTER_SANITIZE_STRING);
-		$params['email'] = filter_var(trim($params['email']), FILTER_SANITIZE_EMAIL);
-		$date_enetered = date('m/d/Y');
-
-
-		// ------------------- Check if user is unique -------------------
-		if ( $this->unique_user_exists($params['email']) ) {
-			return false;
-		}
-
-		else {
-
-			// ------------------- Run the INSERT QUERY -------------------
-		 	$students_query = "INSERT INTO users 
-		 	(first_name, last_name, email, password, date_created) 
-		 	VALUES (:firstName, :lastName, :email, :password, :createdOn)";
-
-		 	$stmt = $this->db->prepare($students_query);
-		 	$stmt->bindParam(':firstName', $params['firstName'], PDO::PARAM_STR);
-		 	$stmt->bindParam(':lastName', $params['lastName'], PDO::PARAM_STR);
-		 	$stmt->bindParam(':email', $params['email'], PDO::PARAM_STR);
-		 	$stmt->bindParam(':password', $params['password'], PDO::PARAM_STR);	
-		 	$stmt->bindParam(':createdOn', $date_enetered, PDO::PARAM_STR);
-		 	$stmt->execute();
-
-		 	return true;
-		}
-
-
-	 }
 
 	 function unique_user_exists($username) {
 	 	// String - Username to check for 'johndoe@hotmail.com'
@@ -170,107 +288,8 @@ class User {
 	 	}
 	 }
 
-	 // -------- Get User Information -------- //
 
-	 public function get_user_details($id) {
-
-	 	$cols = [
-	 		"student_number",
-	 		"first_name",
-	 		"last_name",
-	 		"address",
-	 		"city",
-	 		"state",
-	 		"zip",
-	 		"phone",
-	 		"email",
-	 		"licensed",
-	 		"type",
-	 		"bio",
-	 		"active",
-	 		"title"
-	 	];
-
-	 	$cols = implode(", ", $cols);
-
-	 	$query = "SELECT $cols FROM users WHERE id = :id";
-	 	$stmt = $this->db->prepare($query);
-	 	$stmt->bingParam(':id', $id, PDO::PARAM_INT);
-	 	$stmt->execute();
-	 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	 	return $result;
-	 }
-
-
-
-	public function get_user_classes($student_id) {
-
-		// I don't feel this is the most efficient query but it works;
-		$query = "SELECT * FROM students_courses 
-		INNER JOIN users on students_courses.student_id = users.id 
-		INNER JOIN courses on students_courses.course_id = courses.course_id 
-		INNER JOIN course_schedules on students_courses.schedule_id = course_schedules.schedule_id 
-		WHERE students_courses.student_id = :student_id";
-
-		$stmt = $this->db->prepare($query);
-
-		$stmt->bindParam('student_id',$student_id ,PDO::PARAM_INT);
-
-		try {
-
-			$stmt->execute();
-
-		} catch (Exception $e) {
-			die("There was a problem getting user classes. Please try again later");
-		}
-
-		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-		return $results;		
-	}
-
-
-
-	 // -------- Update User Information --------
-
-	public function update_user($params) {
-		$cols = [];
-		
-		foreach ($params as $key => $value) {
-		
-		}
-
-
-		$query = "UPDATE users () VALUES ()";
-
-	}
-
-
-	// -------- *** Delete User *** --------
-
-	public function delete_user() {
-	// Not sure is im eveen going to code this one in. Udemy has it...so...
-	}
-
-	public function delete_class() {
-	// Deletes a class (school) that a user is assigned to
-
-	}
-
-	// Accepted params from user forms.
-	function accepted_params() {
-		return array( 
-	 		"firstName",
-	 		"lastName",
-	 		"email", 
-	 		"password",
-	 		"userId",
-	 		"courseId"
-	 	);
-	}
-
-}
+} // Class End
 
 
 // ----------------------- Testing Area ----------------------- //
