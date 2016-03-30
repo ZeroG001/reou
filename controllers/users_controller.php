@@ -138,7 +138,10 @@ function edit($ObjectPDO) {
 // --------------------------------- show_users.php -----------------------------
 
 function show_users($ObjectPDO) {
+	$user = new User($ObjectPDO);
+	$results = $user->get_users_info();
 	
+	return $results;
 }
 
 

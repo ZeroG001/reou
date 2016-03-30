@@ -91,7 +91,7 @@ class User {
 	// ============================================================
 
 
-	 public function get_users_info($params) {
+	 public function get_users_info() {
 
 	 	// Things needed from user search
 	 	/*
@@ -102,8 +102,15 @@ class User {
 
 		$query = array(
 			"all_users" => "SELECT * FROM users",
-			"range_of_users" => "LIMIT 10 offse"
+			"range_of_users" => " SELECT * FROM users LIMIT 10 OFFSET ?",
+			"search_users" => "SELECT * FROM users WHERE email LIKE %?%"
 			);
+
+			$stmt = $this->db->prepare($query["all_users"]);
+			$stmt->execute();
+
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
 
 		}
 
