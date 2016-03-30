@@ -9,6 +9,7 @@ require(D_ROOT . '/reou/models/User.php');
 
 
 // --------------- signin.php ---------------------
+
 function sign_in($ObjectPDO, $params) {
 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -18,6 +19,8 @@ function sign_in($ObjectPDO, $params) {
 
 			// If the User is already signed in, take to another page
 			if( userSignedIn() ) {
+
+				// Move the user to the course_category page
 				header("Location:". course_route('course_category') );
 				// header("Location:". $_SERVER['HTTP_REFERER'] );
 				die();
@@ -52,36 +55,10 @@ function sign_in($ObjectPDO, $params) {
 
 }
 
-// function signin($ObjectPDO) {
-
-// 	if ( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['email']) 
-// 		&& isset($_POST['password'])) {
-
-// 		// -------- Load POST Variables -------- //
-// 		$params = array();
-// 		$params['email'] = $_POST['email'];
-// 		$params['password'] = $_POST['password'];
 
 
-// 		// -------- Attempt To Sign in -------- //
-// 		$user = new User($db);
-// 		$results = $user->sign_in($params); 
 
-// 		// -------- Load Sesion Variables -------- //
-// 		// "id","first_name", "last_name", "address", "city", "state", 
-// 		//"zip", "phone", "email", "licensed", "type", "bio", "active", "title"
-
-// 		if ($results) {
-// 			session_start();
-// 			foreach($results[0] as $k => $v) {
-// 				$_SESSION[$k] = $v;
-
-// 			}
-// 		}
-// 	}
-// }
-
-// --------------- signup.php ---------------------
+// -------------------------- signup.php --------------------------------
 
 function sign_up($ObjectPDO, $params) {
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
@@ -126,29 +103,41 @@ function sign_up($ObjectPDO, $params) {
 
 
 
-// --------------------------------- edit.php -----------------------------
+// --------------------------------- edit.php ----------------------------------
 
 function edit($ObjectPDO) {
 	// if(isSignedIn()) {
 		$user = new User($ObjectPDO);
 	// }
-
 }
+
+
+
 
 // --------------------------------- show_users.php -----------------------------
 
 function show_users($ObjectPDO) {
+
+	//If the user isn't an admin then bring them back to the page they were on
+	if(!userIsAdmin()) {
+		if( !isset($_SERVER['HTTP_REFERER']) ) {
+			header("Location:". course_route('course_category') );
+		} else {
+			header("Location:". $_SERVER['HTTP_REFERER']);
+		}
+		
+		die();
+	}
+
 	$user = new User($ObjectPDO);
 	$results = $user->get_users_info();
-	
 	return $results;
 }
 
 
 
 
-
-
+// --------------------------------- my_courses.php -----------------------------
 
 function my_courses($ObjectPDO) {
 	//The student ID will be received by the user session
@@ -161,11 +150,10 @@ function my_courses($ObjectPDO) {
 
 	$user = new User($ObjectPDO);
 	$results = $user->get_user_classes($student_id);
-	$course_detail = $results[0];
+	$course_detail = $result;
 
 	return $results;
 }
-
 
 
 

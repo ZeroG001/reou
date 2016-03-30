@@ -127,7 +127,7 @@ class User {
 	 			"phone",
 	 			"email",
 	 			"licensed",
-	 			"type",
+	 			"role",
 	 			"bio",
 	 			"active",
 	 			"title"
@@ -144,7 +144,7 @@ class User {
 	 	// 	"phone",
 	 	// 	"email",
 	 	// 	"licensed",
-	 	// 	"type",
+	 	// 	"role",
 	 	// 	"bio",
 	 	// 	"active",
 	 	// 	"title"
@@ -229,7 +229,7 @@ class User {
 			die("There was a problem getting user classes. Please try again later");
 		}
 
-		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		return $results;		
 	}
@@ -252,7 +252,7 @@ class User {
 			"last_name",
 			"email",
 			"licensed",
-			"type",
+			"role",
 			"active",
 			"title"
 		];

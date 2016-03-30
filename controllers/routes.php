@@ -38,6 +38,10 @@
 			case 'my-courses':
 				return "/reou/my-courses".$querystring;
 				break;
+
+			case 'show-users':
+				return "reou/show-users";
+				break;
 			
 			default:
 				return "/reou/course-category".$querystring;

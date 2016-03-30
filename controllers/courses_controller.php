@@ -15,6 +15,7 @@ function course_category($ObjectPDO) {
 
 	$course = new Course($ObjectPDO);
 	$categories = $course->get_course_category();
+	$categories = scrub_array_output($categories); //scrub output
 
 	return $categories;
 }
@@ -31,6 +32,9 @@ function course_classes($ObjectPDO) {
 	
 	$categories = $course->get_course_classes($course_id);
 	$one_category = $course->get_one_course_category($course_id);
+
+	$categories = scrub_array_output($categories); //scrub output
+	$one_category = scrub_array_output($one_category); //scrub output
 	
 	array_push($result_array, $categories);
 	array_push($result_array, $one_category);
@@ -56,6 +60,10 @@ function course_detail($ObjectPDO) {
 
 	array_push($result_array, $details);
 	array_push($result_array, $schedules);
+
+	foreach ($result_array as $k => $v) {
+		$result_array[$k] = scrub_array_output($v);
+	}
 	
 
 	return $result_array;
@@ -88,10 +96,6 @@ function course_register($ObjectPDO) {
 		
 	}
 	// $params are {course_id => "#", student_id => "#", schedule_id => "#" }
-
-
-	// You were right here about to connect the controller to MODEL. Call the 
-	// reguster class fucntion
 }
 
 
@@ -106,6 +110,7 @@ function my_courses($ObjectPDO) {
 		
 		$course = new Course($ObjectPDO);
 		$categories = $course->get_registered_courses($user_id);
+		$categories = scrub_array_output($categories); // Scrub Output
 		return $categories;
 
 	} 

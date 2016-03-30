@@ -68,6 +68,9 @@ I used PHPmyadmin to import/export so you might run into errors.
 [12. rename student_id to id]
 ALTER TABLE `users` CHANGE `student_id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 
+[15. Rename 'type' column to 'role' to better suit user types]
+ALTER TABLE users CHANGE type role varchar(10)
+
 
 ------------ Students_Courses table ------------
 

@@ -2,7 +2,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 	//$sign_in_page = "../../controllers/signin.php";
-		sign_in($db, $_POST);
+	sign_in($db, $_POST);
 ?>
 
 <html>
