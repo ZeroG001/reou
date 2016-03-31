@@ -71,6 +71,12 @@ ALTER TABLE `users` CHANGE `student_id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 [15. Rename 'type' column to 'role' to better suit user types]
 ALTER TABLE users CHANGE type role varchar(10)
 
+[16. Drop the title column. Not sure why that was in there]
+ALTER TABLE users DROP COLUMN title;
+
+[17. Added updated_at column so we know when the user was last updated]
+ALTER TABLE users ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
 
 ------------ Students_Courses table ------------
 

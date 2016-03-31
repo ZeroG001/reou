@@ -27,38 +27,21 @@ class User {
 
 
 
-
 	// Create USer Information
 	// =====================================================
 
 	public function create_user($params) {
-	 	// Accepts POST array items or an array you create.
-	 	/* 
-	 	$params = [
-	 		"firstName" => "John", 
-	 		"lastName" => "Doe", 
-	 		"email" => "test@hotmail.com",
-	 		"password" => "secret" (as hash)
-	 	]
-	 	*/
+
 
 	 	// Check if post variable names are acceptable
-		foreach ($params as $param => $value) {
-		 	if(!in_array($param, $this->accepted_params())) {
-		 		die("Form Field " . $param . " is not accepted");	
-		 	}
-
-		}
+	 	$this->checkAcceptedParams($params);
 
 		// Clean Parameters
-		$params['password'] = md5(trim($params['password']));
-		$params['firstName'] = filter_var(trim($params['firstName']), FILTER_SANITIZE_STRING);
-		$params['lastName'] = filter_var(trim($params['lastName']), FILTER_SANITIZE_STRING);
-		$params['email'] = filter_var(trim($params['email']), FILTER_SANITIZE_EMAIL);
+		$params = $this->sanitizeParams($params);
 		$date_enetered = date('m/d/Y');
 
 
-		// ------------------- Check if user is unique -------------------
+		// Check if user exists
 		if ( $this->unique_user_exists($params['email']) ) {
 			return false;
 		}
@@ -74,15 +57,14 @@ class User {
 		 	$stmt->bindParam(':firstName', $params['firstName'], PDO::PARAM_STR);
 		 	$stmt->bindParam(':lastName', $params['lastName'], PDO::PARAM_STR);
 		 	$stmt->bindParam(':email', $params['email'], PDO::PARAM_STR);
-		 	$stmt->bindParam(':password', $params['password'], PDO::PARAM_STR);	
+		 	$stmt->bindParam(':password', md5($params['password']), PDO::PARAM_STR);	
 		 	$stmt->bindParam(':createdOn', $date_enetered, PDO::PARAM_STR);
 		 	$stmt->execute();
 
 		 	return true;
 		}
 
-
-	 }
+	}
 
 
 
@@ -114,55 +96,38 @@ class User {
 
 		}
 
-	 public function get_user_details($id) {
-
-	 	$cols = array(
-	 			"student_number",
-	 			"first_name",
-	 			"last_name",
-	 			"address",
-	 			"city",
-	 			"state",
-	 			"zip",
-	 			"phone",
-	 			"email",
-	 			"licensed",
-	 			"role",
-	 			"bio",
-	 			"active",
-	 			"title"
-	 		);
-
-	 	// $cols = [
-	 	// 	"student_number",
-	 	// 	"first_name",
-	 	// 	"last_name",
-	 	// 	"address",
-	 	// 	"city",
-	 	// 	"state",
-	 	// 	"zip",
-	 	// 	"phone",
-	 	// 	"email",
-	 	// 	"licensed",
-	 	// 	"role",
-	 	// 	"bio",
-	 	// 	"active",
-	 	// 	"title"
-	 	// ];
-
-	 	$cols = implode(", ", $cols);
-
-	 	$query = "SELECT $cols FROM users WHERE id = :id";
-	 	$stmt = $this->db->prepare($query);
-	 	$stmt->bingParam(':id', $id, PDO::PARAM_INT);
-	 	$stmt->execute();
-	 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-	 	return $result;
-	 }
 
 
+		public function get_user_details($id) {
 
+			$cols = array(
+					"student_number",
+					"first_name",
+					"last_name",
+					"address",
+					"city",
+					"state",
+					"zip",
+					"phone",
+					"email",
+					"licensed",
+					"role",
+					"bio",
+					"active",
+					"title"
+				);
+
+
+			$cols = implode(", ", $cols);
+
+			$query = "SELECT $cols FROM users WHERE id = :id";
+			$stmt = $this->db->prepare($query);
+			$stmt->bingParam(':id', $id, PDO::PARAM_INT);
+			$stmt->execute();
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+		}
 
 
 
@@ -171,10 +136,20 @@ class User {
 	// ============================================================
 
 	public function update_user($params) {
-		$cols = [];
+
+		// Make sure params are accepted
+		checkAcceptedParams($params);
+
+
+
 		foreach ($params as $key => $value) {}
+
+
 		$query = "UPDATE users () VALUES ()";
+
+		//Automatically add the current date to the updated_at field
 	}
+
 
 
 	// ------------------------ Delete ------------------------
@@ -182,6 +157,8 @@ class User {
 	public function delete_user() {
 	// Not sure is im eveen going to code this one in. Udemy has it...so...
 	}
+
+
 
 	public function delete_class() {
 	// Deletes a class (school) that a user is assigned to
@@ -194,17 +171,6 @@ class User {
 	// ============================================================
 
 
-	// Accepted params from user forms.
-	function accepted_params() {
-		return array( 
-	 		"firstName",
-	 		"lastName",
-	 		"email", 
-	 		"password",
-	 		"userId",
-	 		"courseId"
-	 	);
-	}
 
 
 	public function get_user_classes($student_id) {
@@ -236,17 +202,14 @@ class User {
 
 
 
+
 	public function sign_in($params) {
 
 		// Make sure params are accepted params
-		foreach ($params as $param => $value) {
-		 	if(!in_array($param, $this->accepted_params())) {
-		 		die("Form Field " . $param . " is not accepted");	
-		 	}
-		}
+		$this->checkAcceptedParams($params);
 
 
-		$cols = [
+		$cols = array(
 			"id",
 			"first_name",
 			"last_name",
@@ -254,8 +217,7 @@ class User {
 			"licensed",
 			"role",
 			"active",
-			"title"
-		];
+		);
 
 		$cols = implode(", ", $cols);
 
@@ -297,6 +259,7 @@ class User {
 	}
 
 
+
 	 function unique_user_exists($username) {
 	 	// String - Username to check for 'johndoe@hotmail.com'
 	 	// Check the the Student security table to see if that record exists. Alerts if there are dupes
@@ -325,6 +288,113 @@ class User {
 	 		return false;
 	 	}
 	 }
+
+
+	/*
+	 * scrubParams
+	 *
+	 * Takes each parameter and cleans it using rules set in function. Each parameter is clearn a certain way
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
+	 public function sanitizeParams($params) {
+
+
+	 	foreach ($params as $k => $param) {
+	 		echo $k;
+	 		switch($k) {
+	 			case "firstName" or "lastName" :
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
+	 				echo $params[$k];
+	 			break;
+
+	 			case "email":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_EMAIL);
+	 				echo $params[$k];
+	 			break;
+
+	 			case "studentNumber":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT); 
+	 			break;
+
+	 			default:
+	 				$params[$k] = $params[$k];
+	 			break;
+	 		}
+	 	}
+
+	 	return $params;
+	 }
+
+
+	 public function validateParams($params) {
+
+
+	 	foreach ($params as $k => $param) {
+	 		echo $k;
+	 		switch($k) {
+	 			case "firstName" or "lastName" :
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
+	 				echo $params[$k];
+	 			break;
+
+	 			case "email":
+	 				$params[$k] = filter_var(trim($param), FILTER_VALIDATE_EMAIL);
+	 				return ß
+	 			break;
+
+	 			case "studentNumber":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT); 
+	 			break;
+
+	 			default:
+	 				$params[$k] = $params[$k];
+	 			break;
+	 		}
+	 	}
+
+	 	return $params;
+	 }
+
+
+
+	/*
+	 * checkAcceptedParams
+	 *
+	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. The Script will stop if the parameters are bad
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
+	public function checkAcceptedParams($params) {
+		$accepted_params = array("firstName",
+		 "lastName",
+		 "email",
+		 "password",
+		 "userId",
+		 "dateCreated",
+		 "lisenced",
+		 "phone",
+		 "profilePicture",
+		 "role",
+		 "state",
+		 "active",
+		 "studentNumber",
+		 "createdAt",
+		 "zip",
+		 "bio"
+			);
+
+		foreach ($params as $param => $value) {
+		 	if( !in_array($param, $accepted_params) ) {
+		 		return false;
+		 		die("Form Field " . $param . "is not acceptable.");	
+		 	}
+		}
+
+		return true;
+	}
 
 
 } // Class End

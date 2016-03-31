@@ -105,9 +105,11 @@ function sign_up($ObjectPDO, $params) {
 
 // --------------------------------- edit.php ----------------------------------
 
-function edit($ObjectPDO) {
+function edit_user($ObjectPDO) {
 	// if(isSignedIn()) {
 		$user = new User($ObjectPDO);
+
+		
 	// }
 }
 
