@@ -6,11 +6,11 @@ require_once(D_ROOT . "/reou/models/database.php");
 
 class User {
 
-	public static $message = array(
-			"alert" => "",
-			"error" => "",
-			"success" => "",
-			"notice" => ""
+	public static $flash_message = array(
+			"alert" => array(),
+			"error" => array(),
+			"success" => array(),
+			"notice" => array()
 		);
 
 	public $user_info = array(
@@ -35,6 +35,9 @@ class User {
 
 	 	// Check if post variable names are acceptable
 	 	$this->checkAcceptedParams($params);
+	 	if(!$this->sanitizeParams()) {
+
+	 	}
 
 		// Clean Parameters
 		$params = $this->sanitizeParams($params);
@@ -328,24 +331,62 @@ class User {
 	 }
 
 
-	 public function validateParams($params) {
+
+	/*
+	 * add_message();
+	 *
+	 * Add a message to the flash_alert array
+	 *
+	 * @type (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @return (boolean)
+	 */
+	public static function add_message($type, $message) {
+		$acceptable_message_types = array("alert","notice","success","error");
+		if(!in_array(strtolower($type), $acceptable_message_types) && is_string($type)) {
+			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
+		}
+		array_push(User::$flash_message[$type], $message);
+	}
+
+
+	/*
+	 * validateParams();
+	 *
+	 * Ensures that the parameters sent are valid
+	 *
+	 * @type (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @return (boolean)
+	 */
+	public function validateParams($params) {
+
+	 	$paramsValid = true;
 
 
 	 	foreach ($params as $k => $param) {
 	 		echo $k;
 	 		switch($k) {
-	 			case "firstName" or "lastName" :
+	 			case "firstName" :
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
-	 				echo $params[$k];
+	 				add_message("alert", "First Name invalid");
+	 				$paramsValid = false;
+	 			break;
+
+	 			case "lastName" :
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
+	 				add_message("alert", "First Name invalid");
+	 				$paramsValid = false;
 	 			break;
 
 	 			case "email":
 	 				$params[$k] = filter_var(trim($param), FILTER_VALIDATE_EMAIL);
-	 				return ß
+	 				add_message("alert", "First Name invalid");
+	 				$paramsValid = false;
 	 			break;
 
 	 			case "studentNumber":
-	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT); 
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT);
+	 				add_message("alert", "Student Number Invalid");
+	 				$paramsValid = false;
 	 			break;
 
 	 			default:
@@ -354,8 +395,15 @@ class User {
 	 		}
 	 	}
 
-	 	return $params;
-	 }
+	 	if($paramsValid) {
+	 		return true;
+	 	} else {
+	 		return false;
+	 	}
+
+	}
+
+
 
 
 

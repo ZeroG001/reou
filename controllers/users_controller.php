@@ -42,12 +42,12 @@ function sign_in($ObjectPDO, $params) {
 				header("location:". course_route('course_category'));
 			} 
 			else {
-				User::$message['alert'] = "Username or password incorrect";
+				User::add_message("alert", "Username or password incorrect");
 			}
 
 		} 
 		else {
-			User::$message['alert'] = "User name or password is empty";
+			User::add_message("alert", "User name or password is empty");
 		}	
 
 	}
@@ -78,17 +78,12 @@ function sign_up($ObjectPDO, $params) {
 		$user = new User($ObjectPDO);
 
 		try {
-
 			if($user->create_user($params)) {
-
-				//header("Location:". course_route('course_category'));
-
+				header("Location:". course_route('course_category'));
 				sign_in($ObjectPDO, $params);
-
 			} else {
 				User::$message['alert'] = "This user already exists";
 			}
-
 		} 
 		catch (Exception $e) {
 			// This needs to be an error message

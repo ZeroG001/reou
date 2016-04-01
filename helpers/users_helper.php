@@ -25,7 +25,6 @@
 	}
 
 
-
 	/*
 	 * display_alert()
 	 *
@@ -35,14 +34,22 @@
 	 * @return (boolean)
 	 */
 	function display_alert($type) {
-		if ( isset(User::$message[$type]) ) {
-			echo User::$message[$type];
-			User::$message[$type] == "";
+		if ( isset(User::$flash_message) ) {
+
+			foreach (User::$flash_message[$type] as $message) {
+				echo $message;
+			}
+
+			// Clear the contents of the flash messages
+			foreach (User::$flash_message as $messages) {
+				unset($message);
+			}
 			return true;
 		} else {
 			return false;
 		}
 	}
+
 
 
 
