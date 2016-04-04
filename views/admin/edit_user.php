@@ -1,57 +1,50 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
-	$users = show_users($db);
+	$user = edit_user($db);
+
+	var_dump($user);
 ?>
 
 
 <div class="container">
 
-
-
 	<form class="update_user--form">
 
 		<label for="firstName"> First Name </label>
-		<input type="text" id="firstName" name="firstName">
+		<input type="text" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>">
 
 		<label for="lastName"> Last Name </label>
-		<input type="text" id="lastName">
+		<input type="text" id="lastName" value="<?php echo $user['last_name'] ?>">
 
 		<!-- For this you need a way for the user to confirm their new email address. Dont make this site live until you can do that -->
 		<label for="lastName"> Email Address(see comments) </label>
-		<input type="text" id="email"> 
+		<input type="text" id="email" value="<?php echo $user['email'] ?>"> 
 
 
-		<label for="lastName"> Change Password </label>
-		<input type="text" name="password" />
+		<label for="password"> Change Password </label>
+		<input type="text" id="password" name="password" />
 
 		<label for="bio"> About Yourself </label>
-		<textarea tid="bio" name="bio"> </textarea>
-
-		<label for="profilePicture"> Profile Picture </label>
-		<input type="file" name="profilePicture"> Upload File </input>
-
+		<textarea title="bio" name="bio"> <?php echo $user['bio'] ?>  </textarea>
 
 		<!-- ===== Possably for instructor info ===== -->
 
-		<label for="lastName"> Phone Number </label>
-		<input type="text" id="phone" />
+		<!-- <label for="lastName"> Phone Number </label>
+		<input type="text" id="phone" /> -->
 
 		<!-- ===== Admin Functions ===== -->
 
 		<label for="role"> Role </label>
 
-		<select  id="role" name="role">
-			<option value="admin"> Administrator </option>
-			<option value="instructor"> Instructor </option>
-			<option value="Student"> </option>
+		<select id="role" name="role">
+			<option value="student" <?php echo displaySelected("student", $user['role']) ?>   > Student </option>
+			<option value="instructor" <?php echo displaySelected("instructor", $user['role']) ?> > Instructor </option>
+			<option value="admin" <?php echo displaySelected("admin", $user['role']) ?> > Administrator </option>
 		</select>
 
-		<label for="studentNumber"> Student Number </label>
-		<input type="text" name="studentNumber" id="studentNumber" />
-
 		<label for="active"> User Active </label>
-		<input type="checkbox" name="active" id="active">
+		<input type="checkbox" name="active" id="active" <?php echo displayChekbox($user['active']) ?> >
 
 		<label> Date Created </label>
 		<span> 12/20/2015 (filler text) </span>

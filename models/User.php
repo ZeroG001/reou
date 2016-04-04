@@ -35,8 +35,9 @@ class User {
 
 	 	// Check if post variable names are acceptable
 	 	$this->checkAcceptedParams($params);
-	 	if(!$this->sanitizeParams()) {
 
+	 	if(!$this->validateParams()) {
+	 		die("This validation failed, check Users.php to fix");
 	 	}
 
 		// Clean Parameters
@@ -100,8 +101,15 @@ class User {
 		}
 
 
+		// Gets specific information of one user
+		// Accepts an array, should be GET or POSt array.
+		// ensures that the userId field is in there
+		public function get_user_details($params) {
 
-		public function get_user_details($id) {
+			// Make sure the params submitted are accepted
+
+			$this->checkAcceptedParams($params);
+			$params = $this->sanitizeParams($params);
 
 			$cols = array(
 					"student_number",
@@ -117,7 +125,6 @@ class User {
 					"role",
 					"bio",
 					"active",
-					"title"
 				);
 
 
@@ -125,9 +132,9 @@ class User {
 
 			$query = "SELECT $cols FROM users WHERE id = :id";
 			$stmt = $this->db->prepare($query);
-			$stmt->bingParam(':id', $id, PDO::PARAM_INT);
+			$stmt->bindParam(':id', $params['userId'], PDO::PARAM_INT);
 			$stmt->execute();
-			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 			return $result;
 		}
@@ -305,19 +312,20 @@ class User {
 
 
 	 	foreach ($params as $k => $param) {
-	 		echo $k;
 	 		switch($k) {
 	 			case "firstName" or "lastName" :
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
-	 				echo $params[$k];
 	 			break;
 
 	 			case "email":
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_EMAIL);
-	 				echo $params[$k];
 	 			break;
 
 	 			case "studentNumber":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT); 
+	 			break;
+
+	 			case "userId":
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT); 
 	 			break;
 
@@ -363,7 +371,6 @@ class User {
 
 
 	 	foreach ($params as $k => $param) {
-	 		echo $k;
 	 		switch($k) {
 	 			case "firstName" :
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);

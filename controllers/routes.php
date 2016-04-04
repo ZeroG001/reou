@@ -20,7 +20,7 @@
 		switch ($route) {
 
 			case 'edit':
-				return "/reou/edit/".$querystring;
+				return "/reou/my-profile".$querystring;
 				break;
 
 			case 'sign-in':
@@ -129,6 +129,34 @@
 		}
 
 	}
+
+
+// ===================== Admin Routes =====================
+
+	function admin_route($route, $getVars = "") {
+
+		// Takes the array you pass in and converts it into a query string
+		if (is_array($getVars)) {
+			//$querystring = "?".http_build_query($getVars);
+			$querystring = $getVars['id'];
+		} else {
+			$querystring = $getVars;
+		}
+
+		switch ($route) {
+
+			case 'edit':
+				return "/reou/views/admin/edit_user.php".$querystring;
+				break;
+			
+			default:
+				return "/reou/course-category".$querystring;
+				break;
+
+		}
+
+	}
+
 
 
 

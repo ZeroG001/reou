@@ -25,6 +25,89 @@
 	}
 
 
+
+
+	/*
+	 * displaySelected()
+	 *
+	 * Used to help shorten the code that helps diplay checkboxes. This simply checks if two string are the same.
+	 *
+	 * @param (string) value of the checkbox
+	 ^ @params (string) value given from the database
+	 * @return String
+	 */
+	function displaySelected($value, $given) {
+
+
+
+
+		$value = strtolower($value);
+		$given = strtolower($given);
+
+
+		if($value == $given) {
+			return "selected";
+
+		} else {
+			return false;
+		}		
+	}
+
+
+	/*
+	 * displayOption()
+	 *
+	 * Used to help shorten the code that displays what checkbox or input box is selected
+	 *
+	 * @param (type) about this param
+	 * @return String
+	 */
+	function displayOption($value, $given) {
+
+		$value = strtolower($value);
+		$given = strtolower($given);
+
+		if($value == $given) {
+			return "checked";
+		} else {
+			return false;
+		}		
+	}
+
+
+
+
+	/*
+	 * displayOption()
+	 *
+	 * Used to help shorten the code that displays what checkbox or input box is selected
+	 *
+	 * @param (type) about this param
+	 * @return String
+	 */
+	function displayChekbox($given) {
+
+		$given = strtolower($given);
+
+		if("1" == $given) {
+			return "checked";
+		} else {
+			return false;
+		}		
+	}
+
+
+	function redirectHome() {
+
+		if( !isset($_SERVER['HTTP_REFERER']) ) {
+			header("Location:". course_route('course_category') );
+		} else {
+			header("Location:". $_SERVER['HTTP_REFERER']);
+		}
+
+	}
+
+
 	/*
 	 * display_alert()
 	 *

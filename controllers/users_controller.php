@@ -101,11 +101,39 @@ function sign_up($ObjectPDO, $params) {
 // --------------------------------- edit.php ----------------------------------
 
 function edit_user($ObjectPDO) {
-	// if(isSignedIn()) {
-		$user = new User($ObjectPDO);
 
-		
-	// }
+
+	// If user is NOT Admin
+	if(  userSignedIn() && !userIsAdmin() ) {
+
+		if($_SESSION['id'] != $_GET['id'] ) {
+			redirectHome();
+			die("You aren't suppose to be here.");
+		}
+
+	}
+
+
+	// If user is Admin
+	if(  userSignedIn() && userIsAdmin() ) {
+
+		if($_SERVER['REQUEST_METHOD'] != "POST") {
+			redirectHome();
+		}
+
+		$user = new User($ObjectPDO);
+		$results = $user->get_user_details($_POST);
+
+		if(sizeof($results) <= 0) {
+			redirectHome();
+			return false;
+		}
+
+		return $results;
+
+	}
+
+
 }
 
 
@@ -122,8 +150,6 @@ function show_users($ObjectPDO) {
 		} else {
 			header("Location:". $_SERVER['HTTP_REFERER']);
 		}
-		
-		die();
 	}
 
 	$user = new User($ObjectPDO);
