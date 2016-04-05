@@ -1,25 +1,36 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
+
+	if ( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['updateMethod']) ) {
+		update_user($db, $_POST);
+	}
+
 	$user = edit_user($db);
 
-	var_dump($user);
+
+	
 ?>
 
 
 <div class="container">
 
-	<form class="update_user--form">
+	<!-- Alert Message  -->
+	<div class="alert">
+		<?php display_alert('error') ?>
+	</div>
+
+	<form class="update_user--form" method="POST">
 
 		<label for="firstName"> First Name </label>
 		<input type="text" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>">
 
 		<label for="lastName"> Last Name </label>
-		<input type="text" id="lastName" value="<?php echo $user['last_name'] ?>">
+		<input type="text"  id="lastName" name="lastName" value="<?php echo $user['last_name'] ?>">
 
 		<!-- For this you need a way for the user to confirm their new email address. Dont make this site live until you can do that -->
 		<label for="lastName"> Email Address(see comments) </label>
-		<input type="text" id="email" value="<?php echo $user['email'] ?>"> 
+		<input type="text" id="email" name="email" value="<?php echo $user['email'] ?>"> 
 
 
 		<label for="password"> Change Password </label>
@@ -52,9 +63,17 @@
 		<label> Last Updated On </label>
 		<span> 1/20/2016 (filler text) </span>
 
+		
+
+		<?php // Please do not erase the required_hp div. This is a honeypot field to help reduce spam ?>
+		<div class="required_hp">
+			<input type="text" name="hpUsername" />
+		</div>
+
 
 		<!-- use the hiddent field to tell which user needs to be updated -->
-		<input type="hidden" id="userId" value="userIDfromPHP">
+		<input type="hidden" id="userId" name="userId" value="<?php echo $user['id'] ?>">
+		<input type="hidden" id="action" name="updateMethod" value="updateUser">
 
 		<input type="submit"> Update User </input>
 	</form>

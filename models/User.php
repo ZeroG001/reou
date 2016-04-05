@@ -11,7 +11,7 @@ class User {
 			"error" => array(),
 			"success" => array(),
 			"notice" => array()
-		);
+	);
 
 	public $user_info = array(
 		"name" => "name",
@@ -112,6 +112,7 @@ class User {
 			$params = $this->sanitizeParams($params);
 
 			$cols = array(
+					"id",
 					"student_number",
 					"first_name",
 					"last_name",
@@ -124,7 +125,7 @@ class User {
 					"licensed",
 					"role",
 					"bio",
-					"active",
+					"active"
 				);
 
 
@@ -147,15 +148,63 @@ class User {
 
 	public function update_user($params) {
 
+
 		// Make sure params are accepted
-		checkAcceptedParams($params);
+		$this->checkAcceptedParams($params);
+		$params = $this->sanitizeParams($params);
+
+		$fields = "";
+		$qi = 0; // query iterator counter
+		$bi = 1; //bind param itorator counter
+
+		foreach ($params as $k => $param) {
+
+			if($qi < sizeof($params) - 1) {
+
+				if($k == "userId") { die(); }
+
+				$fields .= $this->convert_camel_case($k) . "= ?, ";
+				$qi++;
+
+			} else {
+				$fields .=  $this->convert_camel_case($k) . "= ? WHERE id = ? ";
+				$qi = 0;
+			}
+
+		}
 
 
+	
 
-		foreach ($params as $key => $value) {}
 
+		$query = "UPDATE users SET $fields";
+		$stmt = $this->db->prepare($query);
 
-		$query = "UPDATE users () VALUES ()";
+		var_dump($query);
+
+		foreach ($params as $k => $param) {
+
+			if($qi < sizeof($params) - 1 ) {
+				if($k == "userId") { continue; }
+				$stmt->bindParam($bi, $param);
+				echo $bi;
+				$bi++;
+			}
+			else {
+				$bi = 1;
+			}
+		}
+
+		// Try to execute the query
+		try {
+			$stmt->execute();
+			return true;
+		}
+		catch (Exception $e) {
+			echo $e->getMessage();
+			return false;
+		}
+		
 
 		//Automatically add the current date to the updated_at field
 	}
@@ -276,7 +325,6 @@ class User {
 	 	//Well does the user exist? return true of false.
 	 	// For the die() statement. make it so that some soft of popup shows up.
 	 	// If the User
-
 	 	if(trim($username) == "") {
 	 		die("email is invalid (make me a reutrn value or flash message)");
 	 	}
@@ -329,6 +377,10 @@ class User {
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT); 
 	 			break;
 
+	 			case "bio":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
+	 			break;
+
 	 			default:
 	 				$params[$k] = $params[$k];
 	 			break;
@@ -337,6 +389,15 @@ class User {
 
 	 	return $params;
 	 }
+
+	public function convert_camel_case($string) {
+		$pattern ="/([a-z])([A-Z])/";
+		$replacement = "$1" . "_" . "$2";
+		$string = preg_replace($pattern, $replacement, $string);
+		$string = strtolower($string);
+		return $string;
+	}
+
 
 
 
@@ -417,7 +478,8 @@ class User {
 	/*
 	 * checkAcceptedParams
 	 *
-	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. The Script will stop if the parameters are bad
+	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. The Script will stop if the parameters are bad.
+	 * the params HAVE to the the camel case
 	 *
 	 * @param (Array) The Array containing $_POST params that are to be checked
 	 * @return (Boolean)
@@ -443,8 +505,8 @@ class User {
 
 		foreach ($params as $param => $value) {
 		 	if( !in_array($param, $accepted_params) ) {
-		 		return false;
 		 		die("Form Field " . $param . "is not acceptable.");	
+		 		return false;
 		 	}
 		}
 

@@ -30,10 +30,6 @@
 				<?php display_alert('alert') ?>
 			</div>
 
-			<!-- Full Name -->
-			<!-- Password -->
-			<!-- Eamil -->
-
 			<label for="firstName"> First Name </label>
 			<input type="text" name="firstName">
 

@@ -224,5 +224,42 @@
 	}
 
 
+	/*
+	 * convery_camel_case()
+	 *
+	 * take a camel case word, adds underscaore between lower and upper case letter, then make it all lowercase.
+	 * ie(helloWorld becomes hello_world); 
+	 *
+	 * @param (String) camelCaseString 
+	 * @return (String)
+	 */
+	function convert_camel_case($string) {
+		$pattern ="/([a-z])([A-Z])/";
+		$replacement = "$1" . "_" . "$2";
+		$string = preg_replace($pattern, $replacement, $string);
+		$string = strtolower($string);
+		return $string;
+	}
+
+
+
+
+	/*
+	 * convery_camel_case()
+	 *
+	 * take a camel case word, adds underscaore between lower and upper case letter, then make it all lowercase.
+	 * ie(helloWorld becomes hello_world); 
+	 *
+	 * @param (String) camelCaseString 
+	 * @return (Void)
+	 */
+	function check_honeypot_fields($params) {
+		if(isset($params['hpUsername']) && !empty($params['hpUsername'])) {
+			die("There was an error processing an unknown field");	
+		}
+	}
+
+
+
 
 ?>

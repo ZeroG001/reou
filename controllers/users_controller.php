@@ -103,6 +103,13 @@ function sign_up($ObjectPDO, $params) {
 function edit_user($ObjectPDO) {
 
 
+	// If User isn't signed in, go back to home page
+	if( !userSignedIn() ) {
+		redirectHome();
+		die("You should not be here");
+	}
+
+
 	// If user is NOT Admin
 	if(  userSignedIn() && !userIsAdmin() ) {
 
@@ -128,15 +135,37 @@ function edit_user($ObjectPDO) {
 			redirectHome();
 			return false;
 		}
+		
 
 		return $results;
 
 	}
 
-
 }
 
 
+// --------------------------------- update_user ----------------------------------
+
+function update_user($ObjectPDO, $params) {
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	require_once(D_ROOT . "/reou/helpers/users_helper.php");
+
+	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && $_POST['updateMethod'] == 'updateUser') {
+
+		unset($_POST['updateMethod']);
+		check_honeypot_fields($_POST);
+		unset($_POST['hpUsername']);
+
+		$user = new User($ObjectPDO);
+
+		if($user->update_user($_POST)) {
+			User::add_message("alert", "User Successfully Updated");
+		} else {
+			User::add_message("error", "There was a problem updating the user");
+		}
+		
+	}
+}
 
 
 // --------------------------------- show_users.php -----------------------------
@@ -165,7 +194,7 @@ function show_users($ObjectPDO) {
 function my_courses($ObjectPDO) {
 	//The student ID will be received by the user session
 
-	if(isSignedIn()) {
+	if(userSignedIn()) {
 		$student_id = $_SESSION['id'];
 	} else {
 		die("You must be signed in to see this page");
