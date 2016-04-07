@@ -150,20 +150,26 @@ function update_user($ObjectPDO, $params) {
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
-	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && $_POST['updateMethod'] == 'updateUser') {
+	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
 
-		unset($_POST['updateMethod']);
-		check_honeypot_fields($_POST);
-		unset($_POST['hpUsername']);
+		if ( ($_POST['_method']) == "patch" )  {
 
-		$user = new User($ObjectPDO);
+			unset($_POST['_method']);
+			check_honeypot_fields($_POST);
+			unset($_POST['hpUsername']);
 
-		if($user->update_user($_POST)) {
-			User::add_message("alert", "User Successfully Updated");
-		} else {
-			User::add_message("error", "There was a problem updating the user");
+			$user = new User($ObjectPDO);
+
+			if($user->update_user($_POST)) {
+				User::add_message("alert", "User Successfully Updated");
+			} else {
+				User::add_message("error", "There was a problem updating the user");
+			}
+
 		}
-		
+
+	} else {
+		User::add_message("alert", "There was a problem updating the user");
 	}
 }
 

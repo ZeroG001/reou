@@ -2,10 +2,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 
-	if ( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['updateMethod']) ) {
-		update_user($db, $_POST);
-	}
-
+	update_user($db, $_POST);
 	$user = edit_user($db);
 
 
@@ -18,9 +15,12 @@
 	<!-- Alert Message  -->
 	<div class="alert">
 		<?php display_alert('error') ?>
+		<?php display_alert('alert') ?>
 	</div>
 
 	<form class="update_user--form" method="POST">
+
+		<input type="hidden" id="action" name="_method" value="patch">
 
 		<label for="firstName"> First Name </label>
 		<input type="text" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>">
@@ -32,9 +32,6 @@
 		<label for="lastName"> Email Address(see comments) </label>
 		<input type="text" id="email" name="email" value="<?php echo $user['email'] ?>"> 
 
-
-		<label for="password"> Change Password </label>
-		<input type="text" id="password" name="password" />
 
 		<label for="bio"> About Yourself </label>
 		<textarea title="bio" name="bio"> <?php echo $user['bio'] ?>  </textarea>
@@ -73,8 +70,7 @@
 
 		<!-- use the hiddent field to tell which user needs to be updated -->
 		<input type="hidden" id="userId" name="userId" value="<?php echo $user['id'] ?>">
-		<input type="hidden" id="action" name="updateMethod" value="updateUser">
-
+		
 		<input type="submit"> Update User </input>
 	</form>
 

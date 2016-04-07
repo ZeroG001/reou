@@ -148,52 +148,20 @@ class User {
 
 	public function update_user($params) {
 
-
 		// Make sure params are accepted
 		$this->checkAcceptedParams($params);
 		$params = $this->sanitizeParams($params);
 
-		$fields = "";
-		$qi = 0; // query iterator counter
-		$bi = 1; //bind param itorator counter
-
-		foreach ($params as $k => $param) {
-
-			if($qi < sizeof($params) - 1) {
-
-				if($k == "userId") { die(); }
-
-				$fields .= $this->convert_camel_case($k) . "= ?, ";
-				$qi++;
-
-			} else {
-				$fields .=  $this->convert_camel_case($k) . "= ? WHERE id = ? ";
-				$qi = 0;
-			}
-
-		}
-
-
-	
-
-
-		$query = "UPDATE users SET $fields";
+		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, bio = ?, role = ?, active = ? WHERE id = ?";
 		$stmt = $this->db->prepare($query);
 
-		var_dump($query);
-
-		foreach ($params as $k => $param) {
-
-			if($qi < sizeof($params) - 1 ) {
-				if($k == "userId") { continue; }
-				$stmt->bindParam($bi, $param);
-				echo $bi;
-				$bi++;
-			}
-			else {
-				$bi = 1;
-			}
-		}
+		$stmt->bindParam(1, $params['firstName']);
+		$stmt->bindParam(2, $params['lastName']);
+		$stmt->bindParam(3, $params['email']);
+		$stmt->bindParam(4, $params['bio']);
+		$stmt->bindParam(5, $params['role']);
+		$stmt->bindParam(6, $params['active']);
+		$stmt->bindParam(7, $params['userId']);
 
 		// Try to execute the query
 		try {
