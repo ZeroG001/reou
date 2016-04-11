@@ -4,8 +4,6 @@
 
 	update_user($db, $_POST);
 	$user = edit_user($db);
-
-
 	
 ?>
 

@@ -28,4 +28,6 @@
 
 	date_default_timezone_set('America/Detroit');
 
+	// ini_set("upload_tmp_dir", D_ROOT . "assets/img/tmp");
+
 ?>

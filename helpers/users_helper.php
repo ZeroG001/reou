@@ -100,7 +100,7 @@
 	function redirectHome() {
 
 		if( !isset($_SERVER['HTTP_REFERER']) ) {
-			header("Location:". course_route('course_category') );
+			header("Location:". course_route('home') );
 		} else {
 			header("Location:". $_SERVER['HTTP_REFERER']);
 		}

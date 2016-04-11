@@ -6,7 +6,7 @@ DirectoryIndex views/courses/course_category.php
 
 # Restrict User from accessing other files they shouldn't
 RewriteRule includes - [F,L]
-RewriteRule helpers - [F,L]
+# RewriteRule helpers - [F,L]
 RewriteRule controllers - [F,L]
 RewriteRule models - [F,L]
 RewriteRule scraps - [F,L]
@@ -27,7 +27,6 @@ RewriteRule ^show-users$ views/admin/show_users.php [L]
 
 
 # ----- Courses ------
-
 # RewriteCond %{QUERY_STRING} ^id=([0-9]+)$
 RewriteRule ^course-register$ views/courses/course_register.php [L]
 RewriteRule ^course-category$ views/courses/course_category.php [L]

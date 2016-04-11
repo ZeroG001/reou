@@ -121,9 +121,13 @@
 			case 'dbimg':
 				return "/reou/assets/img/dbimg/";
 				break;
+
+			case 'classes':
+				return "/reou/assets/classes/";
+				break;
 			
 			default:
-				return "";
+				return "/reou/course-category";
 				break;
 
 		}
@@ -151,6 +155,25 @@
 			
 			default:
 				return "/reou/course-category".$querystring;
+				break;
+
+		}
+
+	}
+
+
+
+
+		function helpers_route($route) {
+
+		switch ($route) {
+
+			case 'ajax_actions':
+				return "/reou/helpers/ajax_actions/";
+				break;
+			
+			default:
+				return "/reou/course-category";
 				break;
 
 		}

@@ -90,3 +90,28 @@ CHANGE COLUMN `student_id` `user_id` INT(11) NOT NULL COMMENT '' ;
 ------------------------- course_category Table --------------------
 
 14. ALTER TABLE `course_category` ADD COLUMN `image_filename` VARCHAR(255) NULL;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Other Notes
+-------------------------------
+Getting image uploading to work.
+
+1. In terminal do ps aux | grep httpd
+2. First column show who owns the process
+3. 
