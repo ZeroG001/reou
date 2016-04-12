@@ -2,12 +2,12 @@
 
 
 
-	/*
+	/**
 	 * numExtract()
 	 *
 	 * Removes all letters from a string, leaving only the numbers
 	 *
-	 * @param (String) The string that is to be cleaned
+	 * @param $String) The string that is to be cleaned
 	 * @return (String)
 	 */
 	function numExtract($string) {
@@ -27,7 +27,7 @@
 
 
 
-	/*
+	/**
 	 * is_arrayEmpty()
 	 *
 	 * Check if array is empty
@@ -41,7 +41,7 @@
 
 
 
-	/*
+	/**
 	 * format_date()
 	 *
 	 * Turns a timestamp into a human readable date mm/dd/yyyy
@@ -55,7 +55,7 @@
 
 
 
-	/*
+	/**
 	 * verify_get()
 	 *
 	 * Mainly used for Course controller. Used to verify string of 'id' is actually set
@@ -75,7 +75,7 @@
 
 
 
-	/*
+	/**
 	 * course_clean_output
 	 *
 	 * Cleans the values of the given array so that it can safely be output to the screen; 
@@ -100,7 +100,7 @@
 		}
 
 		return $items;
-	
+		
 	}
 
 

@@ -6,21 +6,22 @@ require_once(D_ROOT . "/reou/models/database.php");
 
 class User {
 
-	public static $flash_message = array(
+	protected static $flash_message = array(
 			"alert" => array(),
 			"error" => array(),
 			"success" => array(),
 			"notice" => array()
 	);
 
-	public $user_info = array(
+	protected $user_info = array(
 		"name" => "name",
 		"email" => "email",
 		"address" => "address"
 	);
 
 	// Class Dependencies
-	public $db;
+	protected $db;
+
 	public function __construct(PDO $db) {
 	 	$this->db = $db;
 	}
@@ -139,6 +140,71 @@ class User {
 
 			return $result;
 		}
+
+
+
+	// Update User Profile Photo
+	// ==========================================
+
+	/**
+	 * 
+	 * @param (Array) The post params that are passed in. Should only be userId and file name
+	 * @return (Array)
+	 */
+	public function updateProfilePicture($params) {
+
+		$query = "UPDATE users SET profile_picture = ? WHERE userId = ?";
+
+		$this->checkAcceptedParams($params);
+		$this->sanitizeParams($params);
+
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(1, $params['profilePicture']);
+		$stmt->bindParam(2, $params['userId']);
+
+		try {
+
+			if ( $stmt->execute() ) {
+				return true;
+			} 
+			else {
+				return false;
+			}
+		} 
+		catch (Exception $e) {
+			echo "There was a problem uploading the profile picure";
+			return false;
+		}
+
+	}
+
+
+	public function getProfilePictureName($params) {
+
+		$query = "SELECT profile_picture FROM users WHERE userID = ?";
+
+
+		$this->checkAcceptedParams($params);
+		$this->sanitizeParams($params);
+
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(1, $params['userId']);
+
+		try {
+			if($stmt->execute()) {
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);
+				return $result;
+			} else  {
+				return false;
+			}
+		} 
+		catch (Exception $e) {
+			echo "There was a problem getting the profile picture";
+
+		}
+
+	}
+
 
 
 
@@ -286,13 +352,16 @@ class User {
 	}
 
 
-
+	/**
+	 *	unique_user_exists
+	 *
+	 *	Check whether the user exists in the system. 
+	 *
+	 * @param (String) username (which is the email) that is to be checked.
+	 * @return (Boolean) whether the user exists or not.
+	 */
 	 function unique_user_exists($username) {
-	 	// String - Username to check for 'johndoe@hotmail.com'
-	 	// Check the the Student security table to see if that record exists. Alerts if there are dupes
-	 	//Well does the user exist? return true of false.
-	 	// For the die() statement. make it so that some soft of popup shows up.
-	 	// If the User
+
 	 	if(trim($username) == "") {
 	 		die("email is invalid (make me a reutrn value or flash message)");
 	 	}
@@ -316,7 +385,7 @@ class User {
 	 }
 
 
-	/*
+	/**
 	 * scrubParams
 	 *
 	 * Takes each parameter and cleans it using rules set in function. Each parameter is clearn a certain way
@@ -347,6 +416,11 @@ class User {
 
 	 			case "bio":
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
+	 			break;
+
+	 			case "profilePicture":
+	 				$params[$k] = filter_var( trim($param),
+	 				FILTER_SANITIZE_STRING );
 	 			break;
 
 	 			default:

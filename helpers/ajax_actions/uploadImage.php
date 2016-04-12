@@ -35,3 +35,8 @@
     <input type="file" name="ikea"/>
     <input type="submit" value="upload"/>
 </form>
+
+
+<!-- Load up jquery because I think its about to get serious -->
+<script type="text/javascript" src="../assets/js/jquery/dist/jquery.min.js"> </script>
+<script type="text/javascript" src="../assets/js/app.js"> </script>
