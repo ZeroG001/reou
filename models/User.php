@@ -194,6 +194,7 @@ class User {
 			if($stmt->execute()) {
 				$result = $stmt->fetch(PDO::FETCH_ASSOC);
 				return $result;
+				
 			} else  {
 				return false;
 			}
