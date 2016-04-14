@@ -98,7 +98,7 @@ function sign_up($ObjectPDO, $params) {
 
 
 
-// --------------------------------- edit.php ----------------------------------
+// --------------------------------- edit_user.php ----------------------------------
 
 function edit_user($ObjectPDO) {
 
@@ -119,7 +119,6 @@ function edit_user($ObjectPDO) {
 		}
 
 	}
-
 
 	// If user is Admin
 	if(  userSignedIn() && userIsAdmin() ) {
@@ -150,6 +149,7 @@ function update_user($ObjectPDO, $params) {
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
+	// If the users data is being updated.
 	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
 
 		if ( ($_POST['_method']) == "patch" )  {
@@ -171,6 +171,61 @@ function update_user($ObjectPDO, $params) {
 	} else {
 		User::add_message("alert", "There was a problem updating the user");
 	}
+
+
+
+
+	// If ther user is trying to upload an image
+	if (userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && !empty($_FILES) ) {
+
+		require  D_ROOT . "/reou/assets/classes/bulletproof/src/bulletproof.php";
+
+		$user = new User($ObjectPDO);
+		$image = new Bulletproof\Image($_FILES);
+		if($image["profilePicture"]) {
+			 $image->setLocation("/var/www/html/reou/assets/img/dbimg");
+			 $image->setSize(100, 4194304);
+			 $image->setDimension(900, 900);
+		    $upload = $image->upload();
+
+
+		// Get Current name of user profile image
+		$profilePictureName = $user->getProfilePictureName($params);
+
+		if  (empty($profilePictureName)) {
+
+			//If there is nothing there. Just regularl post
+		    if($upload) {
+		       echo "The file has been uploaded";
+		       echo $image->getName() . "." . $image->getMime();
+		    } 
+		    else {
+		        echo $image["error"]; 
+		    }
+			
+		}
+		else {
+			unlink(D_ROOT . "/reou/images/dbimg/src/" . $profilePictureName);
+			echo "file erased?";
+			// If there is, get the name of the current image. 
+			// Erase the pd image, 
+			//then post the new one
+		}
+	}
+
+
+		
+
+		    
+		   
+
+
+
+		// Take this out? No
+		die("image has been uploaded");
+	}
+
+
 }
 
 
@@ -214,8 +269,8 @@ function my_courses($ObjectPDO) {
 }
 
 function update_profile_picture($ObjectPDO) {
-	$user = new User($ObjectPDO);
-	$result = $user->get
+	// $user = new User($ObjectPDO);
+	// $result = $user->get
 }
 
 

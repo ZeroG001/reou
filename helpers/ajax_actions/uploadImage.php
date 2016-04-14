@@ -7,41 +7,43 @@
 		require_once "../../assets/classes/bulletproof/src/bulletproof.php";
 		require_once "../../models/User.php";
 
-		// $folderName = asset_route('dbimg');
-
 		//remove the the old image if it exists
-		unlink(/* path to file */);
+		// unlink(/* path to file */);
 
 		// Upload the new one
+
+
+
 
 		$image = new Bulletproof\Image($_FILES);
 
 		if($image["profilePicture"]) {
 			 $image->setLocation("/var/www/html/reou/assets/img/dbimg");
 			 $image->setSize(100, 4194304);
+			 $image->setDimension(900, 900);
 		    $upload = $image->upload();
+
 		    echo $image->getName() . "." . $image->getMime();
 		   
 
 		    if($upload) {
-		        // OK
 		       echo "The file has been uploaded";
-		       echo $_FILES['profilePicture']['name'];
-
 		    } else {
 		        echo $image["error"]; 
 		    }
 		}
+
+		die("image has been uploaded");
 
 	}
 
 ?>
 
 
-<form method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
-    <input type="file" name="profilePicture"/>
-    <input type="submit" value="upload"/>
+<form method="POST" id="image-upload-form" enctype="multipart/form-data">
+    <input type="hidden" id="image-upload--size" name="MAX_FILE_SIZE" value="1000000"/>
+    <input type="file" id="image-upload--file" name="profilePicture"/>
+    <input type="submit" id="image-upload--button" value="upload"/>
 </form>
 
 

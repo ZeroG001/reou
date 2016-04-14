@@ -181,7 +181,7 @@ class User {
 
 	public function getProfilePictureName($params) {
 
-		$query = "SELECT profile_picture FROM users WHERE userID = ?";
+		$query = "SELECT profile_picture FROM users WHERE id = ?";
 
 
 		$this->checkAcceptedParams($params);
@@ -543,7 +543,8 @@ class User {
 		 "studentNumber",
 		 "createdAt",
 		 "zip",
-		 "bio"
+		 "bio",
+		 "MAX_FILE_SIZE"
 			);
 
 		foreach ($params as $param => $value) {
