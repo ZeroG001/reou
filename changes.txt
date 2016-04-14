@@ -113,5 +113,6 @@ Other Notes
 Getting image uploading to work.
 
 1. In terminal do ps aux | grep httpd
-2. First column show who owns the process
-3. 
+2. First column show who owns the process (apache)
+3. Go to image upload folder.
+4. Type Comment chown -R apache path/to/folder

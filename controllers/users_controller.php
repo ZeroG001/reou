@@ -213,6 +213,12 @@ function my_courses($ObjectPDO) {
 	return $results;
 }
 
+function update_profile_picture($ObjectPDO) {
+	$user = new User($ObjectPDO);
+	$result = $user->get
+}
+
+
 
 
 ?>
