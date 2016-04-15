@@ -35,22 +35,22 @@ uploadImageButton = document.getElementById("image-upload--button");
 
 
 // When imageUpload button is clicked, perform upload
-uploadImageForm.onsubmit = function(event) {
+// uploadImageForm.onsubmit = function(event) {
 
-	//event.preventDefault();
-	var formData = new FormData();
+// 	//event.preventDefault();
+// 	var formData = new FormData();
 
-	// Get Submitted Files
-	uploaded_file = uploadImageFile.files[0];
-	if(!uploaded_file.type.match('image*') ) {
-		return false;
-	} 
-	else {
-		formData.append(uploadImageFile.name, uploaded_file, uploaded_file.name);
-	}
-	formData.append(uploadImageSize.name, uploadImageSize.value); 
-	uploadImage(formData);
-}
+// 	// Get Submitted Files
+// 	uploaded_file = uploadImageFile.files[0];
+// 	if(!uploaded_file.type.match('image*') ) {
+// 		return false;
+// 	} 
+// 	else {
+// 		formData.append(uploadImageFile.name, uploaded_file, uploaded_file.name);
+// 	}
+// 	formData.append(uploadImageSize.name, uploadImageSize.value); 
+// 	uploadImage(formData);
+// }
 
 
 

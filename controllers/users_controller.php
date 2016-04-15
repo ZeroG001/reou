@@ -192,6 +192,8 @@ function update_user($ObjectPDO, $params) {
 		// Get Current name of user profile image
 		$profilePictureName = $user->getProfilePictureName($params);
 
+		var_dump($params);
+
 		if  (empty($profilePictureName)) {
 
 			//If there is nothing there. Just regularl post

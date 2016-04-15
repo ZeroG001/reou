@@ -17,7 +17,6 @@
 	</div>
 
 
-
 	<form method="POST" id="image-upload-form" enctype="multipart/form-data">
 	    <input type="hidden" id="image-upload--size" name="MAX_FILE_SIZE" value="1000000"/>
 	    <input type="file" id="image-upload--file" name="profilePicture"/>
