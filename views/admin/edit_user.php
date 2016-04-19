@@ -17,17 +17,18 @@
 	</div>
 
 
-	<form method="POST" id="image-upload-form" enctype="multipart/form-data">
-	    <input type="hidden" id="image-upload--size" name="MAX_FILE_SIZE" value="1000000"/>
-	    <input type="file" id="image-upload--file" name="profilePicture"/>
-	    <input type="submit" id="image-upload--button" value="upload"/>
-	</form>
-
-
 	<form class="update_user--form" method="POST">
+
 
 		<input type="hidden" id="action" name="_method" value="patch">
 
+
+
+		<!-- Bulletproof -->
+	    <input type="hidden" id="image-upload--size" name="MAX_FILE_SIZE" value="1000000"/>
+	    <input type="file" id="image-upload--file" name="profilePicture"/>
+
+		
 		<label for="firstName"> First Name </label>
 		<input type="text" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>">
 

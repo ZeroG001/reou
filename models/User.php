@@ -37,7 +37,7 @@ class User {
 	 	// Check if post variable names are acceptable
 	 	$this->checkAcceptedParams($params);
 
-	 	if(!$this->validateParams()) {
+	 	if(!$this->validateParams($params)) {
 	 		die("This validation failed, check Users.php to fix");
 	 	}
 
@@ -143,42 +143,6 @@ class User {
 
 
 
-	// Update User Profile Photo
-	// ==========================================
-
-	/**
-	 * 
-	 * @param (Array) The post params that are passed in. Should only be userId and file name
-	 * @return (Array)
-	 */
-	public function updateProfilePicture($params) {
-
-		$query = "UPDATE users SET profile_picture = ? WHERE userId = ?";
-
-		$this->checkAcceptedParams($params);
-		$this->sanitizeParams($params);
-
-		$stmt = $this->db->prepare($query);
-		$stmt->bindParam(1, $params['profilePicture']);
-		$stmt->bindParam(2, $params['userId']);
-
-		try {
-
-			if ( $stmt->execute() ) {
-				return true;
-			} 
-			else {
-				return false;
-			}
-		} 
-		catch (Exception $e) {
-			echo "There was a problem uploading the profile picure";
-			return false;
-		}
-
-	}
-
-
 	public function getProfilePictureName($params) {
 
 		$query = "SELECT profile_picture FROM users WHERE id = ?";
@@ -242,6 +206,44 @@ class User {
 		
 
 		//Automatically add the current date to the updated_at field
+	}
+
+
+
+
+	// Update User Profile Photo
+	// ==========================================
+
+	/**
+	 * 
+	 * @param (Array) The post params that are passed in. Should only be userId and file name
+	 * @return (Array)
+	 */
+	public function updateProfilePicture($params) {
+
+		$query = "UPDATE users SET profile_picture = ? WHERE userId = ?";
+
+		$this->checkAcceptedParams($params);
+		$this->sanitizeParams($params);
+
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(1, $params['profilePicture']);
+		$stmt->bindParam(2, $params['userId']);
+
+		try {
+
+			if ( $stmt->execute() ) {
+				return true;
+			} 
+			else {
+				return false;
+			}
+		} 
+		catch (Exception $e) {
+			echo "There was a problem uploading the profile picure";
+			return false;
+		}
+
 	}
 
 
@@ -444,12 +446,12 @@ class User {
 
 
 
-	/*
+	/**
 	 * add_message();
 	 *
 	 * Add a message to the flash_alert array
 	 *
-	 * @type (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @param (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
 	 */
 	public static function add_message($type, $message) {
@@ -461,12 +463,12 @@ class User {
 	}
 
 
-	/*
+	/**
 	 * validateParams();
 	 *
 	 * Ensures that the parameters sent are valid
 	 *
-	 * @type (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @param(String) $message set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
 	 */
 	public function validateParams($params) {
@@ -477,26 +479,28 @@ class User {
 	 	foreach ($params as $k => $param) {
 	 		switch($k) {
 	 			case "firstName" :
-	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
-	 				add_message("alert", "First Name invalid");
-	 				$paramsValid = false;
+	 				if( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")) ) {
+	 					$this->add_message("alert", "First Name invalid");
+	 					$paramsValid = false;
+	 				}
+	 				
 	 			break;
 
 	 			case "lastName" :
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
-	 				add_message("alert", "First Name invalid");
+	 				$this->add_message("alert", "Last Name is invalid");
 	 				$paramsValid = false;
 	 			break;
 
 	 			case "email":
 	 				$params[$k] = filter_var(trim($param), FILTER_VALIDATE_EMAIL);
-	 				add_message("alert", "First Name invalid");
+	 				$this->add_message("alert", "Email Address is Invalid");
 	 				$paramsValid = false;
 	 			break;
 
 	 			case "studentNumber":
 	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT);
-	 				add_message("alert", "Student Number Invalid");
+	 				$this->add_message("alert", "Student Number Invalid");
 	 				$paramsValid = false;
 	 			break;
 
@@ -518,7 +522,7 @@ class User {
 
 
 
-	/*
+	/**
 	 * checkAcceptedParams
 	 *
 	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. The Script will stop if the parameters are bad.
