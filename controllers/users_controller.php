@@ -82,7 +82,7 @@ function sign_up($ObjectPDO, $params) {
 				header("Location:". course_route('course_category'));
 				sign_in($ObjectPDO, $params);
 			} else {
-				User::$message['alert'] = "This user already exists";
+				User::add_message("alert", "This user already exists");
 			}
 		} 
 		catch (Exception $e) {

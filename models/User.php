@@ -38,7 +38,7 @@ class User {
 	 	$this->checkAcceptedParams($params);
 
 	 	if(!$this->validateParams($params)) {
-	 		die("This validation failed, check Users.php to fix");
+	 		# die("This validation failed, check Users.php to fix");
 	 	}
 
 		// Clean Parameters
@@ -365,8 +365,8 @@ class User {
 	 */
 	 function unique_user_exists($username) {
 
-	 	if(trim($username) == "") {
-	 		die("email is invalid (make me a reutrn value or flash message)");
+	 	if ( !filter_var(trim($username) , FILTER_VALIDATE_EMAIL) ) {
+	 		$this->add_message('alert', 'email address is not valid');
 	 	}
 
 	 	$query = "SELECT email FROM users
@@ -479,7 +479,8 @@ class User {
 	 	foreach ($params as $k => $param) {
 	 		switch($k) {
 	 			case "firstName" :
-	 				if( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")) ) {
+
+	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))) ) {
 	 					$this->add_message("alert", "First Name invalid");
 	 					$paramsValid = false;
 	 				}
@@ -487,21 +488,27 @@ class User {
 	 			break;
 
 	 			case "lastName" :
-	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
+
+	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))));
+
 	 				$this->add_message("alert", "Last Name is invalid");
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
 	 				$paramsValid = false;
 	 			break;
 
 	 			case "email":
-	 				$params[$k] = filter_var(trim($param), FILTER_VALIDATE_EMAIL);
-	 				$this->add_message("alert", "Email Address is Invalid");
-	 				$paramsValid = false;
+	 				if (!filter_var(trim($param), FILTER_VALIDATE_EMAIL)) {
+	 					$this->add_message("alert", "Email Address is Invalid");
+	 					$paramsValid = false;
+	 				}
+
 	 			break;
 
 	 			case "studentNumber":
-	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT);
-	 				$this->add_message("alert", "Student Number Invalid");
-	 				$paramsValid = false;
+	 				if(!filter_var(trim($param), FILTER_VALIDATE_INT)) {
+	 					$this->add_message("alert", "Student Number Invalid");
+	 					$paramsValid = false;
+	 				}
 	 			break;
 
 	 			default:
