@@ -34,12 +34,15 @@
 			<nav class="main_subnav"> 
 
 				<?php if(userSignedIn()) { ?>
-
 					<a class="main_subnav--item" href="<?php echo user_route('my-courses') ?>"> My Courses </a>
 					<a class="main_subnav--item" href="<?php echo user_route('sign-out') ?>"> Sign Out</a>
 					<a class="main_subnav--item" href="http://www.calendarwiz.com/reo"> Calendar </a>
 					<a class="main_subnav--item" href="#"> My Profile </a>
+				<?php } ?>
 
+
+				<?php  if( userIsAdmin()) { ?>
+					<a class="main_subnav--item" href="<?php echo user_route('show-users') ?>"> Edit Users </a>
 				<?php } ?>
 
 			</nav>

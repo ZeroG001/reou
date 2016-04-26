@@ -120,8 +120,6 @@
 
 		if ( isset(User::$flash_message) ) {
 
-			echo "flash message is set butt..";
-
 			foreach (User::$flash_message[$type] as $message) {
 				echo $message;
 			}

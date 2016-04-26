@@ -40,7 +40,7 @@
 				break;
 
 			case 'show-users':
-				return "reou/show-users";
+				return "/reou/show-users";
 				break;
 			
 			default:

@@ -4,9 +4,19 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 require_once(D_ROOT . "/reou/models/database.php");
 // This is the corse class. Please do not erase it again
 
+/**
+	
+
+	User Roles
+
+	Student
+	Admin
+	Instructor
+*/
+
 class User {
 
-	protected static $flash_message = array(
+	public static $flash_message = array(
 			"alert" => array(),
 			"error" => array(),
 			"success" => array(),
@@ -55,8 +65,8 @@ class User {
 
 			// ------------------- Run the INSERT QUERY -------------------
 		 	$students_query = "INSERT INTO users 
-		 	(first_name, last_name, email, password, date_created) 
-		 	VALUES (:firstName, :lastName, :email, :password, :createdOn)";
+		 	(first_name, last_name, email, password, date_created, role) 
+		 	VALUES (:firstName, :lastName, :email, :password, :createdOn, :role)";
 
 		 	$stmt = $this->db->prepare($students_query);
 		 	$stmt->bindParam(':firstName', $params['firstName'], PDO::PARAM_STR);
@@ -64,6 +74,7 @@ class User {
 		 	$stmt->bindParam(':email', $params['email'], PDO::PARAM_STR);
 		 	$stmt->bindParam(':password', md5($params['password']), PDO::PARAM_STR);	
 		 	$stmt->bindParam(':createdOn', $date_enetered, PDO::PARAM_STR);
+		 	$stmt->bindParam(':role', 'student', PDO::PARAM_STR);
 		 	$stmt->execute();
 
 		 	return true;
@@ -216,10 +227,44 @@ class User {
 
 	/**
 	 * 
-	 * @param (Array) The post params that are passed in. Should only be userId and file name
-	 * @return (Array)
+	 * @param (Array) The post params that are passed in. Should only be userId and file name.
+	 * @return (Boolean) Return true if file update is successful. Else return false;
 	 */
-	public function updateProfilePicture($params) {
+	public function updateProfilePicture($params, $file) {
+
+		$qCheckPhotoName = "SELECT profile_picture FROM users WHERE id = :id";
+		$qUpdatePhotoName = "UPDATE users SET profile_picture = :profilePicture WHERE id = :id ";
+
+		// Check Profile Picture:
+		$stmt = $this->db->prepare($qCheckPhotoName);
+		$stmt->bindParam( ":id" , $params['userId']);
+
+		try {
+			if($stmt->execute) {
+
+			}
+		} catch(Exception $e) {
+			$this->add_message('error', 'There was a problem updating the profile picture');
+			return false;
+			$e->getMessage();
+		}
+		
+
+
+
+
+
+
+
+
+		// 1. Check to see if the profile picture name exists in database
+		// 2. If it does then get the profile picture name and remove the file on the server.
+			// Update the profile picture name in the database.
+			// Add the new photo file to the directory
+
+		// 2. If the file name in the database in empty then don't remove anything.
+		// Update the profile picture name in the database
+		// Add the new photo in the directory
 
 		$query = "UPDATE users SET profile_picture = ? WHERE userId = ?";
 
@@ -245,7 +290,6 @@ class User {
 		}
 
 	}
-
 
 
 	// ------------------------ Delete ------------------------
@@ -283,9 +327,7 @@ class User {
 		$stmt->bindParam('student_id',$student_id ,PDO::PARAM_INT);
 
 		try {
-
 			$stmt->execute();
-
 		} 
 		catch (Exception $e) {
 			die("There was a problem getting user classes. Please try again later");
@@ -298,7 +340,14 @@ class User {
 
 
 
-
+	/**
+	 * sign_in
+	 *
+	 * Check to see whether the user is in the dabase. Returns falase if the user does not exist
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
 	public function sign_in($params) {
 
 		// Make sure params are accepted params
