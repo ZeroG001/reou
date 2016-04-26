@@ -235,13 +235,19 @@ class User {
 		$qCheckPhotoName = "SELECT profile_picture FROM users WHERE id = :id";
 		$qUpdatePhotoName = "UPDATE users SET profile_picture = :profilePicture WHERE id = :id ";
 
-		// Check Profile Picture:
+		// check if there is a profile picture
+
+
 		$stmt = $this->db->prepare($qCheckPhotoName);
 		$stmt->bindParam( ":id" , $params['userId']);
 
+
+
 		try {
 			if($stmt->execute) {
-
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);
+				echo "the results are";
+				var_dump($result);
 			}
 		} catch(Exception $e) {
 			$this->add_message('error', 'There was a problem updating the profile picture');

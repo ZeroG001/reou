@@ -159,7 +159,7 @@ function update_user($ObjectPDO, $params) {
 			unset($_POST['hpUsername']);
 
 			$user = new User($ObjectPDO);
-
+ß
 			if($user->update_user($_POST)) {
 				User::add_message("alert", "User Successfully Updated");
 			} else {
