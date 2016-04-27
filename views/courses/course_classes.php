@@ -34,7 +34,7 @@
 
 				<?php foreach ($categories as $k => $category) { ?>
 
-					<a class="class-container--box" href='<?php echo course_route('course_detail', ["id" => $category['course_id'] ]) ?>'>
+					<a class="class-container--box" href='<?php echo course_route('course_detail', array("id" => $category['course_id']) ) ?>'>
 						<div class="class-container--box-body">
 							<h1> 
 								<?php echo $category['course_name']; ?>

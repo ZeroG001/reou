@@ -17,13 +17,12 @@
 	<?php foreach ($users as $k => $user) { ?>
 
 			<tr>
+				
 				<td> <?php echo $user["email"] ?> 
-					<form method="POST" action="<?php echo admin_route('edit') ?>" >
-						<input type="submit" value="Go">		
-						<input type="hidden" name="userId" value="<?php echo $user['id'] ?>" />
-					</form> 
+					<a href="<?php echo user_route( 'edit',"?userId=${user['id']}" ) ?> "> Click here? </a>
 				</td>
 
+["id" => $category['course_id'] ]
 				<td> <?php echo $user["first_name"]  . " " . $user["last_name"] ?> </td>
 				<td> <?php echo $user["role"] ?> </td>
 				<td> <?php var_dump($user['active'])?> </td>

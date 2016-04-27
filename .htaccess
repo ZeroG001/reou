@@ -24,6 +24,8 @@ RewriteRule ^sign-out$ views/users/sign-out.php [L]
 RewriteRule ^sign-in$ views/users/sign-in.php [L]
 RewriteRule ^sign-out.php$ sign-out [L]
 RewriteRule ^show-users$ views/admin/show_users.php [L]
+RewriteRule ^show-user$ views/admin/show_user.php [L]
+RewriteRule ^edit-profile$ views/users/edit-profile.php [L]
 
 
 # ----- Courses ------

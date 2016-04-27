@@ -16,7 +16,7 @@
 			<!-- Show Course Categories -->
 			<?php  foreach ($categories as $k => $category) { ?>
 					<!-- background image refactor needed. Right now its just an inline style. -->
-					<a class="course-container--box" href='<?php echo course_route("course_classes", ["id" => $category["category_id"] ]) ?>'
+					<a class="course-container--box" href='<?php echo course_route("course_classes", array("id" => $category["category_id"]) ) ?>'
 					style='background: linear-gradient( rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) ), url( "<?php echo asset_route('dbimg') . $category['image_filename'] ?>" )'>
 
 						<div class="course-container--box-header">

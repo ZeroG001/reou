@@ -130,7 +130,25 @@
 			}
 			return true;
 		} else {
-			echo "Nothing is there?";
+			return false;
+		}
+	}
+
+
+	function display_alert2($type) {
+
+		if ( isset($_SESSION) ) {
+
+			foreach (User::$flash_message[$type] as $message) {
+				echo $message;
+			}
+
+			// Clear the contents of the flash messages
+			foreach (User::$flash_message as $messages) {
+				unset($message);
+			}
+			return true;
+		} else {
 			return false;
 		}
 	}

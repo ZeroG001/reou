@@ -20,7 +20,7 @@
 		switch ($route) {
 
 			case 'edit':
-				return "/reou/my-profile".$querystring;
+				return "/reou/edit-profile".$querystring;
 				break;
 
 			case 'sign-in':

@@ -256,11 +256,6 @@ class User {
 
 
 
-
-
-
-
-
 		// 1. Check to see if the profile picture name exists in database
 		// 2. If it does then get the profile picture name and remove the file on the server.
 			// Update the profile picture name in the database.
@@ -356,6 +351,12 @@ class User {
 
 		// Make sure params are accepted params
 		$this->checkAcceptedParams($params);
+		$this->sanitizeParams($params);
+
+		// Make sure that the parameters are correct
+		if(!$this->validateParams($params, false)) {
+			return false;
+		}
 
 
 		$cols = array(
@@ -382,7 +383,6 @@ class User {
 	 	try {
 	 		$stmt->execute();
 
-
 		 	if($stmt->rowCount() == 1) {
 		 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -394,12 +394,10 @@ class User {
 		 	} else {
 		 		return false;
 		 	}
-
 	 	} 
-
 	 	catch(Exception $e) {
-	 		echo "There was a problem getting user information from database";
-	 		echo $e->getMessage();
+	 		echo "There was a problem getting sign in information from the database";
+	 		$this->add_message("alert", "An error occured while trying to get the database information");
 	 	}
 
 	 	
@@ -516,6 +514,20 @@ class User {
 	}
 
 
+
+	public static function add_message($type, $message) {
+		$acceptable_message_types = array("alert","notice","success","error");
+		if(!in_array(strtolower($type), $acceptable_message_types) && is_string($type)) {
+			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
+		}	
+
+		if($_SESSION) {
+		
+		}
+		
+	}
+
+
 	/**
 	 * validateParams();
 	 *
@@ -524,9 +536,11 @@ class User {
 	 * @param(String) $message set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
 	 */
-	public function validateParams($params) {
+	public function validateParams($params, $display_errors = true) {
 
 	 	$paramsValid = true;
+	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
+
 
 
 	 	foreach ($params as $k => $param) {
@@ -534,7 +548,7 @@ class User {
 	 			case "firstName" :
 
 	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))) ) {
-	 					$this->add_message("alert", "First Name invalid");
+	 					array_push($error_messages, array("type" => "alert", "message" => "First Name is invalid"));
 	 					$paramsValid = false;
 	 				}
 	 				
@@ -542,16 +556,16 @@ class User {
 
 	 			case "lastName" :
 
-	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))));
+	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Last Name is invalid"));
+	 					$paramsValid = false;
+	 				}
 
-	 				$this->add_message("alert", "Last Name is invalid");
-	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
-	 				$paramsValid = false;
 	 			break;
 
 	 			case "email":
 	 				if (!filter_var(trim($param), FILTER_VALIDATE_EMAIL)) {
-	 					$this->add_message("alert", "Email Address is Invalid");
+	 					array_push($error_messages, array("type" => "alert", "message" => "Email address is invalid"));
 	 					$paramsValid = false;
 	 				}
 
@@ -559,7 +573,7 @@ class User {
 
 	 			case "studentNumber":
 	 				if(!filter_var(trim($param), FILTER_VALIDATE_INT)) {
-	 					$this->add_message("alert", "Student Number Invalid");
+	 					array_push($error_messages, array("type" => "alert", "message" => "Student number is incorrect"));
 	 					$paramsValid = false;
 	 				}
 	 			break;
@@ -569,6 +583,14 @@ class User {
 	 			break;
 	 		}
 	 	}
+
+	 	// If display error is on then the error will show
+	 	if($display_errors) {
+	 		foreach ($error_messages as $k => $error_message) {
+	 		$this->add_message($error_message['type'], $error_message['message']);
+	 		}	
+	 	}
+
 
 	 	if($paramsValid) {
 	 		return true;

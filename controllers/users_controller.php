@@ -14,7 +14,7 @@ function sign_in($ObjectPDO, $params) {
 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 
-		// ---------- If Sign in Successful ----------
+		// ---------- If Sign in Successful ---------- //
 		if(isset($params['email']) && isset($params['password'])) {
 
 			// If the User is already signed in, take to another page
@@ -28,26 +28,22 @@ function sign_in($ObjectPDO, $params) {
 
 			$user = new User($ObjectPDO);
 
-			// If sign-in is successful, take to another page
+			// If sign-in is successfull then take the user to another page.
 			if( $results = $user->sign_in($params) ) {
 				
 				session_start();
-
 				//session variable names are same as column names in table.
 				foreach ($results[0] as $k => $v) {
 					$_SESSION[$k] = $v;
 				}
-
-				//bring to course category page
 				header("location:". course_route('course_category'));
 			} 
 			else {
 				User::add_message("alert", "Username or password incorrect");
 			}
-
-		} 
+		}
 		else {
-			User::add_message("alert", "User name or password is empty");
+			User::add_message("alert", "Username or password is incorrect");
 		}	
 
 	}
@@ -100,7 +96,7 @@ function sign_up($ObjectPDO, $params) {
 
 // --------------------------------- edit_user.php ----------------------------------
 
-function edit_user($ObjectPDO) {
+function edit_profile($ObjectPDO) {
 
 
 	// If User isn't signed in, go back to home page
@@ -110,14 +106,22 @@ function edit_user($ObjectPDO) {
 	}
 
 
+
+
 	// If user is NOT Admin
 	if(  userSignedIn() && !userIsAdmin() ) {
 
-		if($_SESSION['id'] != $_GET['id'] ) {
+		// If the session ID is not set or empty then redirect the user home
+		if(!isset($_SESSION['id']) || trim($_SESSION['id']) == "") {
 			redirectHome();
-			die("You aren't suppose to be here.");
 		}
 
+		$userId = $_SESSION['id'];
+		$params = array("userId" => $userId);
+		$user = new User($ObjectPDO);
+		$results = $user->get_user_details($params);
+		
+		return $results;
 	}
 
 	// If user is Admin
@@ -140,6 +144,9 @@ function edit_user($ObjectPDO) {
 
 	}
 
+
+	die("edit profile ran into a critical error");
+
 }
 
 
@@ -154,79 +161,79 @@ function update_user($ObjectPDO, $params) {
 
 		if ( ($_POST['_method']) == "patch" )  {
 
+			var_dump($_FILES);
+
+			if ($_FILES) {
+				var_dump($_FILES);
+				echo "I see you tried to upload a file, but I don't care";
+			}
+
+			// ------ Quick Field Check -----
 			unset($_POST['_method']);
 			check_honeypot_fields($_POST);
 			unset($_POST['hpUsername']);
+			// ---------- END ---------------
 
 			$user = new User($ObjectPDO);
 
 			if($user->update_user($_POST)) {
 				User::add_message("alert", "User Successfully Updated");
-				header( "Location: /reou/show-users") ;
+				// header( "Location:" . $_SERVER['REQUEST_URI']);
 			} else {
 				User::add_message("error", "There was a problem updating the user");
 			}
-
 		}
-
-	} else {
-		User::add_message("alert", "There was a problem updating the user");
 	}
-
 
 
 
 	// If ther user is trying to upload an image
-	if (userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && !empty($_FILES) ) {
+	if (userSignedIn() && !empty($_FILES) ) {
 
-		require  D_ROOT . "/reou/assets/classes/bulletproof/src/bulletproof.php";
+		echo "you're trying to upload an image";
 
-		$user = new User($ObjectPDO);
-		$image = new Bulletproof\Image($_FILES);
-		if($image["profilePicture"]) {
-			 $image->setLocation("/var/www/html/reou/assets/img/dbimg");
-			 $image->setSize(100, 4194304);
-			 $image->setDimension(900, 900);
-		    // $upload = $image->upload();
-			 echo "Image has been uploaded";
+	// 	require  D_ROOT . "/reou/assets/classes/bulletproof/src/bulletproof.php";
+
+	// 	$user = new User($ObjectPDO);
+	// 	$image = new Bulletproof\Image($_FILES);
+	// 	if($image["profilePicture"]) {
+	// 		 $image->setLocation("/var/www/html/reou/assets/img/dbimg");
+	// 		 $image->setSize(100, 4194304);
+	// 		 $image->setDimension(900, 900);
+	// 	    // $upload = $image->upload();
+	// 		 echo "Image has been uploaded";
 
 
-		// Get Current name of user profile image
-		$profilePictureName = $user->getProfilePictureName($params);
+	// 	// Get Current name of user profile image
+	// 	$profilePictureName = $user->getProfilePictureName($params);
 
-		var_dump($params);
+	// 	var_dump($params);
 
-		if  (empty($profilePictureName)) {
+	// 	if  (empty($profilePictureName)) {
 
-			//If there is nothing there. Just regularl post
-		    if($upload) {
-		       echo "The file has been uploaded";
-		       echo $image->getName() . "." . $image->getMime();
-		    } 
-		    else {
-		        echo $image["error"]; 
-		    }
+	// 		//If there is nothing there. Just regularl post
+	// 	    if($upload) {
+	// 	       echo "The file has been uploaded";
+	// 	       echo $image->getName() . "." . $image->getMime();
+	// 	    } 
+	// 	    else {
+	// 	        echo $image["error"]; 
+	// 	    }
 			
-		}
-		else {
-			unlink(D_ROOT . "/reou/images/dbimg/src/" . $profilePictureName);
-			echo "file erased?";
-			// If there is, get the name of the current image. 
-			// Erase the pd image, 
-			//then post the new one
-		}
-	}
+	// 	}
+	// 	else {
+	// 		unlink(D_ROOT . "/reou/images/dbimg/src/" . $profilePictureName);
+	// 		echo "file erased?";
+	// 		// If there is, get the name of the current image. 
+	// 		// Erase the pd image, 
+	// 		//then post the new one
+	// 	}
+	// }
 
+	// 	// Take this out? No
+	// 	die("image has been uploaded");
+	// }
 
-		
-
-		    
-		   
-
-
-
-		// Take this out? No
-		die("image has been uploaded");
 	}
 
 
