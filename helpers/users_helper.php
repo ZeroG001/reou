@@ -2,7 +2,7 @@
 <?php
 
 
-	/*
+	/**
 	 * userSignedIn()
 	 *
 	 * Checks to see whether a user is signed in or not.
@@ -27,7 +27,7 @@
 
 
 
-	/*
+	/**
 	 * displaySelected()
 	 *
 	 * Used to help shorten the code that helps diplay checkboxes. This simply checks if two string are the same.
@@ -54,7 +54,7 @@
 	}
 
 
-	/*
+	/**
 	 * displayOption()
 	 *
 	 * Used to help shorten the code that displays what checkbox or input box is selected
@@ -77,7 +77,7 @@
 
 
 
-	/*
+	/**
 	 * displayOption()
 	 *
 	 * Used to help shorten the code that displays what checkbox or input box is selected
@@ -108,7 +108,7 @@
 	}
 
 
-	/*
+	/**
 	 * display_alert()
 	 *
 	 * Add a message to the User object. Message can be used later on to dislay
@@ -138,7 +138,7 @@
 
 
 
-	/*
+	/**
 	 * userIsAdmin()
 	 *
 	 * Checks if the user signed in is an admin
@@ -160,7 +160,7 @@
 
 
 
-	/*
+	/**
 	 * userIsInstructor
 	 *
 	 * Checks if the user signed in is an instructor
@@ -181,7 +181,7 @@
 	}
 
 
-	/*
+	/**
 	 * userIsInstructor
 	 *
 	 * Pretty much combines two strings. Used to combine a users first and last name
@@ -197,7 +197,7 @@
 
 
 
-	/*
+	/**
 	 * users_clean_output
 	 *
 	 * Cleans the values of the given array so that it can safely be output to the screen; 
@@ -226,7 +226,7 @@
 	}
 
 
-	/*
+	/**
 	 * convery_camel_case()
 	 *
 	 * take a camel case word, adds underscaore between lower and upper case letter, then make it all lowercase.
@@ -246,7 +246,7 @@
 
 
 
-	/*
+	/**
 	 * convery_camel_case()
 	 *
 	 * take a camel case word, adds underscaore between lower and upper case letter, then make it all lowercase.

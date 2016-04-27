@@ -220,8 +220,6 @@ class User {
 	}
 
 
-
-
 	// Update User Profile Photo
 	// ==========================================
 

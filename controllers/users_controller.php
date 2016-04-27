@@ -159,9 +159,10 @@ function update_user($ObjectPDO, $params) {
 			unset($_POST['hpUsername']);
 
 			$user = new User($ObjectPDO);
-ß
+
 			if($user->update_user($_POST)) {
 				User::add_message("alert", "User Successfully Updated");
+				header( "Location: /reou/show-users") ;
 			} else {
 				User::add_message("error", "There was a problem updating the user");
 			}
@@ -186,7 +187,8 @@ function update_user($ObjectPDO, $params) {
 			 $image->setLocation("/var/www/html/reou/assets/img/dbimg");
 			 $image->setSize(100, 4194304);
 			 $image->setDimension(900, 900);
-		    $upload = $image->upload();
+		    // $upload = $image->upload();
+			 echo "Image has been uploaded";
 
 
 		// Get Current name of user profile image
@@ -247,6 +249,33 @@ function show_users($ObjectPDO) {
 	$user = new User($ObjectPDO);
 	$results = $user->get_users_info();
 	return $results;
+}
+
+
+
+/**
+ * show_user($params) 
+ *
+ * Used to show only one users detail. Idealy the information of the person whose logged in
+ *
+ * @param (Array) $params - The parameters submitted from POST
+ * @return (boolean)
+ */
+function show_user() {
+	// If the user is signed in then run the qurey.
+	// Store the result of the query in an array, then display on page.
+
+	if(userSignedIn()) {
+
+		if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['userId']) ) {
+
+			echo "Hello there is something here.";
+
+		}
+		$user = new User($ObjectPDO);
+		$results = $user->get_user_details($_POST);
+
+	}
 }
 
 
