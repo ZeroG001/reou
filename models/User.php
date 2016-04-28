@@ -389,9 +389,13 @@ class User {
 		 		return $result;
 		 		
 		 	} elseif ($stmt->rowCount() > 1) {
+
 		 		echo $stmt->rowCount();
 		 		die("Error in sign_in controller code. More than one of the same record found");
+		 		return false;
+
 		 	} else {
+
 		 		return false;
 		 	}
 	 	} 
@@ -505,7 +509,7 @@ class User {
 	 * @param (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
 	 */
-	public static function add_message($type, $message) {
+	public static function add_message2($type, $message) {
 		$acceptable_message_types = array("alert","notice","success","error");
 		if(!in_array(strtolower($type), $acceptable_message_types) && is_string($type)) {
 			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
@@ -517,14 +521,33 @@ class User {
 
 	public static function add_message($type, $message) {
 		$acceptable_message_types = array("alert","notice","success","error");
+
 		if(!in_array(strtolower($type), $acceptable_message_types) && is_string($type)) {
 			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
 		}	
 
-		if($_SESSION) {
-		
-		}
-		
+		if (session_status() == PHP_SESSION_NONE) {
+
+		  
+			echo " is the session here";
+			// Create the flash message array...carefully.
+			if(!array_key_exists($_SESSION['flash_message'], $_SESSION) ) {
+				$_SESSION['flash_message'] = array();
+				echo "the flash messsage array has been created";
+				if(!array_key_exists($type, $_SESSION['flash_message']) ) {
+					echo "the flash message type array has been created";
+					$_SESSION['flash_message'][$type] = array();
+				}
+			}
+			// add messages to the flash message array
+
+			array_push($_SESSION['flash_message'][$type], $message);
+
+		} else {
+			session_start();
+			echo "the session was not set for some reason";
+			session_destroy();
+		}	
 	}
 
 

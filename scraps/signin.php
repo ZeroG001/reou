@@ -1,4 +1,7 @@
-p<?php
+<?php
+
+// This page isn't being used anymore. Get rid of it when you're done doin whatevers
+
 
 if ( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['email']) 
 	&& isset($_POST['password'])) {

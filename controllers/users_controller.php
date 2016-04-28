@@ -28,9 +28,8 @@ function sign_in($ObjectPDO, $params) {
 
 			$user = new User($ObjectPDO);
 
-			// If sign-in is successfull then take the user to another page.
+			// If sign-in is successfull then take the user to another page. Start the session
 			if( $results = $user->sign_in($params) ) {
-				
 				session_start();
 				//session variable names are same as column names in table.
 				foreach ($results[0] as $k => $v) {
@@ -39,7 +38,10 @@ function sign_in($ObjectPDO, $params) {
 				header("location:". course_route('course_category'));
 			} 
 			else {
+				// In the case I want to kill the session as soon as I display the message.
+
 				User::add_message("alert", "Username or password incorrect");
+				session_destroy();
 			}
 		}
 		else {

@@ -116,7 +116,7 @@
 	 * @param (String) set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
 	 */
-	function display_alert($type) {
+	function display_alert2($type) {
 
 		if ( isset(User::$flash_message) ) {
 
@@ -135,16 +135,16 @@
 	}
 
 
-	function display_alert2($type) {
+	function display_alert($type) {
 
 		if ( isset($_SESSION) ) {
 
-			foreach (User::$flash_message[$type] as $message) {
+			foreach ($_SESSION['flash_message'][$type] as $message) {
 				echo $message;
 			}
 
 			// Clear the contents of the flash messages
-			foreach (User::$flash_message as $messages) {
+			foreach ($_SESSION['flash_message'] as $messages) {
 				unset($message);
 			}
 			return true;
