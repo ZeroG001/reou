@@ -33,13 +33,10 @@
 	 * Used to help shorten the code that helps diplay checkboxes. This simply checks if two string are the same.
 	 *
 	 * @param (string) value of the checkbox
-	 ^ @params (string) value given from the database
+	 * @param (string) value given from the database
 	 * @return String
 	 */
 	function displaySelected($value, $given) {
-
-
-
 
 		$value = strtolower($value);
 		$given = strtolower($given);
@@ -108,10 +105,12 @@
 	}
 
 
+
+
 	/**
-	 * display_alert()
+	 * display_alert() [ERASE THIS FUNCTION] THIS IS BEING REPLACED BY THE FUNTION BELOW.
 	 *
-	 * Add a message to the User object. Message can be used later on to dislay
+	 * Add a message to the User object. Message can be used later on to dislay.
 	 *
 	 * @param (String) set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
@@ -135,6 +134,17 @@
 	}
 
 
+
+
+
+	/**
+	 * display_alert()
+	 *
+	 * Add a message to the User object. Message can be used later on to dislay.
+	 *
+	 * @param (String) set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @return (boolean)
+	 */
 	function display_alert($type) {
 
 		if ( isset($_SESSION) ) {
@@ -152,6 +162,7 @@
 			return false;
 		}
 	}
+
 
 
 

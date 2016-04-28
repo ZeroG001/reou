@@ -4,11 +4,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 require_once(D_ROOT . "/reou/models/database.php");
 // This is the corse class. Please do not erase it again
 
-/**
-	
-
+/*
 	User Roles
-
 	Student
 	Admin
 	Instructor
@@ -502,7 +499,7 @@ class User {
 
 
 	/**
-	 * add_message();
+	 * add_message2(); THIS FUNCTION NEEDS TO BE ERASED. SUPPOSE TO BE REPLACED BY THER OTHER ADD MESSAGE FUNCTION
 	 *
 	 * Add a message to the flash_alert array
 	 *
@@ -519,34 +516,42 @@ class User {
 
 
 
+	/**
+	 * add_message();
+	 *
+	 * Add a message to the $_SESSION['flash_message'] array
+	 *
+	 * @param (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @return (boolean)
+	 */
 	public static function add_message($type, $message) {
 		$acceptable_message_types = array("alert","notice","success","error");
 
+
+		// For my sake, check to make sure I put in the right session type.
 		if(!in_array(strtolower($type), $acceptable_message_types) && is_string($type)) {
 			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
 		}	
 
-		if (session_status() == PHP_SESSION_NONE) {
+		if (session_status() == PHP_SESSION_ACTIVE) {
 
-		  
-			echo " is the session here";
-			// Create the flash message array...carefully.
-			if(!array_key_exists($_SESSION['flash_message'], $_SESSION) ) {
+			if(!isset($_SESSION['flash_message'])) {
+
 				$_SESSION['flash_message'] = array();
-				echo "the flash messsage array has been created";
-				if(!array_key_exists($type, $_SESSION['flash_message']) ) {
-					echo "the flash message type array has been created";
+
+
+				if(!isset($_SESSION['flash_message'][$type]) ) {
+					
 					$_SESSION['flash_message'][$type] = array();
 				}
 			}
-			// add messages to the flash message array
 
+			// add messages to the flash message array
 			array_push($_SESSION['flash_message'][$type], $message);
 
 		} else {
-			session_start();
-			echo "the session was not set for some reason";
-			session_destroy();
+
+			die("session message was not able to show, make it so that something useful happens when the flash message does not show up");
 		}	
 	}
 

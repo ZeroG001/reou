@@ -42,6 +42,7 @@ function sign_in($ObjectPDO, $params) {
 
 				User::add_message("alert", "Username or password incorrect");
 				session_destroy();
+
 			}
 		}
 		else {
@@ -129,12 +130,12 @@ function edit_profile($ObjectPDO) {
 	// If user is Admin
 	if(  userSignedIn() && userIsAdmin() ) {
 
-		if($_SERVER['REQUEST_METHOD'] != "POST") {
-			redirectHome();
-		}
+		// if($_SERVER['REQUEST_METHOD'] != "POST") {
+		// 	redirectHome();
+		// }
 
 		$user = new User($ObjectPDO);
-		$results = $user->get_user_details($_POST);
+		$results = $user->get_user_details($_GET);
 
 		if(sizeof($results) <= 0) {
 			redirectHome();
