@@ -151,6 +151,15 @@ class User {
 
 
 
+
+	/**
+	 * getProfilePictureName
+	 *
+	 * Check to see whether the user is in the dabase. Returns falase if the user does not exist
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
 	public function getProfilePictureName($params) {
 
 		$query = "SELECT profile_picture FROM users WHERE id = ?";
@@ -215,6 +224,8 @@ class User {
 
 		//Automatically add the current date to the updated_at field
 	}
+
+
 
 
 	// Update User Profile Photo
@@ -336,6 +347,7 @@ class User {
 
 
 
+
 	/**
 	 * sign_in
 	 *
@@ -407,6 +419,8 @@ class User {
 	}
 
 
+
+
 	/**
 	 *	unique_user_exists
 	 *
@@ -438,6 +452,8 @@ class User {
 	 		return false;
 	 	}
 	 }
+
+
 
 
 	/**
@@ -516,6 +532,7 @@ class User {
 
 
 
+
 	/**
 	 * add_message();
 	 *
@@ -550,10 +567,11 @@ class User {
 			array_push($_SESSION['flash_message'][$type], $message);
 
 		} else {
-
 			die("session message was not able to show, make it so that something useful happens when the flash message does not show up");
 		}	
 	}
+
+
 
 
 	/**
@@ -568,7 +586,6 @@ class User {
 
 	 	$paramsValid = true;
 	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
-
 
 
 	 	foreach ($params as $k => $param) {

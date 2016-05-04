@@ -125,7 +125,7 @@
 
 			// Clear the contents of the flash messages
 			foreach (User::$flash_message as $messages) {
-				unset($message);
+				//unset($message);
 			}
 			return true;
 		} else {
@@ -135,28 +135,69 @@
 
 
 
+	/**
+	 * add_message()
+	 *
+	 * Add a message to the User object. Message can be used later on to dislay.
+ 	 *
+	 * @param (String) set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @return (boolean)
+	 */
+	function add_message($type, $message) {
+
+		$acceptable_message_types = array("alert","notice","success","error");
+
+
+		// For my sake, check to make sure I put in the right session type.
+		if(!in_array(strtolower($type), $acceptable_message_types) && is_string($type)) {
+			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
+		}	
+
+		if (session_status() == PHP_SESSION_ACTIVE) {
+
+			if(!isset($_SESSION['flash_message'])) {
+
+				$_SESSION['flash_message'] = array();
+
+
+				if(!isset($_SESSION['flash_message'][$type]) ) {
+					
+					$_SESSION['flash_message'][$type] = array();
+				}
+			}
+
+			// add messages to the flash message array
+			array_push($_SESSION['flash_message'][$type], $message);
+
+		} else {
+			die("session message was not able to show, make it so that something useful happens when the flash message does not show up");
+		}
+
+	}
+
+
+
 
 
 	/**
 	 * display_alert()
 	 *
-	 * Add a message to the User object. Message can be used later on to dislay.
-	 *
+	 * Shows message added to session's "flash_message" array
+ 	 *
 	 * @param (String) set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
 	 */
 	function display_alert($type) {
 
-		if ( isset($_SESSION) ) {
+		if ( isset($_SESSION['flash_message'][$type]) ) {
 
 			foreach ($_SESSION['flash_message'][$type] as $message) {
 				echo $message;
 			}
 
 			// Clear the contents of the flash messages
-			foreach ($_SESSION['flash_message'] as $messages) {
-				unset($message);
-			}
+			unset($_SESSION['flash_message']);
+
 			return true;
 		} else {
 			return false;

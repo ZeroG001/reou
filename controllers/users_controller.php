@@ -164,11 +164,12 @@ function update_user($ObjectPDO, $params) {
 
 		if ( ($_POST['_method']) == "patch" )  {
 
+			echo "Did you try sending a file?";
 			var_dump($_FILES);
 
 			if ($_FILES) {
 				var_dump($_FILES);
-				echo "I see you tried to upload a file, but I don't care";
+				echo "I see you tried to upload a file, but I don't care. This is where the file uploader class would come in";
 			}
 
 			// ------ Quick Field Check -----
@@ -180,11 +181,13 @@ function update_user($ObjectPDO, $params) {
 			$user = new User($ObjectPDO);
 
 			if($user->update_user($_POST)) {
-				User::add_message("alert", "User Successfully Updated");
-				// header( "Location:" . $_SERVER['REQUEST_URI']);
+				add_message("alert", "User Successfully Updated");
+				header( "Location:" . $_SERVER['REQUEST_URI']);
 			} else {
 				User::add_message("error", "There was a problem updating the user");
 			}
+		} else {
+			die("update user error patch method invalid");
 		}
 	}
 
@@ -293,6 +296,16 @@ function show_user() {
 
 // --------------------------------- my_courses.php -----------------------------
 
+
+
+/**
+ * show_user($params) 
+ *
+ * Shows all the courses that belong to the currently logged in user.
+ *
+ * @param (Array) $params - The parameters submitted from POST
+ * @return (array) 
+ */
 function my_courses($ObjectPDO) {
 	//The student ID will be received by the user session
 
