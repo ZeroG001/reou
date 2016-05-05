@@ -156,6 +156,7 @@ function edit_profile($ObjectPDO) {
 // --------------------------------- update_user ----------------------------------
 
 function update_user($ObjectPDO, $params) {
+
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
@@ -164,29 +165,26 @@ function update_user($ObjectPDO, $params) {
 
 		if ( ($_POST['_method']) == "patch" )  {
 
-			echo "Did you try sending a file?";
-			var_dump($_FILES);
-
-			if ($_FILES) {
-				var_dump($_FILES);
-				echo "I see you tried to upload a file, but I don't care. This is where the file uploader class would come in";
-			}
 
 			// ------ Quick Field Check -----
 			unset($_POST['_method']);
+			unset($params['_method']);
 			check_honeypot_fields($_POST);
 			unset($_POST['hpUsername']);
+			unset($params['hpUsername']);
 			// ---------- END ---------------
 
 			$user = new User($ObjectPDO);
 
 			if($user->update_user($_POST)) {
 				add_message("alert", "User Successfully Updated");
-				header( "Location:" . $_SERVER['REQUEST_URI']);
-			} else {
+				// header( "Location:" . $_SERVER['REQUEST_URI']);
+			} 
+			else {
 				User::add_message("error", "There was a problem updating the user");
 			}
-		} else {
+		} 
+		else {
 			die("update user error patch method invalid");
 		}
 	}
@@ -198,48 +196,49 @@ function update_user($ObjectPDO, $params) {
 
 		echo "you're trying to upload an image";
 
-	// 	require  D_ROOT . "/reou/assets/classes/bulletproof/src/bulletproof.php";
+		require  D_ROOT . "/reou/assets/classes/bulletproof/src/bulletproof.php";
 
-	// 	$user = new User($ObjectPDO);
-	// 	$image = new Bulletproof\Image($_FILES);
-	// 	if($image["profilePicture"]) {
-	// 		 $image->setLocation("/var/www/html/reou/assets/img/dbimg");
-	// 		 $image->setSize(100, 4194304);
-	// 		 $image->setDimension(900, 900);
-	// 	    // $upload = $image->upload();
-	// 		 echo "Image has been uploaded";
+		// There might be an error here since there is no user object
+		$image = new Bulletproof\Image($_FILES);
+
+		if($image["profilePicture"]) {
+			 $image->setLocation("/var/www/html/reou/assets/img/dbimg");
+			 $image->setSize(100, 4194304);
+			 $image->setDimension(900, 900);
+		    // $upload = $image->upload();
+			 echo "Image has been uploaded - PHASE 1";
 
 
-	// 	// Get Current name of user profile image
-	// 	$profilePictureName = $user->getProfilePictureName($params);
+			// Get Current name of user profile image
+			$profilePictureName = $user->getProfilePictureName($params);
 
-	// 	var_dump($params);
+			echo "profile picture name is";
+			var_dump($profilePictureName);
 
-	// 	if  (empty($profilePictureName)) {
+			if  (empty($profilePictureName)) {
 
-	// 		//If there is nothing there. Just regularl post
-	// 	    if($upload) {
-	// 	       echo "The file has been uploaded";
-	// 	       echo $image->getName() . "." . $image->getMime();
-	// 	    } 
-	// 	    else {
-	// 	        echo $image["error"]; 
-	// 	    }
-			
-	// 	}
-	// 	else {
-	// 		unlink(D_ROOT . "/reou/images/dbimg/src/" . $profilePictureName);
-	// 		echo "file erased?";
-	// 		// If there is, get the name of the current image. 
-	// 		// Erase the pd image, 
-	// 		//then post the new one
-	// 	}
-	// }
+				// If the picture profile name is empty
+			    if($upload) {
+			       echo "The file has been uploaded";
+			       echo $image->getName() . "." . $image->getMime();
+			    } 
+			    else {
+			        echo $image["error"]; 
+			    }
+				
+			}
+			else {
+				echo "the profile picture name is apperently this caused some ort of error";
+				var_dump($profilePictureName);
+				// unlink(D_ROOT . "/reou/images/dbimg/src/" . $profilePictureName['profile_picture']);
+				echo "file erased?";
+				echo "the file has been erased";
+			}
 
-	// 	// Take this out? No
-	// 	die("image has been uploaded");
-	// }
+		}
 
+		// Take this out? No
+		die("image has been uploaded END");
 	}
 
 

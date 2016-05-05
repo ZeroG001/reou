@@ -25,6 +25,20 @@
 	}
 
 
+	/**
+	 * userSignedIn()
+	 *
+	 * Uses the bulletproof class to upload a photo
+	 *
+	 * @param (none) about this param
+	 * @return (void)
+	 */
+	function replacePhoto() {
+
+	}
+
+
+
 
 
 	/**

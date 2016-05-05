@@ -222,7 +222,7 @@ class User {
 		}
 		
 
-		//Automatically add the current date to the updated_at field
+		// Todo. Automatically update the 'updatedAt' field in the database.
 	}
 
 

@@ -2,7 +2,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 	$users = show_users($db);
-	var_dump($_SESSION);
+	
 ?>
 
 
@@ -22,7 +22,6 @@
 					<a href="<?php echo user_route( 'edit',"?userId=${user['id']}" ) ?> "> Click here? </a>
 				</td>
 
-["id" => $category['course_id'] ]
 				<td> <?php echo $user["first_name"]  . " " . $user["last_name"] ?> </td>
 				<td> <?php echo $user["role"] ?> </td>
 				<td> <?php var_dump($user['active'])?> </td>

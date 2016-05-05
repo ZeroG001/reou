@@ -4,8 +4,6 @@
 
 	update_user($db, $_POST);
 	$user = edit_profile($db);
-
-	var_dump($_SESSION);
 	
 ?>
 
@@ -19,11 +17,10 @@
 	</div>
 
 
-	<form class="update_user--form" method="POST">
+	<form class="update_user--form" method="POST" enctype="multipart/form-data">
 
 
 		<input type="hidden" id="action" name="_method" value="patch">
-
 
 
 		<!-- Bulletproof -->
