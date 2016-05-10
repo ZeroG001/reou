@@ -178,10 +178,10 @@ function update_user($ObjectPDO, $params) {
 
 			if($user->update_user($_POST)) {
 				add_message("alert", "User Successfully Updated");
-				// header( "Location:" . $_SERVER['REQUEST_URI']);
+				header( "Location:" . $_SERVER['REQUEST_URI']);
 			} 
 			else {
-				User::add_message("error", "There was a problem updating the user");
+				add_message("error", "there was a problem updating the user");
 			}
 		} 
 		else {

@@ -24,8 +24,10 @@
 
 
 		<!-- Bulletproof -->
+		<!-- Uncomment this when you're ready to upload images
 	    <input type="hidden" id="image-upload--size" name="MAX_FILE_SIZE" value="1000000"/>
 	    <input type="file" id="image-upload--file" name="profilePicture"/>
+		-->
 
 		
 		<label for="firstName"> First Name </label>

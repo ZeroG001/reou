@@ -59,7 +59,7 @@
 		</select>
 
 		<label for="active"> User Active </label>
-		<input type="checkbox" name="active" id="active" <?php echo displayChekbox($user['active']) ?> >
+		<input type="checkbox" name="active" id="active" checked>
 
 		<label> Date Created </label>
 		<span> 12/20/2015 (filler text) </span>
