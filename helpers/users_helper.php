@@ -100,7 +100,7 @@
 
 		$given = strtolower($given);
 
-		if("1" == $given) {
+		if($given == 1) {
 			return "checked";
 		} else {
 			return false;

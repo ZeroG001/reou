@@ -4,6 +4,9 @@
 
 	update_user($db, $_POST);
 	$user = edit_profile($db);
+
+
+	var_dump($user);
 	
 ?>
 
@@ -60,7 +63,7 @@
 		</select>
 
 		<label for="active"> User Active </label>
-		<input type="checkbox" name="active" id="active" <?php echo displayChekbox($user['active']) ?> >
+		<input type="checkbox" name="active" id="active" value="1" <?php echo displayChekbox($user['active']) ?> >
 
 		<label> Date Created </label>
 		<span> 12/20/2015 (filler text) </span>
