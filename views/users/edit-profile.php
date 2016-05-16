@@ -4,9 +4,6 @@
 
 	update_user($db, $_POST);
 	$user = edit_profile($db);
-
-
-	var_dump($user);
 	
 ?>
 
@@ -75,7 +72,7 @@
 
 		<?php // Please do not erase the required_hp div. This is a honeypot field to help reduce spam ?>
 		<div class="required_hp">
-			<input type="text" name="hpUsername" />
+			<input type="hidden" name="hpUsername" />
 		</div>
 
 

@@ -108,6 +108,15 @@
 	}
 
 
+
+
+	/**
+	 * redirectHome()
+	 *
+	 * REdirects the user back to the home page
+	 *
+	 * @return void
+	 */
 	function redirectHome() {
 
 		if( !isset($_SERVER['HTTP_REFERER']) ) {
@@ -170,18 +179,27 @@
 		if (session_status() == PHP_SESSION_ACTIVE) {
 
 			if(!isset($_SESSION['flash_message'])) {
-
 				$_SESSION['flash_message'] = array();
 
 
 				if(!isset($_SESSION['flash_message'][$type]) ) {
-					
 					$_SESSION['flash_message'][$type] = array();
 				}
 			}
 
 			// add messages to the flash message array
 			array_push($_SESSION['flash_message'][$type], $message);
+
+		} elseif ( session_status() == PHP_SESSION_NONE ) {
+
+			if(!isset($_SESSION['flash_message'])) {
+
+				$_SESSION['flash_message'] = array();
+
+				if(!isset($_SESSION['flash_message'][$type]) ) {
+					$_SESSION['flash_message'][$type] = array();
+				}
+			}
 
 		} else {
 			die("session message was not able to show, make it so that something useful happens when the flash message does not show up");
@@ -203,15 +221,15 @@
 	 */
 	function display_alert($type) {
 
+		// var_dump($_SESSION);
+
 		if ( isset($_SESSION['flash_message'][$type]) ) {
 
 			foreach ($_SESSION['flash_message'][$type] as $message) {
 				echo $message;
 			}
-
 			// Clear the contents of the flash messages
-			unset($_SESSION['flash_message']);
-
+			 unset($_SESSION['flash_message']);
 			return true;
 		} else {
 			return false;

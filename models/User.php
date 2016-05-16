@@ -65,13 +65,16 @@ class User {
 		 	(first_name, last_name, email, password, date_created, role) 
 		 	VALUES (:firstName, :lastName, :email, :password, :createdOn, :role)";
 
+		 	//removet this
+		 	$defaultRole = "strudent";
+
 		 	$stmt = $this->db->prepare($students_query);
 		 	$stmt->bindParam(':firstName', $params['firstName'], PDO::PARAM_STR);
 		 	$stmt->bindParam(':lastName', $params['lastName'], PDO::PARAM_STR);
 		 	$stmt->bindParam(':email', $params['email'], PDO::PARAM_STR);
 		 	$stmt->bindParam(':password', md5($params['password']), PDO::PARAM_STR);	
 		 	$stmt->bindParam(':createdOn', $date_enetered, PDO::PARAM_STR);
-		 	$stmt->bindParam(':role', 'student', PDO::PARAM_STR);
+		 	$stmt->bindParam(':role', $defaultRole, PDO::PARAM_STR);
 		 	$stmt->execute();
 
 		 	return true;
@@ -553,12 +556,10 @@ class User {
 		if (session_status() == PHP_SESSION_ACTIVE) {
 
 			if(!isset($_SESSION['flash_message'])) {
-
 				$_SESSION['flash_message'] = array();
 
 
 				if(!isset($_SESSION['flash_message'][$type]) ) {
-					
 					$_SESSION['flash_message'][$type] = array();
 				}
 			}
@@ -580,7 +581,7 @@ class User {
 	 * Ensures that the parameters sent are valid
 	 *
 	 * @param(String) $message set the message type as "Alert", "Notice", "Success", or "Error"
-	 * @return (boolean)
+	 * @return (boolean (truthy) array)
 	 */
 	public function validateParams($params, $display_errors = true) {
 
@@ -629,7 +630,7 @@ class User {
 	 		}
 	 	}
 
-	 	// If display error is on then the error will show
+	 	//If display error is on then the error will show
 	 	if($display_errors) {
 	 		foreach ($error_messages as $k => $error_message) {
 	 		$this->add_message($error_message['type'], $error_message['message']);
