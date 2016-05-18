@@ -4,6 +4,9 @@
 
 	update_user($db, $_POST);
 	$user = edit_profile($db);
+
+
+	var_dump($_POST);
 	
 ?>
 

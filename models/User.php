@@ -506,6 +506,9 @@ class User {
 	 	return $params;
 	 }
 
+
+	 
+
 	public function convert_camel_case($string) {
 		$pattern ="/([a-z])([A-Z])/";
 		$replacement = "$1" . "_" . "$2";

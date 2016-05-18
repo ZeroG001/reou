@@ -175,8 +175,8 @@ function update_user($ObjectPDO, $params) {
 
 			if($user->update_user($_POST)) {
 				add_message("alert", "User Successfully Updated");
-				header( "Location:" . $_SERVER['REQUEST_URI']);
-				die();
+				// header( "Location:" . $_SERVER['REQUEST_URI']);
+				// die();
 
 			} 
 			else {

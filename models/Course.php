@@ -128,6 +128,8 @@ class Course {
 	 }
 
 
+
+
 	// ---------- edit courses ---------- //
 
 	 public function register_course($params) {
@@ -165,6 +167,8 @@ class Course {
 	 }
 
 
+
+
 	 // ------------- Show all classes a student is registered for ----------------------
 	 public function get_registered_courses($student_id) {
 
@@ -179,6 +183,8 @@ class Course {
 	 	return $results;
 
 	 }
+
+
 
 
 	 // Check to see if a user is already registered for a class
@@ -206,10 +212,51 @@ class Course {
 
 
 
+
 	 public function edit_course() {}
+
+
+
 
 	 public function edit_course_category() {}
 
+
+	 // ---------- remove courses (admin) ---------- //
+
+	 function add_course($params) {
+
+	 	// Build Params
+	 	$columnNames = array();
+	 	$columnValues = array();
+
+	 	foreach( $params as $key => $value ) {
+	 		array_push($columnNames, $key);
+	 		array_push($columnValues, ":".$key);
+	 	}
+
+
+
+	 	$query = "INSERT INTO (".$nameString.") VALUES (".$valueString.") ";
+
+	 	$stmt = $this->db->prepare($query);
+
+
+
+	 	// Check acceptable params
+	 	$this->checkAcceptedParams($params);
+
+	 	// Validate the parameters
+	 	if(!$this->validateParams($params)) {
+	 		# die("This validation failed, check Users.php to fix");
+	 	}
+
+		// Clean the parameters if they dont meet a certain criteria
+		$params = $this->sanitizeParams($params);
+
+
+
+	 	$query = "INSERT INTO courses () VALUES ()";
+	 }
 
 	// ---------- remove courses (admin) ---------- //
 
@@ -233,12 +280,186 @@ class Course {
 	function accepted_params() {
 		return array( 
 	 		"course_id",
-	 		"student_id",
-	 		"schedule_id", 
-	 		"id"
+	 		"course_number",
+	 		"course_name",
+	 		"course_description",
+	 		"course_hours",
+	 		"course_location",
+	 		"course_cost",
+	 		"course_credits",
+	 		"course_notes",
+	 		"instructor_id",
+	 		"min_class_size",
+	 		"max_class_size",
+	 		"active"
 	 	);
 	}
+
+
+	/**
+	 * validateParams();
+	 *
+	 * Ensures that the parameters sent are valid
+	 *
+	 * @param(String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @return (boolean (truthy) array)
+	 */
+	public function validateParams($params, $display_errors = true) {
+
+	 	$paramsValid = true;
+	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
+
+
+	 	foreach ($params as $k => $param) {
+	 		switch($k) {
+	 			case "courseId" :
+
+	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))) ) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "First Name is invalid"));
+	 					$paramsValid = false;
+	 				}
+	 				
+	 			break;
+
+	 			case "courseName" :
+
+	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Last Name is invalid"));
+	 					$paramsValid = false;
+	 				}
+
+	 			break;
+
+	 			// . . .
+
+	 			default:
+	 				$params[$k] = $params[$k];
+	 			break;
+	 		}
+	 	}
+
+	 	//If display error is on then the error will show
+	 	if($display_errors) {
+	 		foreach ($error_messages as $k => $error_message) {
+	 		$this->add_message($error_message['type'], $error_message['message']);
+	 		}	
+	 	}
+
+
+
+	 	if($paramsValid) {
+	 		return true;
+	 	} else {
+	 		return false;
+	 	}
+
+	}
+
+
+	/**
+	 * add_message();
+	 *
+	 * Add a message to the $_SESSION['flash_message'] array
+	 *
+	 * @param (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @return (boolean)
+	 */
+	public static function add_message($type, $message) {
+		$acceptable_message_types = array("alert","notice","success","error");
+
+
+		// For my sake, check to make sure I put in the right session type.
+		if(!in_array(strtolower($type), $acceptable_message_types) && is_string($type)) {
+			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
+		}	
+
+		if (session_status() == PHP_SESSION_ACTIVE) {
+
+			if(!isset($_SESSION['flash_message'])) {
+				$_SESSION['flash_message'] = array();
+
+
+				if(!isset($_SESSION['flash_message'][$type]) ) {
+					$_SESSION['flash_message'][$type] = array();
+				}
+			}
+
+			// add messages to the flash message array
+			array_push($_SESSION['flash_message'][$type], $message);
+
+		} else {
+			die("session message was not able to show, make it so that something useful happens when the flash message does not show up");
+		}	
+	}
+
+
+	/**
+	 * scrubParams
+	 *
+	 * Takes each parameter and cleans it using rules set in function. Each parameter is clearn a certain way
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
+	 public function sanitizeParams($params) {
+
+
+	 	foreach ($params as $k => $param) {
+	 		switch($k) {
+	 			case "firstName" or "lastName" :
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
+	 			break;
+
+	 			case "email":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_EMAIL);
+	 			break;
+
+	 			case "studentNumber":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT); 
+	 			break;
+
+	 			case "userId":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_NUMBER_INT); 
+	 			break;
+
+	 			case "bio":
+	 				$params[$k] = filter_var(trim($param), FILTER_SANITIZE_STRING);
+	 			break;
+
+	 			case "profilePicture":
+	 				$params[$k] = filter_var( trim($param),
+	 				FILTER_SANITIZE_STRING );
+	 			break;
+
+	 			default:
+	 				$params[$k] = $params[$k];
+	 			break;
+	 		}
+	 	}
+
+	 	return $params;
+	 }
+
+
+
+
+	/**
+	 * convert_camel_case
+	 *
+	 * the param key are in camel case format. This coverts said string to this_type_of_format.
+	 * 
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
+	public function convert_camel_case($string) {
+		$pattern ="/([a-z])([A-Z])/";
+		$replacement = "$1" . "_" . "$2";
+		$string = preg_replace($pattern, $replacement, $string);
+		$string = strtolower($string);
+		return $string;
+	}
 	
-}
+}// end object
 
 ?>

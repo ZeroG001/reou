@@ -70,6 +70,25 @@ function course_detail($ObjectPDO) {
 }
 
 
+// --------------- course_create.php -----------------------
+
+function course_create($ObjectPDO) {
+	
+
+	if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+
+		$params = $_POST;
+		
+		$course = new Course($ObjectPDO);
+		$course->addCourse($params);
+	}
+	// If the request method is post
+		// Use params to push an update request to the model code.
+
+
+}
+
+
 
 // --------------- course_register.php ---------------------
 
@@ -119,5 +138,7 @@ function my_courses($ObjectPDO) {
 	}
 
 }
+
+
 
 ?>
