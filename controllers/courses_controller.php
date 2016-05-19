@@ -77,10 +77,26 @@ function course_create($ObjectPDO) {
 
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
+		//Change this//
+		session_start(); // Might erase this because it might not be nessessary to start a session.
+
 		$params = $_POST;
+
+		unset($params['_method']);
+
+		var_dump($params);
 		
 		$course = new Course($ObjectPDO);
-		$course->addCourse($params);
+
+		if($course->add_course($params)) {
+			add_message("alert", "couse has been sucessfully updated");
+			header("Location:". $_SERVER['HTTP_REFERER']);
+			die();
+		} else {
+
+			die("there was a problem in coursse controller.php");
+		}
+		
 	}
 	// If the request method is post
 		// Use params to push an update request to the model code.

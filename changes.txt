@@ -78,6 +78,7 @@ ALTER TABLE users DROP COLUMN title;
 ALTER TABLE users ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
 
+
 ------------ Students_Courses table ------------
 
 [13. Add id column]
@@ -87,10 +88,28 @@ ALTER TABLE `students_courses` ADD COLUMN `id` INT PRIMARY KEY NOT NULL AUTO_INC
 ALTER TABLE `reou`.`students_courses` 
 CHANGE COLUMN `student_id` `user_id` INT(11) NOT NULL COMMENT '' ;
 
+
+
 ------------------------- course_category Table --------------------
 
 14. ALTER TABLE `course_category` ADD COLUMN `image_filename` VARCHAR(255) NULL;
 
+
+
+
+------------------------- courses table --------------------
+
+18. ALTER TABLE `reou`.`courses` 
+ADD COLUMN `course_cost` INT NULL
+
+19. ALTER TABLE `reou`.`courses` 
+CHANGE COLUMN `max_students` `max_class_size` VARCHAR(50) NULL DEFAULT NULL ;
+
+20. ALTER TABLE `reou`.`courses` 
+ADD COLUMN `course_hours` VARCHAR(45) NULL AFTER `course_desc`;
+
+21. ALTER TABLE `reou`.`courses` 
+ADD COLUMN `course_duration` VARCHAR(50) NULL AFTER `course_cost_evening`;
 
 
 

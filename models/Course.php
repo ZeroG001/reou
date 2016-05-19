@@ -225,37 +225,59 @@ class Course {
 
 	 function add_course($params) {
 
+
+
+	 	//Scrub the Params. Verify, Filter and Sanitize.
+
+	 	if(!$this->checkAcceptedParams($params)) {
+	 		die("those params aren't acceptable");
+	 	}
+
+
 	 	// Build Params
 	 	$columnNames = array();
 	 	$columnValues = array();
 
 	 	foreach( $params as $key => $value ) {
-	 		array_push($columnNames, $key);
+	 		array_push($columnNames, convert_camel_case($key));
 	 		array_push($columnValues, ":".$key);
 	 	}
 
+	 	$nameString = implode(",", $columnNames);
+	 	$valueString = implode("," , $columnValues);
+
+		$query = "INSERT INTO courses (".$nameString.") VALUES (".$valueString.") ";
 
 
-	 	$query = "INSERT INTO (".$nameString.") VALUES (".$valueString.") ";
+		try {
 
-	 	$stmt = $this->db->prepare($query);
+			$stmt = $this->db->prepare($query);
 
+		 	$stmt->bindParam(':courseName', $params['courseName']);
+		 	$stmt->bindParam(':courseDesc', $params['courseDesc']);
+		 	$stmt->bindParam(':courseNumber', $params['courseNumber']);
+		 	$stmt->bindParam(':courseCost', $params['courseCost']);
+		 	$stmt->bindParam(':courseLocation', $params['courseLocation']);
+		 	$stmt->bindParam(':courseCredits', $params['courseCredits']);
+		 	$stmt->bindParam(':courseNotes', $params['courseNotes']);
+		 	$stmt->bindParam(':instructorId', $params['instructorId']);
+		 	$stmt->bindParam(':minClassSize', $params['minClassSize']);
+		 	$stmt->bindParam(':maxClassSize', $params['maxClassSize']);
+		 	$stmt->bindParam(':courseHours', $params['courseHours']);
+		 	$stmt->bindParam(':courseDuration', $params['courseDuration']);
+		 	$stmt->bindParam(':active', $params['active']);
+		 	
+		 	$stmt->execute();
 
+		 	return true;
 
-	 	// Check acceptable params
-	 	$this->checkAcceptedParams($params);
+		} 
+		catch (Excaption $e) {
 
-	 	// Validate the parameters
-	 	if(!$this->validateParams($params)) {
-	 		# die("This validation failed, check Users.php to fix");
-	 	}
+			return false;
 
-		// Clean the parameters if they dont meet a certain criteria
-		$params = $this->sanitizeParams($params);
+		}
 
-
-
-	 	$query = "INSERT INTO courses () VALUES ()";
 	 }
 
 	// ---------- remove courses (admin) ---------- //
@@ -276,23 +298,42 @@ class Course {
 	}
 
 
-	// Accepted params from courses forms.
-	function accepted_params() {
-		return array( 
-	 		"course_id",
-	 		"course_number",
-	 		"course_name",
-	 		"course_description",
-	 		"course_hours",
-	 		"course_location",
-	 		"course_cost",
-	 		"course_credits",
-	 		"course_notes",
-	 		"instructor_id",
-	 		"min_class_size",
-	 		"max_class_size",
+
+	/**
+	 * checkAcceptedParams
+	 *
+	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. The Script will stop if the parameters are bad.
+	 * the params HAVE to the the camel case
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
+	public function checkAcceptedParams($params) {
+		$accepted_params = array(
+	 		"courseName",
+	 		"courseDesc",
+	 		"courseNumber",
+	 		"courseCost",
+	 		"courseLocation",
+	 		"courseCredits",
+	 		"courseNotes",
+	 		"instructorId",
+	 		"minClassSize",
+	 		"maxClassSize",
+	 		"courseHours",
+	 		"courseDuration",
 	 		"active"
 	 	);
+
+
+		foreach ($params as $param => $value) {
+		 	if( !in_array($param, $accepted_params) ) {
+		 		die("Form Field " . $param . "is not acceptable.");	
+		 		return false;
+		 	}
+		}
+
+		return true;
 	}
 
 
@@ -388,7 +429,7 @@ class Course {
 			array_push($_SESSION['flash_message'][$type], $message);
 
 		} else {
-			die("session message was not able to show, make it so that something useful happens when the flash message does not show up");
+			die(" To add a course, you must be logged in.");
 		}	
 	}
 

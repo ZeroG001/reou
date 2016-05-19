@@ -2,10 +2,12 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 
 	// Course is only created on submit
-	//course_create($db);
+	course_create($db);
 
 	//Header HTML
 	 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
+
+
 ?>
 
 
@@ -42,29 +44,33 @@
 
 
 -->
-	
+	<?php display_alert('error') ?>
 
-<form>
+<form method="POST" action="">
+
+
+	<input type="hidden" id="action" name="_method" value="patch">
+
 
 	<!-- Items Related to course details -->
 	<fieldset>
 
 		<!-- Course Name -->
 		<label for="courseName"> Course Name </label>
-		<input type="text" name="course_name" id="courseName"> </input>
+		<input type="text" name="courseName" id="courseName"> </input>
 
 
 		<!-- Course Description -->
 		<label for="courseDesc"> Course Descirption </label>
-		<input type="text" name="course_desc" id="courseDesc">
+		<input type="text" name="courseDesc" id="courseDesc">
 		
 
 		<!-- This information will have to pull in from the course category query -->
 		<label for="categoryId"> Category </label>
 		<select if="categoryId">
-			<option value="one"> Category One </option>
-			<option value="two"> Category Two </option>
-			<option value="three"> Category Three </option>
+			<option value="1"> Category One </option>
+			<option value="2"> Category Two </option>
+			<option value="3"> Category Three </option>
 		</select>
 
 
@@ -80,11 +86,6 @@
 		<!-- Course Location -->
 		<label for="courseLocation"> Course Location </label>
 		<input type="text" name="courseLocation" id="courseLocation">
-
-
-		<!-- Course Credits (Number Only) -->
-		<label for="courseCredits"> Course Credits </label>
-		<input type="text" name="courseCredits" id="courseCredits">
 
 
 		<!-- Course Credits (Number Only) -->
@@ -110,6 +111,14 @@
 		<label for="maxClassSize"> Max Class Size </label>
 		<input type="text" name="maxClassSize" id="maxClassSize">
 
+		<label for="active"> User Active </label>
+
+		<span> Yes </span>
+		<input type="radio" name="active" value="1" checked>
+
+		<span> No </span>
+		<input type="radio" name="active" value="0">
+
 	</fieldset>
 
 
@@ -126,6 +135,10 @@
 		<input type="text" name="courseDuration">		
 
 	</fieldset>
+
+
+	<input type="Submit" value="Submit">
+
 
 </form>
 
