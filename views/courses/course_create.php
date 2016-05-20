@@ -45,6 +45,7 @@
 
 -->
 	<?php display_alert('error') ?>
+	<?php display_alert('alert') ?>
 
 <form method="POST" action="">
 

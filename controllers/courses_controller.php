@@ -88,12 +88,11 @@ function course_create($ObjectPDO) {
 		
 		$course = new Course($ObjectPDO);
 
-		if($course->add_course($params)) {
-			add_message("alert", "couse has been sucessfully updated");
+		if($course->create_course($params)) {
+			add_message("alert", "Course has been sucessfully created");
 			header("Location:". $_SERVER['HTTP_REFERER']);
-			die();
+			die("there was an issue loading credentials");
 		} else {
-
 			die("there was a problem in coursse controller.php");
 		}
 		

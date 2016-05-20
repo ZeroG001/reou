@@ -223,7 +223,7 @@ class Course {
 
 	 // ---------- remove courses (admin) ---------- //
 
-	 function add_course($params) {
+	 function create_course($params) {
 
 
 
@@ -232,6 +232,11 @@ class Course {
 	 	if(!$this->checkAcceptedParams($params)) {
 	 		die("those params aren't acceptable");
 	 	}
+
+
+	 	if(!$this->validateParams($params)) {
+	 		return false;
+	 	};
 
 
 	 	// Build Params
@@ -343,7 +348,7 @@ class Course {
 	 * Ensures that the parameters sent are valid
 	 *
 	 * @param(String) $message set the message type as "Alert", "Notice", "Success", or "Error"
-	 * @return (boolean (truthy) array)
+	 * @return (boolean)
 	 */
 	public function validateParams($params, $display_errors = true) {
 
@@ -353,19 +358,12 @@ class Course {
 
 	 	foreach ($params as $k => $param) {
 	 		switch($k) {
-	 			case "courseId" :
 
-	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))) ) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "First Name is invalid"));
-	 					$paramsValid = false;
-	 				}
-	 				
-	 			break;
 
 	 			case "courseName" :
 
 	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "Last Name is invalid"));
+	 					array_push($error_messages, array("type" => "alert", "message" => "The Course name is invalid"));
 	 					$paramsValid = false;
 	 				}
 
