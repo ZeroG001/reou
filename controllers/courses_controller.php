@@ -77,29 +77,27 @@ function course_create($ObjectPDO) {
 
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
-		//Change this//
+		//removeme
 		session_start(); // Might erase this because it might not be nessessary to start a session.
 
 		$params = $_POST;
 
+		// _method needs to be removed on submit.
 		unset($params['_method']);
-
-		var_dump($params);
 		
 		$course = new Course($ObjectPDO);
 
+
+		// If the course was created, show sucess message. Else, show an error message.
 		if($course->create_course($params)) {
 			add_message("alert", "Course has been sucessfully created");
 			header("Location:". $_SERVER['HTTP_REFERER']);
-			die("there was an issue loading credentials");
+			die();
 		} else {
-			die("there was a problem in coursse controller.php");
+			return $params;
 		}
 		
 	}
-	// If the request method is post
-		// Use params to push an update request to the model code.
-
 
 }
 
@@ -116,9 +114,6 @@ function course_register($ObjectPDO) {
 			die("Please sign in to continue");
 		}
 
-		//----- Debug --------
-			var_dump($_POST);
-		//-------------------
 
 		$params = $_POST;
 		$course = new Course($ObjectPDO);

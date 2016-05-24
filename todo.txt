@@ -38,4 +38,5 @@ Try to stay on task this time...
 // I was last working on making it so that the users can see their classes
 // I was just about to log in as a user and see all the variables availible to be.
 // The Model controller and views are already sort of set up.
+// In Each file I have a string called "removeme". The lines below this are the ones you're going to want to remove.
 

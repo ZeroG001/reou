@@ -129,7 +129,7 @@ class Course {
 
 
 
-
+	 
 	// ---------- edit courses ---------- //
 
 	 public function register_course($params) {
@@ -225,8 +225,6 @@ class Course {
 
 	 function create_course($params) {
 
-
-
 	 	//Scrub the Params. Verify, Filter and Sanitize.
 
 	 	if(!$this->checkAcceptedParams($params)) {
@@ -304,6 +302,7 @@ class Course {
 
 
 
+
 	/**
 	 * checkAcceptedParams
 	 *
@@ -342,6 +341,8 @@ class Course {
 	}
 
 
+
+
 	/**
 	 * validateParams();
 	 *
@@ -355,8 +356,19 @@ class Course {
 	 	$paramsValid = true;
 	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
 
+	 	// List of required params
+	 	$required_vars = array("courseName", "courseNumber", "courseCost", "courseLocation");
+
+	 	foreach ($required_vars as $key => $value) {
+	 		if(empty($params[$value]) || is_null($params[$value])) {
+	 			array_push($error_messages, array("type" => "alert", "message" => $this->convert_camel_case_space($value) . " is required" ));
+	 			$paramsValid = false;
+	 		}
+
+	 	}
 
 	 	foreach ($params as $k => $param) {
+
 	 		switch($k) {
 
 
@@ -369,7 +381,6 @@ class Course {
 
 	 			break;
 
-	 			// . . .
 
 	 			default:
 	 				$params[$k] = $params[$k];
@@ -384,15 +395,16 @@ class Course {
 	 		}	
 	 	}
 
-
-
 	 	if($paramsValid) {
 	 		return true;
-	 	} else {
+	 	} 
+	 	else {
 	 		return false;
 	 	}
 
 	}
+
+
 
 
 	/**
@@ -427,9 +439,11 @@ class Course {
 			array_push($_SESSION['flash_message'][$type], $message);
 
 		} else {
-			die(" To add a course, you must be logged in.");
+			die(" To add a , you must be logged in.");
 		}	
 	}
+
+
 
 
 	/**
@@ -496,6 +510,14 @@ class Course {
 		$replacement = "$1" . "_" . "$2";
 		$string = preg_replace($pattern, $replacement, $string);
 		$string = strtolower($string);
+		return $string;
+	}
+
+	public function convert_camel_case_space($string) {
+		$pattern ="/([a-z])([A-Z])/";
+		$replacement = "$1" . " " . "$2";
+		$string = preg_replace($pattern, $replacement, $string);
+		$string = ucwords($string);
 		return $string;
 	}
 	

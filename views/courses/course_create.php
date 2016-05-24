@@ -2,7 +2,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 
 	// Course is only created on submit
-	course_create($db);
+	$params = course_create($db);
 
 	//Header HTML
 	 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
@@ -58,7 +58,7 @@
 
 		<!-- Course Name -->
 		<label for="courseName"> Course Name </label>
-		<input type="text" name="courseName" id="courseName"> </input>
+		<input type="text" name="courseName" id="courseName" value="<?php $params['course_name'] ?>"> </input>
 
 
 		<!-- Course Description -->
@@ -133,7 +133,8 @@
 
 		<!-- Course Duration -->
 		<label for="courseDuration"> Course Duration </label>
-		<input type="text" name="courseDuration">		
+		<input type="text" name="courseDuration">	
+
 
 	</fieldset>
 
