@@ -8,7 +8,6 @@ require(D_ROOT . '/reou/controllers/routes.php');
 require(D_ROOT . "/reou/models/Course.php");
 
 
-
 // --------------- course_category.php ---------------------
 
 function course_category($ObjectPDO) {

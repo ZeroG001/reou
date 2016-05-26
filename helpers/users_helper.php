@@ -217,9 +217,10 @@
 	 * Shows message added to session's "flash_message" array
  	 *
 	 * @param (String) set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @param (boolean) whether or not to remove the session variable after showing the message
 	 * @return (boolean)
 	 */
-	function display_alert($type) {
+	function display_alert($type, $clearMessage = false) {
 
 		// var_dump($_SESSION);
 
@@ -228,12 +229,24 @@
 			foreach ($_SESSION['flash_message'][$type] as $message) {
 				echo $message;
 			}
-			// Clear the contents of the flash messages
-			 unset($_SESSION['flash_message']);
+
+			// clear message from session
+			if($clearMessage) {
+				// Clear the contents of the flash messages
+				unset($_SESSION['flash_message']);
+				
+			}
+
 			return true;
-		} else {
+
+		} 
+		else {
 			return false;
 		}
+	}
+
+	function clear_alert() {
+		unset($_SESSION['flash_message']);
 	}
 
 

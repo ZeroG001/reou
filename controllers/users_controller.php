@@ -175,8 +175,8 @@ function update_user($ObjectPDO, $params) {
 
 			if($user->update_user($_POST)) {
 				add_message("alert", "User Successfully Updated");
-				// header( "Location:" . $_SERVER['REQUEST_URI']);
-				// die();
+				header( "Location:" . $_SERVER['REQUEST_URI']);
+				die();
 
 			} 
 			else {
@@ -281,8 +281,8 @@ function show_user() {
 		if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['userId']) ) {
 
 			echo "Hello there is something here.";
-
 		}
+		
 		$user = new User($ObjectPDO);
 		$results = $user->get_user_details($_POST);
 

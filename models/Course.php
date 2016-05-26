@@ -318,6 +318,7 @@ class Course {
 	 		"courseDesc",
 	 		"courseNumber",
 	 		"courseCost",
+	 		"categoryId",
 	 		"courseLocation",
 	 		"courseCredits",
 	 		"courseNotes",
@@ -396,7 +397,7 @@ class Course {
 	 	}
 
 	 	if($paramsValid) {
-	 		return true;
+	 		return false;
 	 	} 
 	 	else {
 	 		return false;

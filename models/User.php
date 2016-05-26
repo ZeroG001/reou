@@ -203,6 +203,12 @@ class User {
 		$this->checkAcceptedParams($params);
 		$params = $this->sanitizeParams($params);
 
+		// Validates the params
+		if(!$this->validateParams($params)) {
+			header("Location:". $_SERVER['HTTP_REFERER']); 
+			die();
+		}
+
 		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, bio = ?, role = ?, active = ? WHERE id = ?";
 		$stmt = $this->db->prepare($query);
 
@@ -460,7 +466,7 @@ class User {
 
 
 	/**
-	 * scrubParams
+	 * sanitizeParams
 	 *
 	 * Takes each parameter and cleans it using rules set in function. Each parameter is clearn a certain way
 	 *

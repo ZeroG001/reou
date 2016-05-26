@@ -6,7 +6,9 @@
 	$user = edit_profile($db);
 
 
-	var_dump($_POST);
+	//Header HTML
+	 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
+
 	
 ?>
 
@@ -17,6 +19,7 @@
 	<div class="alert">
 		<?php display_alert('error') ?>
 		<?php display_alert('alert') ?>
+		<?php clear_alert(); ?>
 	</div>
 
 

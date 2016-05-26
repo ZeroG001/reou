@@ -4,6 +4,11 @@
 	// Course is only created on submit
 	$params = course_create($db);
 
+	// if ( isset($params) ) {
+	// 	echo "the params are....." ;
+	// 	var_dump($params);
+	// }
+
 	//Header HTML
 	 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
@@ -46,6 +51,7 @@
 -->
 	<?php display_alert('error') ?>
 	<?php display_alert('alert') ?>
+	<?php clear_alert(); ?>
 
 <form method="POST" action="">
 
@@ -58,17 +64,17 @@
 
 		<!-- Course Name -->
 		<label for="courseName"> Course Name </label>
-		<input type="text" name="courseName" id="courseName" value="<?php $params['course_name'] ?>"> </input>
+		<input type="text" name="courseName" id="courseName" value="<?php echo htmlentities($params['courseName']) ?>"> </input>
 
 
 		<!-- Course Description -->
 		<label for="courseDesc"> Course Descirption </label>
-		<input type="text" name="courseDesc" id="courseDesc">
+		<input type="text" name="courseDesc" id="courseDesc" value="<?php echo htmlentities($params['courseDesc']) ?>">
 		
 
 		<!-- This information will have to pull in from the course category query -->
 		<label for="categoryId"> Category </label>
-		<select if="categoryId">
+		<select name="categoryId">
 			<option value="1"> Category One </option>
 			<option value="2"> Category Two </option>
 			<option value="3"> Category Three </option>
@@ -77,40 +83,40 @@
 
 		<!-- Course Number -->
 		<label for="courseNumber"> Course Number </label>
-		<input type="text" name="courseNumber" id="courseNumber">
+		<input type="text" name="courseNumber" id="courseNumber" value="<?php echo htmlentities($params['courseNumber']) ?>">
 
 		<!-- Course Cost (Number Only) -->
 		<label for="courseCost"> Course Cost </label>
-		<input type="text" name="courseCost" id="courseCost">
+		<input type="text" name="courseCost" id="courseCost" value="<?php echo htmlentities($params['courseCost']) ?>">
 
 
 		<!-- Course Location -->
 		<label for="courseLocation"> Course Location </label>
-		<input type="text" name="courseLocation" id="courseLocation">
+		<input type="text" name="courseLocation" id="courseLocation" value="<?php echo htmlentities($params['courseLocation']) ?>">
 
 
 		<!-- Course Credits (Number Only) -->
 		<label for="courseCredits"> Course Credits </label>
-		<input type="text" name="courseCredits" id="courseCredits">
+		<input type="text" name="courseCredits" id="courseCredits" value="<?php echo htmlentities($params['courseCredits']) ?>">
 
 
 		<!-- Course Notes -->
 		<label for="courseNotes"> Course Notes </label>
-		<textarea id="courseNotes" name="courseNotes"></textarea>
+		<textarea id="courseNotes" name="courseNotes"> <?php echo htmlentities($params['courseNotes']) ?> </textarea>
 
 		<!-- Instructor ID-->
 		<label for="instructorId"> Instructor </label>
-		<input type="text" name="instructorId">
+		<input type="text" name="instructorId" value="<?php echo htmlentities($params['instructorId']) ?> ">
 
 
 		<!-- Min Class Size -->
 		<label for="minClassSize"> Min Class Size </label>
-		<input type="text" name="minClassSize" id="minClassSize">
+		<input type="text" name="minClassSize" id="minClassSize" value="<?php echo htmlentities($params['minClassSize']) ?>"> 
 
 
 		<!-- Max Class Size -->
 		<label for="maxClassSize"> Max Class Size </label>
-		<input type="text" name="maxClassSize" id="maxClassSize">
+		<input type="text" name="maxClassSize" id="maxClassSize" value="<?php echo htmlentities($params['maxClassSize']) ?> ">
 
 		<label for="active"> User Active </label>
 
@@ -128,12 +134,12 @@
 
 		<!-- Course Hours -->
 		<label for="courseHours"> Course Hours </label>
-		<input type="text" name="courseHours">
+		<input type="text" name="courseHours" value="<?php echo htmlentities($params['courseHours']) ?> ">
 
 
 		<!-- Course Duration -->
 		<label for="courseDuration"> Course Duration </label>
-		<input type="text" name="courseDuration">	
+		<input type="text" name="courseDuration" value="<?php echo htmlentities($params['courseDuration']) ?> ">	
 
 
 	</fieldset>
