@@ -1,17 +1,18 @@
 <?php
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php';
 
-	try {
+require_once $_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php';
 
-		$db = new PDO("mysql:host=".DB_HOST.";port=".DB_PORT."; dbname=".DB_NAME."", "root", "s0n!crush");
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Turns on error reporting and catches the exception
-		$db->exec("SET NAMES 'utf8'");
-	} 
+try {
 
-	catch (Exception $e) {
+	$db = new PDO("mysql:host=".DB_HOST.";port=".DB_PORT."; dbname=".DB_NAME."", "root", "s0n!crush");
+	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Turns on error reporting and catches the exception
+	$db->exec("SET NAMES 'utf8'");
+} 
 
-		echo "There was a problem connecting to the database";
-		
-	}
+catch (Exception $e) {
+
+	echo "There was a problem connecting to the database";
+	
+}
 
 ?>

@@ -144,12 +144,23 @@ class User {
 			$cols = implode(", ", $cols);
 
 			$query = "SELECT $cols FROM users WHERE id = :id";
-			$stmt = $this->db->prepare($query);
-			$stmt->bindParam(':id', $params['userId'], PDO::PARAM_INT);
-			$stmt->execute();
-			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-			return $result;
+			try {
+
+
+				$stmt = $this->db->prepare($query);
+				$stmt->bindParam(':id', $params['userId'], PDO::PARAM_INT);
+				$stmt->execute();
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+				return $result;
+			} 
+			catch (Exception $e) {
+				die("There was a poblem getting the user information");
+			}
+
+
+			
 		}
 
 

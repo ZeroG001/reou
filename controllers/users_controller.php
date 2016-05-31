@@ -98,6 +98,9 @@ function sign_up($ObjectPDO, $params) {
 
 function edit_profile($ObjectPDO) {
 
+	// TODO - Make sure input does not contain a letter or other special characters
+	// TODO - Mak sure that a user input is filtered.
+
 
 	// If User isn't signed in, go back to home page
 	if( !userSignedIn() ) {
@@ -105,11 +108,8 @@ function edit_profile($ObjectPDO) {
 		die("You should not be here");
 	}
 
-
-
-
-	// If user is NOT Admin
-	if(  userSignedIn() && !userIsAdmin() ) {
+	// If the user is not an admin
+	if( userSignedIn() && !userIsAdmin() ) {
 
 		// If the session ID is not set or empty then redirect the user home
 		if(!isset($_SESSION['id']) || trim($_SESSION['id']) == "") {
@@ -124,17 +124,19 @@ function edit_profile($ObjectPDO) {
 		return $results;
 	}
 
-	// If user is Admin
-	if(  userSignedIn() && userIsAdmin() ) {
+	// If the user is an Admin
+	if( userSignedIn() && userIsAdmin() ) {
 
-		if(!isset($_GET['userId'])) {
+		if( !isset($_GET['userId']) || trim($_GET['userId'] == "") ) {
 			redirectHome();
 		}
 
 		$user = new User($ObjectPDO);
 		$results = $user->get_user_details($_GET);
 
-		if(sizeof($results) <= 0) {
+
+		// Todo - Make this so that you get the count of the results instrad of boolean
+		if(!$results) {
 			redirectHome();
 			return false;
 		}
@@ -145,7 +147,7 @@ function edit_profile($ObjectPDO) {
 	}
 
 
-	die("edit profile ran into a critical error");
+	die("edit_profile ran into a critical error. You must be signed in to continue");
 
 }
 
@@ -173,11 +175,19 @@ function update_user($ObjectPDO, $params) {
 
 			$user = new User($ObjectPDO);
 
-			if($user->update_user($_POST)) {
+
+			// Die. If the user tried to edit another user
+			if( $_GET['userId'] != $_POST['userId'] ) {
+				add_message("error", "An error occured when trying to update the user");
+				header( "Location:" . $_SERVER['REQUEST_URI']);
+				die();
+			}
+
+
+			if( $user->update_user($_POST) ) {
 				add_message("alert", "User Successfully Updated");
 				header( "Location:" . $_SERVER['REQUEST_URI']);
 				die();
-
 			} 
 			else {
 				add_message("error", "there was a problem updating the user");

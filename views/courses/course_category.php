@@ -4,6 +4,7 @@
 
 	//Header HTML
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
+
 ?>
 	
 

@@ -1,11 +1,11 @@
 <?php
 
-require($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
 require_once(D_ROOT . "/reou/models/database.php");
-require(D_ROOT . '/reou/helpers/courses_helper.php');
-require(D_ROOT . '/reou/helpers/users_helper.php');
-require(D_ROOT . '/reou/controllers/routes.php');
-require(D_ROOT . "/reou/models/Course.php");
+require_once(D_ROOT . '/reou/helpers/courses_helper.php');
+require_once(D_ROOT . '/reou/helpers/users_helper.php');
+require_once(D_ROOT . '/reou/controllers/routes.php');
+require_once(D_ROOT . "/reou/models/Course.php");
 
 
 // --------------- course_category.php ---------------------
@@ -130,7 +130,7 @@ function course_register($ObjectPDO) {
 
 // --------------- my-courses.php ---------------------
 
-function my_courses($ObjectPDO) {
+function my_courses_two($ObjectPDO) {
 
 	if( userSignedIn() ) {
 
