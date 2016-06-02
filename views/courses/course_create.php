@@ -132,6 +132,7 @@
 	<!-- Items related to course timing -->
 	<fieldset>
 
+
 		<!-- Course Hours -->
 		<label for="courseHours"> Course Hours </label>
 		<input type="text" name="courseHours" value="<?php echo htmlentities($params['courseHours']) ?> ">
@@ -139,9 +140,14 @@
 
 		<!-- Course Duration -->
 		<label for="courseDuration"> Course Duration </label>
-		<input type="text" name="courseDuration" value="<?php echo htmlentities($params['courseDuration']) ?> ">	
+		<input type="text" name="courseDuration" value="<?php echo htmlentities($params['courseDuration']) ?> ">
 
 
+	</fieldset>
+
+
+	<fieldset>
+		<legend> Add Schedule </legend>
 	</fieldset>
 
 
