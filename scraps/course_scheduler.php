@@ -1,94 +1,143 @@
 <?php
+    
+    # Create a one week schedule tha is 
 
+    ## New Plan....
+
+    ## Set a start date, set the days and for how many weeks.
+    ## Repeat until finished.
+
+    if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+        if(empty($_POST['startDate']) || empty($_POST['endDate']) ) { 
+            die();
+        }
+
+        date_default_timezone_set("America/Detroit");
+
+        var_dump($_POST);
+
+        $start_date_input = $_POST['startDate'];
+        $end_date_input = $_POST['endDate'];
+
+        $startDate = DateTime::createFromFormat('m/d/Y', $start_date_input);
+        $endDate = Datetime::createFromFormat("m/d/Y", $end_date_input);
+
+        $diff = $endDate->diff($startDate);
+
+        echo $diff->format("Difference is %d days");
+
+        $interval = DateInterVal::createFromDateString('1 day');
+        $schedule = new DatePeriod($startDate, $interval, $endDate);
+
+        var_dump($schedule);
+
+        $result = serialize($schedule);
+        var_dump(base64_encode($result));
+
+        # In the array you're going to need to find the time in days between the first date and the second date.
+
+        echo "You Submitted the form";
+
+    }
 
 ?>
 
 <!DOCTYPE html>
 <html>
+
+
 <head>
 	<title> Schedule Creator </title>
 </head>
+
+
 <body>
 
-<style>
-/* You Date Picker Styles. */
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Recurrence Pattern -->
 
-.pika-single.is-hidden {
-	/* display: none; */
-}
+    <!-- Select the start and end date the dates fall on -->
 
-.pika-button {
-	background-color: #AFAFAF;
-	width:45px;
-	padding: 5px;
-}
+    <!-- Select Days the Events fall on -->
 
-.pika-single.dark-theme {
-    color: #fff;
-    background: #333;
-    border: 1px solid #666;
-    border-bottom-color: #999;
-}
+    <!-- Select how many weeks the schedules occurs for -->
 
-.dark-theme .pika-label {
-    background-color: #333;
-}
+    <!-- If the weeks overlap whats given then truncate -->
 
-.dark-theme .pika-prev,
-.dark-theme .is-rtl .pika-next {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAQ0lEQVR4Ae3KIQ4AIBTD0N0/IeHGI3UIRA3ut/Zl+ltXc5++htVAmIAwAWECwgSEKbgthEoIlRAqIVRCqINQB9nDgQd7ktwFo6UpWQAAAABJRU5ErkJggg==');
-}
+    <!-- Ability to add other weeks -->
 
-.dark-theme .pika-next,
-.dark-theme .is-rtl .pika-prev {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAQAAACGG/bgAAAAP0lEQVQ4y+3TMQoAMAgEwfwfAvvjTZ1uGzuvHhBPPGczEG+FRqqRaqQaqUaqkX6QBmmjacvQ6qEVTjsh+xizebvlaWptGXZAAAAAAElFTkSuQmCC');
-}
-
-.dark-theme .pika-table th {
-    color: #999;
-}
-
-.dark-theme .pika-button {
-    color: #fff;
-    background: #222;
-}
-
-.dark-theme .pika-week {
-    color: #999;
-}
-
-.dark-theme .is-today .pika-button {
-    color: #33aaff;
-}
-
-.dark-theme .is-selected .pika-button {
-    color: #fff;
-    background: #33aaff;
-    box-shadow: inset 0 1px 3px #178fe5;
-}
-
-.dark-theme .is-disabled .pika-button {
-    color: #999;
-    opacity: .3;
-}
-
-.dark-theme .pika-button:hover {
-    color: #fff !important;
-    background: #ff8000 !important;
-}
-
-</style>
+	<h1>  </h1>
 
 
-	
+	<form method="POST" action="#">
 
 
-	<h1> Course Scheduler </h1>
+		<label for="date-pick"> Start Date </label>
+		<input type="text" id="start-date" name="startDate" class="date-picker" />
 
 
-	<form>
-		<label for="date-pick"> Pick a Date </label>
-		<input type="text" id="date-pick">
+
+        <label for="date-pick"> Start Time </label>
+        <input type="text" id="start-time" name="startTime" />
+
+
+        <label for="date-pick"> End Time </label>
+        <input type="text" id="end-time" name="endTime" />
+
+
+
+        <!-- 
+        <label for="end-date"> End Date </label>
+        <input type="text" id="end-date" name="endDate" class="date-picker" /> -->
+
+        <!--
+        <label for="date-pick"> Start Time </label>
+        <input type="text" id="start-time" name="startTime" class="date-picker" />
+
+
+        <label for="date-pick"> End Time </label>
+        <input type="text" id="end-time" name="endTime" class="date-picker" />
+        -->
+
+
+
+        <h3> Days Availible </h3>
+
+        <label for="recur-daily"> Monday </label>
+        <input type="checkbox" id="recur-daily">
+
+
+        <label for="recur-daily"> Tuesday </label>
+        <input type="checkbox" id="recur-daily">
+
+
+        <label for="recur-daily"> Wedensday </label>
+        <input type="checkbox" id="recur-daily">
+
+
+        <label for="recur-daily"> Thursday </label>
+        <input type="checkbox" id="recur-daily">
+
+
+        <label for="recur-daily"> Friday </label>
+        <input type="checkbox" id="recur-daily">
+
+        <label for="recur-daily"> Saturday </label>
+        <input type="checkbox" id="recur-daily">
+
+
+        <label for="recur-daily"> Sunday </label>
+        <input type="checkbox" id="recur-daily">
+
+        <label for="recur-weeks"> for how many weeks </label>
+        <input type="text" id="recur-weeks" />
+
+
+
+        <br />
+        <input type="submit" value="Submit" />
+
 	</form>
 
 </body>
@@ -98,10 +147,16 @@
 <script type="text/javascript" src="js/moment.js"></script>
 <script type="text/javascript" src="js/Pikaday-master/pikaday.js"></script>
 <script>
-    var picker = new Pikaday({ 
-    	field: document.getElementById('date-pick'),
-    	bound: true,
-    	format: 'MM/D/YYYY'
-    });
+
+    // Loop Trhough all fields with the date Picker class
+    var fields = document.getElementsByClassName("date-picker");
+
+    for(var i = 0; i < fields.length; i++) {
+        new Pikaday({ 
+            field: fields[i],
+            bound: true,
+            format: 'MM/D/YYYY'
+        });  
+    }
 </script>
 
