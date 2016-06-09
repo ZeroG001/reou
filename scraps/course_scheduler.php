@@ -7,6 +7,25 @@
     ## Set a start date, set the days and for how many weeks.
     ## Repeat until finished.
 
+
+
+
+        try {
+            $db = new PDO("mysql:host=localhost;port=3306;dbname=reou", "root", "s0n!crush");
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //Turns on error reporting and catches the exception
+            $db->exec("SET NAMES 'utf8'");
+        } 
+        catch (Exception $e) {
+            die("There was a problem connecting to the database.");
+        }
+
+        // Database Connection
+        $query = "SELECT * FROM users LIMIT 10";
+        $stmt = $db->prepare($query);
+        $result = $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+
     if($_SERVER['REQUEST_METHOD'] == "POST") {
 
         if(empty($_POST['startDate']) || empty($_POST['endDate']) ) { 
@@ -38,8 +57,8 @@
         # In the array you're going to need to find the time in days between the first date and the second date.
 
         echo "You Submitted the form";
-
     }
+
 
 ?>
 
