@@ -148,6 +148,23 @@ function my_courses_two($ObjectPDO) {
 
 }
 
+function my_courses($ObjectPDO) {
+
+	if( userSignedIn() ) {
+
+		$user_id = $_SESSION['id'];
+		
+		$course = new Course($ObjectPDO);
+		$categories = $course->get_registered_courses($user_id);
+		$categories = scrub_array_output($categories); // Scrub Output
+		return $categories;
+
+	} 
+	else {
+		header("Location:" . course_route("course_category") );
+	}
+
+}
 
 
 ?>

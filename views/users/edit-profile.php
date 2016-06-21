@@ -48,7 +48,7 @@
 
 
 		<label for="bio"> About Yourself </label>
-		<textarea title="bio" name="bio"> <?php echo $user['bio'] ?>  </textarea>
+		<textarea title="bio" name="bio"><?php echo $user['bio'] ?> </textarea>
 
 		<!-- ===== Possably for instructor info ===== -->
 

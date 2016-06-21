@@ -135,18 +135,18 @@ class Course {
 	 public function register_course($params) {
 
 	 	// Check if the Params are in the accepted params List
-		foreach ($params as $param => $value) {
-		 	if(!in_array($param, $this->accepted_params())) {
-		 		die("Form Field " . $param . " is not accepted");	
-		 	}
-		}
+	 	$this->checkAcceptedParams($params);
+
+
 
 		// If the User is already registered fot class
 		if($this->userRegisteredforClass($params['student_id'], $params['course_id'], $params['schedule_id'])) {
 			die("You are already registered for this class (make a popup?)");
 		}
 
+		//TODO - Make sure user has paid for the class for signing them up.
 
+		// Sign User up for class
 	 	$query = "INSERT INTO students_courses (student_id, course_id, schedule_id) 
 	 	VALUES (:student_id, :course_id, :schedule_id)";
 
@@ -327,7 +327,10 @@ class Course {
 	 		"maxClassSize",
 	 		"courseHours",
 	 		"courseDuration",
-	 		"active"
+	 		"active",
+	 		"course_id",
+	 		"student_id",
+	 		"schedule_id"
 	 	);
 
 

@@ -1,9 +1,13 @@
 <?php
-	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	$courses = my_courses($db);
 
 	// Header HTML
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
+
+	//Todo - It should show the course details when clicked
+
+	var_dump($courses);
 ?>
 
 <html>
@@ -35,7 +39,7 @@
 			<?php  foreach ($courses as $k => $course) { ?>
 
 
-				<a class="mycourse-container--box" href="">
+				<a class="mycourse-container--box" href="<?php echo course_route('course_detail', array("id" => $courses['course_id']) ) ?>"
 					<div class="class-container--box-body">
 						<h1> 
 							<?php echo $course['course_name'] ?> 
