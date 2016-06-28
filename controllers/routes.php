@@ -87,6 +87,10 @@
 				return "/reou/course-register".$querystring;
 				break;
 
+			case 'admin':
+				return "/reou/admin";
+				break;
+
 			case 'my_courses':
 				return "/reou/my-courses".$querystring;
 			

@@ -220,7 +220,7 @@
 	 * @param (boolean) whether or not to remove the session variable after showing the message
 	 * @return (boolean)
 	 */
-	function display_alert($type, $clearMessage = false) {
+	function display_alert($type, $clearMessage = true) {
 
 		// var_dump($_SESSION);
 
@@ -234,7 +234,6 @@
 			if($clearMessage) {
 				// Clear the contents of the flash messages
 				unset($_SESSION['flash_message']);
-				
 			}
 
 			return true;

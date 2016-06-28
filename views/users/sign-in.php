@@ -1,6 +1,8 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
+	# users helpers also included
+
 	//$sign_in_page = "../../controllers/signin.php";
 	sign_in($db, $_POST);
 ?>

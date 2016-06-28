@@ -335,11 +335,7 @@ class User {
 
 
 	// Other
-	// ============================================================
-
-
-
-
+	// ===========================================================
 	public function get_user_classes($student_id) {
 
 		// I don't feel this is the most efficient query but it works;

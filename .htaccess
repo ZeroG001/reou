@@ -4,7 +4,7 @@ RewriteEngine on
 DirectoryIndex views/courses/course_category.php
 
 
-# Restrict User from accessing other files they shouldn't
+# Restrict User from accessing other files they shouldn't. Uncomment any items below
 RewriteRule includes - [F,L]
 # RewriteRule helpers - [F,L]
 RewriteRule controllers - [F,L]
@@ -16,6 +16,12 @@ RewriteRule models - [F,L]
 # RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteCond %{REQUEST_FILENAME} !-d
 # RewriteRule ^(.*)$ $1 [L,R=301]
+
+
+# ----- Admin -------
+RewriteRule ^admin$ views/admin/admin.php [L]
+
+
 
 
 # ----- Users ------
