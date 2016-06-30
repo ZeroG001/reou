@@ -1125,3 +1125,21 @@ body {
     margin-left: 15px;
     margin-bottom: 15px;
     width: 47.91%; } }
+/* ===============================
+		    Login Page
+================================== */
+.login-container {
+  padding: 40px 80px;
+  border: 1px solid black;
+  background-color: #f1f1f1; }
+
+.login__form .login__email input,
+.login__form .login__password input {
+  display: block;
+  padding: 18px 15px; }
+
+/* Media Queries 
+===================== */
+/* ------------------------ Medium Screen Size ------------------------ */
+/* ------------------------ Large Screen Size ------------------------- */
+/* ------------------------ Extra Large Screen Size ------------------- */
