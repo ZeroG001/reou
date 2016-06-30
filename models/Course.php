@@ -27,10 +27,19 @@ class Course {
 
 	 	$query = "SELECT * FROM course_category";
 	 	$stmt = $this->db->prepare($query);
-	 	$stmt->execute();
-	 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	 	return $result;
+	 	try {
+	 		$stmt->execute();
+	 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	 		return $result;
+	 	} catch (Exception $e) {
+	 		echo "there was a problem getting the course category";
+	 		echo $e->getMessage();
+
+	 	}
+
+
+	
 	 }
 
 	 public function get_one_course_category($course_id) {
@@ -68,12 +77,29 @@ class Course {
 	 	INNER JOIN course_category cc 
 	 	ON c.category_id=cc.category_id
 	 	WHERE c.category_id = ? AND active = 1";
-	 	$stmt = $this->db->prepare($query);
-	 	$stmt->bindParam(1, $course_id);
-	 	$stmt->execute();
-	 	$result_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-	 	return $result_array;
+	 	try {
+
+	 		$stmt = $this->db->prepare($query);
+	 		$stmt->bindParam(1, $course_id);
+	 		$stmt->execute();
+	 		$result_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	 		return $result_array;
+
+	 	} 
+	 	catch (Exception $e) {
+
+	 		// Flash message saying there wasy a porblem with the data
+	 		$this->add_message("alert", "There was a problem getting the course classes");
+
+	 		// Return empty array to surpress any other errors
+	 		return array();
+	 		
+	 	}
+
+
+	 
 	 }
 
 
@@ -85,14 +111,19 @@ class Course {
 	 	$stmt->bindParam(1, $class_id);
 
 	 	try {
+
 	 		$stmt->execute();
+
 	 	} 
+
 	 	catch (Exception $e) {
-	 		echo "There was a problem getting the class details";
+
+	 		die("There was a peoblem getting the class details, this should not be a die message");
+	 		$this->add_message("alert", "There was a porblem getting the class details");
+
+
 	 	}
 	 	
-	 	$results = $stmt->fetch(PDO::FETCH_ASSOC);
-
 	 	return $results;
 
 	 }
@@ -420,6 +451,8 @@ class Course {
 	 * @return (boolean)
 	 */
 	public static function add_message($type, $message) {
+
+
 		$acceptable_message_types = array("alert","notice","success","error");
 
 
@@ -428,7 +461,12 @@ class Course {
 			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
 		}	
 
-		if (session_status() == PHP_SESSION_ACTIVE) {
+		// if (session_status() == PHP_SESSION_ACTIVE) {
+
+			// If the $_SESSION['flash_Message']['alert'] array does not exists, then create it.
+
+			session_start();
+
 
 			if(!isset($_SESSION['flash_message'])) {
 				$_SESSION['flash_message'] = array();
@@ -442,9 +480,20 @@ class Course {
 			// add messages to the flash message array
 			array_push($_SESSION['flash_message'][$type], $message);
 
-		} else {
-			die(" To add a , you must be logged in.");
-		}	
+		// } else {
+
+
+			// It should show the message even when a user isn't logged in
+
+			// 1. Create a session
+			// 2. Show the message
+			// 3. If the user isn't logged in then unset() that session
+			// 4. return false is the session is null
+
+			// For flash messages, if you aren't loggeed in then show tthe message and clear the session
+			// die("to add a messgae, you must be logged in. this needs to change");
+
+		// }	
 	}
 
 

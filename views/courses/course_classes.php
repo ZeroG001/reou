@@ -11,13 +11,20 @@
 
 	<head>
 
-		<title></title>
+		<title> <?php echo $one_category['category_name'] ?> </title>
 
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css')?>main.css">
 	</head>
 
 	<body>
 
-		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css')?>main.css">
+		<!-- Alert Message  -->
+		<div class="alert">
+			<?php display_alert('alert') ?>
+		</div>
+
 
 		<div class="page-banner">
 			<div class="banner-title-wrapper">

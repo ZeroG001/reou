@@ -62,7 +62,7 @@ class User {
 
 			// ------------------- Run the INSERT QUERY -------------------
 		 	$students_query = "INSERT INTO users 
-		 	(first_name, last_name, email, password, date_created, role) 
+		 	(first_name, last_name, email, password, created_at, role) 
 		 	VALUES (:firstName, :lastName, :email, :password, :createdOn, :role)";
 
 		 	//removet this

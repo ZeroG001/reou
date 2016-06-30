@@ -216,13 +216,14 @@
 	 *
 	 * Shows message added to session's "flash_message" array
  	 *
+ 	 * DEPENDS ON IS SIGNED IN userSignedIn() function
+ 	 *
 	 * @param (String) set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @param (boolean) whether or not to remove the session variable after showing the message
 	 * @return (boolean)
+	 *
 	 */
 	function display_alert($type, $clearMessage = true) {
-
-		// var_dump($_SESSION);
 
 		if ( isset($_SESSION['flash_message'][$type]) ) {
 
@@ -232,8 +233,16 @@
 
 			// clear message from session
 			if($clearMessage) {
+
+
 				// Clear the contents of the flash messages
 				unset($_SESSION['flash_message']);
+
+
+				//If ther user isn't signed in then close the session
+				if(!userSignedIn()) {
+					unset($_SESSION);
+				}
 			}
 
 			return true;

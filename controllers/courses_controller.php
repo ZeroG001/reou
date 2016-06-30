@@ -119,7 +119,7 @@ function course_register($ObjectPDO) {
 		$course->register_course($params);
 
 	} else {
-		//maybe kick the user back to the main screen...
+		// maybe kick the user back to the main screen...
 		die("controller_course register isnt there");
 		
 	}
