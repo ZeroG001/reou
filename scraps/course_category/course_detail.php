@@ -26,7 +26,7 @@
 
 <html>
 	<head>
-		<title></title>
+		<title>Course Details</title>
 	</head>
 
 	<body>

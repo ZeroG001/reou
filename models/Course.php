@@ -103,6 +103,7 @@ class Course {
 	 }
 
 
+	 // Get the information for one class.
 	 public function get_class_details($class_id) {
 
 	 	$query = "SELECT * FROM courses WHERE course_id = ? LIMIT 1";
@@ -113,6 +114,8 @@ class Course {
 	 	try {
 
 	 		$stmt->execute();
+	 		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+	 		return $results;
 
 	 	} 
 
@@ -121,11 +124,12 @@ class Course {
 	 		die("There was a peoblem getting the class details, this should not be a die message");
 	 		$this->add_message("alert", "There was a porblem getting the class details");
 
+	 		// Return an empty array to surpress info
+	 		return array();
+
 
 	 	}
 	 	
-	 	return $results;
-
 	 }
 
 
