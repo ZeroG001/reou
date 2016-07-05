@@ -35,11 +35,11 @@
 
 
 				<div class="login__email">
-					<input type="text" name="email" placeholder="email">
+					<input type="text" name="email" placeholder="Email Address">
 				</div>
 
 				<div class="login__password">
-					<input type="password" name="password" placeholder="password">
+					<input type="password" name="password" placeholder="Password">
 				</div>
 
 				<div class="login__submit">

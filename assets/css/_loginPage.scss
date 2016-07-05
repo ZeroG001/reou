@@ -9,6 +9,7 @@
 	.login__email input,
 	.login__password input {
 		display: block;
+		width: 100%;
 		@include smallPadding;
 
 	}
