@@ -62,7 +62,9 @@
 
 		<div class="picture-container">
 
-			<img src="<?php echo asset_route('img') ?>"; 
+			<img src="<?php echo asset_route('site_img') . "green_pattern.png"?>"; 
+
+			?php echo asset_route('dbimg') . $category['image_filename'] ?>
 		
 		</div>
 

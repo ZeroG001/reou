@@ -122,6 +122,10 @@
 				return "/reou/assets/img/";
 				break;
 
+			case 'site_img':
+				return "/reou/assets/img/site_img/";
+				break;
+
 			case 'dbimg':
 				return "/reou/assets/img/dbimg/";
 				break;
