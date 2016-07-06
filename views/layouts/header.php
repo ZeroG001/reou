@@ -1,5 +1,9 @@
 <?php 
-	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
+
+	# ----- Uncomment this if you run into any problems -----
+	# require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
+
+
 	# course helpers
 	# course class
 ?>

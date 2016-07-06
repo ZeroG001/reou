@@ -475,6 +475,10 @@ th {
 	*/
 /* Font Sizes - Typography
 ---------------------------------- */
+/* Links and anchors 
+----------------------------- */
+/* Button Styles
+--------------------------- */
 /* Element Sizing
 ---------------------------------- */
 /* Helper Mixins 
@@ -1129,18 +1133,41 @@ body {
 		    Login Page
 ================================== */
 .login-container {
-  padding: 40px 80px;
-  border: 1px solid black;
-  background-color: #f1f1f1; }
+  padding: 18px 15px;
+  background-color: #f1f1f1;
+  max-width: 500px;
+  margin: 0px auto; }
 
 .login__form .login__email input,
 .login__form .login__password input {
+  padding: 18px 15px;
+  display: block;
+  width: 100%; }
+
+.login__submit-button {
+  padding: 7px;
+  border: 0px solid black;
+  border-radius: 2px;
+  text-align: center;
+  padding: 18px 15px;
   display: block;
   width: 100%;
-  padding: 18px 15px; }
+  border-color: red; }
+
+.login__signup-link {
+  text-decoration: none;
+  color: #3d96cc;
+  text-align: left;
+  padding: 10px 0px; }
+  .login__signup-link:hover {
+    color: #106fa8; }
 
 /* Media Queries 
 ===================== */
 /* ------------------------ Medium Screen Size ------------------------ */
+@media screen and (min-width: 52em) {
+  .login-container {
+    background-color: white;
+    height: 100%; } }
 /* ------------------------ Large Screen Size ------------------------- */
 /* ------------------------ Extra Large Screen Size ------------------- */

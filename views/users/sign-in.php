@@ -19,6 +19,8 @@
 
 	<body>
 
+		<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php'); ?>
+
 		<div class="login-container"> 
 
 
@@ -26,6 +28,8 @@
 			<!-- ============== Login Form ==================== -->
 
 			<form method="POST" action="" class="login__form">
+
+				<h3> Log into the System! </h3>
 
 				<!-- Alert Message  -->
 				<div class="alert">
@@ -35,24 +39,31 @@
 
 
 				<div class="login__email">
-					<input type="text" name="email" placeholder="Email Address">
+					<input type="text" name="email" class="login__email-input" placeholder="Email Address">
 				</div>
 
 				<div class="login__password">
-					<input type="password" name="password" placeholder="Password">
+					<input type="password" name="password" class="login__password-input" placeholder="Password">
 				</div>
 
 				<div class="login__submit">
-					<input type="submit" value="Log in">
+					<input class="login__submit-button" type="submit" value="Log in">
 				</div>
 
 
-				<div class="">
-					<a class="login__signup" href="<?php echo user_route('sign-up') ?>"> Sign-Up </a>
+				<div class="login__signup">
+					<a class="login__signup-link" href="<?php echo user_route('sign-up') ?>"> Sign-Up </a>
 				</div>
 
 			</form>
 
+		</div>
+
+
+		<div class="picture-container">
+
+			<img src="<?php echo asset_route('img') ?>"; 
+		
 		</div>
 
 	</body>

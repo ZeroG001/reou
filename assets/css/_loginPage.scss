@@ -1,18 +1,38 @@
 .login-container {
-	@include largePadding;
-	border: 1px solid black;
+
+	@include smallPadding;
 	background-color: #f1f1f1;
+	max-width: 500px;
+	margin: 0px auto;
 }
 
 .login__form {
 
 	.login__email input,
 	.login__password input {
-		display: block;
-		width: 100%;
+
 		@include smallPadding;
 
+		display: block;
+		width: 100%;
+		
+
 	}
+}
+
+.login__submit-button {
+	@include buttonFlatMedium;
+	@include smallPadding;
+
+	display: block;
+	width: 100%;
+	border-color: red;
+}
+
+.login__signup-link {
+	@include prettyLink;
+	text-align: left;
+	padding: 10px 0px;
 }
 
 
@@ -24,7 +44,15 @@
 
 /* ------------------------ Medium Screen Size ------------------------ */
 
-@include mquery("medium") { }
+@include mquery("medium") { 
+
+	.login-container {
+		background-color: white;
+		height: 100%;
+	}	
+
+
+}
 
 
 

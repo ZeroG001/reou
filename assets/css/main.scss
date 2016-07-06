@@ -122,7 +122,6 @@ Focus mainly on:
 		-moz-aniamtion: $options;
 		-o-animation: $options;
 		animation: $options;
-		
 	}
 
 
@@ -181,6 +180,54 @@ Focus mainly on:
 		font-size: 1.1rem;
 		letter-spacing: 0.1rem;
 		font-weight: bold;
+	}
+
+
+	/* Links and anchors 
+	----------------------------- */
+
+	@mixin prettyLink {
+		text-decoration: none;
+		color: $lightblue;
+
+		&:hover {
+			color: $darkblue;
+		};
+	}
+
+
+	/* Button Styles
+	--------------------------- */
+
+	@mixin buttonFlatSmall {
+		border-radius: 2px;
+		border: 0px solid black;
+		padding: 5px;
+		text-align: center;
+	}
+
+	@mixin buttonFlatMedium {
+		padding: 7px;
+		border: 0px solid black;
+		border-radius: 2px;
+		text-align: center;
+
+	}
+
+	@mixin buttonFlatLarge {
+		border-radius: 2px;
+		border: 0px solid black;
+		padding: 10px;
+		text-align: center;
+	}
+
+	@mixin buttonFrameSmall {
+		background-color: transparent;
+		padding: 2px;
+		border-width: 2px;
+		border-style: solid;
+		border-radius: 2px;
+		text-align: center;
 	}
 
 
