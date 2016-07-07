@@ -23,8 +23,6 @@
 
 		<div class="login-container"> 
 
-
-
 			<!-- ============== Login Form ==================== -->
 
 			<form method="POST" action="" class="login__form">
@@ -60,7 +58,7 @@
 		</div>
 
 
-		<div class="picture-container">
+		<div class="login__picture-container">
 
 			<img src="<?php echo asset_route('site_img') . "green_pattern.png"?>"; 
 

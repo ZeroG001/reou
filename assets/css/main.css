@@ -1162,6 +1162,9 @@ body {
   .login__signup-link:hover {
     color: #106fa8; }
 
+.login__picture-container {
+  display: none; }
+
 /* Media Queries 
 ===================== */
 /* ------------------------ Medium Screen Size ------------------------ */
@@ -1170,4 +1173,13 @@ body {
     background-color: white;
     height: 100%; } }
 /* ------------------------ Large Screen Size ------------------------- */
+@media screen and (min-width: 70em) {
+  /* disply should be flex */
+  /* left side  should take up only 500px + padding of the screen. right container should take up the test */
+  .login-container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: tomato; } }
 /* ------------------------ Extra Large Screen Size ------------------- */

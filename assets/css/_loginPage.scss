@@ -35,6 +35,10 @@
 	padding: 10px 0px;
 }
 
+.login__picture-container {
+	display: none;
+}
+
 
 
 
@@ -44,8 +48,14 @@
 
 /* ------------------------ Medium Screen Size ------------------------ */
 
+
 @include mquery("medium") { 
 
+	.login-container {
+		background-color: white;
+		height: 100%;
+		
+	}
 
 
 }
@@ -56,9 +66,13 @@
 
 @include mquery("large") {
 
-		.login-container {
-			background-color: red;
-	}	
+	/* disply should be flex */
+	/* left side  should take up only 500px + padding of the screen. right container should take up the test */
+
+	.login-container {
+		@include displayFlex;
+		background-color: tomato;
+	}
 
 }
 
