@@ -42,6 +42,8 @@
 
 
 
+
+
 /* Media Queries 
 ===================== */
 
@@ -71,8 +73,24 @@
 
 	.login-container {
 		@include displayFlex;
+		@include largePadding;
+		justify-content: space-around;
 		background-color: tomato;
+		width: 60em;
+		max-width: none;
+		margin: none;
 	}
+
+
+	.login__form {
+		display: inline-block;
+	}
+
+	.login__picture-container {
+		display: inline-block;
+	}
+
+
 
 }
 

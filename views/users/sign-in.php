@@ -23,6 +23,8 @@
 
 		<div class="login-container"> 
 
+
+			<!-- Left Side  -->
 			<!-- ============== Login Form ==================== -->
 
 			<form method="POST" action="" class="login__form">
@@ -55,16 +57,18 @@
 
 			</form>
 
+
+			<!-- Right Side  -->
+			<div class="login__picture-container">
+
+				<img class="random-box" src="<?php echo asset_route('site_img') . "green_pattern.png"?>" />
+			
+			</div>
+
+
 		</div>
 
 
-		<div class="login__picture-container">
-
-			<img src="<?php echo asset_route('site_img') . "green_pattern.png"?>"; 
-
-			?php echo asset_route('dbimg') . $category['image_filename'] ?>
-		
-		</div>
 
 	</body>
 

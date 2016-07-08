@@ -400,7 +400,7 @@ th {
 ----------------------------------------------------- */
 /* Animation properties */
 /* Helper Animations */
-@-webkit-keyframes fadeIn {
+@-webkit-keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
@@ -408,7 +408,6 @@ th {
     -ms-transform: scale(0.95, 0.95);
     -o-transform: scale(0.95, 0.95);
     transform: scale(0.95, 0.95); }
-
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -416,8 +415,7 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
-
-@-moz-keyframes fadeIn {
+@-moz-keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
@@ -425,7 +423,6 @@ th {
     -ms-transform: scale(0.95, 0.95);
     -o-transform: scale(0.95, 0.95);
     transform: scale(0.95, 0.95); }
-
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -433,8 +430,7 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
-
-@-o-keyframes fadeIn {
+@-o-keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
@@ -442,7 +438,6 @@ th {
     -ms-transform: scale(0.95, 0.95);
     -o-transform: scale(0.95, 0.95);
     transform: scale(0.95, 0.95); }
-
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -450,8 +445,7 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
-
-@keyframes fadeIn {
+@keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
@@ -459,7 +453,6 @@ th {
     -ms-transform: scale(0.95, 0.95);
     -o-transform: scale(0.95, 0.95);
     transform: scale(0.95, 0.95); }
-
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -467,7 +460,6 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
-
 	/* JavaScript-less menu 
 
 		bigSibling = menu title
@@ -544,7 +536,7 @@ body {
   display: block;
   position: relative;
   text-align: center;
-  background-color: #08b599;
+  background-color: #08B599;
   box-sizing: border-box;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2); }
   .main_nav::after {
@@ -576,7 +568,7 @@ body {
 
 .main_subnav {
   box-sizing: border-box;
-  background-color: #3d96cc;
+  background-color: #3D96CC;
   display: none;
   position: absolute;
   right: -2px;
@@ -602,7 +594,7 @@ body {
   .main_nav--menu-button .menu-button--bar {
     display: block;
     position: relative;
-    background-color: #106fa8;
+    background-color: #106FA8;
     width: 100%;
     height: 5px;
     margin: 5px 0px;
@@ -720,7 +712,7 @@ body {
     font-size: 1.1rem;
     letter-spacing: 0.1rem;
     font-weight: bold;
-    background-color: #3d96cc;
+    background-color: #3D96CC;
     color: white; }
   .course-container--box .course-container--box-body {
     padding: 18px 15px; }
@@ -765,7 +757,7 @@ body {
   padding: 50px 0px;
   text-align: center;
   color: white;
-  background-color: #488db6; }
+  background-color: #488DB6; }
   .banner-title-wrapper h1 {
     margin: 0px 0px 21.44px 0px; }
 
@@ -799,7 +791,7 @@ body {
     font-size: 1.1rem;
     letter-spacing: 0.1rem;
     font-weight: bold;
-    background-color: #3d96cc;
+    background-color: #3D96CC;
     color: white; }
   .class-container--box .class-container--box-body {
     padding: 18px 15px; }
@@ -947,8 +939,8 @@ body {
   line-height: 1;
   margin: 0;
   background-color: transparent;
-  border: 1px solid #106fa8;
-  color: #106fa8;
+  border: 1px solid #106FA8;
+  color: #106FA8;
   box-sizing: border-box;
   display: block;
   margin: 0px auto; }
@@ -1004,7 +996,7 @@ body {
   padding: 50px 0px;
   text-align: center;
   color: white;
-  background-color: #488db6; }
+  background-color: #488DB6; }
   .banner-title-wrapper h1 {
     margin: 0px 0px 21.44px 0px; }
 
@@ -1038,7 +1030,7 @@ body {
     font-size: 1.1rem;
     letter-spacing: 0.1rem;
     font-weight: bold;
-    background-color: #3d96cc;
+    background-color: #3D96CC;
     color: white; }
   .mycourse-container--box .mycourse-container--box-body {
     padding: 18px 15px; }
@@ -1156,11 +1148,11 @@ body {
 
 .login__signup-link {
   text-decoration: none;
-  color: #3d96cc;
+  color: #3D96CC;
   text-align: left;
   padding: 10px 0px; }
   .login__signup-link:hover {
-    color: #106fa8; }
+    color: #106FA8; }
 
 .login__picture-container {
   display: none; }
@@ -1181,5 +1173,18 @@ body {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    background-color: tomato; } }
+    padding: 40px 80px;
+    justify-content: space-around;
+    background-color: tomato;
+    width: 60em;
+    max-width: none;
+    margin: none; }
+
+  .login__form {
+    display: inline-block; }
+
+  .login__picture-container {
+    display: inline-block; } }
 /* ------------------------ Extra Large Screen Size ------------------- */
+
+/*# sourceMappingURL=main.css.map */
