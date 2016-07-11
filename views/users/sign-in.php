@@ -27,23 +27,26 @@
 			<!-- Left Side  -->
 			<!-- ============== Login Form ==================== -->
 
+			<div class="login__logo">
+				<div class="login__logo-image"> </div>
+			</div>
+
 			<form method="POST" action="" class="login__form">
 
 				<h3> Log into the System! </h3>
 
 				<!-- Alert Message  -->
-				<div class="alert">
-					<?php display_alert('alert') ?>
-				</div>
+				<?php display_alert('alert') ?>
+
 				<!-- end -->
 
 
 				<div class="login__email">
-					<input type="text" name="email" class="login__email-input" placeholder="Email Address">
+					<input type="text" name="email" class="login__input" placeholder="Email Address">
 				</div>
 
 				<div class="login__password">
-					<input type="password" name="password" class="login__password-input" placeholder="Password">
+					<input type="password" name="password" class="login__input" placeholder="Password">
 				</div>
 
 				<div class="login__submit">
@@ -52,7 +55,7 @@
 
 
 				<div class="login__signup">
-					<a class="login__signup-link" href="<?php echo user_route('sign-up') ?>"> Sign-Up </a>
+					<a class="login__signup-link" href="<?php echo user_route('sign-up') ?>"> Join the academy. Sign up. </a>
 				</div>
 
 			</form>

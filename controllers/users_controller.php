@@ -14,6 +14,14 @@ function sign_in($ObjectPDO, $params) {
 
 	session_start();
 
+
+	// If the user is already signed in then take them to the home page
+	if( userSignedIn() ) {
+
+		header("Location:". course_route('course_category') );
+		
+	}
+
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 
 		if(isset($params['email']) && isset($params['password'])) {
@@ -57,9 +65,12 @@ function sign_in($ObjectPDO, $params) {
 // -------------------------- signup.php --------------------------------
 
 function sign_up($ObjectPDO, $params) {
+
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
+
+	// TODO - On the sign up page if one of the fields has no name value then you get an error. Correct that.
 
 
 	// If signed in bring to course category page

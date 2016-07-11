@@ -501,6 +501,10 @@ body {
 .required_hp {
   display: none; }
 
+.alert {
+  color: #e86b52;
+  margin: 20px 0px; }
+
 /* -------------------------- Media Queries -------------------------- */
 /* ---------- Medium Screen Size ---------- */
 @media screen and (min-width: 52em) {
@@ -1130,11 +1134,13 @@ body {
   max-width: 500px;
   margin: 0px auto; }
 
-.login__form .login__email input,
-.login__form .login__password input {
+.login__form .login__input {
   padding: 18px 15px;
   display: block;
   width: 100%; }
+
+.login__submit {
+  margin: 40px 0px 40px 0px; }
 
 .login__submit-button {
   padding: 7px;
@@ -1144,7 +1150,8 @@ body {
   padding: 18px 15px;
   display: block;
   width: 100%;
-  border-color: red; }
+  background-color: #3D96CC;
+  color: white; }
 
 .login__signup-link {
   text-decoration: none;
@@ -1157,6 +1164,16 @@ body {
 .login__picture-container {
   display: none; }
 
+.login__logo-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: #095ba6;
+  border: 5px solid white;
+  box-sizing: border-box;
+  display: block;
+  margin: 20px auto; }
+
 /* Media Queries 
 ===================== */
 /* ------------------------ Medium Screen Size ------------------------ */
@@ -1165,26 +1182,64 @@ body {
     background-color: white;
     height: 100%; } }
 /* ------------------------ Large Screen Size ------------------------- */
-@media screen and (min-width: 70em) {
-  /* disply should be flex */
-  /* left side  should take up only 500px + padding of the screen. right container should take up the test */
-  .login-container {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 40px 80px;
-    justify-content: space-around;
-    background-color: tomato;
-    width: 60em;
-    max-width: none;
-    margin: none; }
+/* ------------------------ Extra Large Screen Size ------------------- */
+/* ===============================
+		    Signup Page
+================================== */
+.signup-container {
+  padding: 18px 15px;
+  background-color: #f1f1f1;
+  max-width: 500px;
+  margin: 0px auto; }
 
-  .login__form {
-    display: inline-block; }
+.signup__form .signup__input {
+  padding: 18px 15px;
+  display: block;
+  width: 100%; }
 
-  .login__picture-container {
-    display: inline-block; } }
+.signup__submit {
+  margin: 40px 0px 40px 0px; }
+
+.signup__submit-button {
+  padding: 7px;
+  border: 0px solid black;
+  border-radius: 2px;
+  text-align: center;
+  padding: 18px 15px;
+  display: block;
+  width: 100%;
+  background-color: #3D96CC;
+  color: white; }
+
+.login__signup-link {
+  text-decoration: none;
+  color: #3D96CC;
+  text-align: left;
+  padding: 10px 0px; }
+  .login__signup-link:hover {
+    color: #106FA8; }
+
+.signup__picture-container {
+  display: none; }
+
+.signup__logo-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: #095ba6;
+  border: 5px solid white;
+  box-sizing: border-box;
+  display: block;
+  margin: 20px auto; }
+
+/* Media Queries 
+===================== */
+/* ------------------------ Medium Screen Size ------------------------ */
+@media screen and (min-width: 52em) {
+  .signup-container {
+    background-color: white;
+    height: 100%; } }
+/* ------------------------ Large Screen Size ------------------------- */
 /* ------------------------ Extra Large Screen Size ------------------- */
 
 /*# sourceMappingURL=main.css.map */

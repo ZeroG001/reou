@@ -1,4 +1,4 @@
-.login-container {
+.signup-container {
 
 	@include smallPadding;
 	background-color: #f1f1f1;
@@ -6,24 +6,20 @@
 	margin: 0px auto;
 }
 
-.login__form {
+.signup__form {
 
-	.login__input {
-
+	.signup__input {
 		@include smallPadding;
-
 		display: block;
 		width: 100%;
-		
-
 	}
 }
 
-.login__submit {
+.signup__submit {
 	margin: 40px 0px 40px 0px;
 }
 
-.login__submit-button {
+.signup__submit-button {
 	@include buttonFlatMedium;
 	@include smallPadding;
 
@@ -31,7 +27,9 @@
 	width: 100%;
 	background-color: #3D96CC;
 	color: white;
+
 }
+
 
 .login__signup-link {
 	@include prettyLink;
@@ -39,11 +37,11 @@
 	padding: 10px 0px;
 }
 
-.login__picture-container {
+.signup__picture-container {
 	display: none;
 }
 
-.login__logo-image {
+.signup__logo-image {
 	height: 100px;
 	width: 100px;
 	border-radius: 50%;
@@ -68,7 +66,7 @@
 
 @include mquery("medium") { 
 
-	.login-container {
+	.signup-container {
 		background-color: white;
 		height: 100%;
 		
@@ -81,12 +79,10 @@
 
 /* ------------------------ Large Screen Size ------------------------- */
 
-@include mquery("large") {
-
-}
+@include mquery("large") {  }
 
 
 
 /* ------------------------ Extra Large Screen Size ------------------- */
 
-@include mquery("xlarge") { }
+@include mquery("xlarge") {  }

@@ -10,9 +10,16 @@
 
 	<head>
 		<title> Sign Up </title>
+
+		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
+
+
 	</head>
 
 	<body>
+
+	<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php'); ?>
+
 
 	<!--
 
@@ -22,30 +29,56 @@
 	event on the main page.
 
 	-->
-		<h1> Sign up </h1>
 
-		<form method="POST" action="">
+	<div class="signup-container"> 
 
-			<div class="alert">
-				<?php display_alert('alert') ?>
+
+		<div class="login__logo">
+			<div class="login__logo-image"> </div>
+		</div>
+
+
+		<form method="POST" action="" class="signup__form">
+
+			<h1> Sign up </h1>
+
+			<?php display_alert('alert') ?>
+
+			<div class="signup__firstName">
+				<input type="text" name="firstName" class="signup__input" placeholder="First Name">
 			</div>
 
-			<label for="firstName"> First Name </label>
-			<input type="text" name="firstName">
 
-			<label for="lastName"> Last Name </label>
-			<input type="text" name="lastName">
-
-			<label for="email"> Email Address </label> 
-			<input type="text" name="email">
-
-			<label for="password"> Password </label>
-			<input type="password" name="password">
+			<div class="signup__lastName"> 
+				<input type="text" name="lastName" class="signup__input" placeholder="Last Name">
+			</div>
 
 
-			<input type="submit" value="Sign Up">
+			<div class="signup__email">
+				<input type="text" name="email" placeholder="Email" class="signup__input">
+			</div>
+			
+
+			<div class="signup__password"> 
+				<input type="password" name="password" class="signup__input" placeholder="Password" />
+			</div>
+			
+			<div class="signup__submit">
+				<input class="signup__submit-button" type="submit" value="Sign Up">
+			</div>
 
 		</form>
+
+
+	</div>
+
+
+
+
+
+
+
+
 
 	</body>
 

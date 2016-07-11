@@ -21,9 +21,7 @@
 	<body>
 
 		<!-- Alert Message  -->
-		<div class="alert">
-			<?php display_alert('alert') ?>
-		</div>
+		<?php display_alert('alert') ?>
 
 
 		<div class="page-banner">

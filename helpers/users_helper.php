@@ -228,7 +228,9 @@
 		if ( isset($_SESSION['flash_message'][$type]) ) {
 
 			foreach ($_SESSION['flash_message'][$type] as $message) {
+				echo  "<div class='alert'>";
 				echo $message;
+				echo "</div>";
 			}
 
 			// clear message from session
