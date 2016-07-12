@@ -1,10 +1,11 @@
 <?php
+
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
-	require_once(D_ROOT . "/reou/controllers/course_controller.php");
 
-	// update_user($db, $_POST);
-	// $user = edit_user($db);
+	# require_once(D_ROOT . "/reou/controllers/course_controller.php");
+	# update_user($db, $_POST);
+	# $user = edit_user($db);
 	
 ?>
 
@@ -25,13 +26,6 @@
 		<a class="" href="<?php echo user_route('show-users') ?>"> Edit Users </a>
 	</div>
 	
-
-	
-
-
-
-
-
 
 	<form class="update_user--form" method="POST">
 

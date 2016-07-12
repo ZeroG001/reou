@@ -1,0 +1,32 @@
+.main__hero-container {
+	background-image: url("http://10.9.63.86/reou/assets/img/site_img/house-car-gradient.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 800px;
+
+	color: white;
+}
+
+
+.main__header-container {
+
+	width: 350px;
+
+	h1 { 
+		margin: 10px 0px;
+		padding: 0px;
+	 }
+
+	h3 { 
+		padding: 10px 0px;
+		margin: 0px;
+	 }
+}
+
+.main__signup-button {
+	background-color: red;
+	padding: 50px;
+	text-decoration: none;
+}
+
+

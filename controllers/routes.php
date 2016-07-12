@@ -7,6 +7,52 @@
 	// Routes for th entire program
 
 
+
+	// ===================== Users Routes =====================
+
+	function main_route($route, $getVars = "") {
+
+		// Takes the array you pass in and converts it into a query string
+		if (is_array($getVars)) {
+			//$querystring = "?".http_build_query($getVars);
+			$querystring = $getVars['id'];
+		} else {
+			$querystring = $getVars;
+		}
+
+		switch ($route) {
+
+			case 'home':
+				// return something
+				break;
+
+			case 'about-us':
+				// return something
+				break;
+
+			case 'success-stories':
+				// return something
+				break;
+
+			case 'contact':
+				// return something
+				break;
+
+			case '':
+				// return something
+				break;
+			
+			default:
+				// return something
+				break;
+
+		}
+
+	}
+
+
+
+
 	// ===================== Users Routes =====================
 
 	function user_route($route, $getVars = "") {
