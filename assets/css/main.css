@@ -532,6 +532,8 @@ body {
       content: "";
       display: table;
       clear: both; } }
+/* SASS Partials 
+--------------------------------------------------------------- */
 /* ===============================
 		Layout -- Navigation
 ================================== */
@@ -1198,6 +1200,64 @@ body {
   width: 100%; }
 
 .signup__submit {
+  margin: 40px 0px 40px 0px; }
+
+.signup__submit-button {
+  padding: 7px;
+  border: 0px solid black;
+  border-radius: 2px;
+  text-align: center;
+  padding: 18px 15px;
+  display: block;
+  width: 100%;
+  background-color: #3D96CC;
+  color: white; }
+
+.login__signup-link {
+  text-decoration: none;
+  color: #3D96CC;
+  text-align: left;
+  padding: 10px 0px; }
+  .login__signup-link:hover {
+    color: #106FA8; }
+
+.signup__picture-container {
+  display: none; }
+
+.signup__logo-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  background-color: #095ba6;
+  border: 5px solid white;
+  box-sizing: border-box;
+  display: block;
+  margin: 20px auto; }
+
+/* Media Queries 
+===================== */
+/* ------------------------ Medium Screen Size ------------------------ */
+@media screen and (min-width: 52em) {
+  .signup-container {
+    background-color: white;
+    height: 100%; } }
+/* ------------------------ Large Screen Size ------------------------- */
+/* ------------------------ Extra Large Screen Size ------------------- */
+/* ===============================
+		editProfile ( User )
+================================== */
+.profile-container {
+  padding: 18px 15px;
+  background-color: #f1f1f1;
+  max-width: 500px;
+  margin: 0px auto; }
+
+.update-user__form .profile__input {
+  padding: 18px 15px;
+  display: block;
+  width: 100%; }
+
+.profile__submit {
   margin: 40px 0px 40px 0px; }
 
 .signup__submit-button {

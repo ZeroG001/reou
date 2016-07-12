@@ -1,4 +1,5 @@
 <?php
+
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 
@@ -9,11 +10,21 @@
 	//Header HTML
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
-	
 ?>
 
+<head>
 
-<div class="container">
+	<title> Sign In </title>
+
+	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
+
+</head>
+
+<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') . "main.scss" ?>">
+
+
+
+<div class="profile-container">
 
 	<!-- Alert Message  -->
 	<div class="alert">
@@ -37,18 +48,18 @@
 
 		
 		<label for="firstName"> First Name </label>
-		<input type="text" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>">
+		<input type="text" class="profile__input" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>">
 
 		<label for="lastName"> Last Name </label>
-		<input type="text"  id="lastName" name="lastName" value="<?php echo $user['last_name'] ?>">
+		<input type="text" class="profile__input"  id="lastName" name="lastName" value="<?php echo $user['last_name'] ?>">
 
 		<!-- For this you need a way for the user to confirm their new email address. Dont make this site live until you can do that -->
 		<label for="lastName"> Email Address(see comments) </label>
-		<input type="text" id="email" name="email" value="<?php echo $user['email'] ?>"> 
+		<input type="text" class="profile__input" id="email" name="email" value="<?php echo $user['email'] ?>"> 
 
 
 		<label for="bio"> About Yourself </label>
-		<textarea title="bio" name="bio"><?php echo $user['bio'] ?> </textarea>
+		<textarea title="bio" class="profile__input" name="bio"><?php echo $user['bio'] ?> </textarea>
 
 		<!-- ===== Possably for instructor info ===== -->
 

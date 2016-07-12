@@ -14,8 +14,12 @@
 
 <nav class="main_nav">
 
-	<div class="main_nav--logo"> 
-		<img src="http://placehold.it/100x50" alt="logo" />
+	<div class="main_nav--logo">
+
+		<a href="<?php echo course_route('home') ?>">
+			<img src="http://placehold.it/100x50" alt="logo" />
+		</a>
+		
 	</div>
 
 	<div class="main_nav--nav"> 

@@ -1,5 +1,7 @@
 <?php
 	
+	// ** ALL "PRETTY LINKS" are handled by the .htassess file. **
+
 	// Perhaps use this down the line when you are releasing the app.;
 	$absolute_path = "http://reoacademy.com/something";
 	// Routes for th entire program

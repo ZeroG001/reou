@@ -8,6 +8,8 @@
 ?>
 
 
+
+
 <div class="container">
 
 	<!-- Alert Message  -->
@@ -17,7 +19,7 @@
 	</div>
 
 
-	<form class="update_user--form" method="POST">
+	<form class="update_user__form" method="POST">
 
 
 		<input type="hidden" id="action" name="_method" value="patch">

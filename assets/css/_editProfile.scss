@@ -1,0 +1,88 @@
+.profile-container {
+
+	@include smallPadding;
+	background-color: #f1f1f1;
+	max-width: 500px;
+	margin: 0px auto;
+}
+
+.update-user__form {
+
+	.profile__input {
+		@include smallPadding;
+		display: block;
+		width: 100%;
+	}
+}
+
+.profile__submit {
+	margin: 40px 0px 40px 0px;
+}
+
+.signup__submit-button {
+	@include buttonFlatMedium;
+	@include smallPadding;
+
+	display: block;
+	width: 100%;
+	background-color: #3D96CC;
+	color: white;
+
+}
+
+
+.login__signup-link {
+	@include prettyLink;
+	text-align: left;
+	padding: 10px 0px;
+}
+
+.signup__picture-container {
+	display: none;
+}
+
+.signup__logo-image {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background-color: #095ba6;
+	border: 5px solid white;
+	box-sizing: border-box;
+	display: block;
+	margin: 20px auto;
+}
+
+
+
+
+
+
+/* Media Queries 
+===================== */
+
+
+/* ------------------------ Medium Screen Size ------------------------ */
+
+
+@include mquery("medium") { 
+
+	.signup-container {
+		background-color: white;
+		height: 100%;
+		
+	}
+
+
+}
+
+
+
+/* ------------------------ Large Screen Size ------------------------- */
+
+@include mquery("large") {  }
+
+
+
+/* ------------------------ Extra Large Screen Size ------------------- */
+
+@include mquery("xlarge") {  }
