@@ -30,23 +30,31 @@ Focus mainly on:
 
 	/* Color Scheme
 	-------------------------- */
-	$red: red;
 	$darkblue: #106FA8;
+	$hoverDarkBlue: #60ADDA;
+
 	$cleardarkblue: rgba(16,111,168, 0.9);
 	$lightblue: #3D96CC;
-	$lightgray: #F8F8F8;
+	$lightgray: #F1F1F1;
 	$clearlightblue: rgba(97,189,244, 0.3);
 	$duskblue: #488DB6;
 	$clearduskblue: rgba(72,141,182,0.9);
 	$toadgreen: #08B599;
+	$hoverToadGreen: #2CBDA5;
 	$toadgreenclear: rgba(8,181,153,0.9);
 	$orange: #F5AC49;
 	$action: #F55818;
 	$headertext: #002942;
+
+	
+	
+	/* Font and typographpy 
+	---------------------------- */
+	
 	$fontStack: 'Open Sans', sans-serif;
 
-	/* Font Sizes 
-	---------------------------- */
+
+
 
 
 
@@ -162,7 +170,7 @@ Focus mainly on:
 	---------------------------------- */
 
 	@mixin headerContent {
-		color: $darkblue;
+		/*color: $darkblue;*/
 		font-size: 3rem;
 		margin: 0;
 		padding: 30px 0px;
@@ -352,7 +360,7 @@ Focus mainly on:
 
 
 body {
-	background-color: #f1f1f1;
+	background-color: $lightgray;
 }
 
 .wrap {

@@ -3,8 +3,9 @@
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 
 	update_user($db, $_POST);
-	$user = edit_user($db);
 	
+
+	var_dump($_SESSION);	
 ?>
 
 

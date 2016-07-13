@@ -7,21 +7,15 @@
 	$user = edit_profile($db);
 
 
-	//Header HTML
+	// ----------------- Header HTML --------------------
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
 ?>
 
 <head>
-
 	<title> Sign In </title>
-
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
-
 </head>
-
-<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') . "main.scss" ?>">
-
 
 
 <div class="profile-container">
@@ -36,56 +30,76 @@
 
 	<form class="update_user--form" method="POST" enctype="multipart/form-data">
 
+		<h2> My Profile Information </h2>
+
 
 		<input type="hidden" id="action" name="_method" value="patch">
 
 
-		<!-- Bulletproof -->
+		<!-- Bulletproof Photo upload system -->
 		<!-- Uncomment this when you're ready to upload images
 	    <input type="hidden" id="image-upload--size" name="MAX_FILE_SIZE" value="1000000"/>
 	    <input type="file" id="image-upload--file" name="profilePicture"/>
 		-->
 
-		
-		<label for="firstName"> First Name </label>
-		<input type="text" class="profile__input" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>">
-
-		<label for="lastName"> Last Name </label>
-		<input type="text" class="profile__input"  id="lastName" name="lastName" value="<?php echo $user['last_name'] ?>">
-
-		<!-- For this you need a way for the user to confirm their new email address. Dont make this site live until you can do that -->
-		<label for="lastName"> Email Address(see comments) </label>
-		<input type="text" class="profile__input" id="email" name="email" value="<?php echo $user['email'] ?>"> 
+		<div class="profile__input-group">
+			<label for="firstName"> First Name </label>
+			<input type="text" class="profile__input" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>" />
+		</div>
 
 
-		<label for="bio"> About Yourself </label>
-		<textarea title="bio" class="profile__input" name="bio"><?php echo $user['bio'] ?> </textarea>
+		<div class="profile__input-group">
+			<label for="lastName"> Last Name </label>
+			<input type="text" class="profile__input"  id="lastName" name="lastName" value="<?php echo $user['last_name'] ?>" />
+		</div>
+
+
+		<div class="profile__input-group">
+			<!-- For this you need a way for the user to confirm their new email address. Dont make this site live until you can do that -->
+			<label for="lastName"> Email Address ( needs work see comments ) </label>
+			<input type="text" class="profile__input" id="email" name="email" value="<?php echo $user['email'] ?>" /> 
+		</div>
+
+
+		<div class="profile__input-group">
+			<label for="bio"> About Yourself </label>
+			<textarea title="bio" class="profile__input" name="bio"><?php echo $user['bio'] ?> </textarea>
+		</div>
 
 		<!-- ===== Possably for instructor info ===== -->
 
-		<!-- <label for="lastName"> Phone Number </label>
-		<input type="text" id="phone" /> -->
 
 		<!-- ===== Admin Functions ===== -->
+		<div class="profile__input-group">
+			<label for="role"> Role </label>
+			<select id="role" name="role">
+				<option value="student" <?php echo displaySelected("student", $user['role']) ?>   > Student </option>
+				<option value="instructor" <?php echo displaySelected("instructor", $user['role']) ?> > Instructor </option>
+				<option value="admin" <?php echo displaySelected("admin", $user['role']) ?> > Administrator </option>
+			</select>
+		</div>
 
-		<label for="role"> Role </label>
 
-		<select id="role" name="role">
-			<option value="student" <?php echo displaySelected("student", $user['role']) ?>   > Student </option>
-			<option value="instructor" <?php echo displaySelected("instructor", $user['role']) ?> > Instructor </option>
-			<option value="admin" <?php echo displaySelected("admin", $user['role']) ?> > Administrator </option>
-		</select>
+		<div class="profile__input-group">
+			<label for="active"> User Active </label>
+			<input type="checkbox" name="active" id="active" value="1" <?php echo displayChekbox($user['active']) ?> />
+		</div>
 
-		<label for="active"> User Active </label>
-		<input type="checkbox" name="active" id="active" value="1" <?php echo displayChekbox($user['active']) ?> >
 
-		<label> Date Created </label>
-		<span> 12/20/2015 (filler text) </span>
+		<div class="profile__input-group">
+			<label> Date Created </label>
+			<span> 12/20/2015 (filler text) </span>
+		</div>
 
-		<label> Last Updated On </label>
-		<span> 1/20/2016 (filler text) </span>
 
-		
+		<div class="profile__input-group">
+			<label> Last Updated On </label>
+			<span> 1/20/2016 (filler text) </span>
+		</div>
+
+		<div class="profile__input-group">
+			<input type="submit" class="profile__submit-button" value="Save Settings" />
+		</div>
 
 		<?php // Please do not erase the required_hp div. This is a honeypot field to help reduce spam ?>
 		<div class="required_hp">
@@ -95,11 +109,17 @@
 
 		<!-- use the hiddent field to tell which user needs to be updated -->
 		<input type="hidden" id="userId" name="userId" value="<?php echo $user['id'] ?>">
-		
-		<input type="submit"> Update User </input>
 	</form>
 
 
+</div>
+
+<div class="profile__sidebar">
+	<a class="profile__sidebar-item" href="<?php ?>"> My Courses </a>
+	<a class="profile__sidebar-item" href="<?php ?>"> My Course Schedules </a>
+	<a class="profile__sidebar-item" href="<?php ?>"> My account and invoices </a>
+	<a class="profile__sidebar-item" href="<?php ?>"> My ConEd Hours </a>
+	<a class="profile__sidebar-item" href="<?php ?>"> Change Photo </a>
 </div>
 
 

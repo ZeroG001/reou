@@ -12,8 +12,6 @@ $navHeight: 71px;
 	box-sizing: border-box;
 	@include mdlBoxShadow;
 	@include clearfix;
-
-
 }
 
 
@@ -37,11 +35,13 @@ $navHeight: 71px;
 	display: inline-block;
 	vertical-align: middle;
 	box-sizing: border-box;
+	text-decoration: none;
 	@include smallPadding;
 	
 
 	&:hover {
-		
+		background-color: $hoverToadGreen;
+
 	}
 
 	&:hover>.main_subnav {
@@ -72,6 +72,10 @@ $navHeight: 71px;
 		color: white;
 		text-decoration: none;
 		@include smallPadding;
+
+		&:hover {
+			background-color: $hoverDarkBlue;
+		}
 
 	}
 }

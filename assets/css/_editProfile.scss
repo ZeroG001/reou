@@ -2,24 +2,80 @@
 
 	@include smallPadding;
 	background-color: #f1f1f1;
-	max-width: 500px;
 	margin: 0px auto;
+
 }
 
-.update-user__form {
+
+.profile__sidebar {
+
+	/* display: none; */
+
+	display: block;
+
+	background-color: #fff;
+	@include smallPadding;
+
+
+	.profile__sidebar-item {
+		text-decoration: none;
+		color: $darkblue;
+		display: block;
+		@include smallPadding;
+
+		&:hover {
+			@include transition(background-color 0.2s ease);
+			background-color: $lightgray;
+		}
+	}
+}
+
+
+.update_user--form {
+
+
+	.profile__input-group {
+		margin: 35px 0px;
+
+		textarea { resize: none }
+	}
+
 
 	.profile__input {
-		@include smallPadding;
+
+		padding: 10px;
+		color: #727570;
 		display: block;
 		width: 100%;
+
 	}
+
+
+	.profile__submit-button {
+		background-color: $darkblue;
+		color: white;
+		border: 0px solid black;
+		border-radius: 3px;
+		padding: 30px;
+
+		
+
+		&:hover {
+			background-color: $hoverDarkBlue;
+			@include transition(background-color 0.3s ease);
+		}
+	}
+
+
 }
 
 .profile__submit {
 	margin: 40px 0px 40px 0px;
 }
 
+
 .signup__submit-button {
+
 	@include buttonFlatMedium;
 	@include smallPadding;
 
@@ -32,16 +88,23 @@
 
 
 .login__signup-link {
+
 	@include prettyLink;
 	text-align: left;
 	padding: 10px 0px;
+
 }
+
 
 .signup__picture-container {
+
 	display: none;
+
 }
 
+
 .signup__logo-image {
+
 	height: 100px;
 	width: 100px;
 	border-radius: 50%;
@@ -50,10 +113,8 @@
 	box-sizing: border-box;
 	display: block;
 	margin: 20px auto;
+
 }
-
-
-
 
 
 
@@ -61,28 +122,21 @@
 ===================== */
 
 
-/* ------------------------ Medium Screen Size ------------------------ */
+@include mquery("medium") {
 
-
-@include mquery("medium") { 
-
-	.signup-container {
-		background-color: white;
-		height: 100%;
-		
+	.profile-container {
+		width: 49em;
+		margin: 0px auto;
 	}
-
 
 }
 
 
+@include mquery("large") { 
 
-/* ------------------------ Large Screen Size ------------------------- */
-
-@include mquery("large") {  }
-
+}
 
 
-/* ------------------------ Extra Large Screen Size ------------------- */
+@include mquery("xlarge") { 
 
-@include mquery("xlarge") {  }
+}

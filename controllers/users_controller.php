@@ -119,6 +119,7 @@ function edit_profile($ObjectPDO) {
 		die("You should not be here");
 	}
 
+
 	// If the user is not an admin
 	if( userSignedIn() && !userIsAdmin() ) {
 
@@ -135,6 +136,7 @@ function edit_profile($ObjectPDO) {
 		return $results;
 	}
 
+
 	// If the user is an Admin
 	if( userSignedIn() && userIsAdmin() ) {
 
@@ -145,22 +147,21 @@ function edit_profile($ObjectPDO) {
 		$user = new User($ObjectPDO);
 		$results = $user->get_user_details($_GET);
 
-
 		// Todo - Make this so that you get the count of the results instrad of boolean
 		if(!$results) {
 			redirectHome();
 			return false;
 		}
 		
-
 		return $results;
 
 	}
 
-
 	die("edit_profile ran into a critical error. You must be signed in to continue");
-
+	
 }
+
+
 
 
 // --------------------------------- update_user ----------------------------------
@@ -187,16 +188,38 @@ function update_user($ObjectPDO, $params) {
 			$user = new User($ObjectPDO);
 
 
-			// Die. If the user tried to edit another user
-			if( $_GET['userId'] != $_POST['userId'] ) {
-				add_message("error", "An error occured when trying to update the user");
-				header( "Location:" . $_SERVER['REQUEST_URI']);
-				die();
+			// Die. If the user tried to edit another user. This wont work because a notmal user is able to edit
+			// from session while admin edits from get.
+			// if( $_GET['userId'] != $_POST['userId'] ) {
+			// 	add_message("error", "An error occured when trying to update the user");
+			// 	header( "Location:" . $_SERVER['REQUEST_URI']);
+			// 	die();
+			// }
+
+			// Make sure a user cannot edit another user unless they are an admin
+			// Do something if there is no session of the session is no loger tehr
+
+
+			// If the user isn't an admin and they are trying to modify another user then throw message;\
+			if(!userIsAdmin()) {
+				if( $_SESSION['id'] != $_POST['userId'] ) {
+					add_message("error", "there was a problem updating the user");
+					header( "Location:" . $_SERVER['REQUEST_URI']);
+					die();
+				}
 			}
+
+			// The user should not be able to update if the email already exists in the system
+
+
+			// Admins Should not be able to change the email address
+
+
+
 
 
 			if( $user->update_user($_POST) ) {
-				add_message("alert", "User Successfully Updated");
+				add_message("alert", "Profile has been Successfully Updated");
 				header( "Location:" . $_SERVER['REQUEST_URI']);
 				die();
 			} 
@@ -205,7 +228,7 @@ function update_user($ObjectPDO, $params) {
 			}
 		} 
 		else {
-			die("update user error patch method invalid");
+			die("crital update user error. Incorrect update method used");
 		}
 	}
 
@@ -274,7 +297,7 @@ function show_users($ObjectPDO) {
 		if( !isset($_SERVER['HTTP_REFERER']) ) {
 			header("Location:". course_route('course_category') );
 		} else {
-			header("Location:". $_SERVER['HTTP_REFERER']);
+			// header("Location:". $_SERVER['HTTP_REFERER']);
 		}
 	}
 

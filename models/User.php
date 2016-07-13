@@ -62,8 +62,8 @@ class User {
 
 			// ------------------- Run the INSERT QUERY -------------------
 		 	$students_query = "INSERT INTO users 
-		 	(first_name, last_name, email, password, created_at, role) 
-		 	VALUES (:firstName, :lastName, :email, :password, :createdOn, :role)";
+		 	(first_name, last_name, email, password, created_at, role, active) 
+		 	VALUES (:firstName, :lastName, :email, :password, :createdOn, :role, '1')";
 
 		 	//removet this
 		 	$defaultRole = "strudent";

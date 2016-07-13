@@ -382,7 +382,7 @@ th {
 ------------------------------------------- */
 /* Color Scheme
 -------------------------- */
-/* Font Sizes 
+/* Font and typographpy 
 ---------------------------- */
 /* SASS Mixins
 --------------------------------------------- */
@@ -549,23 +549,53 @@ body {
   background-image: url("http://10.9.63.86/reou/assets/img/site_img/house-car-gradient.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 800px;
-  color: white; }
+  height: 800px; }
 
 .main__header-container {
-  width: 350px; }
+  max-width: 500px;
+  text-align: center;
+  margin: 100px auto 0px auto; }
   .main__header-container h1 {
-    margin: 10px 0px;
-    padding: 0px; }
+    text-shadow: 1px 1px gray;
+    font-size: 2.5rem;
+    padding: 30px 0px;
+    margin: 15px 0px;
+    padding: 0px;
+    color: white; }
   .main__header-container h3 {
+    text-shadow: 1px 1px gray;
+    box-sizing: border-box;
     padding: 10px 0px;
-    margin: 0px; }
+    margin: 15px 0px;
+    color: #fff;
+    font-weight: 400; }
+  .main__header-container .main__signup-button {
+    display: block;
+    background-color: #08b599;
+    color: #fff;
+    box-sizing: border-box;
+    padding: 30px;
+    margin: 15px 0px;
+    border-radius: 5px;
+    text-align: center;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+    transition: 0.5s ease; }
+    .main__header-container .main__signup-button:hover {
+      background-color: #106fa8; }
 
 .main__signup-button {
   background-color: red;
   padding: 50px;
   text-decoration: none; }
 
+@media screen and (min-width: 52em) {
+  .main__header-container {
+    text-align: left;
+    margin: 100px 0px 0px 0px; }
+    .main__header-container .main__signup-button {
+      width: 200px; } }
 /* Layout -- Navigation
 ------------------------- */
 /* ---------- Navigation ---------- */
@@ -596,7 +626,10 @@ body {
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
+  text-decoration: none;
   padding: 18px 15px; }
+  .main_nav--item:hover, .main_nav--item__menu-button:hover {
+    background-color: #2cbda5; }
   .main_nav--item:hover > .main_subnav, .main_nav--item__menu-button:hover > .main_subnav {
     display: inline-block; }
 
@@ -619,6 +652,8 @@ body {
     color: white;
     text-decoration: none;
     padding: 18px 15px; }
+    .main_subnav .main_subnav--item:hover {
+      background-color: #60adda; }
 
 .main_nav--menu-button {
   position: relative;
@@ -757,7 +792,6 @@ body {
 
 /* Media Queries 
 ===================== */
-/* ------------------------ Medium Screen Size ------------------- */
 @media screen and (min-width: 52em) {
   .course-container--box {
     display: inline-block;
@@ -1277,13 +1311,46 @@ body {
 .profile-container {
   padding: 18px 15px;
   background-color: #f1f1f1;
-  max-width: 500px;
   margin: 0px auto; }
 
-.update-user__form .profile__input {
-  padding: 18px 15px;
+.profile__sidebar {
+  /* display: none; */
+  display: block;
+  background-color: #fff;
+  padding: 18px 15px; }
+  .profile__sidebar .profile__sidebar-item {
+    text-decoration: none;
+    color: #106fa8;
+    display: block;
+    padding: 18px 15px; }
+    .profile__sidebar .profile__sidebar-item:hover {
+      -webkit-transition: background-color 0.2s ease;
+      -moz-transition: background-color 0.2s ease;
+      -o-transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease;
+      background-color: #f1f1f1; }
+
+.update_user--form .profile__input-group {
+  margin: 35px 0px; }
+  .update_user--form .profile__input-group textarea {
+    resize: none; }
+.update_user--form .profile__input {
+  padding: 10px;
+  color: #727570;
   display: block;
   width: 100%; }
+.update_user--form .profile__submit-button {
+  background-color: #106fa8;
+  color: white;
+  border: 0px solid black;
+  border-radius: 3px;
+  padding: 30px; }
+  .update_user--form .profile__submit-button:hover {
+    background-color: #60adda;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; }
 
 .profile__submit {
   margin: 40px 0px 40px 0px; }
@@ -1322,10 +1389,7 @@ body {
 
 /* Media Queries 
 ===================== */
-/* ------------------------ Medium Screen Size ------------------------ */
 @media screen and (min-width: 52em) {
-  .signup-container {
-    background-color: white;
-    height: 100%; } }
-/* ------------------------ Large Screen Size ------------------------- */
-/* ------------------------ Extra Large Screen Size ------------------- */
+  .profile-container {
+    width: 49em;
+    margin: 0px auto; } }

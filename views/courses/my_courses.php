@@ -1,4 +1,5 @@
 <?php
+
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	$courses = my_courses($db);
 
@@ -7,7 +8,6 @@
 
 	//Todo - It should show the course details when clicked
 
-	var_dump($courses);
 ?>
 
 <html>

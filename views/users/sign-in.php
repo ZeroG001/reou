@@ -33,11 +33,10 @@
 
 			<form method="POST" action="" class="login__form">
 
-				<h3> Log into the System! </h3>
+				<h2> Log into the Academy </h2>
 
 				<!-- Alert Message  -->
 				<?php display_alert('alert') ?>
-
 				<!-- end -->
 
 

@@ -6,6 +6,7 @@
 	margin: 0px auto;
 }
 
+
 .login__form {
 
 	.login__input {
@@ -19,9 +20,11 @@
 	}
 }
 
+
 .login__submit {
 	margin: 40px 0px 40px 0px;
 }
+
 
 .login__submit-button {
 	@include buttonFlatMedium;
@@ -33,15 +36,18 @@
 	color: white;
 }
 
+
 .login__signup-link {
 	@include prettyLink;
 	text-align: left;
 	padding: 10px 0px;
 }
 
+
 .login__picture-container {
 	display: none;
 }
+
 
 .login__logo-image {
 	height: 100px;

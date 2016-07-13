@@ -176,7 +176,7 @@
 			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
 		}	
 
-		if (session_status() == PHP_SESSION_ACTIVE) {
+		if ( session_status() == PHP_SESSION_ACTIVE ) {
 
 			if(!isset($_SESSION['flash_message'])) {
 				$_SESSION['flash_message'] = array();

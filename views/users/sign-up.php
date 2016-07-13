@@ -40,7 +40,7 @@
 
 		<form method="POST" action="" class="signup__form">
 
-			<h1> Sign up </h1>
+			<h2> Sign up </h2>
 
 			<?php display_alert('alert') ?>
 
