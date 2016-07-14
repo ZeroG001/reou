@@ -6,6 +6,7 @@ $navHeight: 71px;
 .main_nav {
 
 	display: block;
+	z-index: 10;
 	position: relative;
 	text-align: center;
 	background-color: $toadgreen;

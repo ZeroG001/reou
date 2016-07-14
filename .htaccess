@@ -60,6 +60,7 @@ RewriteRule ^course-category$ views/courses/course_category.php [L]
 RewriteRule ^courses/([a-zA-Z0-9]+)$ views/courses/course_classes.php?id=$1 [L]
 RewriteRule ^course-detail/([a-zA-Z0-9]+)$ views/courses/course_detail.php?id=$1 [L]
 RewriteRule ^my-courses$ views/courses/my_courses.php [L]
+RewriteRule ^create-course$ views/courses/course_create.php [L]
 
 
 # ---------- Examples ----------

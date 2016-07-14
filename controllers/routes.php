@@ -141,6 +141,11 @@
 
 			case 'my_courses':
 				return "/reou/my-courses".$querystring;
+				break;
+
+			case 'create_course':
+				return "/reou/create-course".$querystring;
+				break;
 			
 			default:
 				return "/reou/course-category/".$querystring;

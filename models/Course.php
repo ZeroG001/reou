@@ -261,7 +261,6 @@ class Course {
 	 function create_course($params) {
 
 	 	//Scrub the Params. Verify, Filter and Sanitize.
-
 	 	if(!$this->checkAcceptedParams($params)) {
 	 		die("those params aren't acceptable");
 	 	}
@@ -293,6 +292,7 @@ class Course {
 
 		 	$stmt->bindParam(':courseName', $params['courseName']);
 		 	$stmt->bindParam(':courseDesc', $params['courseDesc']);
+		 	$stmt->bindParam('categoryId', $params['categoryId']);
 		 	$stmt->bindParam(':courseNumber', $params['courseNumber']);
 		 	$stmt->bindParam(':courseCost', $params['courseCost']);
 		 	$stmt->bindParam(':courseLocation', $params['courseLocation']);
@@ -301,9 +301,9 @@ class Course {
 		 	$stmt->bindParam(':instructorId', $params['instructorId']);
 		 	$stmt->bindParam(':minClassSize', $params['minClassSize']);
 		 	$stmt->bindParam(':maxClassSize', $params['maxClassSize']);
+		 	$stmt->bindParam('active', $params['active']);
 		 	$stmt->bindParam(':courseHours', $params['courseHours']);
 		 	$stmt->bindParam(':courseDuration', $params['courseDuration']);
-		 	$stmt->bindParam(':active', $params['active']);
 		 	
 		 	$stmt->execute();
 
@@ -312,6 +312,7 @@ class Course {
 		} 
 		catch (Excaption $e) {
 
+			$error_message = $e->getMessage();
 			return false;
 
 		}
@@ -341,7 +342,7 @@ class Course {
 	/**
 	 * checkAcceptedParams
 	 *
-	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. The Script will stop if the parameters are bad.
+	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. Script stops if the parameters are bad.
 	 * the params HAVE to the the camel case
 	 *
 	 * @param (Array) The Array containing $_POST params that are to be checked
@@ -417,7 +418,6 @@ class Course {
 	 					array_push($error_messages, array("type" => "alert", "message" => "The Course name is invalid"));
 	 					$paramsValid = false;
 	 				}
-
 	 			break;
 
 
@@ -425,6 +425,7 @@ class Course {
 	 				$params[$k] = $params[$k];
 	 			break;
 	 		}
+
 	 	}
 
 	 	//If display error is on then the error will show
@@ -434,20 +435,13 @@ class Course {
 	 		}	
 	 	}
 
-	 	if($paramsValid) {
-	 		return false;
-	 	} 
-	 	else {
-	 		return false;
-	 	}
+	 	// Returns True or False;
+	 	return $paramsValid;
 
 	}
 
 
-
-
-	/**
-	 * add_message();
+	 /* add_message();
 	 *
 	 * Add a message to the $_SESSION['flash_message'] array
 	 *
@@ -455,8 +449,6 @@ class Course {
 	 * @return (boolean)
 	 */
 	public static function add_message($type, $message) {
-
-
 		$acceptable_message_types = array("alert","notice","success","error");
 
 
@@ -465,12 +457,7 @@ class Course {
 			throw new Exception("The function accepts types of alert, notice, success, and error", 1);
 		}	
 
-		// if (session_status() == PHP_SESSION_ACTIVE) {
-
-			// If the $_SESSION['flash_Message']['alert'] array does not exists, then create it.
-
-			session_start();
-
+		if (session_status() == PHP_SESSION_ACTIVE) {
 
 			if(!isset($_SESSION['flash_message'])) {
 				$_SESSION['flash_message'] = array();
@@ -484,10 +471,8 @@ class Course {
 			// add messages to the flash message array
 			array_push($_SESSION['flash_message'][$type], $message);
 
-		// } else {
 
-
-			// It should show the message even when a user isn't logged in
+						// It should show the message even when a user isn't logged in
 
 			// 1. Create a session
 			// 2. Show the message
@@ -497,8 +482,11 @@ class Course {
 			// For flash messages, if you aren't loggeed in then show tthe message and clear the session
 			// die("to add a messgae, you must be logged in. this needs to change");
 
-		// }	
+		} else {
+			die("session message was not able to show, make it so that something useful happens when the flash message does not show up");
+		}	
 	}
+
 
 
 

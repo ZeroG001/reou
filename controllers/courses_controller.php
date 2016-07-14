@@ -21,6 +21,7 @@ function course_category($ObjectPDO) {
 
 
 
+
 // --------------- course_classes.php ---------------------
 
 function course_classes($ObjectPDO) {
@@ -41,6 +42,7 @@ function course_classes($ObjectPDO) {
 	return $result_array;
 
 }
+
 
 
 
@@ -69,6 +71,8 @@ function course_detail($ObjectPDO) {
 }
 
 
+
+
 // --------------- course_create.php -----------------------
 
 function course_create($ObjectPDO) {
@@ -83,16 +87,23 @@ function course_create($ObjectPDO) {
 
 		// _method needs to be removed on submit.
 		unset($params['_method']);
-		
+
+
+		//Check and scrub parameters
+
 		$course = new Course($ObjectPDO);
 
 
 		// If the course was created, show sucess message. Else, show an error message.
 		if($course->create_course($params)) {
-			add_message("alert", "Course has been sucessfully created");
+
+			add_message("alert", "the course was added sucessfully");
 			header("Location:". $_SERVER['HTTP_REFERER']);
 			die();
+
 		} else {
+
+			add_message("alert", "there was a problem creating the class");
 			return $params;
 		}
 		
@@ -128,8 +139,10 @@ function course_register($ObjectPDO) {
 
 
 
+
 // --------------- my-courses.php ---------------------
 
+// I don't know why I created this function. remove it when finished
 function my_courses_two($ObjectPDO) {
 
 	if( userSignedIn() ) {
@@ -147,6 +160,9 @@ function my_courses_two($ObjectPDO) {
 	}
 
 }
+
+
+
 
 function my_courses($ObjectPDO) {
 

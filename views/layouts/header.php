@@ -51,6 +51,8 @@
 
 				<?php  if( userIsAdmin()) { ?>
 					<a class="main_subnav--item" href="<?php echo user_route('show-users') ?>"> Edit Users </a>
+					<a class="main_subnav--item" href="<?php echo "/reou/views/admin" ?>"> Admin Center ( test ) </a>
+					<a class="main_subnav--item" href="<?php echo course_route('create_course')?>"> Create Course </a>
 				<?php } ?>
 
 			</nav>

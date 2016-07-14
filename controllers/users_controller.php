@@ -14,7 +14,6 @@ function sign_in($ObjectPDO, $params) {
 
 	session_start();
 
-
 	// If the user is already signed in then take them to the home page
 	if( userSignedIn() ) {
 
@@ -53,10 +52,7 @@ function sign_in($ObjectPDO, $params) {
 				die();
 			}
 		} 
-
 	} 
-
-
 }
 
 
@@ -134,6 +130,7 @@ function edit_profile($ObjectPDO) {
 		$results = $user->get_user_details($params);
 		
 		return $results;
+
 	}
 
 
@@ -166,6 +163,16 @@ function edit_profile($ObjectPDO) {
 
 // --------------------------------- update_user ----------------------------------
 
+
+/**
+ * update_user($params) 
+ *
+ * Update a user using the parameters submitted. Don't worry only allowed params can be submitted.
+ *
+ * @param (Obect) Accepts the PDO Object
+ * @param (Array) params array submitted from form
+ * @return (params)
+ */
 function update_user($ObjectPDO, $params) {
 
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");

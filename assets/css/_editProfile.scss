@@ -1,24 +1,24 @@
-.profile-container {
 
-	@include smallPadding;
-	background-color: #f1f1f1;
-	margin: 0px auto;
 
+/* ------------------ Left Sidebar ------------------ */
+
+.profile__sidebar-container {
+	box-sizing: border-box;
 }
 
 
 .profile__sidebar {
 
 	/* display: none; */
-
+	z-index: 0;
 	display: block;
-
+	box-sizing: border-box;
 	background-color: #fff;
-	@include smallPadding;
 
 
 	.profile__sidebar-item {
 		text-decoration: none;
+		text-align: center;
 		color: $darkblue;
 		display: block;
 		@include smallPadding;
@@ -30,111 +30,184 @@
 	}
 }
 
+.profile__logo {
+
+	padding: 30px 0px;
+
+	.profile__logo-image {
+		height: 100px;
+		width: 100px;
+		border-radius: 50%;
+		background-color: #095ba6;
+		border: 5px solid white;
+		box-sizing: border-box;
+		display: block;
+		margin: 0px auto;
+	}
+
+	a {
+		text-decoration: none;
+		text-align: center;
+		display: block;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+}
+
+
+
+
+
+
+/* ------------------ Main Content ------------------ */
+
+.profile-container {
+	position: relative;
+}
+
+
+.profile__form-container {
+	@include smallPadding;
+	background-color: #f1f1f1;
+	margin: 0px auto;
+}
+
+
 
 .update_user--form {
 
-
 	.profile__input-group {
 		margin: 35px 0px;
-
 		textarea { resize: none }
+		label { margin-bottom: 10px; }
 	}
 
 
 	.profile__input {
 
 		padding: 10px;
+		margin-top: 5px;
 		color: #727570;
 		display: block;
 		width: 100%;
+		
 
 	}
 
 
 	.profile__submit-button {
+
+		@include buttonFlatMedium;
+		@include smallPadding;
 		background-color: $darkblue;
 		color: white;
-		border: 0px solid black;
-		border-radius: 3px;
 		padding: 30px;
-
-		
 
 		&:hover {
 			background-color: $hoverDarkBlue;
 			@include transition(background-color 0.3s ease);
 		}
+
 	}
 
-
 }
+
+
 
 .profile__submit {
 	margin: 40px 0px 40px 0px;
 }
 
 
-.signup__submit-button {
-
-	@include buttonFlatMedium;
-	@include smallPadding;
-
-	display: block;
-	width: 100%;
-	background-color: #3D96CC;
-	color: white;
-
-}
 
 
-.login__signup-link {
-
-	@include prettyLink;
-	text-align: left;
-	padding: 10px 0px;
-
-}
-
-
-.signup__picture-container {
-
-	display: none;
-
-}
-
-
-.signup__logo-image {
-
-	height: 100px;
-	width: 100px;
-	border-radius: 50%;
-	background-color: #095ba6;
-	border: 5px solid white;
-	box-sizing: border-box;
-	display: block;
-	margin: 20px auto;
-
-}
 
 
 
 /* Media Queries 
-===================== */
+================================================================ */
 
 
 @include mquery("medium") {
 
+
 	.profile-container {
-		width: 49em;
-		margin: 0px auto;
+		width: 100%;
+		@include clearfix;
+
+
+		/* Testing 
+		background-color: gray; */
 	}
 
+
+	.profile__sidebar-container {
+
+		position: relative;
+		box-sizing: border-box;
+		overflow-y: visible;
+		width: 27%;
+		height: 930px;
+		float: left;
+		display: inline-block;
+		
+		
+		/* Testing
+		background-color: tomato; */ 
+	}
+
+
+	.profile__sidebar {
+		position: absolute;
+		width: 100%;
+		right: 0;
+		top: 0;
+		box-sizing: border-box;
+		height: 100%;
+		
+	}
+
+
+
+
+	.profile__form-container {
+		@include smallPadding;
+		background-color: transparent;
+		display: inline-block;
+		width: 63%;
+		float: left;
+		
+		
+
+		/* testing 
+		background-color: $lightblue; */
+	}
+
+
+
+
+
+
+
+
 }
+
+
+
+
 
 
 @include mquery("large") { 
 
 }
+
+
+
+
+
 
 
 @include mquery("xlarge") { 

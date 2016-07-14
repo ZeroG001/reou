@@ -601,6 +601,7 @@ body {
 /* ---------- Navigation ---------- */
 .main_nav {
   display: block;
+  z-index: 10;
   position: relative;
   text-align: center;
   background-color: #08b599;
@@ -1308,18 +1309,19 @@ body {
 /* ------------------------ Extra Large Screen Size ------------------- */
 /* editProfile ( User )
 ------------------------ */
-.profile-container {
-  padding: 18px 15px;
-  background-color: #f1f1f1;
-  margin: 0px auto; }
+/* ------------------ Left Sidebar ------------------ */
+.profile__sidebar-container {
+  box-sizing: border-box; }
 
 .profile__sidebar {
   /* display: none; */
+  z-index: 0;
   display: block;
-  background-color: #fff;
-  padding: 18px 15px; }
+  box-sizing: border-box;
+  background-color: #fff; }
   .profile__sidebar .profile__sidebar-item {
     text-decoration: none;
+    text-align: center;
     color: #106fa8;
     display: block;
     padding: 18px 15px; }
@@ -1330,20 +1332,53 @@ body {
       transition: background-color 0.2s ease;
       background-color: #f1f1f1; }
 
+.profile__logo {
+  padding: 30px 0px; }
+  .profile__logo .profile__logo-image {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #095ba6;
+    border: 5px solid white;
+    box-sizing: border-box;
+    display: block;
+    margin: 0px auto; }
+  .profile__logo a {
+    text-decoration: none;
+    text-align: center;
+    display: block; }
+    .profile__logo a:hover {
+      text-decoration: underline; }
+
+/* ------------------ Main Content ------------------ */
+.profile-container {
+  position: relative; }
+
+.profile__form-container {
+  padding: 18px 15px;
+  background-color: #f1f1f1;
+  margin: 0px auto; }
+
 .update_user--form .profile__input-group {
   margin: 35px 0px; }
   .update_user--form .profile__input-group textarea {
     resize: none; }
+  .update_user--form .profile__input-group label {
+    margin-bottom: 10px; }
 .update_user--form .profile__input {
   padding: 10px;
+  margin-top: 5px;
   color: #727570;
   display: block;
   width: 100%; }
 .update_user--form .profile__submit-button {
+  padding: 7px;
+  border: 0px solid black;
+  border-radius: 2px;
+  text-align: center;
+  padding: 18px 15px;
   background-color: #106fa8;
   color: white;
-  border: 0px solid black;
-  border-radius: 3px;
   padding: 30px; }
   .update_user--form .profile__submit-button:hover {
     background-color: #60adda;
@@ -1355,41 +1390,42 @@ body {
 .profile__submit {
   margin: 40px 0px 40px 0px; }
 
-.signup__submit-button {
-  padding: 7px;
-  border: 0px solid black;
-  border-radius: 2px;
-  text-align: center;
-  padding: 18px 15px;
-  display: block;
-  width: 100%;
-  background-color: #3D96CC;
-  color: white; }
-
-.login__signup-link {
-  text-decoration: none;
-  color: #3d96cc;
-  text-align: left;
-  padding: 10px 0px; }
-  .login__signup-link:hover {
-    color: #106fa8; }
-
-.signup__picture-container {
-  display: none; }
-
-.signup__logo-image {
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  background-color: #095ba6;
-  border: 5px solid white;
-  box-sizing: border-box;
-  display: block;
-  margin: 20px auto; }
-
 /* Media Queries 
-===================== */
+================================================================ */
 @media screen and (min-width: 52em) {
   .profile-container {
-    width: 49em;
-    margin: 0px auto; } }
+    width: 100%;
+    /* Testing 
+    background-color: gray; */ }
+    .profile-container::after {
+      content: "";
+      display: table;
+      clear: both; }
+
+  .profile__sidebar-container {
+    position: relative;
+    box-sizing: border-box;
+    overflow-y: visible;
+    width: 27%;
+    height: 930px;
+    float: left;
+    display: inline-block;
+    /* Testing
+    background-color: tomato; */ }
+
+  .profile__sidebar {
+    position: absolute;
+    width: 100%;
+    right: 0;
+    top: 0;
+    box-sizing: border-box;
+    height: 100%; }
+
+  .profile__form-container {
+    padding: 18px 15px;
+    background-color: transparent;
+    display: inline-block;
+    width: 63%;
+    float: left;
+    /* testing 
+    background-color: $lightblue; */ } }

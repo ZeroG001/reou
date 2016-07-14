@@ -13,6 +13,7 @@
 	 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
 
+
 ?>
 
 
@@ -49,11 +50,21 @@
 
 
 -->
+
+<head>
+
+	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
+</head>
 	<?php display_alert('error') ?>
 	<?php display_alert('alert') ?>
-	<?php clear_alert(); ?>
 
+
+<!-- Action should be the course acc place -->
 <form method="POST" action="">
+
+
+	<h1> Creating a new class </h1>
+
 
 
 	<input type="hidden" id="action" name="_method" value="patch">
@@ -61,6 +72,9 @@
 
 	<!-- Items Related to course details -->
 	<fieldset>
+
+
+		<h3> Course Info </h3>
 
 		<!-- Course Name -->
 		<label for="courseName"> Course Name </label>
@@ -102,7 +116,7 @@
 
 		<!-- Course Notes -->
 		<label for="courseNotes"> Course Notes </label>
-		<textarea id="courseNotes" name="courseNotes"> <?php echo htmlentities($params['courseNotes']) ?> </textarea>
+		<textarea id="courseNotes" name="courseNotes"><?php echo htmlentities($params['courseNotes']) ?></textarea>
 
 		<!-- Instructor ID-->
 		<label for="instructorId"> Instructor </label>
@@ -132,6 +146,8 @@
 	<!-- Items related to course timing -->
 	<fieldset>
 
+
+		<h3> Course Schedule </h3>
 
 		<!-- Course Hours -->
 		<label for="courseHours"> Course Hours </label>

@@ -119,11 +119,14 @@
 	 */
 	function redirectHome() {
 
-		if( !isset($_SERVER['HTTP_REFERER']) ) {
-			header("Location:". course_route('home') );
-		} else {
-			header("Location:". $_SERVER['HTTP_REFERER']);
-		}
+		// Commented out because you could not sign out from  edit profile page
+		// if( !isset($_SERVER['HTTP_REFERER']) ) {
+		// 	header("Location:". course_route('home') );
+		// } else {
+		// 	header("Location:". $_SERVER['HTTP_REFERER']);
+		// }
+
+		header("Location:". course_route('home'));
 
 	}
 
@@ -255,6 +258,8 @@
 		}
 	}
 
+
+	// THis may need to be erased. Add flash message function should take care of clearing this out.
 	function clear_alert() {
 		unset($_SESSION['flash_message']);
 	}
