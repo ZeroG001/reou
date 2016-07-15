@@ -267,8 +267,6 @@ class User {
 		$stmt = $this->db->prepare($qCheckPhotoName);
 		$stmt->bindParam( ":id" , $params['userId']);
 
-
-
 		try {
 			if($stmt->execute) {
 				$result = $stmt->fetch(PDO::FETCH_ASSOC);

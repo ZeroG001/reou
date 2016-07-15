@@ -105,7 +105,6 @@ function sign_up($ObjectPDO, $params) {
 
 function edit_profile($ObjectPDO) {
 
-	// TODO - Make sure input does not contain a letter or other special characters
 	// TODO - Mak sure that a user input is filtered.
 
 
@@ -156,6 +155,61 @@ function edit_profile($ObjectPDO) {
 
 	die("edit_profile ran into a critical error. You must be signed in to continue");
 	
+}
+
+
+function create_user($ObjectPDO, $params) {
+
+
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	require_once(D_ROOT . "/reou/helpers/users_helper.php");
+
+	//If the user isn't an admin then take them bak home
+	if(!userIsAdmin()) {
+		die("You aren't an admin, you dont belong here. Please leave the area. user_controller.php");
+	}
+
+	// If the users data is being updated.
+	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
+
+		if ( ($_POST['_method']) == "post" )  {
+
+			die("the method is post. We are creating a new user");
+
+			// ------ Quick Field Check -----
+			unset($_POST['_method']);
+			unset($params['_method']);
+			check_honeypot_fields($_POST);
+			unset($_POST['hpUsername']);
+			unset($params['hpUsername']);
+			// ---------- END ---------------
+
+			$user = new User($ObjectPDO);
+
+
+			// If the user isn't an admin and they are trying to modify another user then throw message;
+			if(!userIsAdmin()) {
+				if( $_SESSION['id'] != $_POST['userId'] ) {
+					add_message("error", "there was a problem updating the user");
+					header( "Location:" . $_SERVER['REQUEST_URI']);
+					die();
+				}
+			}
+
+
+			if( $user->update_user($_POST) ) {
+				add_message("alert", "Profile has been Successfully Updated");
+				header( "Location:" . $_SERVER['REQUEST_URI']);
+				die();
+			} 
+			else {
+				add_message("error", "there was a problem updating the user");
+			}
+		} 
+		else {
+			die("crital update user error. Incorrect update method used");
+		}
+	}
 }
 
 

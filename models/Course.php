@@ -248,16 +248,12 @@ class Course {
 
 
 
-	 public function edit_course() {}
+	public function edit_course() {}
 
-
-
-
-	 public function edit_course_category() {}
+	public function edit_course_category() {}
 
 
 	 // ---------- remove courses (admin) ---------- //
-
 	 function create_course($params) {
 
 	 	//Scrub the Params. Verify, Filter and Sanitize.
@@ -288,22 +284,30 @@ class Course {
 
 		try {
 
+
 			$stmt = $this->db->prepare($query);
 
-		 	$stmt->bindParam(':courseName', $params['courseName']);
-		 	$stmt->bindParam(':courseDesc', $params['courseDesc']);
-		 	$stmt->bindParam('categoryId', $params['categoryId']);
-		 	$stmt->bindParam(':courseNumber', $params['courseNumber']);
-		 	$stmt->bindParam(':courseCost', $params['courseCost']);
-		 	$stmt->bindParam(':courseLocation', $params['courseLocation']);
-		 	$stmt->bindParam(':courseCredits', $params['courseCredits']);
-		 	$stmt->bindParam(':courseNotes', $params['courseNotes']);
-		 	$stmt->bindParam(':instructorId', $params['instructorId']);
-		 	$stmt->bindParam(':minClassSize', $params['minClassSize']);
-		 	$stmt->bindParam(':maxClassSize', $params['maxClassSize']);
-		 	$stmt->bindParam('active', $params['active']);
-		 	$stmt->bindParam(':courseHours', $params['courseHours']);
-		 	$stmt->bindParam(':courseDuration', $params['courseDuration']);
+
+			// bind params using parameters submitted.
+			foreach ($params as $key => $value) {
+				$stmt->bindParam(':'.$key, $params[$key]);
+			}
+
+			// Was replaced by 2 lines of code above.
+		 	// $stmt->bindParam(':courseName', $params['courseName']);
+		 	// $stmt->bindParam(':courseDesc', $params['courseDesc']);
+		 	// $stmt->bindParam('categoryId', $params['categoryId']);
+		 	// $stmt->bindParam(':courseNumber', $params['courseNumber']);
+		 	// $stmt->bindParam(':courseCost', $params['courseCost']);
+		 	// $stmt->bindParam(':courseLocation', $params['courseLocation']);
+		 	// $stmt->bindParam(':courseCredits', $params['courseCredits']);
+		 	// $stmt->bindParam(':courseNotes', $params['courseNotes']);
+		 	// $stmt->bindParam(':instructorId', $params['instructorId']);
+		 	// $stmt->bindParam(':minClassSize', $params['minClassSize']);
+		 	// $stmt->bindParam(':maxClassSize', $params['maxClassSize']);
+		 	// $stmt->bindParam('active', $params['active']);
+		 	// $stmt->bindParam(':courseHours', $params['courseHours']);
+		 	// $stmt->bindParam(':courseDuration', $params['courseDuration']);
 		 	
 		 	$stmt->execute();
 
