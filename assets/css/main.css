@@ -546,7 +546,7 @@ body {
 --------------------------------------- */
 /* home is alias for main.php styles */
 .main__hero-container {
-  background-image: url("http://10.9.63.86/reou/assets/img/site_img/house-car-gradient.jpg");
+  background-image: url("http://10.9.63.40/reou/assets/img/site_img/house-car-gradient.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 800px; }
