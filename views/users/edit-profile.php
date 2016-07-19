@@ -13,11 +13,9 @@
 ?>
 
 <head>
-	<title> Sign In </title>
+	<title> Edit Profile </title>
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
 </head>
-
-
 
 
 
@@ -95,12 +93,16 @@
 
 			<!-- ===== Admin Functions ===== -->
 			<div class="profile__input-group">
-				<label for="role"> Role </label>
-				<select id="role" name="role">
-					<option value="student" <?php echo displaySelected("student", $user['role']) ?>   > Student </option>
-					<option value="instructor" <?php echo displaySelected("instructor", $user['role']) ?> > Instructor </option>
-					<option value="admin" <?php echo displaySelected("admin", $user['role']) ?> > Administrator </option>
-				</select>
+			
+				<?php if(userIsAdmin()) { ?>
+					<label for="role"> Role </label>
+					<select id="role" name="role">
+						<option value="student" <?php echo displaySelected("student", $user['role']) ?>   > Student </option>
+						<option value="instructor" <?php echo displaySelected("instructor", $user['role']) ?> > Instructor </option>
+						<option value="admin" <?php echo displaySelected("admin", $user['role']) ?> > Administrator </option>
+					</select>
+				<?php } ?>
+
 			</div>
 
 

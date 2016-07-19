@@ -253,8 +253,8 @@ class Course {
 	public function edit_course_category() {}
 
 
-	 // ---------- remove courses (admin) ---------- //
-	 function create_course($params) {
+	// ---------- Create Courses (admin) ----------
+	public function create_course($params) {
 
 	 	//Scrub the Params. Verify, Filter and Sanitize.
 	 	if(!$this->checkAcceptedParams($params)) {
@@ -262,28 +262,18 @@ class Course {
 	 	}
 
 
+	 	// Validate Params Before Sending
 	 	if(!$this->validateParams($params)) {
 	 		return false;
 	 	};
 
 
-	 	// Build Params
-	 	$columnNames = array();
-	 	$columnValues = array();
-
-	 	foreach( $params as $key => $value ) {
-	 		array_push($columnNames, convert_camel_case($key));
-	 		array_push($columnValues, ":".$key);
-	 	}
-
-	 	$nameString = implode(",", $columnNames);
-	 	$valueString = implode("," , $columnValues);
-
-		$query = "INSERT INTO courses (".$nameString.") VALUES (".$valueString.") ";
+	 	// Build the query
+		$query = $this->build_insert_query($params);
 
 
+		// To to execute the query
 		try {
-
 
 			$stmt = $this->db->prepare($query);
 
@@ -292,22 +282,6 @@ class Course {
 			foreach ($params as $key => $value) {
 				$stmt->bindParam(':'.$key, $params[$key]);
 			}
-
-			// Was replaced by 2 lines of code above.
-		 	// $stmt->bindParam(':courseName', $params['courseName']);
-		 	// $stmt->bindParam(':courseDesc', $params['courseDesc']);
-		 	// $stmt->bindParam('categoryId', $params['categoryId']);
-		 	// $stmt->bindParam(':courseNumber', $params['courseNumber']);
-		 	// $stmt->bindParam(':courseCost', $params['courseCost']);
-		 	// $stmt->bindParam(':courseLocation', $params['courseLocation']);
-		 	// $stmt->bindParam(':courseCredits', $params['courseCredits']);
-		 	// $stmt->bindParam(':courseNotes', $params['courseNotes']);
-		 	// $stmt->bindParam(':instructorId', $params['instructorId']);
-		 	// $stmt->bindParam(':minClassSize', $params['minClassSize']);
-		 	// $stmt->bindParam(':maxClassSize', $params['maxClassSize']);
-		 	// $stmt->bindParam('active', $params['active']);
-		 	// $stmt->bindParam(':courseHours', $params['courseHours']);
-		 	// $stmt->bindParam(':courseDuration', $params['courseDuration']);
 		 	
 		 	$stmt->execute();
 
@@ -322,6 +296,52 @@ class Course {
 		}
 
 	 }
+
+	 public function create_course_schedule($params) {
+
+	 	//Scrub the Params. Verify, Filter and Sanitize.
+	 	if(!$this->checkAcceptedParams($params)) {
+	 		die("those params aren't acceptable");
+	 	}
+
+
+	 	// Validate Params Before Sending
+	 	if(!$this->validateParams($params)) {
+	 		return false;
+	 	};
+
+
+	 	// Build the query
+		$query = $this->build_insert_query($params);
+
+
+		// To to execute the query
+		try {
+
+			$stmt = $this->db->prepare($query);
+
+
+			// bind params using parameters submitted.
+			foreach ($params as $key => $value) {
+				$stmt->bindParam(':'.$key, $params[$key]);
+			}
+		 	
+		 	$stmt->execute();
+
+		 	return true;
+
+		} 
+		catch (Excaption $e) {
+
+			$error_message = $e->getMessage();
+			return false;
+
+		}
+		
+	 }
+
+
+
 
 	// ---------- remove courses (admin) ---------- //
 
@@ -562,12 +582,41 @@ class Course {
 		return $string;
 	}
 
+
+
 	public function convert_camel_case_space($string) {
 		$pattern ="/([a-z])([A-Z])/";
 		$replacement = "$1" . " " . "$2";
 		$string = preg_replace($pattern, $replacement, $string);
 		$string = ucwords($string);
 		return $string;
+	}
+
+
+
+	/** 
+	* @return (String) the insert query in all its
+	*/
+	public function build_insert_query($params) {
+
+		//This insert query uses PDO style params
+
+	 	// Build Dynamic Insert Query
+	 	$columnNames = array();
+	 	$columnValues = array();
+
+	 	foreach( $params as $key => $value ) {
+	 		array_push($columnNames, convert_camel_case($key));
+	 		array_push($columnValues, ":".$key);
+	 	}
+
+	 	$nameString = implode(",", $columnNames);
+	 	$valueString = implode("," , $columnValues);
+
+	 	$query = "INSERT INTO courses (".$nameString.") VALUES (".$valueString.") ";
+
+	 	return $query;
+
 	}
 	
 }// end object

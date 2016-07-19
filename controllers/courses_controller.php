@@ -104,10 +104,22 @@ function course_create($ObjectPDO) {
 		} else {
 
 			add_message("alert", "there was a problem creating the class");
-			return $params;
+			header("Location:". $_SERVER['HTTP_REFERER']);
+			die();
 		}
 		
 	}
+
+}
+
+function course_schedule_create($ObjectPDO, $params) {
+	
+	if( userSignedIn() && userIsAdmin() ) {
+		$course = new Course($ObjectPDO);
+		$course->createCrouse($params);
+	}
+
+	// It should use the model to create a course
 
 }
 
@@ -116,6 +128,8 @@ function course_create($ObjectPDO) {
 // --------------- course_register.php ---------------------
 
 function course_register($ObjectPDO) {
+
+	// have a user register for a course
 	
 	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 

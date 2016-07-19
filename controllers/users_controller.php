@@ -247,8 +247,6 @@ function update_user($ObjectPDO, $params) {
 			// ---------- END ---------------
 
 			$user = new User($ObjectPDO);
-
-
 			// Die. If the user tried to edit another user. This wont work because a notmal user is able to edit
 			// from session while admin edits from get.
 			// if( $_GET['userId'] != $_POST['userId'] ) {
@@ -268,16 +266,15 @@ function update_user($ObjectPDO, $params) {
 					header( "Location:" . $_SERVER['REQUEST_URI']);
 					die();
 				}
+
+				// Prevent non-admin  from changing their role ( needs refactoring )
+				$_POST['role'] = "student"; 
 			}
 
 			// The user should not be able to update if the email already exists in the system
 
 
 			// Admins Should not be able to change the email address
-
-
-
-
 
 			if( $user->update_user($_POST) ) {
 				add_message("alert", "Profile has been Successfully Updated");
@@ -287,6 +284,7 @@ function update_user($ObjectPDO, $params) {
 			else {
 				add_message("error", "there was a problem updating the user");
 			}
+
 		} 
 		else {
 			die("crital update user error. Incorrect update method used");

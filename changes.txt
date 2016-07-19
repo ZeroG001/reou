@@ -92,7 +92,8 @@ CHANGE COLUMN `student_id` `user_id` INT(11) NOT NULL COMMENT '' ;
 
 ------------------------- course_category Table --------------------
 
-14. ALTER TABLE `course_category` ADD COLUMN `image_filename` VARCHAR(255) NULL;
+[ 14. add column image_filename ] 
+ ALTER TABLE `course_category` ADD COLUMN `image_filename` VARCHAR(255) NULL;
 
 
 
@@ -110,6 +111,25 @@ ADD COLUMN `course_hours` VARCHAR(45) NULL AFTER `course_desc`;
 
 21. ALTER TABLE `reou`.`courses` 
 ADD COLUMN `course_duration` VARCHAR(50) NULL AFTER `course_cost_evening`;
+
+
+------------------------- course_schedules table --------------------
+
+
+[ 22. add column days_availble ] 
+ALTER TABLE `course_schedules` ADD `days_available` TEXT NOT NULL AFTER `class_end_time`;
+
+
+[ 23. add column class_begin_date ]
+ALTER TABLE `course_schedules` ADD `class_end_date` DATE NOT NULL AFTER `class_begin_date`;
+
+
+[ 24. add column class_end_date ]
+ALTER TABLE `course_schedules` ADD `class_end_date` DATE NOT NULL AFTER `class_end_date`;
+
+
+
+
 
 
 
