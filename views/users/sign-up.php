@@ -56,15 +56,21 @@
 
 			<div class="signup__email">
 				<input type="text" name="email" placeholder="Email" class="signup__input">
-			</div>
-			
+			</div>			
+
 
 			<div class="signup__password"> 
 				<input type="password" name="password" class="signup__input" placeholder="Password" />
 			</div>
+
 			
 			<div class="signup__submit">
 				<input class="signup__submit-button" type="submit" value="Sign Up">
+			</div>
+
+
+			<div class="required_hp">
+				<input type="hidden" name="hpUsername" />
 			</div>
 
 		</form>

@@ -1,7 +1,5 @@
 <?php 
 
-
-
 	/**
 	 * numExtract()
 	 *
@@ -27,6 +25,7 @@
 
 
 
+
 	/**
 	 * is_arrayEmpty()
 	 *
@@ -41,6 +40,7 @@
 
 
 
+
 	/**
 	 * format_date()
 	 *
@@ -52,6 +52,7 @@
 	function format_date($timestamp) {
 		echo date('m/d/Y', strtotime($timestamp));
 	}
+
 
 
 
@@ -72,6 +73,7 @@
 			die("nope");
 		}
 	}
+
 
 
 
@@ -103,6 +105,35 @@
 		
 	}
 
+
+	/**
+	 * Convert Time
+	 *
+	 * What is going on with this function...I mean really.
+	 * You Should delete this once you get your head on right. 
+	 *
+	 * @param (Array) 
+	 * @return (Array)
+	 */
+	function convert_time($time) {
+
+		if(preg_match('/\d{2}\/\d{2}\/\d{4}/', $time)) {
+
+			return true;
+
+		} elseif (preg_match('\d{2}\-\d{2}\-\d{4}', $time)) {
+
+			return true;
+
+		} elseif (preg_match('\d{2}\-\d{2}\-\{4}', $time)) {
+
+		} else {
+
+			return true;
+		}
+
+
+	}
 
 
 

@@ -77,6 +77,11 @@ function sign_up($ObjectPDO, $params) {
 
 	if ( $_SERVER['REQUEST_METHOD'] == "POST") {
 
+
+		// Check Honeypot Field
+		$_POST = check_honeypot_fields($_POST);
+
+
 		$params = $_POST;
 		$user = new User($ObjectPDO);
 
@@ -104,6 +109,8 @@ function sign_up($ObjectPDO, $params) {
 // --------------------------------- edit_user.php ----------------------------------
 
 function edit_profile($ObjectPDO) {
+
+
 
 	// TODO - Mak sure that a user input is filtered.
 
@@ -247,6 +254,7 @@ function update_user($ObjectPDO, $params) {
 			// ---------- END ---------------
 
 			$user = new User($ObjectPDO);
+
 			// Die. If the user tried to edit another user. This wont work because a notmal user is able to edit
 			// from session while admin edits from get.
 			// if( $_GET['userId'] != $_POST['userId'] ) {
@@ -258,8 +266,8 @@ function update_user($ObjectPDO, $params) {
 			// Make sure a user cannot edit another user unless they are an admin
 			// Do something if there is no session of the session is no loger tehr
 
+			// If the user isn't an admin and they are trying to modify another user then throw message;
 
-			// If the user isn't an admin and they are trying to modify another user then throw message;\
 			if(!userIsAdmin()) {
 				if( $_SESSION['id'] != $_POST['userId'] ) {
 					add_message("error", "there was a problem updating the user");

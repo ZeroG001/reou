@@ -388,6 +388,11 @@
 	function check_honeypot_fields($params) {
 		if(isset($params['hpUsername']) && !empty($params['hpUsername'])) {
 			die("There was an error processing an unknown field");	
+		} 
+		else {
+			unset($params['hpUsername']);
+			unset($params['hpUsername']);
+			return $params;
 		}
 	}
 

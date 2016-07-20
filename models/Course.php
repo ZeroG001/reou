@@ -13,17 +13,20 @@ class Course {
 		"notice" => ""
 	);
 
+
+
+
 	// Class Dependencies
-	 public $db;
-	 public function __construct(PDO $db) {
-	 	$this->db = $db;
-	 }
+	public $db;
+	public function __construct(PDO $db) {
+		$this->db = $db;
+	}
+
 
 
 
 	 // -------- Get Corse Information -------- //
-
-	 public function get_course_category() {
+	public function get_course_category() {
 
 	 	$query = "SELECT * FROM course_category";
 	 	$stmt = $this->db->prepare($query);
@@ -40,9 +43,12 @@ class Course {
 
 
 	
-	 }
+	}
 
-	 public function get_one_course_category($course_id) {
+
+
+
+	public function get_one_course_category($course_id) {
 	 	$query = "SELECT * FROM course_category WHERE category_id = ? LIMIT 1";
 	 	$stmt = $this->db->prepare($query);
 	 	$stmt->bindParam(1, $course_id, PDO::PARAM_INT);
@@ -50,11 +56,12 @@ class Course {
 	 	$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 	 	return $result;
-	 }
+	}
 
 
 
-	 public function get_course_classes($course_id) {
+
+	public function get_course_classes($course_id) {
 	 	$cols = array(
 	 		"course_id",
 			"course_name",
@@ -72,7 +79,7 @@ class Course {
 	 	);
 
 	 	$cols = implode(", ", $cols);
-	
+
 	 	$query = "SELECT $cols FROM courses c 
 	 	INNER JOIN course_category cc 
 	 	ON c.category_id=cc.category_id
@@ -84,7 +91,7 @@ class Course {
 	 		$stmt->bindParam(1, $course_id);
 	 		$stmt->execute();
 	 		$result_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	
+
 	 		return $result_array;
 
 	 	} 
@@ -98,13 +105,13 @@ class Course {
 	 		
 	 	}
 
+	}
 
-	 
-	 }
+
 
 
 	 // Get the information for one class.
-	 public function get_class_details($class_id) {
+	public function get_class_details($class_id) {
 
 	 	$query = "SELECT * FROM courses WHERE course_id = ? LIMIT 1";
 
@@ -130,11 +137,12 @@ class Course {
 
 	 	}
 	 	
-	 }
+	}
 
 
 
-	 public function get_course_schedule($course_id) {
+
+	public function get_course_schedule($course_id) {
 	 	$cols = array(
 	 		"location",
 	 		"staff_id",
@@ -166,13 +174,10 @@ class Course {
 
 	 
 	// ---------- edit courses ---------- //
-
-	 public function register_course($params) {
+	public function register_course($params) {
 
 	 	// Check if the Params are in the accepted params List
 	 	$this->checkAcceptedParams($params);
-
-
 
 		// If the User is already registered fot class
 		if($this->userRegisteredforClass($params['student_id'], $params['course_id'], $params['schedule_id'])) {
@@ -204,8 +209,8 @@ class Course {
 
 
 
-	 // ------------- Show all classes a student is registered for ----------------------
-	 public function get_registered_courses($student_id) {
+	// ------------- Show all classes a student is registered for ----------------------
+	public function get_registered_courses($student_id) {
 
 	 	$query = "SELECT DISTINCT(course_name), sc.course_id from reou.courses c INNER JOIN students_courses sc ON c.course_id = sc.course_id WHERE sc.student_id = ?";
 
@@ -217,13 +222,13 @@ class Course {
 
 	 	return $results;
 
-	 }
+	}
 
 
 
 
 	 // Check to see if a user is already registered for a class
-	 public function userRegisteredforClass($student_id, $course_id, $schedule_id) {
+	public function userRegisteredforClass($student_id, $course_id, $schedule_id) {
 
 	 	$query = "SELECT * FROM students_courses 
 	 	WHERE student_id = :student_id
@@ -243,14 +248,19 @@ class Course {
 			return false;
 		}
 
-	 }
+	}
 
 
 
 
 	public function edit_course() {}
 
+
+
+
 	public function edit_course_category() {}
+
+
 
 
 	// ---------- Create Courses (admin) ----------
@@ -263,20 +273,17 @@ class Course {
 
 
 	 	// Validate Params Before Sending
-	 	if(!$this->validateParams($params)) {
+	 	if(!$this->validateCourseParams($params)) {
 	 		return false;
 	 	};
 
-
 	 	// Build the query
-		$query = $this->build_insert_query($params);
-
+		$query = $this->build_insert_query("courses", $params);
 
 		// To to execute the query
 		try {
 
 			$stmt = $this->db->prepare($query);
-
 
 			// bind params using parameters submitted.
 			foreach ($params as $key => $value) {
@@ -297,29 +304,28 @@ class Course {
 
 	 }
 
-	 public function create_course_schedule($params) {
+
+
+
+	public function create_course_schedule($params) {
 
 	 	//Scrub the Params. Verify, Filter and Sanitize.
 	 	if(!$this->checkAcceptedParams($params)) {
 	 		die("those params aren't acceptable");
 	 	}
 
-
 	 	// Validate Params Before Sending
-	 	if(!$this->validateParams($params)) {
+	 	if(!$this->validateScheduleParams($params)) {
 	 		return false;
 	 	};
 
-
 	 	// Build the query
-		$query = $this->build_insert_query($params);
-
+		$query = $this->build_insert_query("course_schedules", $params);
 
 		// To to execute the query
 		try {
 
 			$stmt = $this->db->prepare($query);
-
 
 			// bind params using parameters submitted.
 			foreach ($params as $key => $value) {
@@ -329,7 +335,6 @@ class Course {
 		 	$stmt->execute();
 
 		 	return true;
-
 		} 
 		catch (Excaption $e) {
 
@@ -337,8 +342,11 @@ class Course {
 			return false;
 
 		}
+
+		// In case all else fails
+		return false;
 		
-	 }
+	}
 
 
 
@@ -352,6 +360,8 @@ class Course {
 		$stmt = $this->db->prepare($query);
 		$stmt->bindParam(1, $course_id);
 	}
+
+
 
 
 	// Remove Course category
@@ -376,9 +386,15 @@ class Course {
 		$accepted_params = array(
 	 		"courseName",
 	 		"courseDesc",
+	 		"courseId",
 	 		"courseNumber",
 	 		"courseCost",
 	 		"categoryId",
+	 		"scheduleId",
+	 		"daysAvailable",
+	 		"location",
+	 		"classBeginDate",
+	 		"classEndDate",
 	 		"courseLocation",
 	 		"courseCredits",
 	 		"courseNotes",
@@ -408,20 +424,84 @@ class Course {
 
 
 	/**
-	 * validateParams();
+	 * validateCourseParams();
 	 *
 	 * Ensures that the parameters sent are valid
 	 *
 	 * @param(String) $message set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
 	 */
-	public function validateParams($params, $display_errors = true) {
+	public function validateCourseParams($params, $display_errors = true) {
 
 	 	$paramsValid = true;
 	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
 
 	 	// List of required params
 	 	$required_vars = array("courseName", "courseNumber", "courseCost", "courseLocation");
+
+	 	foreach ($required_vars as $key => $value) {
+	 		if(empty($params[$value]) || is_null($params[$value])) {
+	 			array_push($error_messages, array("type" => "alert", "message" => $this->convert_camel_case_space($value) . " is required" ));
+	 			$paramsValid = false;
+	 		}
+
+	 	}
+
+	 	foreach ($params as $k => $param) {
+
+	 		switch($k) {
+
+
+	 			// case "courseName" :
+
+	 			// 	if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
+	 			// 		array_push($error_messages, array("type" => "alert", "message" => "The Course name is invalid"));
+	 			// 		$paramsValid = false;
+	 			// 	}
+	 			// break;
+
+
+	 			default:
+	 				$params[$k] = $params[$k];
+	 			break;
+	 		}
+
+	 	}
+
+	 	//If display error is on then the error will show
+	 	if($display_errors) {
+	 		foreach ($error_messages as $k => $error_message) {
+	 		$this->add_message($error_message['type'], $error_message['message']);
+	 		}	
+	 	}
+
+	 	// Returns True or False;
+	 	return $paramsValid;
+
+	}
+
+
+
+	/**
+	 * validateScheduleParams();
+	 *
+	 * Ensures that the parameters sent are valid
+	 *
+	 * @param(String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @return (boolean)
+	 */
+	public function validateScheduleParams($params, $display_errors = true) {
+
+	 	$paramsValid = true;
+	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
+
+	 	// List of required params
+	 	$required_vars = array (
+	 		"courseId", 
+	 		"classBeginDate", 
+	 		"classEndDate",
+	 		"daysAvailable"
+	 	);
 
 	 	foreach ($required_vars as $key => $value) {
 	 		if(empty($params[$value]) || is_null($params[$value])) {
@@ -463,6 +543,8 @@ class Course {
 	 	return $paramsValid;
 
 	}
+
+
 
 
 	 /* add_message();
@@ -597,7 +679,7 @@ class Course {
 	/** 
 	* @return (String) the insert query in all its
 	*/
-	public function build_insert_query($params) {
+	public function build_insert_query($table, $params) {
 
 		//This insert query uses PDO style params
 
@@ -613,7 +695,7 @@ class Course {
 	 	$nameString = implode(",", $columnNames);
 	 	$valueString = implode("," , $columnValues);
 
-	 	$query = "INSERT INTO courses (".$nameString.") VALUES (".$valueString.") ";
+	 	$query = "INSERT INTO $table (".$nameString.") VALUES (".$valueString.") ";
 
 	 	return $query;
 

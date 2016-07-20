@@ -112,11 +112,51 @@ function course_create($ObjectPDO) {
 
 }
 
-function course_schedule_create($ObjectPDO, $params) {
-	
+function course_create_schedule($ObjectPDO, $params) {
+
+
 	if( userSignedIn() && userIsAdmin() ) {
-		$course = new Course($ObjectPDO);
-		$course->createCrouse($params);
+
+
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+			// ------ Quick Field Check -----
+			unset($_POST['_method']);
+			unset($params['_method']);
+			$_POST = check_honeypot_fields($_POST);
+
+			// ---------- END ---------------
+
+
+
+
+			// -------- Convert Date Times ----- //
+
+
+
+			$course = new Course($ObjectPDO);
+
+
+
+			if( $course->create_course_schedule($params) ) {
+
+				add_message("alert", "the course was added sucessfully");
+				header("Location:". $_SERVER['HTTP_REFERER']);
+				die();
+
+			} else {
+
+				add_message("alert", "there was a problem creating the class");
+				header("Location:". $_SERVER['HTTP_REFERER']);
+				die();
+
+			}
+		
+		}
+
+	} else {
+		die("you're not an admin. Make course controller show another message");
 	}
 
 	// It should use the model to create a course

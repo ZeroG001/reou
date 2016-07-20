@@ -1,10 +1,11 @@
 <?php
 
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
-	require_once(D_ROOT . "/reou/controllers/course_controller.php");
+	require_once(D_ROOT . "/reou/controllers/courses_controller.php");
 
-	create_schedule($db, $_POST);
-	$user = edit_profile($db);
+	// fyi. the $db variable comes from database.php
+
+	course_create_schedule($db, $_POST);
 
 
 	// ----------------- Header HTML --------------------
@@ -21,51 +22,73 @@
 
 	<body>
 
-		<!-- Action should be the course acc place -->
-		<form method="POST" action="">
+		<!-- Datatbase Rows -->
 
+
+		<!--
+			schedule_id
+			course_id
+			staff_id
+			location
+			days_available
+			class_date
+			class_begin_date
+			class_end_date
+			class_begin_time
+			class_end_time
+			active
+
+			final_exam [x]
+			state_exam [x]
+			graduation [x]
+		-->
+
+		<!-- Action should be the course acc place -->
+
+
+		<!-- Alert Message  -->
+		<div class="alert">
+			<?php display_alert('error') ?>
+			<?php display_alert('alert') ?>
+			<?php clear_alert(); ?>
+		</div>
+
+
+		<form method="POST" action="">
 
 			<h1> Creating a new class </h1>
 
-
-
 			<input type="hidden" id="action" name="_method" value="patch">
-
 
 			<!-- Items related to course timing -->
 			<fieldset>
 
-
 				<h3> Course Schedule </h3>
 
-				<!-- Schedule ID ( Hidden ) -->
-				<label for="scheduleId"> Schedule ID </label>
-				<input type="text" name="scheduleId" value="">
 
-
-				<!-- Course Duration -->
+				<!-- Course ID -->
 				<label for="courseId"> Course ID </label>
-				<input type="text" name="courseId" value="">
+				<input type="text" name="courseId" value=""> <br /><br />
 
 
 				<!-- class_begin_date -->
-				<label for="classBeginDate"> Class End Date </label>
-				<input type="text" name="courseId" value="">
+				<label for="classBeginDate"> Class Begin Date </label>
+				<input type="text" name="classBeginDate" value=""> <br /><br />
 
 
 				<!-- class_end_date -->
 				<label for="classEndDate"> Class End Date </label>
-				<input type="text" name="staffId" id="staffId" value="">
+				<input type="text" name="classEndDate" id="staffId" value=""> <br /><br />
 
 
 				<!-- Days Availible -->
-				<label for="daysAvailable"> Days Availible </label>
-				<input type="text" name="daysAvailible" id="daysAvailible" value=""> 
+				<label for="daysAvailable"> Days Available </label>
+				<input type="text" name="daysAvailable" id="daysAvailable" value=""> <br /><br />
 
 
 				<!-- Location -->
 				<label for="location"> Location </label>
-				<input type="text" name="location" id="location" value="">
+				<input type="text" name="location" id="location" value=""> <br /><br />
 
 
 			</fieldset>
