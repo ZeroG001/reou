@@ -3,8 +3,6 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/courses_controller.php");
 
-	// fyi. the $db variable comes from database.php
-
 	course_create_schedule($db, $_POST);
 
 
@@ -18,6 +16,7 @@
 
 	<head>
 		<title> Course Create Schedule </title>
+		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
 	</head>
 
 	<body>
@@ -56,7 +55,7 @@
 
 		<form method="POST" action="">
 
-			<h1> Creating a new class </h1>
+			<h1> Create Class Schedule </h1>
 
 			<input type="hidden" id="action" name="_method" value="patch">
 

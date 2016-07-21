@@ -203,7 +203,9 @@ class Course {
 
 			echo "There was a problem registering for the course";
 			echo $e->getMessage();
+
 		}
+
 	 }
 
 
@@ -227,7 +229,7 @@ class Course {
 
 
 
-	 // Check to see if a user is already registered for a class
+	// Check to see if a user is already registered for a class
 	public function userRegisteredforClass($student_id, $course_id, $schedule_id) {
 
 	 	$query = "SELECT * FROM students_courses 
@@ -318,6 +320,17 @@ class Course {
 	 	if(!$this->validateScheduleParams($params)) {
 	 		return false;
 	 	};
+
+	 	// Make sure that the date given isn't before 
+
+	 	//convert time parameter before sending
+	 	var_dump($params);
+	 	$params['classBeginDate'] = $this->convertPhpToMysqlDate($params['classBeginDate']);
+	 	$params['classEndDate'] = $this->convertPhpToMysqlDate($params['classEndDate']);
+
+	 	//Verify Start Time does not come after end time
+	 	verifyTimeOrder($params['classBeginDate'], $params['classEndDate']);
+
 
 	 	// Build the query
 		$query = $this->build_insert_query("course_schedules", $params);
@@ -495,7 +508,7 @@ class Course {
 	 	$paramsValid = true;
 	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
 
-	 	// List of required params
+	 	// Required Parameters
 	 	$required_vars = array (
 	 		"courseId", 
 	 		"classBeginDate", 
@@ -511,15 +524,27 @@ class Course {
 
 	 	}
 
+
+
+	 	// Check Fromatting of Params
 	 	foreach ($params as $k => $param) {
 
 	 		switch($k) {
 
 
-	 			case "courseName" :
+	 			case "classBeginDate" :
 
-	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "The Course name is invalid"));
+	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/\d{1,2}\/\d{1,2}\/\d{4}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Begin Date Format Incorrect"));
+	 					$paramsValid = false;
+	 				}
+	 			break;
+
+
+	 			case "classEndDate" :
+
+	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/\d{1,2}\/\d{1,2}\/\d{4}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "End Date Format Incorrect"));
 	 					$paramsValid = false;
 	 				}
 	 			break;
@@ -683,6 +708,12 @@ class Course {
 
 		//This insert query uses PDO style params
 
+
+		// Make sure that the date given isn't before today
+
+
+		// Make sure the begin date is before the end date
+
 	 	// Build Dynamic Insert Query
 	 	$columnNames = array();
 	 	$columnValues = array();
@@ -700,6 +731,105 @@ class Course {
 	 	return $query;
 
 	}
+
+
+
+
+	/**
+	 * verifyTimeOrder
+	 *
+	 * Verifies that the start time does not occur after the end time second time givem
+	 *  
+	 * @param (String) Date in the m/d/Y format 
+	 * @param (String) ate in the m/d/Y format 
+	 */
+	public function verifyTimeOrder($startDate, $endDate) {
+
+		$startTimeStamp = strtotime($startTime);
+		$endTimeStamp = strtotime($endTime);
+
+		if($startTimeStamp > $endTimeStamp) {
+			die("the start time is greater than the end time");
+		} else {
+			die("there is nothing wrong, You can move along");
+		}
+
+		
+	}
+
+
+
+
+	/**
+	 * Convert MySql to PHP date
+	 *
+	 * Converts 2015-12-01 00:00:00 to 12/1/2015
+	 *  
+	 *
+	 * @param (String) Date String in Y-m-d
+	 *
+	 *
+	 */
+	public function convertMysqlToPhpDate($date) {
+
+		// Make sure that the date given isn't before today
+
+		// if ( date provided is less than today's date ) {
+		//	return false
+		// }
+		
+
+		// Make sure the begin date is before the end date
+
+
+		// Date Format Taken "2015-12-01 00:00:00";
+		if( preg_match('/\d{4}\-\d{2}\-\d{2}\s\d{2}:\d{2}:\d{2}/', $date) ) {
+			
+			$mysqltimestamp = strtotime($date);
+			$phpDate = date("m/d/Y", $mysqltimestamp);
+			
+			return $phpDate;
+			
+		} else {
+
+			return false;
+
+		}
+		
+	}
+
+
+
+
+	/**
+	 * Convert PHP to MySql Date
+	 *
+	 * Converts 12/1/2015 to 2015-12-01 00:00:00
+	 *  
+	 * @param (String) Date in the m/d/Y format 
+	 *
+	 */
+	public function convertPhpToMysqlDate($date) {
+		
+		// Ensure that the date given is the correct format
+		
+		if ( preg_match('/\d{1,2}\/\d{1,2}\/\d{4}/', $date) ) {
+
+			$phptimestamp = strtotime($date);
+			$sqlDate = date("Y-m-d H:i:s", $phptimestamp);
+			
+			return $sqlDate;
+			
+		} else {
+			
+			return false;
+			
+		}
+		
+	}
+
+
+
 	
 }// end object
 

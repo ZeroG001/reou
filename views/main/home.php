@@ -29,7 +29,7 @@
 				<div class="main__header-container">
 
 					<h1>  Join the REO Family. Become an Agent. </h1>
-					<h3> Some random text. lorem ipsum dolor sit amet, consectetur adipiscing elit. </h3>
+					<h3> Some random text. Hi Blayne, put an awesome slogan in here! Loreum ipsum.</h3>
 					<a href="<?php echo user_route('sign-up') ?>" class="main__signup-button"> Sign up today </a>
 
 				</div>

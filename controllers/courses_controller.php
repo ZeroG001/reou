@@ -112,6 +112,9 @@ function course_create($ObjectPDO) {
 
 }
 
+
+
+
 function course_create_schedule($ObjectPDO, $params) {
 
 
@@ -130,13 +133,7 @@ function course_create_schedule($ObjectPDO, $params) {
 
 
 
-
-			// -------- Convert Date Times ----- //
-
-
-
 			$course = new Course($ObjectPDO);
-
 
 
 			if( $course->create_course_schedule($params) ) {
@@ -147,7 +144,7 @@ function course_create_schedule($ObjectPDO, $params) {
 
 			} else {
 
-				add_message("alert", "there was a problem creating the class");
+				// the model should return a message.
 				header("Location:". $_SERVER['HTTP_REFERER']);
 				die();
 
@@ -162,6 +159,7 @@ function course_create_schedule($ObjectPDO, $params) {
 	// It should use the model to create a course
 
 }
+
 
 
 
