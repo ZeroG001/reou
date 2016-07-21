@@ -3,8 +3,8 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 
-	update_user($db, $_POST);
-	$user = create_user($db);
+	create_user($db, $_POST);
+	// $user = create_user($db);
 
 
 	// ----------------- Header HTML --------------------
@@ -70,26 +70,26 @@
 
 			<div class="profile__input-group">
 				<label for="firstName"> First Name </label>
-				<input type="text" class="profile__input" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>" />
+				<input type="text" class="profile__input" id="firstName" name="firstName" value="" />
 			</div>
 
 
 			<div class="profile__input-group">
 				<label for="lastName"> Last Name </label>
-				<input type="text" class="profile__input"  id="lastName" name="lastName" value="<?php echo $user['last_name'] ?>" />
+				<input type="text" class="profile__input"  id="lastName" name="lastName" value="" />
 			</div>
 
 
 			<div class="profile__input-group">
 				<!-- For this you need a way for the user to confirm their new email address. Dont make this site live until you can do that -->
 				<label for="lastName"> Email Address ( needs work see comments ) </label>
-				<input type="text" class="profile__input" id="email" name="email" value="<?php echo $user['email'] ?>" /> 
+				<input type="text" class="profile__input" id="email" name="email" value="" /> 
 			</div>
 
 
 			<div class="profile__input-group">
 				<label for="bio"> About Yourself </label>
-				<textarea title="bio" class="profile__input" name="bio"><?php echo $user['bio'] ?> </textarea>
+				<textarea title="bio" class="profile__input" name="bio"> </textarea>
 			</div>
 
 			<!-- ===== Possably for instructor info ===== -->
@@ -99,16 +99,16 @@
 			<div class="profile__input-group">
 				<label for="role"> Role </label>
 				<select id="role" name="role">
-					<option value="student" <?php echo displaySelected("student", $user['role']) ?>   > Student </option>
-					<option value="instructor" <?php echo displaySelected("instructor", $user['role']) ?> > Instructor </option>
-					<option value="admin" <?php echo displaySelected("admin", $user['role']) ?> > Administrator </option>
+					<option value="student"> Student </option>
+					<option value="instructor"> Instructor </option>
+					<option value="admin"> Administrator </option>
 				</select>
 			</div>
 
 
 			<div class="profile__input-group">
 				<label for="active"> User Active </label>
-				<input type="checkbox" name="active" id="active" value="1" <?php echo displayChekbox($user['active']) ?> />
+				<input type="checkbox" name="active" id="active" value="1"  />
 			</div>
 
 
@@ -124,7 +124,7 @@
 			</div>
 
 			<div class="profile__input-group">
-				<input type="submit" class="profile__submit-button" value="Save Settings" />
+				<input type="submit" class="profile__submit-button" value="Create User" />
 			</div>
 
 			<?php // Please do not erase the required_hp div. This is a honeypot field to help reduce spam ?>
@@ -132,17 +132,12 @@
 				<input type="hidden" name="hpUsername" />
 			</div>
 
-
-			<!-- use the hiddent field to tell which user needs to be updated -->
-			<input type="hidden" id="userId" name="userId" value="<?php echo $user['id'] ?>">
 		</form>
 
 
 	</div>
 
 </div>
-
-
 
 
 <script type="text/javascript" src="<?php echo asset_route('js') . "jquery/dist/jquery.min.js" ?>"> </script>

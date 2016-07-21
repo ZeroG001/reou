@@ -304,12 +304,13 @@ class Course {
 
 		}
 
-	 }
+	}
 
 
 
-
+	
 	public function create_course_schedule($params) {
+
 
 	 	//Scrub the Params. Verify, Filter and Sanitize.
 	 	if(!$this->checkAcceptedParams($params)) {
@@ -322,16 +323,18 @@ class Course {
 	 	};
 
 	 	// Make sure that the date given isn't before 
-
 	 	//convert time parameter before sending
 	 	var_dump($params);
 	 	$params['classBeginDate'] = $this->convertPhpToMysqlDate($params['classBeginDate']);
 	 	$params['classEndDate'] = $this->convertPhpToMysqlDate($params['classEndDate']);
 
+
 	 	//Verify Start Time does not come after end time
-	 	verifyTimeOrder($params['classBeginDate'], $params['classEndDate']);
-
-
+	 	if(!$this->verifyTimeOrder( $params['classBeginDate'], $params['classEndDate'] ) ) {
+	 		$this->add_message("alert", "Start date occurs after end date");
+	 		return false;
+	 	}
+	 	
 	 	// Build the query
 		$query = $this->build_insert_query("course_schedules", $params);
 
@@ -738,20 +741,25 @@ class Course {
 	/**
 	 * verifyTimeOrder
 	 *
-	 * Verifies that the start time does not occur after the end time second time givem
+	 * Verifies that the start time does not occur after the end time second time give
 	 *  
 	 * @param (String) Date in the m/d/Y format 
-	 * @param (String) ate in the m/d/Y format 
+	 * @param (String) Date in the m/d/Y format 
+	 *
+	 * @return (boolean)
 	 */
 	public function verifyTimeOrder($startDate, $endDate) {
 
-		$startTimeStamp = strtotime($startTime);
-		$endTimeStamp = strtotime($endTime);
+		$startTimeStamp = strtotime($startDate);
+		$endTimeStamp = strtotime($endDate);
 
 		if($startTimeStamp > $endTimeStamp) {
-			die("the start time is greater than the end time");
+
+			return false;
+
 		} else {
-			die("there is nothing wrong, You can move along");
+
+			return true;
 		}
 
 		

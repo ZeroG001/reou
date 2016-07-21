@@ -30,3 +30,7 @@
 	<?php  } ?>
 
 </table>
+
+<a href="<?php echo "/reou/views/users/create-user.php" ?>" > Create New User </a>
+
+

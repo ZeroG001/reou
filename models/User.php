@@ -44,13 +44,17 @@ class User {
 	 	// Check if post variable names are acceptable
 	 	$this->checkAcceptedParams($params);
 
+
 	 	if(!$this->validateParams($params)) {
 	 		# die("This validation failed, check Users.php to fix");
+	 		die("The validation failed. Please try again later");
 	 	}
+
 
 		// Clean Parameters
 		$params = $this->sanitizeParams($params);
 		$date_enetered = date('m/d/Y');
+
 
 
 		// Check if user exists
@@ -78,6 +82,7 @@ class User {
 		 	$stmt->execute();
 
 		 	return true;
+		 	
 		}
 
 	}
@@ -98,11 +103,11 @@ class User {
 			- Give me a list of users from a specified search
 	 	*/
 
-		$query = array(
+		$query = array (
 			"all_users" => "SELECT * FROM users",
 			"range_of_users" => " SELECT * FROM users LIMIT 10 OFFSET ?",
 			"search_users" => "SELECT * FROM users WHERE email LIKE %?%"
-			);
+		);
 
 			$stmt = $this->db->prepare($query["all_users"]);
 			$stmt->execute();

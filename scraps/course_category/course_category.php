@@ -10,6 +10,11 @@
 ?>
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 
+<div class="alert">
+	<?php display_alert('error') ?>
+	<?php display_alert('alert') ?>
+</div>
+
 <div class="wrap">
 <?php  foreach ($categories as $k => $category) { ?>
 

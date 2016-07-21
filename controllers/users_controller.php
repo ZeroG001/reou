@@ -82,6 +82,7 @@ function sign_up($ObjectPDO, $params) {
 		$_POST = check_honeypot_fields($_POST);
 
 
+
 		$params = $_POST;
 		$user = new User($ObjectPDO);
 
@@ -184,11 +185,11 @@ function create_user($ObjectPDO, $params) {
 			die("the method is post. We are creating a new user");
 
 			// ------ Quick Field Check -----
+
 			unset($_POST['_method']);
 			unset($params['_method']);
-			check_honeypot_fields($_POST);
-			unset($_POST['hpUsername']);
-			unset($params['hpUsername']);
+			$_POST = check_honeypot_fields($_POST);
+			
 			// ---------- END ---------------
 
 			$user = new User($ObjectPDO);
@@ -202,19 +203,9 @@ function create_user($ObjectPDO, $params) {
 					die();
 				}
 			}
-
-
-			if( $user->update_user($_POST) ) {
-				add_message("alert", "Profile has been Successfully Updated");
-				header( "Location:" . $_SERVER['REQUEST_URI']);
-				die();
-			} 
-			else {
-				add_message("error", "there was a problem updating the user");
-			}
 		} 
 		else {
-			die("crital update user error. Incorrect update method used");
+			die("Critical error in creating the user. Incorrect method used");
 		}
 	}
 }
