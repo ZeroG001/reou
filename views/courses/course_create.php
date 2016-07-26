@@ -22,6 +22,11 @@
 
 <!-- 
 
+	The Goal today is to be able to create a course then create a schedule for that course.
+
+	- There will be multiple forms that will be submitted via ajax. They will be timed submits. 
+		So they will be executed one after another.
+
 	General Course Information
 	
 	- course_name
@@ -64,8 +69,6 @@
 
 
 	<h1> Creating a new class </h1>
-
-
 
 	<input type="hidden" id="action" name="_method" value="patch">
 
@@ -146,7 +149,6 @@
 	<!-- Items related to course timing -->
 	<fieldset>
 
-
 		<h3> Course Schedule </h3>
 
 		<!-- Course Hours -->
@@ -158,19 +160,62 @@
 		<label for="courseDuration"> Course Duration </label>
 		<input type="text" name="courseDuration" value="<?php echo htmlentities($params['courseDuration']) ?> ">
 
-
 	</fieldset>
-
-
-	<fieldset>
-		<legend> Add Schedule </legend>
-	</fieldset>
-
 
 	<input type="Submit" value="Submit">
 
+</form>
+
+
+
+<!-- ==================== Course Schedule ==================== -->
+
+
+<form method="POST" action="">
+
+	<h1> Create Class Schedule </h1>
+
+	<input type="hidden" id="action" name="_method" value="patch">
+
+		<!-- Items related to course timing -->
+		<fieldset>
+
+			<h3> Course Schedule </h3>
+
+
+			<!-- Course ID -->
+			<label for="courseId"> Course ID </label>
+			<input type="text" name="courseId" value=""> <br /><br />
+
+
+			<!-- class_begin_date -->
+			<label for="classBeginDate"> Class Begin Date </label>
+			<input type="text" name="classBeginDate" value=""> <br /><br />
+
+
+			<!-- class_end_date -->
+			<label for="classEndDate"> Class End Date </label>
+			<input type="text" name="classEndDate" id="staffId" value=""> <br /><br />
+
+
+			<!-- Days Availible -->
+			<label for="daysAvailable"> Days Available </label>
+			<input type="text" name="daysAvailable" id="daysAvailable" value=""> <br /><br />
+
+
+			<!-- Location -->
+			<label for="location"> Location </label>
+			<input type="text" name="location" id="location" value=""> <br /><br />
+
+
+		</fieldset>
+
+	<input type="Submit" value="Submit">
 
 </form>
 
 
-</form>
+
+<!-- Javasript Sources -->
+<script type="text/javascript" src="<?php echo asset_route('js') . 'jquery/dist/jquery.min.js'?>"> </script>
+<script type="text/javascript" src="<?php echo asset_route('js') . 'course_create.js' ?>"> </script> 
