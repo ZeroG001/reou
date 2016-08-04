@@ -184,8 +184,8 @@
 
 
 			<!-- Course ID -->
-			<label for="courseId"> Course ID </label>
-			<input type="text" name="courseId" value=""> <br /><br />
+			<label for="courseId"> Course ID ( should obtain automatically ) </label>
+			<input type="hidden" name="courseId" value=""> <br /><br />
 
 
 			<!-- class_begin_date -->
@@ -196,6 +196,8 @@
 			<!-- class_end_date -->
 			<label for="classEndDate"> Class End Date </label>
 			<input type="text" name="classEndDate" id="staffId" value=""> <br /><br />
+
+			<div label for="daysAvaililble"
 
 
 			<!-- Days Availible -->
