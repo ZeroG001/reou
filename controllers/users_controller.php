@@ -168,9 +168,9 @@ function edit_profile($ObjectPDO) {
 
 function create_user($ObjectPDO, $params) {
 
-
-	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
-	require_once(D_ROOT . "/reou/helpers/users_helper.php");
+	// If something breaks its because I remove this part of the program.
+	// require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	// require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
 	//If the user isn't an admin then take them bak home
 	if(!userIsAdmin()) {
@@ -291,7 +291,7 @@ function update_user($ObjectPDO, $params) {
 	}
 
 
-
+	// UPLOADING IMAGES. You may need to use this later.
 	// // If ther user is trying to upload an image
 	// if (userSignedIn() && !empty($_FILES) ) {
 

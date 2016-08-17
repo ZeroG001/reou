@@ -113,7 +113,7 @@ function course_create($ObjectPDO) {
 }
 
 
-
+// --------------- Create course schedule -----------------------
 
 function course_create_schedule($ObjectPDO, $params) {
 
@@ -160,6 +160,113 @@ function course_create_schedule($ObjectPDO, $params) {
 
 }
 
+
+// --------------- getCourseSchedules.php ---------------------
+// THis page was mainly for testing. If you earase the page. Erase this code
+
+function getCourseSchedules($ObjectPDO) {
+
+	// request method is post
+	if( $_SERVER['REQUEST_METHOD'] == "POST") {
+
+		// If the user is not signed in
+		if( !userSignedIn() ) {
+			die("please sign in to continue");
+		}
+
+
+		$params = $_POST;
+		$course = new Course($ObjectPDO);
+
+		// This will only get the schedules with a course ID of 1 for now;
+		$result = $course->get_course_schedule("1");
+
+		return $result;
+
+
+	} else {
+
+		die("we weren't able to get the course schedules, maybe you need to code it correctly...");
+
+	}
+}
+
+
+// ----------------- Edit Course -------------------------
+
+/**
+ * update_course($params) 
+ *
+ * Update a course using the parameters submitted.
+ *
+ * @param (Obect) Accepts the PDO Object
+ * @param (Array) params array submitted from form
+ * @return (params)
+ */
+function update_course($ObjectPDO, $params) {
+
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	require_once(D_ROOT . "/reou/helpers/users_helper.php");
+
+	// If the users data is being updated.
+	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
+
+		if ( ($_POST['_method']) == "patch" )  {
+
+
+			// ------ Quick Field Check -----
+			unset($_POST['_method']);
+			unset($params['_method']);
+			check_honeypot_fields($_POST);
+			unset($_POST['hpUsername']);
+			unset($params['hpUsername']);
+			// ---------- END ---------------
+
+			$course = new Course($ObjectPDO);
+
+			// Die. If the user tried to edit another user. This wont work because a notmal user is able to edit
+			// from session while admin edits from get.
+			// if( $_GET['userId'] != $_POST['userId'] ) {
+			// 	add_message("error", "An error occured when trying to update the user");
+			// 	header( "Location:" . $_SERVER['REQUEST_URI']);
+			// 	die();
+			// }
+
+			// Make sure a user cannot edit another user unless they are an admin
+			// Do something if there is no session of the session is no loger tehr
+
+			// If the user isn't an admin and they are trying to modify one of the courses. Actually, regular users should not be able to modify a course period, so im going to error out when a user attmeps to do this.
+			if(!userIsAdmin()) {
+
+				// Direct the user back to the home page
+				header("Location:" . course_route("course_category") );
+				die();
+			}
+
+
+			if( $course->update_user($_POST) ) {
+				add_message("alert", "Profile has been Successfully Updated");
+
+				// Take the user back to the course edit page.
+				header( "Location:" . $_SERVER['REQUEST_URI']);
+				die();
+			} 
+			else {
+				add_message("error", "An error occured while trying to update the course");
+			}
+
+		} 
+		else {
+			die("Error has occured. Incorrect update method was used.");
+		}
+	}
+
+}
+
+function update_course_schedule {
+	// Perhaps for each course schedule you can create an ajax request 
+	// instead of sumitting each course over again
+}
 
 
 

@@ -1,8 +1,10 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 
-	// Course is only created on submit
-	$params = course_create($db);
+
+	update_course($db, $_POST);
+	# Or #
+	$course_details = get_course_details($db);
 
 	// if ( isset($params) ) {
 	// 	echo "the params are....." ;
@@ -72,6 +74,7 @@
 
 		<h1> Creating a new class </h1>
 
+		<?php #Tells form that we are updating the course ?>
 		<input type="hidden" id="action" name="_method" value="patch">
 
 
@@ -161,6 +164,9 @@
 			<!-- Course Duration -->
 			<label for="courseDuration"> Course Duration </label>
 			<input type="text" name="courseDuration" value="<?php echo htmlentities($params['courseDuration']) ?> ">
+
+			<?php #honeypot field, do not remove ?>
+			<input type="hidden" name="hpUsername" value="">
 
 		</fieldset>
 

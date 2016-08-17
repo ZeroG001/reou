@@ -141,19 +141,21 @@ class Course {
 
 
 
-
+	// Gets all course schedules based on the course_id you pass in;
 	public function get_course_schedule($course_id) {
 	 	$cols = array(
-	 		"location",
+	 		"schedule_id",
+	 		"course_id",
 	 		"staff_id",
+	 		"location",
 	 		"class_date",
 	 		"active",
+	 		"class_begin_date",
+	 		"class_end_date",
 	 		"class_begin_time",
 	 		"class_end_time",
 	 		"course_id",
-	 		"course_number",
-	 		"course_name",
-	 		"course_desc",
+	 		"days_available",
 	 	);
 
 	 	$query = "SELECT * FROM course_schedules cs 
@@ -169,7 +171,6 @@ class Course {
 
 		return $resutls;
 	 }
-
 
 
 	 
@@ -621,6 +622,67 @@ class Course {
 		}	
 	}
 
+
+	/**
+	 * scrubParams
+	 *
+	 * Takes each parameter and cleans it using rules set in function. Each parameter is clearn a certain way
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
+	public function update_user($params) {
+
+		// Make sure params are accepted
+		$this->checkAcceptedParams($params);
+		$params = $this->sanitizeParams($params);
+
+		// Validates the params
+		if(!$this->validateParams($params)) {
+			header("Location:". $_SERVER['HTTP_REFERER']); 
+			die();
+		}
+
+		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, bio = ?, role = ?, active = ? WHERE id = ?";
+		$stmt = $this->db->prepare($query);
+
+		$stmt->bindParam(1, $params['firstName']);
+		$stmt->bindParam(2, $params['lastName']);
+		$stmt->bindParam(3, $params['email']);
+		$stmt->bindParam(4, $params['bio']);
+		$stmt->bindParam(5, $params['role']);
+		$stmt->bindParam(6, $params['active']);
+		$stmt->bindParam(7, $params['userId']);
+
+		// Try to execute the query
+		try {
+			$stmt->execute();
+			return true;
+		}
+		catch (Exception $e) {
+			echo $e->getMessage();
+			return false;
+		}
+		
+
+		// Todo. Automatically update the 'updatedAt' field in the database.
+	}
+
+	public function update_course($params) {
+
+		// Make sure params are accepted
+		$this->checkAcceptedParams($params);
+		$params = $this->sanitizeParams($params);
+
+		// Validates the params
+		if(!$this->validateParams($params)) {
+			header("Location:". $_SERVER['HTTP_REFERER']); 
+			die();
+		}
+
+		// Execute update quesy;
+		$query = "UPDATE course SET username = ?, password = ?, email = ?";
+	}
 
 
 
