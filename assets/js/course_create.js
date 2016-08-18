@@ -80,7 +80,6 @@
 	}
 
 
-
 	// Code provided from the internet (tested)
 	// Checks to see if the date in mm/dd/yyyy format is an existing date
 	function dateIsValid(dateString) {

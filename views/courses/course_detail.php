@@ -6,7 +6,6 @@
 	// ------------ DEBUG --------------------
 		// var_dump($course_details);
 		// var_dump($course_schedules);
-
 	// ------------ DEBUG --------------------
 
 

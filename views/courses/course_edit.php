@@ -1,19 +1,23 @@
 <?php
+
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 
-
+	// We are going to update or edit course
 	update_course($db, $_POST);
 	# Or #
-	$course_details = get_course_details($db);
+	list($course_details, $course_schedules) = course_detail($db);
 
+	var_dump($course_schedules[0]['days_available']);
 	// if ( isset($params) ) {
 	// 	echo "the params are....." ;
 	// 	var_dump($params);
 	// }
-
 	//Header HTML
-	 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
+	$myResult = decToBinArray($course_schedules[0]['days_available']);
 
+	var_dump($myResult);
+	
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
 
 ?>
@@ -63,7 +67,9 @@
 <head>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
+
 </head>
+
 	<?php display_alert('error') ?>
 	<?php display_alert('alert') ?>
 
@@ -86,12 +92,12 @@
 
 			<!-- Course Name -->
 			<label for="courseName"> Course Name </label>
-			<input type="text" name="courseName" id="courseName" value="<?php echo htmlentities($params['courseName']) ?>"> </input>
+			<input type="text" name="courseName" id="courseName" value=""> </input>
 
 
 			<!-- Course Description -->
 			<label for="courseDesc"> Course Descirption </label>
-			<input type="text" name="courseDesc" id="courseDesc" value="<?php echo htmlentities($params['courseDesc']) ?>">
+			<input type="text" name="courseDesc" id="courseDesc" value="">
 			
 
 			<!-- This information will have to pull in from the course category query -->
@@ -105,40 +111,40 @@
 
 			<!-- Course Number -->
 			<label for="courseNumber"> Course Number </label>
-			<input type="text" name="courseNumber" id="courseNumber" value="<?php echo htmlentities($params['courseNumber']) ?>">
+			<input type="text" name="courseNumber" id="courseNumber" value="<?php echo $course_details['course_name'] ?>">
 
 			<!-- Course Cost (Number Only) -->
 			<label for="courseCost"> Course Cost </label>
-			<input type="text" name="courseCost" id="courseCost" value="<?php echo htmlentities($params['courseCost']) ?>">
+			<input type="text" name="courseCost" id="courseCost" value="<?php ?>">
 
 
 			<!-- Course Location -->
 			<label for="courseLocation"> Course Location </label>
-			<input type="text" name="courseLocation" id="courseLocation" value="<?php echo htmlentities($params['courseLocation']) ?>">
+			<input type="text" name="courseLocation" id="courseLocation" value="<?php ?>">
 
 
 			<!-- Course Credits (Number Only) -->
 			<label for="courseCredits"> Course Credits </label>
-			<input type="text" name="courseCredits" id="courseCredits" value="<?php echo htmlentities($params['courseCredits']) ?>">
+			<input type="text" name="courseCredits" id="courseCredits" value="<?php ?>">
 
 
 			<!-- Course Notes -->
 			<label for="courseNotes"> Course Notes </label>
-			<textarea id="courseNotes" name="courseNotes"><?php echo htmlentities($params['courseNotes']) ?></textarea>
+			<textarea id="courseNotes" name="courseNotes"><?php ?></textarea>
 
 			<!-- Instructor ID-->
 			<label for="instructorId"> Instructor </label>
-			<input type="text" name="instructorId" value="<?php echo htmlentities($params['instructorId']) ?> ">
+			<input type="text" name="instructorId" value="<?php ?> ">
 
 
 			<!-- Min Class Size -->
 			<label for="minClassSize"> Min Class Size </label>
-			<input type="text" name="minClassSize" id="minClassSize" value="<?php echo htmlentities($params['minClassSize']) ?>"> 
+			<input type="text" name="minClassSize" id="minClassSize" value="<?php ?>"> 
 
 
 			<!-- Max Class Size -->
 			<label for="maxClassSize"> Max Class Size </label>
-			<input type="text" name="maxClassSize" id="maxClassSize" value="<?php echo htmlentities($params['maxClassSize']) ?> ">
+			<input type="text" name="maxClassSize" id="maxClassSize" value="<?php  ?> ">
 
 			<label for="active"> User Active </label>
 
@@ -150,25 +156,12 @@
 
 		</fieldset>
 
+		<?php // Please do not erase the required_hp div. This is a honeypot field to help reduce spam ?>
+		<div class="required_hp">
+			<input type="hidden" name="hpUsername" />
+		</div>
 
-		<!-- Items related to course timing -->
-		<fieldset>
-
-			<h3> Course Schedule </h3>
-
-			<!-- Course Hours -->
-			<label for="courseHours"> Course Hours </label>
-			<input type="text" name="courseHours" value="<?php echo htmlentities($params['courseHours']) ?> ">
-
-
-			<!-- Course Duration -->
-			<label for="courseDuration"> Course Duration </label>
-			<input type="text" name="courseDuration" value="<?php echo htmlentities($params['courseDuration']) ?> ">
-
-			<?php #honeypot field, do not remove ?>
-			<input type="hidden" name="hpUsername" value="">
-
-		</fieldset>
+		<input type="hidden" value="<?php echo $course_details['course_id'] ?>">
 
 		<input type="Submit" value="Submit" >
 
@@ -179,50 +172,74 @@
 	<!-- ==================== Course Schedule ==================== -->
 
 
-	<!-- There is no action because the forms are submitted using ajax -->
-	<form method="POST" action="#">
-
-		<h1> Create Class Schedule </h1>
-
-		<input type="hidden" id="action" name="_method" value="patch">
-
-			<!-- Items related to course timing -->
-			<fieldset>
-
-				<h3> Course Schedule </h3>
-
-				<!-- Course ID -->
-				<label for="courseId"> Course ID ( should obtain automatically ) </label>
-				<input type="hidden" name="courseId" value=""> <br /><br />
+	<div class="course-schedule">
 
 
-				<!-- class_begin_date -->
-				<label for="classBeginDate"> Class Begin Date </label>
-				<input type="text" name="classBeginDate" value=""> <br /><br />
+		<form id="my-form" action="submit.php" method="POST">
+
+			<input type="hidden" id="action" name="_method" value="patch">
+
+			<!-- THis should be obtained automatically though GET -->
+			<input type="hidden" name="scheduleId">
 
 
-				<!-- class_end_date -->
-				<label for="classEndDate"> Class End Date </label>
-				<input type="text" name="classEndDate" id="staffId" value=""> <br /><br />
+			<!-- Class Start and End Date -->
+			<label> Enter Start Date </label>
+			<input type="text" name="schedule_start_date" id="schedule_start_date"> <br />
 
-				<div label for="daysAvaililble"
-
-
-				<!-- Days Availible -->
-				<label for="daysAvailable"> Days Available </label>
-				<input type="text" name="daysAvailable" id="daysAvailable" value=""> <br /><br />
+			<label> Enter End Date </label>
+			<input type="text" name="schedule_end_date" id="schedule_end_date"> <br />
 
 
-				<!-- Location -->
-				<label for="location"> Location </label>
-				<input type="text" name="location" id="location" value=""> <br /><br />
+			<!-- Class Start and End Time -->
+
+			<label> Enter Start Time </label>
+			<input type="text"
+
+			<label for="Class_Start_Date"> </label>
+			<input type="text" name="schedule_end_date"> </input>
+
+			<label> Enter then Bein time </label>
+			<input type="text" name="schedule">
 
 
-			</fieldset>
 
-		<input type="Submit" value="Add Schedule">
 
-	</form>
+
+			<!-- Days Availible -->
+			<label for="daysAvailable"> Days Available </label>
+			<input type="text" name="daysAvailable" id="daysAvailable" value=""> <br /><br />
+
+			<input type="submit" value="FINAL submit date "/>
+
+			<input type="hidden" id="days_availible" name="days_availilble" value="">
+
+			<?php // Please do not erase the required_hp div. This is a honeypot field to help reduce spam ?>
+			<div class="required_hp">
+				<input type="hidden" name="hpUsername" />
+			</div>
+
+			<input type="Submit" value="Add Schedule">
+
+		</form>
+
+
+		<div id="weeks-container"> 
+
+
+			<!-- Here is where all weeks will appear -->
+
+
+		</div>
+
+		<button id="submit-dates"> Submit Dates </button>
+
+		<button id="get_days_button"> Get Info </button>
+
+		<div id="theweekresults"> </div>
+
+	</div>
+
 
 
 

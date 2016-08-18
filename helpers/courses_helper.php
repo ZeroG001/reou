@@ -24,6 +24,24 @@
 	}
 
 
+	/**
+	 * makeArrayHtmlSafe();
+	 *
+	 * Takes all array elements and runs htmlEntities() on each item
+	 *
+	 * @param (array) The ONE DIMENTIONAL Array you need cleaned
+	 * @return (array)
+	 */
+	function makeArrayHtmlSafe($arr) {
+
+		foreach ($arr as $key => $item) {
+			$arr[$key] = htmlentities($item);
+		}
+
+		return $arr;
+	}
+
+
 
 
 	/**
@@ -70,6 +88,9 @@
 
 			return $_GET[$id];
 		} else {
+
+			//Instead of dieing just return false
+			return false;
 			die("nope");
 		}
 	}
@@ -132,6 +153,30 @@
 			return true;
 		}
 
+
+	}
+
+
+	/**
+	 * decToBinArray()
+	 *
+	 * Converts a decimal to binary then separates each number into an array
+	 * This is used to help display the weeks for the schedules
+	 *
+	 * @param (Array) 
+	 * @return (Array)
+	 */
+	function decToBinArray($num, $len = 7) {
+
+		//If the string length is longer than 7 then return false
+		if ( strlen($num) > 7 ) {
+			return false;
+		}
+
+		$result = str_pad($num, $len, "0", STR_PAD_LEFT);
+		$result = str_split($result);
+
+		return $result;
 
 	}
 

@@ -111,10 +111,7 @@ function sign_up($ObjectPDO, $params) {
 
 function edit_profile($ObjectPDO) {
 
-
-
 	// TODO - Mak sure that a user input is filtered.
-
 
 	// If User isn't signed in, go back to home page
 	if( !userSignedIn() ) {
@@ -149,6 +146,9 @@ function edit_profile($ObjectPDO) {
 		}
 
 		$user = new User($ObjectPDO);
+
+
+		// Uses $_GET variable to show the user
 		$results = $user->get_user_details($_GET);
 
 		// Todo - Make this so that you get the count of the results instrad of boolean

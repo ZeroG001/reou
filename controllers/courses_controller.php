@@ -50,9 +50,17 @@ function course_classes($ObjectPDO) {
 
 function course_detail($ObjectPDO) {
 
-	session_start();
+	$course_class_id = verify_get('courseId');
 
-	$course_class_id = verify_get('id');
+	if( verify_get('courseId') ) {
+		$course_class_id = verify_get('courseId');
+	} else {
+		// SHOULD REDIRECT TO COURSE LISTING PAGE - Right now I have it going to course detail
+
+		redirectHome();
+	}
+
+
 	$course = new Course($ObjectPDO);
 	$result_array = Array();
 
@@ -77,7 +85,7 @@ function course_detail($ObjectPDO) {
 
 function course_create($ObjectPDO) {
 	
-
+	// if( $_SERVER['REQUEST_METHOD'] == 'POST' )
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 		//removeme
@@ -95,11 +103,12 @@ function course_create($ObjectPDO) {
 
 
 		// If the course was created, show sucess message. Else, show an error message.
-		if($course->create_course($params)) {
+		// if($course->create_course($params))
+		if( true ) {
 
-			add_message("alert", "the course was added sucessfully");
-			header("Location:". $_SERVER['HTTP_REFERER']);
-			die();
+			// add_message("alert", "the course was added sucessfully");
+			// header("Location:". $_SERVER['HTTP_REFERER']);
+			die("The course has been created");
 
 		} else {
 
@@ -108,7 +117,7 @@ function course_create($ObjectPDO) {
 			die();
 		}
 		
-	}
+	} 
 
 }
 
@@ -205,8 +214,9 @@ function getCourseSchedules($ObjectPDO) {
  */
 function update_course($ObjectPDO, $params) {
 
-	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
-	require_once(D_ROOT . "/reou/helpers/users_helper.php");
+	// If something breaks its probably because this isn't here
+	// require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	// require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
 	// If the users data is being updated.
 	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
@@ -262,8 +272,56 @@ function update_course($ObjectPDO, $params) {
 	}
 
 }
+	
 
-function update_course_schedule {
+function edit_course($ObjectPDO) {
+	// TODO - Mak sure that a user input is filtered.
+
+	// If User isn't signed in, go back to home page
+	if( !userSignedIn() ) {
+		redirectHome();
+		die("You should not be here");
+	}
+
+	// If the user is not an admin then take them back home.
+	// A normal user should not be able to see this page.
+	if( userSignedIn() && !userIsAdmin() ) {
+		redirectHome();
+	}
+
+	// If the user is sign in and is an admin
+	if( userSignedIn() && userIsAdmin() ) {
+
+		if( !isset($_GET['courseId']) || trim($_GET['courseId'] == "") ) {
+			// Should redirect back to the course edit page;
+			redirectHome();
+		}
+
+		$course = new Course($ObjectPDO);
+
+		// Uses $_GET variable to show the course details
+		$results = $course->get_class_details($_GET['courseId']);
+
+		// Todo - get a cournt of result instead of whether there is something in ther or not.
+		if(!$results) {
+			redirectHome();
+			return false;
+		}
+
+		// Make each array item HTML safe;
+		$results = makeArrayHtmlSafe($results);
+
+		return $results;
+
+	}
+
+	die("edit_profile ran into a critical error. You must be signed in to continue");
+	
+}
+
+
+
+function update_course_schedule() {
 	// Perhaps for each course schedule you can create an ajax request 
 	// instead of sumitting each course over again
 }

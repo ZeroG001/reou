@@ -39,7 +39,7 @@
 			<?php  foreach ($courses as $k => $course) { ?>
 
 
-				<a class="mycourse-container--box" href="<?php echo course_route('course_detail', array("id" => $courses['course_id']) ) ?>"
+				<a class="mycourse-container--box" href="<?php echo course_route('course_detail', array("id" => $courses['course_id']) ) ?>">
 					<div class="class-container--box-body">
 						<h1> 
 							<?php echo $course['course_name'] ?> 

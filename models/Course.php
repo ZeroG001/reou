@@ -113,10 +113,10 @@ class Course {
 	 // Get the information for one class.
 	public function get_class_details($class_id) {
 
-	 	$query = "SELECT * FROM courses WHERE course_id = ? LIMIT 1";
+	 	$query = "SELECT * FROM courses WHERE course_id = :id LIMIT 1";
 
 	 	$stmt = $this->db->prepare($query);
-	 	$stmt->bindParam(1, $class_id);
+	 	$stmt->bindParam(':id', $class_id);
 
 	 	try {
 

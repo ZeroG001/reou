@@ -2,7 +2,9 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 
 	// Course is only created on submit
-	$params = course_create($db);
+	// $params = course_create($db);
+
+	course_create($db);
 
 	// if ( isset($params) ) {
 	// 	echo "the params are....." ;
@@ -83,12 +85,12 @@
 
 			<!-- Course Name -->
 			<label for="courseName"> Course Name </label>
-			<input type="text" name="courseName" id="courseName" value="<?php echo htmlentities($params['courseName']) ?>"> </input>
+			<input type="text" name="courseName" id="courseName" value=""> </input>
 
 
 			<!-- Course Description -->
 			<label for="courseDesc"> Course Descirption </label>
-			<input type="text" name="courseDesc" id="courseDesc" value="<?php echo htmlentities($params['courseDesc']) ?>">
+			<input type="text" name="courseDesc" id="courseDesc" value="">
 			
 
 			<!-- This information will have to pull in from the course category query -->
@@ -190,16 +192,20 @@
 				<input type="hidden" name="courseId" value=""> <br /><br />
 
 
-				<!-- class_begin_date -->
+				<!-- Class Begin and End Date -->
 				<label for="classBeginDate"> Class Begin Date </label>
 				<input type="text" name="classBeginDate" value=""> <br /><br />
-
-
-				<!-- class_end_date -->
+				
 				<label for="classEndDate"> Class End Date </label>
 				<input type="text" name="classEndDate" id="staffId" value=""> <br /><br />
 
-				<div label for="daysAvaililble"
+
+				<!-- Class Begin and End Time -->
+				<label for="classBeginTime"> Class Begin Time </label>
+				<input type="text" name="classBeginTime" id="" value=""> <br /> <br />
+
+				<label for="classEndTime"> Class End Time </label>
+				<input type="text" name="classEndTime" id="classEndTime" value=""> <br /> <br />
 
 
 				<!-- Days Availible -->
