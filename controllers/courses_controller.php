@@ -6,7 +6,10 @@ require_once(D_ROOT . '/reou/helpers/courses_helper.php');
 require_once(D_ROOT . '/reou/helpers/users_helper.php');
 require_once(D_ROOT . '/reou/controllers/routes.php');
 require_once(D_ROOT . "/reou/models/Course.php");
+require_once(D_ROOT . "/reou/models/User.php");
 
+
+// decToBinArray
 
 // --------------- course_category.php ---------------------
 
@@ -60,16 +63,26 @@ function course_detail($ObjectPDO) {
 		redirectHome();
 	}
 
-
 	$course = new Course($ObjectPDO);
+	$user = new User($ObjectPDO);
 	$result_array = Array();
 
+
+	// Retrive data from database
 	$details = $course->get_class_details($course_class_id);
 	$schedules = $course->get_course_schedule($course_class_id);
+	$course_categories = $course->get_course_category();
+	$instructors = $user->get_instructors();
 
+
+	// Push the result of each to the result array
 	array_push($result_array, $details);
 	array_push($result_array, $schedules);
+	array_push($result_array, $course_categories);
+	array_push($result_array, $instructors);
+	
 
+	// I need to find a way to srube the data in a different way.
 	foreach ($result_array as $k => $v) {
 		$result_array[$k] = scrub_array_output($v);
 	}

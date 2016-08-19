@@ -109,6 +109,7 @@
 	 */
 	function scrub_array_output($items) {
 
+
 		foreach ($items as $key => $item) {
 
 			if( is_array($item) ) {
@@ -162,30 +163,31 @@
 	 *
 	 * Converts a decimal to binary then separates each number into an array
 	 * This is used to help display the weeks for the schedules
+	 * Accepts comma separated string with numbers
+	 * TODO - work on corder casese for function 
 	 *
-	 * @param (Array) 
+	 *
+	 * @param (String) 
 	 * @return (Array)
 	 */
 	function decToBinArray($num, $len = 7) {
 
-		//If the string length is longer than 7 then return false
-		if ( strlen($num) > 7 ) {
-			return false;
+		
+		$decArray = explode(",", $num);
+
+
+		foreach ($decArray as $key => $dec) {
+
+			if ( strlen($dec) > 7 ) {
+				return false;
+			}
+			$decArray[$key] = decbin($dec);
+			$decArray[$key] = str_split(str_pad($dec, $len, "0", STR_PAD_LEFT));
 		}
 
-		$result = str_pad($num, $len, "0", STR_PAD_LEFT);
-		$result = str_split($result);
-
-		return $result;
+		return $decArray;
 
 	}
-
-
-
-
-
-
-
 
 
 ?>

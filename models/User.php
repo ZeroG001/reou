@@ -88,6 +88,17 @@ class User {
 	}
 
 
+	public function get_instructors() {
+		$query = "SELECT * FROM users WHERE role = 'instructor'";
+
+		$stmt = $this->db->prepare($query);
+		$stmt->execute();
+		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $result;
+	}
+
+
 
 
 	// Get User Information
