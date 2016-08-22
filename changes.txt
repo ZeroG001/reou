@@ -121,11 +121,11 @@ ALTER TABLE `course_schedules` ADD `days_available` TEXT NOT NULL AFTER `class_e
 
 
 [ 23. add column class_begin_date ]
-ALTER TABLE `course_schedules` ADD `class_end_date` DATE NOT NULL AFTER `class_begin_date`;
+ALTER TABLE `course_schedules` ADD `class_begin_date` DATE NOT NULL;
 
 
 [ 24. add column class_end_date ]
-ALTER TABLE `course_schedules` ADD `class_end_date` DATE NOT NULL AFTER `class_end_date`;
+ALTER TABLE `course_schedules` ADD `class_end_date` DATE NOT NULL AFTER `class_begin_date`;
 
 
 

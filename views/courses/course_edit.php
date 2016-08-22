@@ -9,10 +9,7 @@
 		$course_details, 
 		$course_schedules,
 		$course_categories,
-		$instructors) = course_detail($db);
-
-
-	var_dump($course_schedules[0]);
+		$instructors) = course_edit($db);
 
 
 	// if ( isset($params) ) {
@@ -20,6 +17,8 @@
 	// 	var_dump($params);
 	// }
 	//Header HTML
+
+	var_dump($course_schedules[0]['days_available']);
 
 
 
@@ -233,8 +232,34 @@
 
 		</form>
 
+		<!-- for each item in the array do something -->
 
 		<div id="weeks-container"> 
+
+			<?php foreach (  $course_schedules as $course_schedule ) { ?>
+				<div class="weekday-container ">	
+
+					<!-- Run code for each schedule -->
+
+					<?php foreach ( $course_schedule['days_available'] as $week ) { ?>
+
+						<!-- Code to run for each week -->
+
+						<?php foreach ( $week as $day ) { ?>
+
+							<!-- Code to run for each day -->
+								<label> Monday </label>
+								<input type="checkbox" <?php echo displayChekbox($day) ?> >
+							<?php } ?>
+
+						<?php  } ?>
+
+				</div>
+			<?php } ?>
+			<!-- Format will be something like this -->
+			<!-- disabled based on boonean value -->
+
+	  
 
 
 			<!-- Here is where all weeks will appear -->

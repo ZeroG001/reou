@@ -44,6 +44,9 @@
 
 
 
+
+
+
 	/**
 	 * is_arrayEmpty()
 	 *
@@ -97,35 +100,65 @@
 
 
 
+	/**
+	 * makeStringHtmlSafe
+	 *
+	 * Function meant to be used with the array_walk_reursive function
+	 * Takes each item in a multidimentional array and scrubs the items
+	 *
+	 * @param (Array) 
+	 * @return (Array)
+	 */
+	function makeStringHtmlSafe(&$arr, $key) {
+		$myarr = htmlentities($arr);
+	}
 
 	/**
 	 * course_clean_output
 	 *
 	 * Cleans the values of the given array so that it can safely be output to the screen; 
-	 * This function can only handle one and two dimentional arrays;
+	 * ** Please dont 
 	 *
 	 * @param (Array) 
 	 * @return (Array)
 	 */
 	function scrub_array_output($items) {
-
-
-		foreach ($items as $key => $item) {
-
-			if( is_array($item) ) {
-				foreach ($item as $k => $v) {
-					$item[$k] = htmlentities($v);
-				}
-
-				$items[$key] = $item;
-			} else {
-				$items[$key] = htmlentities($item);
-			}
-		}
-
-		return $items;
+		array_walk_recursive($items, 'makeStringHtmlSafe');
 		
+		// // Array Dimention 1
+		// foreach ($items as $key => $item) {
+
+		// 	if( is_array($item) ) {
+
+		// 		//Array Dimention 2
+		// 		foreach ($item as $k => $v) {
+
+		// 			if ( is_array($v) ) {
+
+		// 				echo $k;
+
+		// 				foreach ($v as $key => $value) {
+
+		// 					$v[$key] = htmlentities($value);
+
+		// 				}
+		// 			} else {
+						
+		// 				$item[$k] = htmlentities($v);
+		// 			}
+
+		// 		}
+
+		// 		$items[$key] = $item;
+		// 	} else {
+		// 		$items[$key] = htmlentities($item);
+		// 	}
+		// }
+
+		// return $items;
 	}
+
+
 
 
 	/**
@@ -158,6 +191,7 @@
 	}
 
 
+
 	/**
 	 * decToBinArray()
 	 *
@@ -165,7 +199,7 @@
 	 * This is used to help display the weeks for the schedules
 	 * Accepts comma separated string with numbers
 	 * TODO - work on corder casese for function 
-	 *
+	 * returns array( 1,1,1,0,0,0,0 )
 	 *
 	 * @param (String) 
 	 * @return (Array)
@@ -175,18 +209,20 @@
 		
 		$decArray = explode(",", $num);
 
-
 		foreach ($decArray as $key => $dec) {
-
-			if ( strlen($dec) > 7 ) {
-				return false;
-			}
-			$decArray[$key] = decbin($dec);
-			$decArray[$key] = str_split(str_pad($dec, $len, "0", STR_PAD_LEFT));
+			
+			//conver decimal to binary
+			$dec = decbin($dec);
+			
+			//Conver the devimal to an array
+			$dec = str_split(str_pad($dec, $len, "0", STR_PAD_LEFT));
+			
+			//replace index value with that number
+			$decArray[$key] = $dec;
+			
 		}
 
 		return $decArray;
-
 	}
 
 

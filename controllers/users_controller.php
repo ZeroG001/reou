@@ -97,8 +97,9 @@ function sign_up($ObjectPDO, $params) {
 		} 
 		catch (Exception $e) {
 			// This needs to be an error message
+			echo $e->getMessage();
 			die("There was a porblem creating the user check sigup.php");
-			$e->getMessage();
+			
 		}
 
 		// header("location: ../views/courses/course_category.php");

@@ -17,15 +17,15 @@ function course_category($ObjectPDO) {
 
 	$course = new Course($ObjectPDO);
 	$categories = $course->get_course_category();
-	$categories = scrub_array_output($categories); //scrub output
+	// $categories = scrub_array_output($categories); //scrub output
+	scrub_array_output($categories); // Scrub Output with html entities
 
 	return $categories;
 }
 
 
 
-
-// --------------- course_classes.php ---------------------
+// --------------- course_classes.php --------------------- //
 
 function course_classes($ObjectPDO) {
 
@@ -36,8 +36,12 @@ function course_classes($ObjectPDO) {
 	$categories = $course->get_course_classes($course_id);
 	$one_category = $course->get_one_course_category($course_id);
 
-	$categories = scrub_array_output($categories); //scrub output
-	$one_category = scrub_array_output($one_category); //scrub output
+	// $categories = scrub_array_output($categories); //scrub output
+	// $one_category = scrub_array_output($one_category); //scrub output
+	scrub_array_output($categories); // Scrub Output with html entities
+	scrub_array_output($one_category); // Scrub Output with html entities
+
+
 	
 	array_push($result_array, $categories);
 	array_push($result_array, $one_category);
@@ -52,6 +56,51 @@ function course_classes($ObjectPDO) {
 // --------------- course_detail.php ---------------------
 
 function course_detail($ObjectPDO) {
+
+	$course_class_id = verify_get('id');
+
+	if( verify_get('id') ) {
+		$course_class_id = verify_get('id');
+	} else {
+		// SHOULD REDIRECT TO COURSE LISTING PAGE - Right now I have it going to course detail
+
+		redirectHome();
+	}
+
+	$course = new Course($ObjectPDO);
+	$result_array = Array();
+
+
+	// Get Course Details and Schedules
+	$course_details = $course->get_class_details($course_class_id);
+	$course_schedules = $course->get_course_schedule($course_class_id);
+
+	if (empty($course_details)) {
+		// Should go to course list page instead of home.
+		redirectHome();
+	}
+
+
+	// Push the result of each to the result array
+	array_push($result_array, $course_details);
+	array_push($result_array, $course_schedules);
+
+
+	// I need to find a way to srube the data in a different way.
+	// foreach ($result_array as $k => $v) {
+	// 	$result_array[$k] = scrub_array_output($v);
+	// }
+	// $result_array[$k] = scrub_array_output($v);
+	
+
+	return $result_array;
+}
+
+
+
+
+
+function course_edit($ObjectPDO) {
 
 	$course_class_id = verify_get('courseId');
 
@@ -70,10 +119,22 @@ function course_detail($ObjectPDO) {
 
 	// Retrive data from database
 	$details = $course->get_class_details($course_class_id);
+
+	if (empty($details)) {
+		// Should go to course list page instead of home.
+		redirectHome();
+	}
+
 	$schedules = $course->get_course_schedule($course_class_id);
 	$course_categories = $course->get_course_category();
 	$instructors = $user->get_instructors();
 
+
+	// Take the days_available result and convert it to binary arry
+	foreach ($schedules as $k => $course_schedule) {
+		$schedules[$k]['days_available'] = decToBinArray($course_schedule['days_available']);
+	}
+	unset($couse_schedule);
 
 	// Push the result of each to the result array
 	array_push($result_array, $details);
@@ -82,15 +143,17 @@ function course_detail($ObjectPDO) {
 	array_push($result_array, $instructors);
 	
 
+
 	// I need to find a way to srube the data in a different way.
+	// scrup_array_output only handles up to two-dimentional arrays
 	foreach ($result_array as $k => $v) {
-		$result_array[$k] = scrub_array_output($v);
+		scrub_array_output($v);
 	}
-	
+
+
 
 	return $result_array;
 }
-
 
 
 
@@ -285,7 +348,9 @@ function update_course($ObjectPDO, $params) {
 	}
 
 }
-	
+
+
+
 
 function edit_course($ObjectPDO) {
 	// TODO - Mak sure that a user input is filtered.
@@ -334,10 +399,12 @@ function edit_course($ObjectPDO) {
 
 
 
+
 function update_course_schedule() {
 	// Perhaps for each course schedule you can create an ajax request 
 	// instead of sumitting each course over again
 }
+
 
 
 
@@ -381,7 +448,7 @@ function my_courses_two($ObjectPDO) {
 		
 		$course = new Course($ObjectPDO);
 		$categories = $course->get_registered_courses($user_id);
-		$categories = scrub_array_output($categories); // Scrub Output
+		// $categories = scrub_array_output($categories); // Scrub Output
 		return $categories;
 
 	} 
@@ -402,7 +469,8 @@ function my_courses($ObjectPDO) {
 		
 		$course = new Course($ObjectPDO);
 		$categories = $course->get_registered_courses($user_id);
-		$categories = scrub_array_output($categories); // Scrub Output
+		// $categories = scrub_array_output($categories); // Scrub Output
+		scrub_array_output($categories); // Scrub Output with html entities
 		return $categories;
 
 	} 

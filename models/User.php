@@ -70,7 +70,10 @@ class User {
 		 	VALUES (:firstName, :lastName, :email, :password, :createdOn, :role, '1')";
 
 		 	//removet this
-		 	$defaultRole = "strudent";
+		 	$defaultRole = "student";
+
+		 	//TODO - Possably set the created on date in here rather than the form.
+		 	// Someone could change the html and modify the creation date.
 
 		 	$stmt = $this->db->prepare($students_query);
 		 	$stmt->bindParam(':firstName', $params['firstName'], PDO::PARAM_STR);
