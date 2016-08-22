@@ -41,8 +41,6 @@ RewriteRule ^404$ views/main/404.php [L]
 RewriteRule ^admin$ views/admin/admin.php [L]
 
 
-
-
 # ----- Users ------
 RewriteRule ^sign-up$ views/users/sign-up.php [L]
 RewriteRule ^sign-out$ views/users/sign-out.php [L]

@@ -106,15 +106,17 @@ function course_edit($ObjectPDO) {
 
 	if( verify_get('courseId') ) {
 		$course_class_id = verify_get('courseId');
-	} else {
+	} 
+	else {
 		// SHOULD REDIRECT TO COURSE LISTING PAGE - Right now I have it going to course detail
-
 		redirectHome();
 	}
 
 	$course = new Course($ObjectPDO);
 	$user = new User($ObjectPDO);
 	$result_array = Array();
+
+	
 
 
 	// Retrive data from database
@@ -124,6 +126,7 @@ function course_edit($ObjectPDO) {
 		// Should go to course list page instead of home.
 		redirectHome();
 	}
+
 
 	$schedules = $course->get_course_schedule($course_class_id);
 	$course_categories = $course->get_course_category();
@@ -141,7 +144,6 @@ function course_edit($ObjectPDO) {
 	array_push($result_array, $schedules);
 	array_push($result_array, $course_categories);
 	array_push($result_array, $instructors);
-	
 
 
 	// I need to find a way to srube the data in a different way.
@@ -149,8 +151,6 @@ function course_edit($ObjectPDO) {
 	foreach ($result_array as $k => $v) {
 		scrub_array_output($v);
 	}
-
-
 
 	return $result_array;
 }

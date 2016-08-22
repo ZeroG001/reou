@@ -7,6 +7,8 @@
 
 
 
+
+
 	// =====================================
 	//			  	Functions
 	// =====================================
@@ -173,6 +175,57 @@
 	  return final_text;
 	}
 
+
+
+	// REFACTOR THIS...relies on dom element...actually nevermind, you're good...
+	// Takes the number of weeks and outputs them to a specifed htmlElement ID on the page.
+	// Would have it accept the binary array. Rathe than another tyoe if array
+	function displayWeekFromResult( binArray , htmlElement) {
+
+	  // Make it so that the week number is shown above each week
+
+	  //Clear the contents of the htmlElement
+		document.getElementById(htmlElement).innerHTML = "";
+
+		weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+	  
+		final_text = "";
+		final
+	  
+	  template = '<div class="weekday-container {{disabled?}}">';
+	  template += '<label for="{{day}}"> {{label}} </label>';
+	  template += '<input type="checkbox" value="1" id="{{day}}" class="dateBoxes" {{disabled?}}>';
+	  template += '</div>';
+	  
+	  
+	  for (i in weekdays) {
+
+		    // Add attributes
+		   	abbrday = weekdays[i].slice(0,3).toLowerCase();
+				final_text += template.replace(/\{\{day\}\}/g, abbrday );
+
+		   	// Add Label Text
+		   	final_text = final_text.replace(/\{\{label\}\}/g, weekdays[i] );
+
+		    //make in put disabled
+		    final_text = final_text.replace(/\{\{disabled\?\}\}/g, "");
+
+		}
+		
+	  
+	  // Print the number of weeks onto the page
+	  for (i = 0; i < arr.length; i++) {
+
+	  	document.getElementById(htmlElement).innerHTML += "<div class='week-wrap'> <h3> Week " + (i + 1) + "</h3>" + final_text + "</div>";
+	    
+	    // Stop to prevent too many weeks from being added.
+	    // if ( i > 10 ) {
+	    // 	alert("too many weeks");
+	    // 	return final_text;
+	    // }
+	  }
+	  // return final_text; why was I returning a value
+	}
 
 
 	function calculateWeeks(startDate, endDate, dateDiff) {

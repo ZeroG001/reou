@@ -1,4 +1,5 @@
 <?php
+
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 
 	// Course is only created on submit
@@ -14,10 +15,7 @@
 	//Header HTML
 	 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
-
-
 ?>
-
 
 
 <!-- Courses. Thisgs we would liek to update -->

@@ -1,5 +1,8 @@
 <?php 
 
+	
+
+
 	/**
 	 * numExtract()
 	 *
@@ -43,10 +46,7 @@
 
 
 
-
-
-
-
+	
 	/**
 	 * is_arrayEmpty()
 	 *
@@ -71,7 +71,7 @@
 	 * @return (String)
 	 */
 	function format_date($timestamp) {
-		echo date('m/d/Y', strtotime($timestamp));
+		return date('m/d/Y', strtotime($timestamp));
 	}
 
 
@@ -97,7 +97,6 @@
 			die("nope");
 		}
 	}
-
 
 
 	/**

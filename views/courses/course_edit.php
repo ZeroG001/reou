@@ -12,21 +12,20 @@
 		$instructors) = course_edit($db);
 
 
-	// if ( isset($params) ) {
-	// 	echo "the params are....." ;
-	// 	var_dump($params);
-	// }
-	//Header HTML
-
-	var_dump($course_schedules[0]['days_available']);
+	$weekdays = array("Sunday", "Monday", "Tuesday", "Wedesday", "Thursday", "Friday", "Saturday");
 
 
-
-	
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
+	// Load course_schedule result to be used in javascript variable.
 
 ?>
+	<script>
+		var course_schedules = <?php echo json_encode($course_schedules); ?>
+	</script>
+
+
+
 
 
 
@@ -71,9 +70,7 @@
 -->
 
 <head>
-
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
-
 </head>
 
 	<?php display_alert('error') ?>
@@ -240,22 +237,35 @@
 				<div class="weekday-container ">	
 
 					<!-- Run code for each schedule -->
+					<h3> 
+						<?php 
+
+							echo format_date($course_schedule['class_begin_date']) . " - " . format_date($course_schedule['class_end_date']);
+						?> 
+					</h3>
 
 					<?php foreach ( $course_schedule['days_available'] as $week ) { ?>
 
 						<!-- Code to run for each week -->
-
-						<?php foreach ( $week as $day ) { ?>
-
+						<?php foreach ( $week as $k => $day ) { ?>
+						
 							<!-- Code to run for each day -->
-								<label> Monday </label>
-								<input type="checkbox" <?php echo displayChekbox($day) ?> >
-							<?php } ?>
+								<label> <?php # echo $weekdays[$k] ?> </label>
+								<input type="checkbox" class="dateBoxes" >
 
-						<?php  } ?>
+						<?php } ?>
+
+						<br />
+					<?php  } ?>
 
 				</div>
 			<?php } ?>
+
+
+		  <div class="weekday-container {{disabled?}}">
+			  <label for="Day of week"> Day of week </label>
+			  <input type="checkbox" value="1" id="dayofweek" class="dateBoxes">
+		  </div>
 			<!-- Format will be something like this -->
 			<!-- disabled based on boonean value -->
 
@@ -265,6 +275,7 @@
 			<!-- Here is where all weeks will appear -->
 
 			<?php #get ready ?>
+
 
 
 		</div>
@@ -283,3 +294,16 @@
 <!-- Javasript Sources -->
 <script type="text/javascript" src="<?php echo asset_route('js') . 'jquery/dist/jquery.min.js'?>"> </script>
 <script type="text/javascript" src="<?php echo asset_route('js') . 'course_create.js' ?>"> </script> 
+<script type="text/javascript">
+
+	console.log(course_schedules);
+
+	// Were going to do everything throught pure JS
+
+
+	// Display One box
+
+	
+
+</script>
+
