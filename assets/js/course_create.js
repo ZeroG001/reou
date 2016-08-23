@@ -1,4 +1,4 @@
-(function() {
+( function() {
 
 	// =====================================
 	//			  	Variables
@@ -33,6 +33,16 @@
 		return obj;
 	}
 
+
+	// Cool helper function that acts like the range function in python.
+	// Hope I don't run into any problems with this.
+	function _range(myNum) {
+		result_array = [];
+		for (i = 0; i < myNum; i++) {
+			result_array.push(i);
+		}
+		return result_array;
+	}
 
 
 	// Takes String as arguement
@@ -180,7 +190,7 @@
 	// REFACTOR THIS...relies on dom element...actually nevermind, you're good...
 	// Takes the number of weeks and outputs them to a specifed htmlElement ID on the page.
 	// Would have it accept the binary array. Rathe than another tyoe if array
-	function displayWeekFromResult( binArray , htmlElement) {
+	function displayWeekFromResult(obj, htmlElement) {
 
 	  // Make it so that the week number is shown above each week
 
@@ -190,12 +200,11 @@
 		weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	  
 		final_text = "";
-		final
-	  
-	  template = '<div class="weekday-container {{disabled?}}">';
-	  template += '<label for="{{day}}"> {{label}} </label>';
-	  template += '<input type="checkbox" value="1" id="{{day}}" class="dateBoxes" {{disabled?}}>';
-	  template += '</div>';
+
+		template = '<div class="weekday-container {{disabled?}}">';
+		template += '<label for="{{day}}"> {{label}} </label>';
+		template += '<input type="checkbox" value="1" id="{{day}}" class="dateBoxes" {{disabled?}}>';
+		template += '</div>';
 	  
 	  
 	  for (i in weekdays) {
@@ -224,7 +233,9 @@
 	    // 	return final_text;
 	    // }
 	  }
-	  // return final_text; why was I returning a value
+
+	  //return final_text; why was I returning a value
+	
 	}
 
 

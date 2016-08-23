@@ -25,7 +25,7 @@ RewriteRule models - [F,L]
 # ErrorDocument 404 http://10.9.63.86/reou/views/main/404.php
 # ErrorDocument 404 http://192.168.1.12/reou/main/404.php
 
-ErrorDocument 404 http://10.9.63.86/reou/404
+ErrorDocument 404 http://10.9.63.40/reou/404
 # ErrorDocument 4040 http://192.168.1.12/reou/404
 
 

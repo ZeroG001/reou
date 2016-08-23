@@ -18,7 +18,6 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
 	// Load course_schedule result to be used in javascript variable.
-
 ?>
 	<script>
 		var course_schedules = <?php echo json_encode($course_schedules); ?>
@@ -296,7 +295,28 @@
 <script type="text/javascript" src="<?php echo asset_route('js') . 'course_create.js' ?>"> </script> 
 <script type="text/javascript">
 
-	console.log(course_schedules);
+	function showJsonResult(obj) {
+		
+		// for (i = 0; i < obj.length; i++) {
+		// 	return obj[i].days_available;
+		// }
+
+		for ( i = 0; i < obj.length; i++ ) {
+
+			for ( ii = 0; ii < obj[i].days_available.length; ii++ ) {
+
+				for (iii = 0; iii < obj[i].days_available[ii]) {
+					obj][i].days_available[ii];
+					
+			}
+
+		}
+
+		return obj[0].days_available[0];
+	}
+
+
+	showJsonResult(course_schedules);
 
 	// Were going to do everything throught pure JS
 
