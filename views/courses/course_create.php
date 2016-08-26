@@ -70,7 +70,7 @@
 	<form method="POST" action="">
 
 
-		<h1> Creating a new class </h1>
+		<h1> Loreum ipsum title </h1>
 
 		<input type="hidden" id="action" name="_method" value="patch">
 
@@ -79,7 +79,7 @@
 		<fieldset>
 
 
-			<h3> Course Info </h3>
+			<h3> Loreum Ipsum Info </h3>
 
 			<!-- Course Name -->
 			<label for="courseName"> Course Name </label>
@@ -174,53 +174,83 @@
 
 
 	<!-- There is no action because the forms are submitted using ajax -->
-	<form method="POST" action="#">
 
-		<h1> Create Class Schedule </h1>
+		<h1> Lorum ipsum schedule </h1>
 
 		<input type="hidden" id="action" name="_method" value="patch">
 
-			<!-- Items related to course timing -->
-			<fieldset>
+		<!-- Items related to course timing -->
+		<fieldset>
 
-				<h3> Course Schedule </h3>
-
-				<!-- Course ID -->
-				<label for="courseId"> Course ID ( should obtain automatically ) </label>
-				<input type="hidden" name="courseId" value=""> <br /><br />
+			<h3> loreum ipsum schedule </h3>
 
 
-				<!-- Class Begin and End Date -->
-				<label for="classBeginDate"> Class Begin Date </label>
-				<input type="text" name="classBeginDate" value=""> <br /><br />
-				
-				<label for="classEndDate"> Class End Date </label>
-				<input type="text" name="classEndDate" id="staffId" value=""> <br /><br />
+			<form id="my-form" action="submit.php" method="POST">
+
+				<label> Enter Start Date </label>
+				<input type="text" name="schedule_start_date" id="schedule_start_date"> <br />
+
+				<label> Enter End Date </label>
+				<input type="text" name="schedule_end_date" id="schedule_end_date"> <br />
+
+				<input type="submit" value="FINAL submit date "/>
+
+				<input type="hidden" id="days_availible" name="days_availilble" value="">
+
+			</form>
 
 
-				<!-- Class Begin and End Time -->
-				<label for="classBeginTime"> Class Begin Time </label>
-				<input type="text" name="classBeginTime" id="" value=""> <br /> <br />
 
-				<label for="classEndTime"> Class End Time </label>
-				<input type="text" name="classEndTime" id="classEndTime" value=""> <br /> <br />
+			<div id="weeks-container"> 
+
+				<!-- Week schedule information goes here -->
 
 
-				<!-- Days Availible -->
-				<label for="daysAvailable"> Days Available </label>
-				<input type="text" name="daysAvailable" id="daysAvailable" value=""> <br /><br />
+			</div>
+
+			<button id="submit-dates"> Submit Dates </button>
 
 
-				<!-- Location -->
-				<label for="location"> Location </label>
-				<input type="text" name="location" id="location" value=""> <br /><br />
+
+
+
+					<!-- Course ID -->
+					<!-- <label for="courseId"> Course ID ( should obtain automatically ) </label>
+					<input type="hidden" name="courseId" value=""> <br /><br /> -->
+
+
+					<!-- Class Begin and End Date -->
+					<!-- <label for="classBeginDate"> Class Begin Date </label>
+					<input type="text" name="classBeginDate" value=""> <br /><br /> -->
+					
+					<!-- <label for="classEndDate"> Class End Date </label>
+					<input type="text" name="classEndDate" id="staffId" value=""> <br /><br /> -->
+
+
+					<!-- Class Begin and End Time -->
+					<!-- <label for="classBeginTime"> Class Begin Time </label>
+					<input type="text" name="classBeginTime" id="" value=""> <br /> <br /> -->
+
+					<!-- <label for="classEndTime"> Class End Time </label>
+					<input type="text" name="classEndTime" id="classEndTime" value=""> <br /> <br /> -->
+
+
+					<!-- Days Availible -->
+					<!-- <label for="daysAvailable"> Days Available </label>
+					<input type="text" name="daysAvailable" id="daysAvailable" value=""> <br /><br /> -->
+
+
+					<!-- Location -->
+					<!-- <label for="location"> Location </label>
+					<input type="text" name="location" id="location" value=""> <br /><br /> -->
+
+					<!-- This area should contain the course schedule things -->
 
 
 			</fieldset>
 
 		<input type="Submit" value="Add Schedule">
 
-	</form>
 
 
 

@@ -5,8 +5,25 @@
 	// =====================================
 
 
+	// =====================================
+	//			  	Objects
+	// =====================================
 
 
+	// Diff Date Object
+	var DateDiff = { 
+		inDays: function(d1, d2) { 
+	  	var t2 = d2.getTime(); 
+	    var t1 = d1.getTime(); 
+	    return parseInt((t2-t1)/(24*3600*1000)); 
+	  }, 
+	   
+	  inWeeks: function(d1, d2) { 
+	  	var t2 = d2.getTime(); 
+	    var t1 = d1.getTime(); 
+	    return parseInt((t2-t1)/(24*3600*1000*7)); 
+	  },
+	}
 
 
 	// =====================================
@@ -148,7 +165,6 @@
 		weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	  
 		final_text = "";
-		final
 	  
 	  template = '<div class="weekday-container {{disabled?}}">';
 	  template += '<label for="{{day}}"> {{label}} </label>';
@@ -321,7 +337,6 @@
 	// Disable the weekday checkboxes depending on which day the date starts on
 	function disabledays(startDateObj, endDateObj) {
 
-
 	  checkboxClass = "dateBoxes";
 
 	  checkboxes = document.getElementsByClassName(checkboxClass);
@@ -377,7 +392,7 @@
 	}
 	
 
-	//
+	// This will allow us to get schedule date using ajax. This method is currently not being used.
 	function getScheduleData() {
 
 		$.ajax({
@@ -406,16 +421,49 @@
 	schforms = document.forms;
 
 	for ( i = 0; i < schforms.length; i++ ) {
+
 		schforms[i].addEventListener("submit", function(event) {
+
 			event.preventDefault();
 
-			submitFormViaAjax();
-			getScheduleData();
+			console.log("Prevented Form Submission");
+
+
+		entered_dates = {
+			"start_date" : "",
+			"end_date" : ""
+		}
+
+
+		// Get start and end date inputs
+		entered_dates.start_date = document.getElementById("schedule_start_date").value;
+		entered_dates.end_date = document.getElementById("schedule_end_date").value;
+
+
+		// Create Start and End Date Objects
+		startDateObj = new Date(entered_dates.start_date);
+		endDateObj = new Date(entered_dates.end_date);
+
+
+		// Verify the date order and verify the format is correct
+		// If the dates are valid and in the right order then do it
+		if( verifyDates(startDateObj, endDateObj) ) {
+
+			number_of_weeks = calculateWeeks(startDateObj, endDateObj, DateDiff);
+			displayWeek(number_of_weeks, 'weeks-container');
+			disabledays(startDateObj, endDateObj);
+
+		} 
+		else {
+			alert("Dates are invalid");
+		}
 
 
 
+		// submitFormViaAjax();
+		// getScheduleData();
 
-		alert("were running the ajax");
+
 		});
 	}
 

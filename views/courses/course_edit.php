@@ -295,34 +295,42 @@
 <script type="text/javascript" src="<?php echo asset_route('js') . 'course_create.js' ?>"> </script> 
 <script type="text/javascript">
 
-	function showJsonResult(obj) {
+
+	console.log(course_schedules);
+
+	// Dont Leave this page without changing that function name
+	function showScheduleFromResult(schdeuleObj) {
+
+		// THe scheduleObj is the object that comes in
+
+		// For each of the course schedules, I want to get the days_availible
+		days_availible = [];
+		weeks_array = [];
+		days_array = [];
+
+		template = '<div class="weekday-container {{disabled?}}">';
+		template += '<label for="{{day}}"> {{label}} </label>';
+		template += '<input type="checkbox" value="1" id="{{day}}" class="dateBoxes" {{disabled?}}>';
+		template += '</div>';
+
+		final_html = "";
+
+		// In this function I am going to do alot of looping so get ready.
 		
-		// for (i = 0; i < obj.length; i++) {
-		// 	return obj[i].days_available;
-		// }
-
-		for ( i = 0; i < obj.length; i++ ) {
-
-			for ( ii = 0; ii < obj[i].days_available.length; ii++ ) {
-
-				for (iii = 0; iii < obj[i].days_available[ii]) {
-					obj][i].days_available[ii];
-					
-			}
-
+		for( i = 0; i < scheduleObj.length; i++) {
+			week_array.push(obj.days_availible[i]);
 		}
 
-		return obj[0].days_available[0];
-	}
+		for (i = 0; i < weeks_array.length; i++ ) {
+			days_array.push(weeks_array[i]);
+		}
+
+		for
 
 
-	showJsonResult(course_schedules);
+	}	
 
-	// Were going to do everything throught pure JS
-
-
-	// Display One box
-
+	showScheduleFromResult(course_schedules);
 	
 
 </script>
