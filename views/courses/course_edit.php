@@ -20,7 +20,8 @@
 	// Load course_schedule result to be used in javascript variable.
 ?>
 	<script>
-		var course_schedules = <?php echo json_encode($course_schedules); ?>
+		var course_schedules = <?php echo json_encode($course_schedules); ?>;
+		console.log(course_schedules);
 	</script>
 
 
@@ -293,45 +294,4 @@
 <!-- Javasript Sources -->
 <script type="text/javascript" src="<?php echo asset_route('js') . 'jquery/dist/jquery.min.js'?>"> </script>
 <script type="text/javascript" src="<?php echo asset_route('js') . 'course_create.js' ?>"> </script> 
-<script type="text/javascript">
-
-
-	console.log(course_schedules);
-
-	// Dont Leave this page without changing that function name
-	function showScheduleFromResult(schdeuleObj) {
-
-		// THe scheduleObj is the object that comes in
-
-		// For each of the course schedules, I want to get the days_availible
-		days_availible = [];
-		weeks_array = [];
-		days_array = [];
-
-		template = '<div class="weekday-container {{disabled?}}">';
-		template += '<label for="{{day}}"> {{label}} </label>';
-		template += '<input type="checkbox" value="1" id="{{day}}" class="dateBoxes" {{disabled?}}>';
-		template += '</div>';
-
-		final_html = "";
-
-		// In this function I am going to do alot of looping so get ready.
-		
-		for( i = 0; i < scheduleObj.length; i++) {
-			week_array.push(obj.days_availible[i]);
-		}
-
-		for (i = 0; i < weeks_array.length; i++ ) {
-			days_array.push(weeks_array[i]);
-		}
-
-		for
-
-
-	}	
-
-	showScheduleFromResult(course_schedules);
-	
-
-</script>
 
