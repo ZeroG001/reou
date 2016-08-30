@@ -22,7 +22,9 @@
 	<script>
 		var course_schedules = <?php echo json_encode($course_schedules); ?>;
 		console.log(course_schedules);
+		console.log("variable - course_schedules");
 	</script>
+
 
 
 
