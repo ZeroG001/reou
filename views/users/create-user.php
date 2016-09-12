@@ -88,6 +88,14 @@
 
 
 			<div class="profile__input-group">
+
+				<label for="password"> Password </label>
+				<input type="text" class="profile__input" id="password" name="password" value="">
+
+			</div>
+
+
+			<div class="profile__input-group">
 				<label for="bio"> About Yourself </label>
 				<textarea title="bio" class="profile__input" name="bio"> </textarea>
 			</div>

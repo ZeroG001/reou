@@ -47,7 +47,7 @@ class User {
 
 	 	if(!$this->validateParams($params)) {
 	 		# die("This validation failed, check Users.php to fix");
-	 		die("The validation failed. Please try again later");
+	 		// die("The validation failed. Please try again later");
 	 	}
 
 
@@ -142,7 +142,7 @@ class User {
 			$this->checkAcceptedParams($params);
 			$params = $this->sanitizeParams($params);
 
-			$cols = array(
+			$cols = array (
 					"id",
 					"student_number",
 					"first_name",

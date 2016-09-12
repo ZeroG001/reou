@@ -170,46 +170,54 @@ function edit_profile($ObjectPDO) {
 
 function create_user($ObjectPDO, $params) {
 
+	// This function is also used by the signup form so be careful for conflicts
 	// If something breaks its because I remove this part of the program.
 	// require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	// require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
-	//If the user isn't an admin then take them bak home
+	// Only admin's can create a new user in this way.
 	if(!userIsAdmin()) {
-		die("You aren't an admin, you dont belong here. Please leave the area. user_controller.php");
-	}
 
-	// If the users data is being updated.
-	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
+		// If the users data is being updated.
+		if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
 
-		if ( ($_POST['_method']) == "post" )  {
+			if ( ($_POST['_method']) == "post" )  {
 
-			die("the method is post. We are creating a new user");
+				
 
-			// ------ Quick Field Check -----
+				// Get the post vars and put then in the create user mehots
 
-			unset($_POST['_method']);
-			unset($params['_method']);
-			$_POST = check_honeypot_fields($_POST);
-			
-			// ---------- END ---------------
+				// ------ Quick Field Check -----
 
-			$user = new User($ObjectPDO);
+				unset($_POST['_method']);
+				unset($params['_method']);
+				$_POST = check_honeypot_fields($_POST);
+				
+				// ---------- Field Check End ---------------
+
+				$user = new User($ObjectPDO);
+				$user->create_user($_POST);
+
+				// If the user is sucessfully created then move them to the profile of the user they created.
 
 
-			// If the user isn't an admin and they are trying to modify another user then throw message;
-			if(!userIsAdmin()) {
-				if( $_SESSION['id'] != $_POST['userId'] ) {
-					add_message("error", "there was a problem updating the user");
-					header( "Location:" . $_SERVER['REQUEST_URI']);
-					die();
+				// If the user is an admin then
+				if(!userIsAdmin()) {
+					if( $_SESSION['id'] != $_POST['userId'] ) {
+						add_message("error", "there was a problem updating the user");
+						header( "Location:" . $_SERVER['REQUEST_URI']);
+						die();
+					}
 				}
+			} 
+			else {
+				die("Critical error in creating the user. Incorrect method used");
 			}
-		} 
-		else {
-			die("Critical error in creating the user. Incorrect method used");
 		}
+	} else {
+		die("Your not an admin, im not sure how you even got to this page without being detected. users_controller.php");
 	}
+
 }
 
 
