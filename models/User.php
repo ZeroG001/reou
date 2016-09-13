@@ -626,11 +626,16 @@ class User {
 	 		switch($k) {
 	 			case "firstName" :
 
-	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))) ) {
+	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
 	 					array_push($error_messages, array("type" => "alert", "message" => "First Name is invalid"));
 	 					$paramsValid = false;
 	 				}
-	 				
+	 			break;
+
+	 			case "password" :
+	 				if( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/\w{8,}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "password is invalid"));
+	 				}
 	 			break;
 
 	 			case "lastName" :
@@ -639,7 +644,6 @@ class User {
 	 					array_push($error_messages, array("type" => "alert", "message" => "Last Name is invalid"));
 	 					$paramsValid = false;
 	 				}
-
 	 			break;
 
 	 			case "email":
@@ -647,7 +651,6 @@ class User {
 	 					array_push($error_messages, array("type" => "alert", "message" => "Email address is invalid"));
 	 					$paramsValid = false;
 	 				}
-
 	 			break;
 
 	 			case "studentNumber":

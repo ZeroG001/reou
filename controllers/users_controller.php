@@ -176,14 +176,14 @@ function create_user($ObjectPDO, $params) {
 	// require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
 	// Only admin's can create a new user in this way.
-	if(!userIsAdmin()) {
+	if(userSignedIn() && userIsAdmin()) {
 
 		// If the users data is being updated.
-		if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
+		if( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
 
+			// If they they are trying to create a new user.
 			if ( ($_POST['_method']) == "post" )  {
 
-				
 
 				// Get the post vars and put then in the create user mehots
 
@@ -204,7 +204,7 @@ function create_user($ObjectPDO, $params) {
 				// If the user is an admin then
 				if(!userIsAdmin()) {
 					if( $_SESSION['id'] != $_POST['userId'] ) {
-						add_message("error", "there was a problem updating the user");
+						add_message("error", "there was a problem moving the users");
 						header( "Location:" . $_SERVER['REQUEST_URI']);
 						die();
 					}

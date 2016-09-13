@@ -1318,7 +1318,9 @@ body {
   z-index: 0;
   display: block;
   box-sizing: border-box;
-  background-color: #fff; }
+  background-color: #FEFEFE;
+  border: 1px solid black;
+  height: 100px; }
   .profile__sidebar .profile__sidebar-item {
     text-decoration: none;
     text-align: center;

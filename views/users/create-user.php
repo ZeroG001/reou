@@ -23,8 +23,6 @@
 
 <div class="profile-container">
 
-<h1> This page is in no way complete. Do not submit form. </h1>
-
 	<div class="profile__sidebar-container">
 
 		<div class="profile__sidebar">
@@ -90,7 +88,7 @@
 			<div class="profile__input-group">
 
 				<label for="password"> Password </label>
-				<input type="text" class="profile__input" id="password" name="password" value="">
+				<input type="password" class="profile__input" id="password" name="password" value="">
 
 			</div>
 
