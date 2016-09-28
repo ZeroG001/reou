@@ -15,8 +15,6 @@
 	box-sizing: border-box;
 	background-color: #FEFEFE;
 
-	border: 1px solid black;
-	height: 100px;
 
 
 	.profile__sidebar-item {
@@ -59,9 +57,6 @@
 	}
 	
 }
-
-
-
 
 
 
@@ -134,11 +129,16 @@
 ================================================================ */
 
 
+
+/*	Medium Screen Sizes
+--------------------------------------- */
+
 @include mquery("medium") {
 
 
 	.profile-container {
 		width: 100%;
+		overflow: hidden;
 		@include clearfix;
 
 
@@ -151,15 +151,18 @@
 
 		position: relative;
 		box-sizing: border-box;
-		overflow-y: visible;
 		width: 27%;
 		height: 930px;
 		float: left;
 		display: inline-block;
+
+		padding-bottom: 5000px;
+    	margin-bottom: -4995px;
 		
 		
 		/* Testing
-		background-color: tomato; */ 
+		background-color: tomato; */
+
 	}
 
 
@@ -181,8 +184,6 @@
 		background-color: transparent;
 		display: inline-block;
 		width: 63%;
-		float: left;
-		
 		
 
 		/* testing 
@@ -202,7 +203,8 @@
 
 
 
-
+/*	Large Screen sizes
+--------------------------------------- */
 @include mquery("large") { 
 
 }
@@ -212,7 +214,8 @@
 
 
 
-
+/*	Extra Large Screen Sizes
+--------------------------------------- */
 @include mquery("xlarge") { 
 
 }

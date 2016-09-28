@@ -1,5 +1,7 @@
 Try to stay on task this time...
 
+The dream. Is to make Real Estate One "THE" place to get your state license. Create an engaging UI that will attract users to the classes. Easy-to-use statistics for admins to create and manage schedules. Auto-payment system to esentially phase out the jobs of the people.
+
 ------- C Register -------
 
 [ x ] Courses - class_sign-up function submit to self? yes
@@ -19,19 +21,21 @@ Try to stay on task this time...
 
 ------- User -----
 [ x ] Show all classes they are apart of
+[  ] ( admin ) for newly created users. Show message that says user was created successfully
 
 
-------- Admin -----
+------- Admin -------
+[ ]
 
 
 ------- URL -------
-[ ] Reqrite Rules for pretty URLS
+[ x ] Rewrite Rules for pretty URLS
 [ x ] Make model pages inaccessable
 
 
 
 -------- Database -------
-[ ] The schedule database should have a register column that determines whether you can register or not.
+[ ] The schedule database should have a register column that determines whether you can register or not. Used to track people that have already paid for their classes?
 
 
 

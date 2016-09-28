@@ -5,8 +5,8 @@ I used a CSS preprocessor called SASS to create this file.
 At this time of this writing (3/2016) SASS is a handny tool that allowed me to write
 CSS rules without losing my mind. So the compiled main.scss page looks like a mess.
 
-If you aren't familliar with SASS please spend at leat 10 mins reviwing the content on this site. The
-guys that made this system made it as easy as possible to understand.
+If you aren't familliar with SASS please spend at least 10 mins reviewing the content on the site below. The
+guys that made this made it as easy as possible to understand.
 
 [ http://sass-lang.com/guide ]
 
@@ -21,8 +21,11 @@ Focus mainly on:
 */
 
 
+/*	Import External Libraries
+------------------------------------------- */
 @import 'normalize';
 /* @import 'animate'; */
+
 
 /* SASS Variables
 ------------------------------------------- */
@@ -32,7 +35,6 @@ Focus mainly on:
 	-------------------------- */
 	$darkblue: #106FA8;
 	$hoverDarkBlue: #60ADDA;
-
 	$cleardarkblue: rgba(16,111,168, 0.9);
 	$lightblue: #3D96CC;
 	$lightgray: #F1F1F1;
@@ -52,6 +54,11 @@ Focus mainly on:
 	---------------------------- */
 	
 	$fontStack: 'Open Sans', sans-serif;
+	$tpara: 1rem;
+	$th1: 1.25rem;
+	$th2: 1.563rem;
+	$th3: 1.953rem;
+	$th4: 2.441rem;
 
 
 
@@ -91,6 +98,7 @@ Focus mainly on:
 	@mixin mdlBoxShadow {
 		box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
 	}
+
 
 	/* Transitions 
 	--------------------------- */
@@ -357,10 +365,14 @@ Focus mainly on:
 /* Main CSS
 ---------------------------------------------------------------------------------------------------------------- */
 
-
+html {
+	display: block;
+	height: 100%;
+}
 
 body {
 	background-color: $lightgray;
+	min-height: 100%;
 }
 
 .wrap {

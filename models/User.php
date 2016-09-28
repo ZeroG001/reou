@@ -48,6 +48,7 @@ class User {
 	 	if(!$this->validateParams($params)) {
 	 		# die("This validation failed, check Users.php to fix");
 	 		// die("The validation failed. Please try again later");
+	 		return false;
 	 	}
 
 
@@ -175,7 +176,7 @@ class User {
 				return $result;
 			} 
 			catch (Exception $e) {
-				die("There was a poblem getting the user information");
+				die("There was a problem getting the user information.");
 			}
 
 

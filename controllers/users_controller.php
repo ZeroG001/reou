@@ -198,10 +198,12 @@ function create_user($ObjectPDO, $params) {
 				$user = new User($ObjectPDO);
 				$user->create_user($_POST);
 
+				add_message("alert", "The user has been successfully created");
+
 				// If the user is sucessfully created then move them to the profile of the user they created.
 
 
-				// If the user is an admin then
+				// If the user is not an admin then move them back one space.
 				if(!userIsAdmin()) {
 					if( $_SESSION['id'] != $_POST['userId'] ) {
 						add_message("error", "there was a problem moving the users");

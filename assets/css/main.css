@@ -5,8 +5,8 @@ I used a CSS preprocessor called SASS to create this file.
 At this time of this writing (3/2016) SASS is a handny tool that allowed me to write
 CSS rules without losing my mind. So the compiled main.scss page looks like a mess.
 
-If you aren't familliar with SASS please spend at leat 10 mins reviwing the content on this site. The
-guys that made this system made it as easy as possible to understand.
+If you aren't familliar with SASS please spend at least 10 mins reviewing the content on the site below. The
+guys that made this made it as easy as possible to understand.
 
 [ http://sass-lang.com/guide ]
 
@@ -19,6 +19,8 @@ Focus mainly on:
 
 =================================================
 */
+/*	Import External Libraries
+------------------------------------------- */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -489,8 +491,13 @@ th {
 /* Moile Media Queries */
 /* Main CSS
 ---------------------------------------------------------------------------------------------------------------- */
+html {
+  display: block;
+  height: 100%; }
+
 body {
-  background-color: #f1f1f1; }
+  background-color: #f1f1f1;
+  min-height: 100%; }
 
 .wrap {
   position: relative;
@@ -1318,9 +1325,7 @@ body {
   z-index: 0;
   display: block;
   box-sizing: border-box;
-  background-color: #FEFEFE;
-  border: 1px solid black;
-  height: 100px; }
+  background-color: #FEFEFE; }
   .profile__sidebar .profile__sidebar-item {
     text-decoration: none;
     text-align: center;
@@ -1394,9 +1399,12 @@ body {
 
 /* Media Queries 
 ================================================================ */
+/*	Medium Screen Sizes
+--------------------------------------- */
 @media screen and (min-width: 52em) {
   .profile-container {
     width: 100%;
+    overflow: hidden;
     /* Testing 
     background-color: gray; */ }
     .profile-container::after {
@@ -1407,11 +1415,12 @@ body {
   .profile__sidebar-container {
     position: relative;
     box-sizing: border-box;
-    overflow-y: visible;
     width: 27%;
     height: 930px;
     float: left;
     display: inline-block;
+    padding-bottom: 5000px;
+    margin-bottom: -4995px;
     /* Testing
     background-color: tomato; */ }
 
@@ -1428,6 +1437,9 @@ body {
     background-color: transparent;
     display: inline-block;
     width: 63%;
-    float: left;
     /* testing 
     background-color: $lightblue; */ } }
+/*	Large Screen sizes
+--------------------------------------- */
+/*	Extra Large Screen Sizes
+--------------------------------------- */
