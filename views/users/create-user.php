@@ -121,7 +121,7 @@
 
 				<div class="profile__input-group">
 					<label for="active"> User Active </label>
-					<input type="checkbox" name="active" id="active" value="1"  />
+					<input type="checkbox" name="active" id="active" value="1" checked  />
 				</div>
 
 

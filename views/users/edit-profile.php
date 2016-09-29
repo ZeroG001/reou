@@ -3,8 +3,10 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 
+	# If the method is path then update the user
 	update_user($db, $_POST);
-	# Or #
+	
+	# Or show edit profile like normal
 	$user = edit_profile($db);
 
 
@@ -83,11 +85,16 @@
 				<input type="text" class="profile__input" id="email" name="email" value="<?php echo $user['email'] ?>" /> 
 			</div>
 
+			<div class="profilt__input-group">
+				<input type="button" class="profile__password-reset" value="Reset Password">
+			</div>
+
 
 			<div class="profile__input-group">
 				<label for="bio"> About Yourself </label>
 				<textarea title="bio" class="profile__input" name="bio"><?php echo $user['bio'] ?> </textarea>
 			</div>
+
 
 			<!-- ===== Possably for instructor info ===== -->
 
@@ -107,21 +114,17 @@
 			</div>
 
 
-			<div class="profile__input-group">
-				<label for="active"> User Active </label>
-				<input type="checkbox" name="active" id="active" value="1" <?php echo displayChekbox($user['active']) ?> />
-			</div>
+			<?php if(userIsAdmin()) { ?>
+				<div class="profile__input-group">
+					<label for="active"> User Active </label>
+					<input type="checkbox" name="active" id="active" value="1" <?php echo displayChekbox($user['active']) ?> />
+				</div>
+			<?php } ?>
 
 
-			<div class="profile__input-group">
-				<label> Date Created </label>
-				<span> 12/20/2015 (filler text) </span>
-			</div>
-
-
-			<div class="profile__input-group">
-				<label> Last Updated On </label>
-				<span> 1/20/2016 (filler text) </span>
+			<div class="profile__input-group profile__other-stats">
+				<span> Member Since: <?php echo $user['created_at'] ?> </span>
+				<span> Last Updated on: <?php echo $user['updated_at']?> </span>
 			</div>
 
 			<div class="profile__input-group">
@@ -139,6 +142,41 @@
 		</form>
 
 
+		
+			<div style="display: none" class="profile__password-reset-modal">
+
+				<div class="profile__password-reset-well">
+					<form>
+						<div class="profile__modal-header">
+
+							<div class="profile__modal-close"> X </div>
+						</div>
+
+
+						<div class="profile__modal-body">
+
+							<label for="password"> current password </label>
+							<input type="text" name="password" /> 
+
+							<label for="new-password"> new password </label>
+							<input type="text" name="new-password" />
+
+							<label for="repeat password"> confirm new password </label>
+							<input type="text" name="confirm-password" />
+
+							<input type="submit" value="change password">
+							
+						</div>
+
+
+					</form>
+				</div>
+
+			</div>
+
+		
+
+
 	</div>
 
 </div>
@@ -147,4 +185,4 @@
 
 
 <script type="text/javascript" src="<?php echo asset_route('js') . "jquery/dist/jquery.min.js" ?>"> </script>
-<script type="text/javascript" src="<?php echo asset_route('js') . "app.js" ?>"> </script>
+<script type="text/javascript" src="<?php echo asset_route('js') . "edit_profile.js" ?>"> </script>

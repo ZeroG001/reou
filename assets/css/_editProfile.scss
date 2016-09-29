@@ -115,10 +115,49 @@
 
 
 
+.profile__password-reset {
+	@include buttonFlatLarge;
+    background-color: #c3c3c3;
+    color: #505050;
+
+	&:hover {
+		background-color: #dadada;
+		@include transition(background-color 0.2s ease);
+	}
+}
+
+.profile__password-reset-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+
+	background-color: rgba(45,45,45,0.6);
+
+}
+
+.profile__password-reset-well {
+	padding: 20px;
+	background-color: white;
+	margin: 0px auto;
+	width: 100%;
+}
+
 .profile__submit {
 	margin: 40px 0px 40px 0px;
 }
 
+
+.profile__other-stats {
+	color: $bodygray;
+
+	span {
+		display: block;
+		font-size: 0.8em;
+	}
+}
 
 
 
@@ -178,23 +217,15 @@
 
 
 
-
 	.profile__form-container {
 		@include smallPadding;
 		background-color: transparent;
 		display: inline-block;
 		width: 63%;
 		
-
 		/* testing 
 		background-color: $lightblue; */
 	}
-
-
-
-
-
-
 
 
 }
@@ -208,8 +239,6 @@
 @include mquery("large") { 
 
 }
-
-
 
 
 

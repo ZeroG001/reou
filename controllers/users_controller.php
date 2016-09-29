@@ -69,20 +69,17 @@ function sign_up($ObjectPDO, $params) {
 
 	// TODO - On the sign up page if one of the fields has no name value then you get an error. Correct that.
 
-
-	// If signed in bring to course category page
+	// If already signed then take to courses page
 	if(userSignedIn()) {
-		header("Location:".course_route('course_category') );
+		header("Location:" . course_route('course_category') );
 		die();
 	}
 
 	if ( $_SERVER['REQUEST_METHOD'] == "POST") {
 
 
-		// Check Honeypot Field
+		// Check Honeypot Field ( for spam stop comparing yourself to others. This is you right now.)
 		$_POST = check_honeypot_fields($_POST);
-
-
 
 		$params = $_POST;
 		$user = new User($ObjectPDO);
@@ -92,7 +89,8 @@ function sign_up($ObjectPDO, $params) {
 				header("Location:". course_route('course_category'));
 				sign_in($ObjectPDO, $params);
 			} else {
-				User::add_message("alert", "This user already exists");
+				header( "Location:" . $_SERVER['REQUEST_URI']);
+				die();
 			}
 		} 
 		catch (Exception $e) {
@@ -134,6 +132,13 @@ function edit_profile($ObjectPDO) {
 		$params = array("userId" => $userId);
 		$user = new User($ObjectPDO);
 		$results = $user->get_user_details($params);
+
+			//Convert created at time to mm/dd/yy format
+		$updated_at_date = DateTime::createFromFormat('Y-m-d H:m:s',$results['updated_at']);
+
+		$results['updated_at'] = $updated_at_date->format("m/d/Y");
+
+
 		
 		return $results;
 
@@ -153,11 +158,14 @@ function edit_profile($ObjectPDO) {
 		// Uses $_GET variable to show the user
 		$results = $user->get_user_details($_GET);
 
+
 		// Todo - Make this so that you get the count of the results instrad of boolean
 		if(!$results) {
 			redirectHome();
 			return false;
 		}
+
+
 		
 		return $results;
 
@@ -196,11 +204,12 @@ function create_user($ObjectPDO, $params) {
 				// ---------- Field Check End ---------------
 
 				$user = new User($ObjectPDO);
-				$user->create_user($_POST);
 
-				add_message("alert", "The user has been successfully created");
+				if($user->create_user($_POST)) {
 
-				// If the user is sucessfully created then move them to the profile of the user they created.
+					add_message("alert", "The user has been successfully created");
+					// Direct the admin back to the user list page with the message.
+				}
 
 
 				// If the user is not an admin then move them back one space.
@@ -275,11 +284,15 @@ function update_user($ObjectPDO, $params) {
 				if( $_SESSION['id'] != $_POST['userId'] ) {
 					add_message("error", "there was a problem updating the user");
 					header( "Location:" . $_SERVER['REQUEST_URI']);
+
 					die();
 				}
 
 				// Prevent non-admin  from changing their role ( needs refactoring )
 				$_POST['role'] = "student"; 
+
+				// Prevent non-admin user from deactivating theit accoutn
+				$_POST['active'] = '1';
 			}
 
 			// The user should not be able to update if the email already exists in the system

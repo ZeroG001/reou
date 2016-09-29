@@ -60,6 +60,7 @@ class User {
 
 		// Check if user exists
 		if ( $this->unique_user_exists($params['email']) ) {
+			// show message that the user already exists
 			return false;
 		}
 
@@ -157,7 +158,9 @@ class User {
 					"licensed",
 					"role",
 					"bio",
-					"active"
+					"active",
+					"created_at",
+					"updated_at"
 				);
 
 
@@ -469,6 +472,8 @@ class User {
 	 		$this->add_message('alert', 'email address is not valid');
 	 	}
 
+
+
 	 	$query = "SELECT email FROM users
 	 	WHERE email = :username";
 
@@ -480,7 +485,9 @@ class User {
 	 		die("uh oh look like there are duplicate records in the database.");
 	 	}
 
+	 	# If row count is 1, another user was found.
 	 	if($stmt->rowCount() == 1) {
+	 		$this->add_message('alert', 'This user already exists');
 	 		return true;
 	 	} else {
 	 		return false;
@@ -578,7 +585,7 @@ class User {
 	 * @param (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @return (boolean)
 	 */
-	public static function add_message($type, $message) {
+	public static function add_message($type = "alert", $message) {
 		$acceptable_message_types = array("alert","notice","success","error");
 
 
@@ -628,35 +635,36 @@ class User {
 	 			case "firstName" :
 
 	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "First Name is invalid"));
+	 					array_push($error_messages, array("type" => "alert", "message" => "first name is invalid"));
 	 					$paramsValid = false;
 	 				}
 	 			break;
 
 	 			case "password" :
 	 				if( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/\w{8,}/")))) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "password is invalid"));
+	 					array_push($error_messages, array("type" => "alert", "message" => "password must be at least 8 charaters long"));
+	 					$paramsValid = false;
 	 				}
 	 			break;
 
 	 			case "lastName" :
 
 	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "Last Name is invalid"));
+	 					array_push($error_messages, array("type" => "alert", "message" => "last name is invalid"));
 	 					$paramsValid = false;
 	 				}
 	 			break;
 
 	 			case "email":
 	 				if (!filter_var(trim($param), FILTER_VALIDATE_EMAIL)) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "Email address is invalid"));
+	 					array_push($error_messages, array("type" => "alert", "message" => "email address is invalid"));
 	 					$paramsValid = false;
 	 				}
 	 			break;
 
 	 			case "studentNumber":
 	 				if(!filter_var(trim($param), FILTER_VALIDATE_INT)) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "Student number is incorrect"));
+	 					array_push($error_messages, array("type" => "alert", "message" => "student number is incorrect"));
 	 					$paramsValid = false;
 	 				}
 	 			break;
