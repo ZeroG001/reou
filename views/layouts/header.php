@@ -38,7 +38,7 @@
 
 			<nav class="main_subnav"> 
 
-				<?php if(userSignedIn()) { ?>
+				<?php if( userSignedIn() ) { ?>
 					<a class="main_subnav--item" href="<?php echo user_route('my-courses') ?>"> My Courses </a>
 					<a class="main_subnav--item" href="<?php echo user_route('sign-out') ?>"> Sign Out</a>
 					<a class="main_subnav--item" href="http://www.calendarwiz.com/reo"> Calendar </a>
@@ -46,7 +46,7 @@
 				<?php } ?>
 
 
-				<?php  if( userIsAdmin()) { ?>
+				<?php  if( userIsAdmin() ) { ?>
 					<a class="main_subnav--item" href="<?php echo user_route('show-users') ?>"> Edit Users </a>
 					<a class="main_subnav--item" href="<?php echo "/reou/views/admin" ?>"> Admin Center ( test ) </a>
 					<a class="main_subnav--item" href="<?php echo course_route('create_course')?>"> Create Course </a>

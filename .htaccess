@@ -29,9 +29,9 @@ ErrorDocument 404 http://10.9.63.40/reou/404
 # ErrorDocument 4040 http://192.168.1.12/reou/404
 
 
-# the page you're looking for cannot be found.
-
+# ----- 404 Page ------
 RewriteRule ^404$ views/main/404.php [L]
+
 
 # ----- Main -------
 

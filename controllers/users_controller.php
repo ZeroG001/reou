@@ -85,6 +85,7 @@ function sign_up($ObjectPDO, $params) {
 		$user = new User($ObjectPDO);
 
 		try {
+			
 			if($user->create_user($params)) {
 				header("Location:". course_route('course_category'));
 				sign_in($ObjectPDO, $params);

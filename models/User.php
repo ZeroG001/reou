@@ -339,6 +339,36 @@ class User {
 
 	}
 
+	public function update_password() {
+		$query = "UPDATE users SET password = ? WHERE userId = ?";
+
+		// Check Parameters
+		$this->checkAcceptedParams($params);
+		$this->sanitizeParams($params);
+
+
+		// Update the password
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(1, md5($params['password']));
+		$stmt->bindParam(2, $params['userId']);
+
+
+		try {
+
+			if ( $stmt->execute() ) {
+				return true;
+			} 
+			else {
+				return false;
+			}
+		} 
+		catch (Exception $e) {
+			die("there was a problem updating the password");
+			return false;
+		}
+
+	}
+
 
 	// ------------------------ Delete ------------------------
 
@@ -493,6 +523,27 @@ class User {
 	 		return false;
 	 	}
 	 }
+
+
+	 // ============== Delete this when in production =================
+	 public function dbsanitycheck() {
+
+	 	die("hello from other side");
+	 	
+	 	$query = "SELECT * FROM users LIMIT 10";
+	 	$stmt = $this->db->prepare($query);
+
+	 	try {
+	 		if($stmt->execute());
+
+	 		die("success. you are sane.");
+
+	 	} catch(Exception $e) {
+	 		die("there was a porblem connecting to the database");
+	 	}
+	 }
+
+	 // ============= Delete this when in production ==================
 
 
 

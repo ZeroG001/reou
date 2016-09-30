@@ -146,9 +146,10 @@
 			<div style="display: none" class="profile__password-reset-modal">
 
 				<div class="profile__password-reset-well">
-					<form>
-						<div class="profile__modal-header">
 
+					<form action="#" method="POST" class="profile__password-form">
+
+						<div class="profile__modal-header">
 							<div class="profile__modal-close"> X </div>
 						</div>
 
@@ -159,7 +160,7 @@
 							<input type="text" name="password" /> 
 
 							<label for="new-password"> new password </label>
-							<input type="text" name="new-password" />
+							<input type="text" name="n" />
 
 							<label for="repeat password"> confirm new password </label>
 							<input type="text" name="confirm-password" />
@@ -167,7 +168,6 @@
 							<input type="submit" value="change password">
 							
 						</div>
-
 
 					</form>
 				</div>
