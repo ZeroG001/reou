@@ -318,10 +318,11 @@ function update_course($ObjectPDO, $params) {
 			// 	die();
 			// }
 
-			// Make sure a user cannot edit another user unless they are an admin
-			// Do something if there is no session of the session is no loger tehr
+			// The user cannot edit another user unless they are an admin
 
-			// If the user isn't an admin and they are trying to modify one of the courses. Actually, regular users should not be able to modify a course period, so im going to error out when a user attmeps to do this.
+
+			// Regular users should not be able to nodify a course
+			// Admins have the ability to modify a course
 			if(!userIsAdmin()) {
 
 				// Direct the user back to the home page
