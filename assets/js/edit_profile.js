@@ -39,6 +39,10 @@
 
 		});
 
+		$('.profile__submit-button').click(function(){
+			
+		});
+
 
 		// on form submit. show the serialized data
 		$(".profile__password-form").submit( function(event) {

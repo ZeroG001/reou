@@ -55,7 +55,7 @@
 
 		<form class="update_user--form" method="POST" enctype="multipart/form-data">
 
-			<h2> My Profile Information ( REO Academy ) </h2>
+			<!-- <h2> My Profile Information ( REO Academy ) </h2> -->
 
 
 			<input type="hidden" id="action" name="_method" value="patch">
@@ -150,31 +150,41 @@
 					<form action="#" method="POST" class="profile__password-form">
 
 						<div class="profile__modal-header">
-							<div class="profile__modal-close"> X </div>
+							<h2> Change your password. </h2>
+							<span class="profile__modal-close"> X </span>
+							
 						</div>
 
 
 						<div class="profile__modal-body">
 
-							<label for="password"> current password </label>
-							<input type="text" name="password" /> 
+							<div class="profile__input-group">
+								<label for="password"> Current Password </label>
+								<input type="password" class="profile__input" name="password" /> 
+							</div>
+							
 
-							<label for="new-password"> new password </label>
-							<input type="text" name="n" />
+							<div class="profile__input-group">
+								<label for="new-password"> New Password </label>
+								<input type="password" class="profile__input" name="new-password" />
+							</div>
 
-							<label for="repeat password"> confirm new password </label>
-							<input type="text" name="confirm-password" />
 
-							<input type="submit" value="change password">
+							<div class="profile__input-group">
+								<label for="repeat-password"> Confirm New Password </label>
+								<input type="password" class="profile__input" id="repeat-password" name="confirm-password" />
+							</div>
+
+							<input type="submit" class="profile__submit-button" value="Change Password">
+
 							
 						</div>
 
 					</form>
+
 				</div>
 
-			</div>
-
-		
+			</div>		
 
 
 	</div>

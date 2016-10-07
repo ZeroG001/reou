@@ -1366,19 +1366,24 @@ body {
   background-color: #f1f1f1;
   margin: 0px auto; }
 
-.update_user--form .profile__input-group {
+.update_user--form .profile__input-group,
+.profile__password-form .profile__input-group {
   margin: 35px 0px; }
-  .update_user--form .profile__input-group textarea {
+  .update_user--form .profile__input-group textarea,
+  .profile__password-form .profile__input-group textarea {
     resize: none; }
-  .update_user--form .profile__input-group label {
+  .update_user--form .profile__input-group label,
+  .profile__password-form .profile__input-group label {
     margin-bottom: 10px; }
-.update_user--form .profile__input {
+.update_user--form .profile__input,
+.profile__password-form .profile__input {
   padding: 10px;
   margin-top: 5px;
   color: #727570;
   display: block;
   width: 100%; }
-.update_user--form .profile__submit-button {
+.update_user--form .profile__submit-button,
+.profile__password-form .profile__submit-button {
   padding: 7px;
   border: 0px solid black;
   border-radius: 2px;
@@ -1387,7 +1392,8 @@ body {
   background-color: #106fa8;
   color: white;
   padding: 30px; }
-  .update_user--form .profile__submit-button:hover {
+  .update_user--form .profile__submit-button:hover,
+  .profile__password-form .profile__submit-button:hover {
     background-color: #60adda;
     -webkit-transition: background-color 0.3s ease;
     -moz-transition: background-color 0.3s ease;
@@ -1408,6 +1414,7 @@ body {
     -o-transition: background-color 0.2s ease;
     transition: background-color 0.2s ease; }
 
+/* ------------------ Profile Modal ------------------ */
 .profile__password-reset-modal {
   position: fixed;
   top: 0;
@@ -1417,12 +1424,40 @@ body {
   height: 100%;
   background-color: rgba(45, 45, 45, 0.6); }
 
+.profile__modal-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap; }
+  .profile__modal-header h2 {
+    color: #106fa8;
+    font-size: 1.25rem;
+    flex-grow: 1; }
+  .profile__modal-header .profile__modal-close {
+    text-align: right;
+    color: #6c6c6c;
+    padding: 15px;
+    -webkit-transition: color 0.2s ease;
+    -moz-transition: color 0.2s ease;
+    -o-transition: color 0.2s ease;
+    transition: color 0.2s ease; }
+    .profile__modal-header .profile__modal-close:hover {
+      cursor: pointer;
+      -webkit-transition: color 0.2s ease;
+      -moz-transition: color 0.2s ease;
+      -o-transition: color 0.2s ease;
+      transition: color 0.2s ease;
+      color: #111; }
+
 .profile__password-reset-well {
+  box-sizing: border-box;
   padding: 20px;
   background-color: white;
+  border-radius: 2px;
   margin: 0px auto;
   width: 100%; }
 
+/* ------------------ Profile Modal End ------------------ */
 .profile__submit {
   margin: 40px 0px 40px 0px; }
 
@@ -1473,7 +1508,13 @@ body {
     display: inline-block;
     width: 63%;
     /* testing 
-    background-color: $lightblue; */ } }
+    background-color: $lightblue; */ }
+
+  .profile__password-reset-well {
+    padding: 20px;
+    background-color: white;
+    margin: 0px auto;
+    width: 50%; } }
 /*	Large Screen sizes
 --------------------------------------- */
 /*	Extra Large Screen Sizes

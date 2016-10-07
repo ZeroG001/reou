@@ -75,7 +75,8 @@
 
 
 
-.update_user--form {
+.update_user--form,
+.profile__password-form {
 
 	.profile__input-group {
 		margin: 35px 0px;
@@ -109,6 +110,7 @@
 			@include transition(background-color 0.3s ease);
 		}
 
+
 	}
 
 }
@@ -126,6 +128,8 @@
 	}
 }
 
+/* ------------------ Profile Modal ------------------ */
+
 .profile__password-reset-modal {
 	position: fixed;
 	top: 0;
@@ -138,12 +142,51 @@
 
 }
 
+
+.profile__modal-header {
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: nowrap;
+
+	h2 {
+		color: #106fa8;
+		font-size: $th4;
+		flex-grow: 1;
+	}
+
+	.profile__modal-close {
+		text-align: right;
+    	color: #6c6c6c;
+    	padding: 15px;
+    	@include transition(color 0.2s ease); 
+
+    	&:hover {
+    		cursor: pointer;
+    		@include transition(color 0.2s ease); 
+    		color: #111;
+    	}
+	}
+
+
+}
+
+
+
 .profile__password-reset-well {
+	box-sizing: border-box;
 	padding: 20px;
 	background-color: white;
+	border-radius: 2px;
 	margin: 0px auto;
 	width: 100%;
+
 }
+
+
+
+/* ------------------ Profile Modal End ------------------ */
 
 .profile__submit {
 	margin: 40px 0px 40px 0px;
@@ -225,6 +268,17 @@
 		
 		/* testing 
 		background-color: $lightblue; */
+	}
+
+
+
+	.profile__password-reset-well {
+		padding: 20px;
+		background-color: white;
+		margin: 0px auto;
+		width: 50%;
+		
+
 	}
 
 
