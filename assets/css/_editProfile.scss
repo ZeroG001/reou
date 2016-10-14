@@ -158,18 +158,26 @@
 
 	.profile__modal-close {
 		text-align: right;
-    	color: #6c6c6c;
+    	color: #909090;
     	padding: 15px;
+    	cursor: pointer;
     	@include transition(color 0.2s ease); 
 
+
     	&:hover {
-    		cursor: pointer;
+    		
     		@include transition(color 0.2s ease); 
     		color: #111;
+    		cursor: pointer;
+    		
     	}
 	}
 
+}
 
+
+.profile__modal-alert {
+	display: none;
 }
 
 

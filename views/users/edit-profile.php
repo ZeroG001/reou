@@ -152,7 +152,11 @@
 						<div class="profile__modal-header">
 							<h2> Change your password. </h2>
 							<span class="profile__modal-close"> X </span>
-							
+						</div>
+
+
+						<div class="profile__modal-alert alert">
+							<span> The passwords entered do not match  </span>
 						</div>
 
 
@@ -166,13 +170,13 @@
 
 							<div class="profile__input-group">
 								<label for="new-password"> New Password </label>
-								<input type="password" class="profile__input" name="new-password" />
+								<input type="password" id="" class="profile__input" name="new-password" />
 							</div>
 
 
 							<div class="profile__input-group">
-								<label for="repeat-password"> Confirm New Password </label>
-								<input type="password" class="profile__input" id="repeat-password" name="confirm-password" />
+								<label for="confirm-password"> Confirm New Password </label>
+								<input type="password" class="profile__input" id="confirm-password" name="confirm-password" />
 							</div>
 
 							<input type="submit" class="profile__submit-button" value="Change Password">

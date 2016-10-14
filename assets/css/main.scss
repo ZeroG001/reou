@@ -54,6 +54,7 @@ Focus mainly on:
 	/* Font and typographpy 
 	---------------------------- */
 	
+	/* major third */
 	$fontStack: 'Open Sans', sans-serif;
 	$tpara: 1rem;
 	$th1: 2.441rem;
@@ -61,6 +62,14 @@ Focus mainly on:
 	$th3: 1.563rem;
 	$th4: 1.25rem;
 
+
+	/* major second */
+	$fontStack: 'Open Sans', sans-serif;
+	$tparaSmall: 1rem;
+	$th1Small: 1.602rem;
+	$th2Small: 1.424rem;
+	$th3Small: 1.266rem;
+	$th4Small: 1.125rem;
 
 
 
@@ -178,7 +187,8 @@ Focus mainly on:
 
 	@mixin headerContent {
 		/*color: $darkblue;*/
-		font-size: 3rem;
+		/*font-size: 3rem;*/
+		font-size: $th1;
 		margin: 0;
 		padding: 30px 0px;
 
@@ -186,8 +196,9 @@ Focus mainly on:
 
 	@mixin textContent {
 		line-height: 1.5;
-		font-size: 1.5rem;
-		letter-spacing: 0.1rem;
+		/*font-size: 1.5rem;*/
+		font-size: $tpara;
+		/*letter-spacing: 0.1rem;*/
 	}
 
 	@mixin sectionHeader {

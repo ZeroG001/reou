@@ -386,6 +386,8 @@ th {
 -------------------------- */
 /* Font and typographpy 
 ---------------------------- */
+/* major third */
+/* major second */
 /* SASS Mixins
 --------------------------------------------- */
 /* Clearfix 
@@ -402,7 +404,7 @@ th {
 ----------------------------------------------------- */
 /* Animation properties */
 /* Helper Animations */
-@-webkit-keyframes fadeIn {
+@-webkit-keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
@@ -410,7 +412,6 @@ th {
     -ms-transform: scale(0.95, 0.95);
     -o-transform: scale(0.95, 0.95);
     transform: scale(0.95, 0.95); }
-
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -418,8 +419,7 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
-
-@-moz-keyframes fadeIn {
+@-moz-keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
@@ -427,7 +427,6 @@ th {
     -ms-transform: scale(0.95, 0.95);
     -o-transform: scale(0.95, 0.95);
     transform: scale(0.95, 0.95); }
-
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -435,8 +434,7 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
-
-@-o-keyframes fadeIn {
+@-o-keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
@@ -444,7 +442,6 @@ th {
     -ms-transform: scale(0.95, 0.95);
     -o-transform: scale(0.95, 0.95);
     transform: scale(0.95, 0.95); }
-
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -452,8 +449,7 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
-
-@keyframes fadeIn {
+@keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
@@ -461,7 +457,6 @@ th {
     -ms-transform: scale(0.95, 0.95);
     -o-transform: scale(0.95, 0.95);
     transform: scale(0.95, 0.95); }
-
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
@@ -469,7 +464,6 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
-
 	/* JavaScript-less menu 
 
 		bigSibling = menu title
@@ -496,7 +490,7 @@ html {
   height: 100%; }
 
 body {
-  background-color: #f1f1f1;
+  background-color: #F1F1F1;
   min-height: 100%; }
 
 .wrap {
@@ -578,7 +572,7 @@ body {
     font-weight: 400; }
   .main__header-container .main__signup-button {
     display: block;
-    background-color: #08b599;
+    background-color: #08B599;
     color: #fff;
     box-sizing: border-box;
     padding: 30px;
@@ -590,7 +584,7 @@ body {
     -o-transition: 0.5s ease;
     transition: 0.5s ease; }
     .main__header-container .main__signup-button:hover {
-      background-color: #106fa8; }
+      background-color: #106FA8; }
 
 .main__signup-button {
   background-color: red;
@@ -611,7 +605,7 @@ body {
   z-index: 10;
   position: relative;
   text-align: center;
-  background-color: #08b599;
+  background-color: #08B599;
   box-sizing: border-box;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2); }
   .main_nav::after {
@@ -637,7 +631,7 @@ body {
   text-decoration: none;
   padding: 18px 15px; }
   .main_nav--item:hover, .main_nav--item__menu-button:hover {
-    background-color: #2cbda5; }
+    background-color: #2CBDA5; }
   .main_nav--item:hover > .main_subnav, .main_nav--item__menu-button:hover > .main_subnav {
     display: inline-block; }
 
@@ -646,7 +640,7 @@ body {
 
 .main_subnav {
   box-sizing: border-box;
-  background-color: #3d96cc;
+  background-color: #3D96CC;
   display: none;
   position: absolute;
   right: -2px;
@@ -661,7 +655,7 @@ body {
     text-decoration: none;
     padding: 18px 15px; }
     .main_subnav .main_subnav--item:hover {
-      background-color: #60adda; }
+      background-color: #60ADDA; }
 
 .main_nav--menu-button {
   position: relative;
@@ -674,7 +668,7 @@ body {
   .main_nav--menu-button .menu-button--bar {
     display: block;
     position: relative;
-    background-color: #106fa8;
+    background-color: #106FA8;
     width: 100%;
     height: 5px;
     margin: 5px 0px;
@@ -793,7 +787,7 @@ body {
     font-size: 1.1rem;
     letter-spacing: 0.1rem;
     font-weight: bold;
-    background-color: #3d96cc;
+    background-color: #3D96CC;
     color: white; }
   .course-container--box .course-container--box-body {
     padding: 18px 15px; }
@@ -836,7 +830,7 @@ body {
   padding: 50px 0px;
   text-align: center;
   color: white;
-  background-color: #488db6; }
+  background-color: #488DB6; }
   .banner-title-wrapper h1 {
     margin: 0px 0px 21.44px 0px; }
 
@@ -870,7 +864,7 @@ body {
     font-size: 1.1rem;
     letter-spacing: 0.1rem;
     font-weight: bold;
-    background-color: #3d96cc;
+    background-color: #3D96CC;
     color: white; }
   .class-container--box .class-container--box-body {
     padding: 18px 15px; }
@@ -1017,8 +1011,8 @@ body {
   line-height: 1;
   margin: 0;
   background-color: transparent;
-  border: 1px solid #106fa8;
-  color: #106fa8;
+  border: 1px solid #106FA8;
+  color: #106FA8;
   box-sizing: border-box;
   display: block;
   margin: 0px auto; }
@@ -1073,7 +1067,7 @@ body {
   padding: 50px 0px;
   text-align: center;
   color: white;
-  background-color: #488db6; }
+  background-color: #488DB6; }
   .banner-title-wrapper h1 {
     margin: 0px 0px 21.44px 0px; }
 
@@ -1107,7 +1101,7 @@ body {
     font-size: 1.1rem;
     letter-spacing: 0.1rem;
     font-weight: bold;
-    background-color: #3d96cc;
+    background-color: #3D96CC;
     color: white; }
   .mycourse-container--box .mycourse-container--box-body {
     padding: 18px 15px; }
@@ -1229,11 +1223,11 @@ body {
 
 .login__signup-link {
   text-decoration: none;
-  color: #3d96cc;
+  color: #3D96CC;
   text-align: left;
   padding: 10px 0px; }
   .login__signup-link:hover {
-    color: #106fa8; }
+    color: #106FA8; }
 
 .login__picture-container {
   display: none; }
@@ -1286,11 +1280,11 @@ body {
 
 .login__signup-link {
   text-decoration: none;
-  color: #3d96cc;
+  color: #3D96CC;
   text-align: left;
   padding: 10px 0px; }
   .login__signup-link:hover {
-    color: #106fa8; }
+    color: #106FA8; }
 
 .signup__picture-container {
   display: none; }
@@ -1329,7 +1323,7 @@ body {
   .profile__sidebar .profile__sidebar-item {
     text-decoration: none;
     text-align: center;
-    color: #106fa8;
+    color: #106FA8;
     display: block;
     padding: 18px 15px; }
     .profile__sidebar .profile__sidebar-item:hover {
@@ -1337,7 +1331,7 @@ body {
       -moz-transition: background-color 0.2s ease;
       -o-transition: background-color 0.2s ease;
       transition: background-color 0.2s ease;
-      background-color: #f1f1f1; }
+      background-color: #F1F1F1; }
 
 .profile__logo {
   padding: 30px 0px; }
@@ -1389,12 +1383,12 @@ body {
   border-radius: 2px;
   text-align: center;
   padding: 18px 15px;
-  background-color: #106fa8;
+  background-color: #106FA8;
   color: white;
   padding: 30px; }
   .update_user--form .profile__submit-button:hover,
   .profile__password-form .profile__submit-button:hover {
-    background-color: #60adda;
+    background-color: #60ADDA;
     -webkit-transition: background-color 0.3s ease;
     -moz-transition: background-color 0.3s ease;
     -o-transition: background-color 0.3s ease;
@@ -1435,19 +1429,23 @@ body {
     flex-grow: 1; }
   .profile__modal-header .profile__modal-close {
     text-align: right;
-    color: #6c6c6c;
+    color: #909090;
     padding: 15px;
+    cursor: pointer;
     -webkit-transition: color 0.2s ease;
     -moz-transition: color 0.2s ease;
     -o-transition: color 0.2s ease;
     transition: color 0.2s ease; }
     .profile__modal-header .profile__modal-close:hover {
-      cursor: pointer;
       -webkit-transition: color 0.2s ease;
       -moz-transition: color 0.2s ease;
       -o-transition: color 0.2s ease;
       transition: color 0.2s ease;
-      color: #111; }
+      color: #111;
+      cursor: pointer; }
+
+.profile__modal-alert {
+  display: none; }
 
 .profile__password-reset-well {
   box-sizing: border-box;
@@ -1519,3 +1517,5 @@ body {
 --------------------------------------- */
 /*	Extra Large Screen Sizes
 --------------------------------------- */
+
+/*# sourceMappingURL=main.css.map */

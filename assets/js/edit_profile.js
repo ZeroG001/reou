@@ -24,14 +24,25 @@
 
 	$(".profile__password-reset").click(function() {
 
+		// Open The Password Reset Modal
 		console.log("opening password reset modal");
 		$(".profile__password-reset-modal").css("display", "inline");
 
-		// When you submit the modal.
-			// Prevent default behavious
-			// sned ajax request over to the ajax route
-			// console.log out the message
 
+		//Ensure that the new password matches the confirm password
+
+
+
+		// When the user clicks the submit button check to seee if the passwords match
+		$('.profile__submit-button').click(function() {
+
+			// Check to make sure the new passowrd and confirm password are the same
+			//Send Ajax request to helpers/ajax_actions/updatePassword.php	
+		});
+
+
+
+		// Close the modal window
 		$('.profile__modal-close').click( function() {
 
 			console.log("closing the modal");
@@ -39,9 +50,6 @@
 
 		});
 
-		$('.profile__submit-button').click(function(){
-			
-		});
 
 
 		// on form submit. show the serialized data

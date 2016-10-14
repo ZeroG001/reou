@@ -32,8 +32,11 @@
 		box-sizing: border-box;
 		max-height: 190px;
 		overflow: hidden;
+
 		
 	}
+
+
 
 
 	.course_info--item__notes {
@@ -45,6 +48,7 @@
 	}
 
 }
+
 
 
 .course_schedule--wrap {
@@ -71,12 +75,15 @@
 
 
 
+
 /* Media Queries 
 ===================== */
 
 
 /* ------------------------ Medium Screen Size ------------------- */
+
 @include mquery("medium") {
+
 
 	.banner-title-wrapper {
 
@@ -122,13 +129,9 @@
 		margin-left: 15px;
 		margin-bottom: 15px;
 		width: 47.91%;
-
 	}
-
-
-
-
 	
+
 }
 
 
