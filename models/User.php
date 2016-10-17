@@ -339,8 +339,8 @@ class User {
 
 	}
 
-	public function update_password() {
-		$query = "UPDATE users SET password = ? WHERE userId = ?";
+	public function update_password($params) {
+		$query = "UPDATE users SET password = ? WHERE id = ?";
 
 		// Check Parameters
 		$this->checkAcceptedParams($params);
@@ -349,7 +349,7 @@ class User {
 
 		// Update the password
 		$stmt = $this->db->prepare($query);
-		$stmt->bindParam(1, md5($params['password']));
+		$stmt->bindParam(1, md5($params['new_password']));
 		$stmt->bindParam(2, $params['userId']);
 
 
@@ -363,11 +363,14 @@ class User {
 			}
 		} 
 		catch (Exception $e) {
+
 			die("there was a problem updating the password");
 			return false;
 		}
 
 	}
+
+
 
 
 	// ------------------------ Delete ------------------------
@@ -525,7 +528,9 @@ class User {
 	 }
 
 
+
 	 // ============== Delete this when in production =================
+	 
 	 public function dbsanitycheck() {
 
 	 	die("hello from other side");
@@ -760,6 +765,7 @@ class User {
 		 "lastName",
 		 "email",
 		 "password",
+		 "new_password",
 		 "userId",
 		 "dateCreated",
 		 "lisenced",

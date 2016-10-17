@@ -36,6 +36,32 @@
 		// When the user clicks the submit button check to seee if the passwords match
 		$('.profile__submit-button').click(function() {
 
+
+
+
+			// Check to make sure the passwords match
+
+			event.preventDefault();
+
+			$formItems = $('.profile__password-form').serializeArray();
+			$data = serialToObj($formItems);
+			console.log("this is the result");
+			console.log($data);
+
+
+
+			// What we need to do now is serialize the array into something I can use.
+
+			// $.ajax({
+			// 	data: {"email": "ZeroG001@hotmail.com", "password" : "sonic001", "new_password" : "sonic002"},
+			// 	type: "POST",
+			// 	// url: "helpers/ajax_actions/updatePassword.php",
+			// 	url: "",
+			// 	success: function(response) {
+			// 		alert(response);
+			// 	}
+			// })
+
 			// Check to make sure the new passowrd and confirm password are the same
 			//Send Ajax request to helpers/ajax_actions/updatePassword.php	
 		});
@@ -50,21 +76,6 @@
 
 		});
 
-
-
-		// on form submit. show the serialized data
-		$(".profile__password-form").submit( function(event) {
-
-			// Check to make sure the passwords match
-
-			event.preventDefault();
-
-			$formItems = $( this ).serializeArray();
-			$data = serialToObj($formItems);
-			console.log("this is the result");
-			console.log($data);
-			
-		});
 
 
 	});
