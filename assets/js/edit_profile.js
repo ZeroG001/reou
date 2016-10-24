@@ -36,9 +36,6 @@
 		// When the user clicks the submit button check to seee if the passwords match
 		$('.profile__submit-button').click(function() {
 
-
-
-
 			// Check to make sure the passwords match
 
 			event.preventDefault();
@@ -48,19 +45,51 @@
 			console.log("this is the result");
 			console.log($data);
 
+			// Submit the from if the passwords If the passwords eneterd do not mactch then show an alert
+			if( $data['new-password'] != $data['confirm-password'] ) {
+				$('.profile__modal-alert').css('display', 'inline');
+				// Hopefully this stop the ajax from running
+				return false;
+			} else {
+				check_credentials();
+				console.log("The passwords match. Closing the modal and continueing.");
+				$(".profile__password-reset-modal").css("display", "none");
+				$('.profile__modal-alert').css('display', 'none');
+			}
+
+
+			// If unable to verify the passworr
+
+
+			function update_password() {
+
+				// What we need to do now is serialize the array into something I can use.
+
+				// $.ajax({
+				// 	data: {"email": "ZeroG001@hotmail.com", "password" : "sonic001", "new_password" : "sonic002"},
+				// 	type: "POST",
+				// 	// url: "helpers/ajax_actions/updatePassword.php",
+				// 	url: "",
+				// 	success: function(response) {
+				// 		alert(response);
+				// 	}
+				// })				
+			}
+
+
+			function check_credentials() {
+				$.ajax({
+					data: {"email": "ZeroG001@hotmail.com", "password" : "sonic001", "new_password" : "sonic001"},
+					type: "POST",
+					url: "helpers/ajax_actions/checkCredentials.php",
+					success: function(response) {
+						alert(response);
+					}
+				})
+			}
 
 
 			// What we need to do now is serialize the array into something I can use.
-
-			// $.ajax({
-			// 	data: {"email": "ZeroG001@hotmail.com", "password" : "sonic001", "new_password" : "sonic002"},
-			// 	type: "POST",
-			// 	// url: "helpers/ajax_actions/updatePassword.php",
-			// 	url: "",
-			// 	success: function(response) {
-			// 		alert(response);
-			// 	}
-			// })
 
 			// Check to make sure the new passowrd and confirm password are the same
 			//Send Ajax request to helpers/ajax_actions/updatePassword.php	
