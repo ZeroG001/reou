@@ -164,13 +164,13 @@
 
 							<div class="profile__input-group">
 								<label for="password"> Current Password </label>
-								<input type="password" class="profile__input" name="password" required="true" /> 
+								<input type="password" class="profile__input modal-password-input" name="password" required="true" /> 
 							</div>
 							
 
 							<div class="profile__input-group">
 								<label for="new-password"> New Password </label>
-								<input type="password" id="" class="profile__input" name="new-password" required="true" />
+								<input type="password" id="" class="profile__input modal-new-password-input" name="new-password" required="true" />
 							</div>
 
 
@@ -179,7 +179,7 @@
 								<input type="password" class="profile__input" id="confirm-password" name="confirm-password" required="true" />
 							</div>
 
-							<input type="submit" class="profile__submit-button" value="Change Password">
+							<input type="submit" class="profile__submit-button" id="profile__submit-button-modal" value="Change Password">
 
 							
 						</div>
