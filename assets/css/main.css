@@ -514,6 +514,9 @@ body {
   color: #e86b52;
   margin: 20px 0px; }
 
+input.field-invalid {
+  border: 1px solid #d03238; }
+
 /* -------------------------- Media Queries -------------------------- */
 /* ---------- Medium Screen Size ---------- */
 @media screen and (min-width: 52em) {

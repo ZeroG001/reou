@@ -611,7 +611,7 @@ class User {
 	*
 	*
 	* @param (String) camelCase word to convert to snake case.
-	* @return (String) word converted to snake_case.
+	* @return (String) word converted to snake_case. 
 	*/
 	public function convert_camel_case($string) {
 		$pattern ="/([a-z])([A-Z])/";
@@ -709,6 +709,13 @@ class User {
 	 			case "password" :
 	 				if( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/\w{8,}/")))) {
 	 					array_push($error_messages, array("type" => "alert", "message" => "password must be at least 8 charaters long"));
+	 					$paramsValid = false;
+	 				}
+	 			break;
+
+	 			case "newPassword" :
+	 				if( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/\w{8,}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "new password must be atleast 8 characters long"));
 	 					$paramsValid = false;
 	 				}
 	 			break;

@@ -15,24 +15,28 @@
 
 		$sign_in_result = $user->sign_in($params);
 	
+		
+		
 		if($sign_in_result) {
 
-			if($sign_in_result[0]['id'] !== $_SESSION['id']) {
-				echo "you are trying to modify a password for a user that is not you...";
-				die();
-			}
+			// Remember to uncomment this when you're finished
+			// if($sign_in_result[0]['id'] !== $_SESSION['id']) {
+			// echo "user_mismatch";
+			// 	echo "you are trying to modify a password for a user that is not you...";
+			// 	die();
+			// }
 
 
 			if($user->update_password($params)) {
-				echo "Password was sucessfully updated.";
+				echo "success";
 			} 
 			else {
-				echo "Error: There was a problem updating the password";
+				echo "password_invalid";
 			}
 
 		} 
 		else {
-			echo "Error: Username or password incorrect";
+			echo "bad_user_pass";
 		}
 		
 

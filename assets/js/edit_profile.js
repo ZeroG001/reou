@@ -18,10 +18,10 @@
 		for(i in $password_reset_fields) {
 
 			if($password_reset_fields[i].val() == "") {
-				$password_reset_fields[i].css('border', '1px solid red');
+				$password_reset_fields[i].addClass('field-invalid');
 				fields_valid_result = false;
 			} else {
-				$password_reset_fields[i].css('border', '1px solid #dfdfdf');
+				$password_reset_fields[i].removeClass('field-invalid');
 			}
 
 		}
@@ -32,6 +32,8 @@
 
 			$('.profile__modal-alert').css("display", "inline");
 			$('#modal-alert-message').text("Passwords do not match");
+			$password_reset_fields.new_password.addClass('field-invalid');
+			$password_reset_fields.confirm_password.addClass('field-invalid');
 			fields_valid_result = false;
 		} 
 		else {
@@ -44,58 +46,62 @@
 	}
 
 	function close_modal() {
-
-		$(".profile__password-reset-modal").css("display", "none");
+		$('.profile__password-reset-modal').css("display", "none");
 		$('.profile__modal-alert').css('display', 'none');
-		
+		$('#modal-password').val('');
+		$('#modal-new-password').val('');
+		$('#modal-confirm-password').val('');
+		$('.profile__password-reset-modal input').removeClass('field-invalid');
 	}
 
+
+	function show_password_modal_message(message) {
+		$('.profile__modal-alert').css("display", "inline");
+		$('#modal-alert-message').text(message);
+	}
 
 
 	function update_password() {
 
-
 		$.ajax({
-			data: {"email": "ZeroG001@hotmail.com", "password" : "sonic002", "newPassword" : "sonic002"},
-			type: "POST",
-			url: "helpers/ajax_actions/updatePassword.php",
-			url: "",
-			success: function(response) {
-				close_modal();
-				alert(response);
-
-
-			}
-		})				
-	}
-
-	// Checks to see if the username/, I feel like update password should do everything.
-	// It should check to make sure that you're updating the right user, if it fails then return a message.
-	// If you're updating the right user then return a message that says the user was updateed.
-
-	function check_credentials() {
-		$.ajax({
-			data: {"email": "ZeroG001@hotmail.com", "password" : "sonic002", "new_password" : "sonic002"},
+			data: { "email": "ZeroG001@hotmail.com", "password" : "sonic001", "newPassword" : "sonic001" },
 			type: "POST",
 			url: "helpers/ajax_actions/updatePassword.php",
 			success: function(response) {
 
 				alert(response);
 
-				if(response == "true") {
-					alert("the login was successful");
-				} else {
-					alert("the login was not successufl");
+					
+				if( response === "success" ) {
+					// close modal
+					close_modal();
+
+				} 
+				else if (response == "password_invalid") {
+
+					show_password_modal_message("new password is invalid");
+
+				} 
+				else if (response == "bad_user_pass") {
+
+					show_password_modal_message("username or passsword is invalid");
+						
 				}
+				else if(response == "user_mismatch") {
+
+					show_password_modal_message("unable to identify user");
+
+				} 
+				else {
+
+					show_password_modal_message("unable to connect to database");
+				}
+
 			}
 		})
+		
 	}
 
-
-			// What we need to do now is serialize the array into something I can use.
-
-			// Check to make sure the new passowrd and confirm password are the same
-			//Send Ajax request to helpers/ajax_actions/updatePassword.php	
 
 
 	// Take All Elements Passed in and serialize the values
@@ -132,8 +138,8 @@
 		// Close the modal window
 		$('.profile__modal-close').click( function() {
 
-			console.log("closing the modal");
-			$(".profile__password-reset-modal").css("display", "none");
+			console.log("closing modal");
+			close_modal();
 
 		});
 
