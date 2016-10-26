@@ -156,7 +156,7 @@
 
 
 						<div class="profile__modal-alert alert">
-							<span> The passwords entered do not match  </span>
+							<span id="modal-alert-message"> The passwords entered do not match  </span>
 						</div>
 
 
@@ -164,19 +164,19 @@
 
 							<div class="profile__input-group">
 								<label for="password"> Current Password </label>
-								<input type="password" class="profile__input modal-password-input" name="password" required="true" /> 
+								<input type="password" id="modal-password" class="profile__input modal-password-input" name="password" required="true" /> 
 							</div>
 							
 
 							<div class="profile__input-group">
 								<label for="new-password"> New Password </label>
-								<input type="password" id="" class="profile__input modal-new-password-input" name="new-password" required="true" />
+								<input type="password" id="modal-new-password" class="profile__input modal-new-password-input" name="new-password" required="true" />
 							</div>
 
 
 							<div class="profile__input-group">
 								<label for="confirm-password"> Confirm New Password </label>
-								<input type="password" class="profile__input" id="confirm-password" name="confirm-password" required="true" />
+								<input type="password" class="profile__input" id="modal-confirm-password" name="modal-confirm-password" required="true" />
 							</div>
 
 							<input type="submit" class="profile__submit-button" id="profile__submit-button-modal" value="Change Password">

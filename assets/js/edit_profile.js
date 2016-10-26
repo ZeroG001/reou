@@ -1,22 +1,72 @@
 ( function($) {
 
 
-				// If unable to verify the passworr
+				// If unable to verify the password
+
+	function password_reset_fields_valid() {
+
+		console.log("running the password_reset_fields_valid_function");
+
+		fields_valid_result = true;
+
+		$password_reset_fields = {
+			"current_password" : $('#modal-password'),
+			"new_password" : $('#modal-new-password'),
+			"confirm_password" : $('#modal-confirm-password')
+		}
+
+		for(i in $password_reset_fields) {
+
+			if($password_reset_fields[i].val() == "") {
+				$password_reset_fields[i].css('border', '1px solid red');
+				fields_valid_result = false;
+			} else {
+				$password_reset_fields[i].css('border', '1px solid #dfdfdf');
+			}
+
+		}
+
+		if( $password_reset_fields.new_password.val() != $password_reset_fields.confirm_password.val() ) {
+
+			console.log("New and confirm passwords do not match");
+
+			$('.profile__modal-alert').css("display", "inline");
+			$('#modal-alert-message').text("Passwords do not match");
+			fields_valid_result = false;
+		} 
+		else {
+			$('.profile__modal-alert').css("display", "none");
+			$('#modal-alert-message').text("");
+		}
+
+		return fields_valid_result;
+
+	}
+
+	function close_modal() {
+
+		$(".profile__password-reset-modal").css("display", "none");
+		$('.profile__modal-alert').css('display', 'none');
+		
+	}
+
 
 
 	function update_password() {
 
-		// What we need to do now is serialize the array into something I can use.
 
-		// $.ajax({
-		// 	data: {"email": "ZeroG001@hotmail.com", "password" : "sonic001", "new_password" : "sonic002"},
-		// 	type: "POST",
-		// 	// url: "helpers/ajax_actions/updatePassword.php",
-		// 	url: "",
-		// 	success: function(response) {
-		// 		alert(response);
-		// 	}
-		// })				
+		$.ajax({
+			data: {"email": "ZeroG001@hotmail.com", "password" : "sonic002", "newPassword" : "sonic002"},
+			type: "POST",
+			url: "helpers/ajax_actions/updatePassword.php",
+			url: "",
+			success: function(response) {
+				close_modal();
+				alert(response);
+
+
+			}
+		})				
 	}
 
 	// Checks to see if the username/, I feel like update password should do everything.
@@ -27,7 +77,7 @@
 		$.ajax({
 			data: {"email": "ZeroG001@hotmail.com", "password" : "sonic002", "new_password" : "sonic002"},
 			type: "POST",
-			url: "helpers/ajax_actions/checkCredentials.php",
+			url: "helpers/ajax_actions/updatePassword.php",
 			success: function(response) {
 
 				alert(response);
@@ -106,18 +156,15 @@
 
 
 
-		// Submit the from if the passwords If the passwords eneterd do not mactch then show an alert
-		if( $data['new-password'] != $data['confirm-password'] ) {
+		// if(password_reset_fields()) {
+		// 	update_password();
+		// }
 
-			$('.profile__modal-alert').css('display', 'inline');
-			
-			// Hopefully this stop the ajax from running
-			return false;
-		} else {
-			check_credentials();
-			console.log("The passwords match. Closing the modal and continueing.");
-			$(".profile__password-reset-modal").css("display", "none");
-			$('.profile__modal-alert').css('display', 'none');
+		// Submit the from if the passwords If the passwords entered do not match then show an alert
+		if( password_reset_fields_valid() ) {
+
+			console.log("first phase field validation passed");
+			update_password();
 		}
 
 	});

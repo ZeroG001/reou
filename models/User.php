@@ -346,10 +346,14 @@ class User {
 		$this->checkAcceptedParams($params);
 		$this->sanitizeParams($params);
 
+		if( !$this->validateParams($params) ) {
+			return false;
+		}
+
 
 		// Update the password
 		$stmt = $this->db->prepare($query);
-		$stmt->bindParam(1, md5($params['new_password']));
+		$stmt->bindParam(1, md5($params['newPassword']));
 		$stmt->bindParam(2, $params['userId']);
 
 
@@ -602,7 +606,13 @@ class User {
 
 
 	 
-
+	/**
+	* Converts a camelCase word to snake_case word
+	*
+	*
+	* @param (String) camelCase word to convert to snake case.
+	* @return (String) word converted to snake_case.
+	*/
 	public function convert_camel_case($string) {
 		$pattern ="/([a-z])([A-Z])/";
 		$replacement = "$1" . "_" . "$2";
@@ -765,7 +775,7 @@ class User {
 		 "lastName",
 		 "email",
 		 "password",
-		 "new_password",
+		 "newPassword",
 		 "userId",
 		 "dateCreated",
 		 "lisenced",
