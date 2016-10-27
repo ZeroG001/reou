@@ -80,7 +80,10 @@
 
 
 			<div class="profile__input-group">
-				<!-- For this you need a way for the user to confirm their new email address. Dont make this site live until you can do that -->
+				<!-- 
+					Need a way for a user to confirm their email address.
+					A user can change their email address to that of another user. (which they shouldn't)
+				 Dont make this site live until you can do that -->
 				<label for="lastName"> Email Address ( needs work see comments ) </label>
 				<input type="text" class="profile__input" id="email" name="email" value="<?php echo $user['email'] ?>" /> 
 			</div>
@@ -147,6 +150,29 @@
 
 				<div class="profile__password-reset-well">
 
+
+					<?php if(userIsAdmin()) { ?>
+
+					<div class="profile__modal-header">
+						<h2> Reset User Password </h2>
+						<span class="profile__modal-close"> X </span>
+					</div>
+
+					<div class="profile__modal-body">	
+						<div class="profile__admin-reset-container">
+							<i class="fa fa-envelope-o"></i>
+							<button> Send Password Reset Email </button>
+						</div>		
+					</div>
+
+
+
+
+
+
+					<?php } else { ?>
+
+
 					<form action="#" method="POST" class="profile__password-form">
 
 						<div class="profile__modal-header">
@@ -160,7 +186,7 @@
 						</div>
 
 
-						<div class="profile__modal-body">
+						<div class="profile__modal-body">			
 
 							<div class="profile__input-group">
 								<label for="password"> Current Password </label>
@@ -169,8 +195,8 @@
 							
 
 							<div class="profile__input-group">
-								<label for="new-password"> New Password </label>
-								<input type="password" id="modal-new-password" class="profile__input modal-new-password-input" name="new-password" required="true" />
+								<label for="modal-new-password"> New Password </label>
+								<input type="password" id="modal-new-password" class="profile__input modal-new-password-input" name="newPassword" required="true" />
 							</div>
 
 
@@ -185,6 +211,8 @@
 						</div>
 
 					</form>
+
+					<?php } ?>
 
 				</div>
 

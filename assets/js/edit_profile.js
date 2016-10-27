@@ -61,40 +61,44 @@
 	}
 
 
-	function update_password() {
+	function update_password(form_data) {
 
 		$.ajax({
-			data: { "email": "ZeroG001@hotmail.com", "password" : "sonic001", "newPassword" : "sonic001" },
+			// data: { "email": "ZeroG001@hotmail.com", "password" : "sonic002", "newPassword" : "sonic002" },
+			data: form_data,
 			type: "POST",
 			url: "helpers/ajax_actions/updatePassword.php",
 			success: function(response) {
 
-				alert(response);
+				// Get rid of any whitespace.
+				response = response.replace(/\s/, "");
+				console.log(response)
 
-					
-				if( response === "success" ) {
+				if( response == "success" ) {
 					// close modal
-					close_modal();
+					//close_modal();
+
+					location.reload();
 
 				} 
 				else if (response == "password_invalid") {
 
-					show_password_modal_message("new password is invalid");
-
+					show_password_modal_message("new password must be 8 characters long");
+					$password_reset_fields.new_password.addClass('field-invalid');
+					$password_reset_fields.confirm_password.addClass('field-invalid');
 				} 
 				else if (response == "bad_user_pass") {
 
-					show_password_modal_message("username or passsword is invalid");
+					show_password_modal_message("Username or Passsword is Invalid");
 						
 				}
 				else if(response == "user_mismatch") {
 
-					show_password_modal_message("unable to identify user");
+					show_password_modal_message("User Identity Mismatch");
 
 				} 
 				else {
-
-					show_password_modal_message("unable to connect to database");
+					show_password_modal_message("Unable to Connect to Database");
 				}
 
 			}
@@ -149,15 +153,12 @@
 	// When the user clicks the submit button check to seee if the passwords match
 	$('#profile__submit-button-modal').click(function(event) {
 
-		// Check to make sure the passwords match
-
 		event.preventDefault();
 
 		$formItems = $('.profile__password-form').serializeArray();
 		$data = serialToObj($formItems);
 
 		// remove this when finished
-		console.log("this is the result");
 		console.log($data);
 
 
@@ -170,7 +171,11 @@
 		if( password_reset_fields_valid() ) {
 
 			console.log("first phase field validation passed");
-			update_password();
+
+			if($data.hasOwnProperty('modal-confirm-password')) {
+				delete $data['modal-confirm-password'];
+			}
+			update_password($data);
 		}
 
 	});

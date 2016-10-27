@@ -339,6 +339,14 @@ class User {
 
 	}
 
+
+	/**
+	*
+	*
+	*
+	*
+	* @param (Array) array of items provided by the form submitted.
+	*/
 	public function update_password($params) {
 		$query = "UPDATE users SET password = ? WHERE id = ?";
 
@@ -346,7 +354,7 @@ class User {
 		$this->checkAcceptedParams($params);
 		$this->sanitizeParams($params);
 
-		if( !$this->validateParams($params) ) {
+		if( !$this->validateParams($params, false) ) {
 			return false;
 		}
 
@@ -368,7 +376,7 @@ class User {
 		} 
 		catch (Exception $e) {
 
-			die("there was a problem updating the password");
+			// There was a problem connecting to the database.
 			return false;
 		}
 
@@ -437,7 +445,7 @@ class User {
 		$this->sanitizeParams($params);
 
 		// Make sure that the parameters are correct
-		if(!$this->validateParams($params, false)) {
+		if(!$this->validateParams($params, false, array("newPassword", "password")) ) {
 			return false;
 		}
 
@@ -687,16 +695,23 @@ class User {
 	 *
 	 * Ensures that the parameters sent are valid
 	 *
-	 * @param(String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @param (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @param (Bool) [optional] whether to add message to alet system or not
+	 * @param (Array) [optional] list of keys to igpre checking
 	 * @return (boolean (truthy) array)
 	 */
-	public function validateParams($params, $display_errors = true) {
+	public function validateParams($params, $display_errors = true, $ignore = array()) {
 
 	 	$paramsValid = true;
 	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
 
 
 	 	foreach ($params as $k => $param) {
+
+	 		if( in_array($k, $ignore) ) {
+	 			continue;
+	 		}
+
 	 		switch($k) {
 	 			case "firstName" :
 

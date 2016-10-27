@@ -27,6 +27,7 @@ Focus mainly on:
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
+@import url(vendor/font-awesome/css/font-awesome.css);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -1313,6 +1314,9 @@ input.field-invalid {
 /* ------------------------ Extra Large Screen Size ------------------- */
 /* editProfile ( User )
 ------------------------ */
+/*
+	* Remember that styles are mobile first
+*/
 /* ------------------ Left Sidebar ------------------ */
 .profile__sidebar-container {
   box-sizing: border-box; }
@@ -1353,6 +1357,34 @@ input.field-invalid {
     display: block; }
     .profile__logo a:hover {
       text-decoration: underline; }
+
+.profile__admin-reset-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+  .profile__admin-reset-container i {
+    margin: 15px 0px;
+    font-size: 8em;
+    color: #484848; }
+  .profile__admin-reset-container button {
+    border-radius: 2px;
+    border: 0px solid black;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: #106FA8;
+    margin: 20px 0px;
+    -webkit-transition: 0.3s ease;
+    -moz-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease; }
+    .profile__admin-reset-container button:hover {
+      background-color: #60ADDA;
+      -webkit-transition: 0.3s ease;
+      -moz-transition: 0.3s ease;
+      -o-transition: 0.3s ease;
+      transition: 0.3s ease; }
 
 /* ------------------ Main Content ------------------ */
 .profile-container {
