@@ -100,6 +100,14 @@
 	margin: 0px auto;
 }
 
+.profile__input {
+
+	&#email {
+		background-color: #dcdcdc;
+	}
+
+}
+
 
 
 .update_user--form,
@@ -119,7 +127,6 @@
 		color: #727570;
 		display: block;
 		width: 100%;
-		
 
 	}
 
@@ -235,6 +242,7 @@
 		display: block;
 		font-size: 0.8em;
 	}
+	
 }
 
 
@@ -258,7 +266,6 @@
 		overflow: hidden;
 		@include clearfix;
 
-
 		/* Testing 
 		background-color: gray; */
 	}
@@ -276,7 +283,6 @@
 		padding-bottom: 5000px;
     	margin-bottom: -4995px;
 		
-		
 		/* Testing
 		background-color: tomato; */
 
@@ -289,8 +295,7 @@
 		right: 0;
 		top: 0;
 		box-sizing: border-box;
-		height: 100%;
-		
+		height: 100%;	
 	}
 
 
@@ -313,7 +318,6 @@
 		margin: 0px auto;
 		width: 50%;
 		
-
 	}
 
 
@@ -321,19 +325,13 @@
 
 
 
-
-
 /*	Large Screen sizes
 --------------------------------------- */
-@include mquery("large") { 
-
-}
+@include mquery("large") { }
 
 
 
 
 /*	Extra Large Screen Sizes
 --------------------------------------- */
-@include mquery("xlarge") { 
-
-}
+@include mquery("xlarge") { }

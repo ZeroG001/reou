@@ -1395,6 +1395,9 @@ input.field-invalid {
   background-color: #f1f1f1;
   margin: 0px auto; }
 
+.profile__input#email {
+  background-color: #dcdcdc; }
+
 .update_user--form .profile__input-group,
 .profile__password-form .profile__input-group {
   margin: 35px 0px; }

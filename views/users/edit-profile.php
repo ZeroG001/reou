@@ -84,9 +84,11 @@
 					Need a way for a user to confirm their email address.
 					A user can change their email address to that of another user. (which they shouldn't)
 				 Dont make this site live until you can do that -->
-				<label for="lastName"> Email Address ( needs work see comments ) </label>
-				<input type="text" class="profile__input" id="email" name="email" value="<?php echo $user['email'] ?>" /> 
+				<label for="lastName"> Email Address ( needs work see comments ) <a href="edit"> Edit </a> </label>
+				<input type="text" class="profile__input" id="email" name="email" disabled
+				 value="<?php echo $user['email'] ?>" /> 
 			</div>
+
 
 			<div class="profilt__input-group">
 				<input type="button" class="profile__password-reset" value="Reset Password">
@@ -153,21 +155,25 @@
 
 					<?php if(userIsAdmin()) { ?>
 
-					<div class="profile__modal-header">
-						<h2> Reset User Password </h2>
-						<span class="profile__modal-close"> X </span>
-					</div>
+					<form action="#" method="POST" class="profile__send-password-reset-form">
 
-					<div class="profile__modal-body">	
-						<div class="profile__admin-reset-container">
-							<i class="fa fa-envelope-o"></i>
-							<button> Send Password Reset Email </button>
-						</div>		
-					</div>
+						<input type="hidden" name="userId" value="<?php echo $user['id'] ?>">
 
+						<div class="profile__modal-header">
+							<h2> Reset User Password </h2>
+							<span class="profile__modal-close"> X </span>
+						</div>
 
+						<div class="profile__modal-body">	
+							<div class="profile__admin-reset-container">
+								<i class="fa fa-envelope-o"></i>
+								<input type="submit" class="profile__send-button" id="profile__send-password-reset-button" value="Send Password Reset Email">
 
+							</div>		
 
+						</div>
+
+					</form>
 
 
 					<?php } else { ?>
@@ -207,6 +213,7 @@
 
 							<input type="submit" class="profile__submit-button" id="profile__submit-button-modal" value="Change Password">
 
+							document.
 							
 						</div>
 

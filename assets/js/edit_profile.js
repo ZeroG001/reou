@@ -1,7 +1,8 @@
 ( function($) {
 
 
-				// If unable to verify the password
+	// Functions //
+	// -------------------------------------- //
 
 	function password_reset_fields_valid() {
 
@@ -60,6 +61,22 @@
 		$('#modal-alert-message').text(message);
 	}
 
+
+	function send_update_password(form_data) {
+		$.ajax({
+			data: form_data,
+			type: "POST",
+			url: "helpers/ajax_actions/sendPasswordReset.php",
+			success: function(response) {
+
+				// Get rid of any whitespace.
+				// response = response.replace(/\s/, "");
+				console.log(response)
+			}
+		});
+		
+
+	}
 
 	function update_password(form_data) {
 
@@ -129,6 +146,14 @@
 	}
 
 
+
+
+
+	// Main Event //
+	// -------------------------------------- //
+
+
+	// Show the password display modal
 	$(".profile__password-reset").click(function() {
 
 		// Open The Password Reset Modal
@@ -150,8 +175,10 @@
 	});
 
 
-	// When the user clicks the submit button check to seee if the passwords match
-	$('#profile__submit-button-modal').click(function(event) {
+
+
+	// When the user clicks the submit button check to see if the passwords match
+	$('#profile__password-submit-button-modal').click(function(event) {
 
 		event.preventDefault();
 
@@ -179,6 +206,22 @@
 		}
 
 	});
+
+	$('#profile__send-password-reset-button').click(function() {
+
+		event.preventDefault();
+		$formItems = $('.profile__send-password-reset-form').serializeArray();
+		$data = serialToObj($formItems)
+
+		console.log($data);
+
+		send_password_email($data);
+
+
+
+	}) 
+
+
 
 
 

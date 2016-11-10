@@ -383,6 +383,50 @@ class User {
 	}
 
 
+	public function create_password_reset_token($params) {
+
+		$query = "INSERT INTO email_confirm (userid, type, expire_time, token) VALUES (?, 'pass', ?, ?) WHERE userId = ?";
+
+		// Check Parameters
+		$this->checkAcceptedParams($params);
+		$this->sanitizeParams($params);
+
+		if( !$this->validateParams($params, false) ) {
+			return false;
+		}
+
+
+		$expire_time = time() + 3600; // 1hr
+		$token = md5(uniqid($_POST['userId'],true));
+
+
+		// Update the password
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(1, ['userId']);
+		$stmt->bindParam(2, $params['userId']);
+		$stmt->bindParam(3,$expire_time);
+		$stmt->bindParam(4, $token);
+		$stmt->bindParam(5, $params['userId']);
+
+
+		try {
+
+			if ( $stmt->execute() ) {
+				return true;
+			} 
+			else {
+				return false;
+			}
+		} 
+		catch (Exception $e) {
+
+			// There was a problem attempting to add token to database
+			return false;
+		}
+
+	}
+
+
 
 
 	// ------------------------ Delete ------------------------
