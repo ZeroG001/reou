@@ -26,7 +26,6 @@
 		<input type="hidden" id="action" name="_method" value="patch">
 
 
-
 		<!-- Bulletproof -->
 	    <input type="hidden" id="image-upload--size" name="MAX_FILE_SIZE" value="1000000"/>
 	    <input type="file" id="image-upload--file" name="profilePicture"/>

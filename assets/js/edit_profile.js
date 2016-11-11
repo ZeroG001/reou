@@ -71,7 +71,7 @@
 
 				// Get rid of any whitespace.
 				// response = response.replace(/\s/, "");
-				console.log(response)
+				alert(response);
 			}
 		});
 		
@@ -215,7 +215,7 @@
 
 		console.log($data);
 
-		send_password_email($data);
+		send_update_password($data);
 
 
 
