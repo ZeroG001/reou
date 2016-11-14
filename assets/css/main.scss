@@ -402,6 +402,8 @@ body {
 
 }
 
+
+
 .required_hp {
 	display: none;
 }
@@ -414,6 +416,48 @@ body {
 input.field-invalid {
 	border: 1px solid #d03238;
 }
+
+
+/* form base styles. Please @extend from this style class */
+.reou__form-base {
+
+	.reou-form__input-group {
+		margin: 35px 0px;
+		textarea { resize: none }
+		label { margin-bottom: 10px; }
+	}
+
+
+	.reou-form__input {
+
+		padding: 10px;
+		margin-top: 5px;
+		color: #727570;
+		display: block;
+		width: 100%;
+	}
+
+
+	.reou-form__submit-button {
+
+		@include buttonFlatMedium;
+		@include smallPadding;
+		background-color: $darkblue;
+		color: white;
+		padding: 30px;
+
+		&:hover {
+			background-color: $hoverDarkBlue;
+			@include transition(background-color 0.3s ease);
+		}
+
+
+	}
+
+
+}
+
+
 
 
 
@@ -453,14 +497,17 @@ input.field-invalid {
 
 
 
+
+
 /* SASS Partials 
 ====================================== */
 
 
-
-
-/* Main Pages
+/* ------------------------------------
+ Main Pages
 --------------------------------------- */
+
+
 /* home is alias for main.php styles */
 @import "home";
 
@@ -473,9 +520,9 @@ input.field-invalid {
 
 
 
-/* Course Partials
+/* ------------------------------------ 
+Course Partials
 --------------------------------------- */
-
 
 
 /* Course Category
@@ -502,9 +549,10 @@ input.field-invalid {
 
 
 
-/* User Partials
---------------------------------------- */
 
+/* ------------------------------------ 
+User Partials
+--------------------------------------- */
 
 
 /* Login Page
@@ -525,4 +573,6 @@ input.field-invalid {
 
 
 
-
+/* Email or Password Reset Page 
+------------------------------- */
+@import "resetEmailPass";

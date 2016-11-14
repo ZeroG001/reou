@@ -385,7 +385,11 @@ class User {
 
 	public function create_password_reset_token($params) {
 
-		$query = "INSERT INTO email_confirm (userid, type, expire_time, token) VALUES (?, 'pass', ?, ?)";
+		$q_addToken = "INSERT INTO email_confirm (userid, type, expire_time, token) VALUES (?, 'pass', ?, ?)";
+		$q_checkExists = "SELECT * FROM email_confirm WHERE userid = ? AND type = 'pass'";
+		$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ?";
+
+
 
 		// Check Parameters
 		$this->checkAcceptedParams($params);
@@ -395,34 +399,55 @@ class User {
 			return false;
 		}
 
-		$expire_time = time() + 3600; # 1hr
+		// Create Token and Expire Time
 		$token = md5(uniqid($params['userId'],true));
+		$expire_time = time() + 3600; # 1hr
 
-		# Update the password
-		$stmt = $this->db->prepare($query);
-		$stmt->bindParam(1, $params['userId']);
-		$stmt->bindParam(2, $expire_time);
-		$stmt->bindParam(3, $token);
+
+		# Prepare Select Query
+		$stmt_checkExists = $this->db->prepare($q_checkExists);
+		$stmt_checkExists->bindParam(1, $params['userId']);
 
 
 		try {
 
-			if ( $stmt->execute() ) {
-				return true;
-			} 
-			else {
-				return false;
+			if( $stmt_checkExists->execute() ) {
+
+				// If something is found  
+				if( $stmt_checkExists->rowCount() >= 1 ) {
+
+
+					$stmt_updateToken = $this->db->prepare($q_updateToken);
+					$stmt_updateToken->bindParam(1, $expire_time);
+					$stmt_updateToken->bindParam(2, $token);
+					$stmt_updateToken->bindParam(3, $params['userId']);
+
+					$stmt_updateToken->execute();
+
+					return true;
+
+				} 
+				else {
+
+					#Prepare Insert Query
+					$stmt_addToken = $this->db->prepare($q_addToken);
+					$stmt_addToken->bindParam(1, $params['userId']);
+					$stmt_addToken->bindParam(2, $expire_time);
+					$stmt_addToken->bindParam(3, $token);
+
+					$stmt_addToken->execute();
+
+					return true;
+				}
 
 			}
+
 		} 
 		catch (Exception $e) {
-			// There was a problem attempting to add token to database
 			return false;
 		}
 
 	}
-
-
 
 
 	// ------------------------ Delete ------------------------

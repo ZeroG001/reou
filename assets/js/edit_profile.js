@@ -202,27 +202,23 @@
 			if($data.hasOwnProperty('modal-confirm-password')) {
 				delete $data['modal-confirm-password'];
 			}
+
 			update_password($data);
 		}
 
+
 	});
 
-	$('#profile__send-password-reset-button').click(function() {
+	$('#profile__send-password-reset-button').click(function(event) {
 
 		event.preventDefault();
+
 		$formItems = $('.profile__send-password-reset-form').serializeArray();
 		$data = serialToObj($formItems)
 
 		console.log($data);
 
 		send_update_password($data);
-
-
-
-	}) 
-
-
-
-
+	})
 
 })(jQuery)

@@ -167,7 +167,7 @@
 						<div class="profile__modal-body">	
 							<div class="profile__admin-reset-container">
 								<i class="fa fa-envelope-o"></i>
-								<input type="submit" class="profile__send-button" id="profile__send-password-reset-button" value="Send Password Reset Email">
+								<input type="submit" class="profile__send-password-reset-button" id="profile__send-password-reset-button" value="Send Password Reset Email">
 
 							</div>		
 
@@ -212,8 +212,6 @@
 							</div>
 
 							<input type="submit" class="profile__submit-button" id="profile__submit-button-modal" value="Change Password">
-
-							document.
 							
 						</div>
 

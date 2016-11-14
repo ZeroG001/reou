@@ -518,6 +518,35 @@ body {
 input.field-invalid {
   border: 1px solid #d03238; }
 
+/* form base styles. Please @extend from this style class */
+.reou__form-base .reou-form__input-group, .password-email-update-form .reou-form__input-group {
+  margin: 35px 0px; }
+  .reou__form-base .reou-form__input-group textarea, .password-email-update-form .reou-form__input-group textarea {
+    resize: none; }
+  .reou__form-base .reou-form__input-group label, .password-email-update-form .reou-form__input-group label {
+    margin-bottom: 10px; }
+.reou__form-base .reou-form__input, .password-email-update-form .reou-form__input {
+  padding: 10px;
+  margin-top: 5px;
+  color: #727570;
+  display: block;
+  width: 100%; }
+.reou__form-base .reou-form__submit-button, .password-email-update-form .reou-form__submit-button {
+  padding: 7px;
+  border: 0px solid black;
+  border-radius: 2px;
+  text-align: center;
+  padding: 18px 15px;
+  background-color: #106FA8;
+  color: white;
+  padding: 30px; }
+  .reou__form-base .reou-form__submit-button:hover, .password-email-update-form .reou-form__submit-button:hover {
+    background-color: #60ADDA;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; }
+
 /* -------------------------- Media Queries -------------------------- */
 /* ---------- Medium Screen Size ---------- */
 @media screen and (min-width: 52em) {
@@ -547,7 +576,8 @@ input.field-invalid {
       clear: both; } }
 /* SASS Partials 
 ====================================== */
-/* Main Pages
+/* ------------------------------------
+ Main Pages
 --------------------------------------- */
 /* home is alias for main.php styles */
 .main__hero-container {
@@ -738,7 +768,8 @@ input.field-invalid {
     -o-transform: translate(0px, -10px) rotate(135deg);
     transform: translate(0px, -10px) rotate(135deg); }
 
-/* Course Partials
+/* ------------------------------------ 
+Course Partials
 --------------------------------------- */
 /* Course Category
 -------------------- */
@@ -1196,7 +1227,8 @@ input.field-invalid {
     margin-left: 15px;
     margin-bottom: 15px;
     width: 47.91%; } }
-/* User Partials
+/* ------------------------------------ 
+User Partials
 --------------------------------------- */
 /* Login Page
 --------------- */
@@ -1555,5 +1587,19 @@ input.field-invalid {
 --------------------------------------- */
 /*	Extra Large Screen Sizes
 --------------------------------------- */
+/* Email or Password Reset Page 
+------------------------------- */
+/* Remember to always use a mobile first design */
+.password-email-reset-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px; }
+
+@media screen and (min-width: 52em) {
+  .password-email-reset-container {
+    width: 390px;
+    margin: 0px auto;
+    padding: 40px;
+    box-sizing: border-box; } }
 
 /*# sourceMappingURL=main.css.map */

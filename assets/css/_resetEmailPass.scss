@@ -1,0 +1,29 @@
+/* Remember to always use a mobile first design */
+
+
+.password-email-reset-container {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+.password-email-update-form {
+	@extend .reou__form-base
+}
+
+
+@include mquery("medium") {
+
+	.password-email-reset-container {
+		width: 390px;
+		margin: 0px auto;
+		padding: 40px;
+		box-sizing: border-box;
+	}
+
+	
+}
+
+@include mquery("large") { }
+
+@include mquery("xlarge") { }
