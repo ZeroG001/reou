@@ -372,6 +372,38 @@ function update_user($ObjectPDO, $params) {
 }
 
 
+
+
+function user_mail_reset_password($ObjectPDO, $params) {
+
+	if (userSignedIn()) {
+		signUserOut();
+	}
+
+
+	if ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['a']) ) {
+
+
+
+
+		$user = new User($ObjectPDO);
+
+		var_dump($params);
+		$params['token'] =
+		die();
+		$tokenInfo = $user->get_token_info($params);
+
+		
+
+	} 
+	else {
+		die("Invalid request method used");
+	}
+
+
+}
+
+
 // --------------------------------- show_users.php -----------------------------
 
 function show_users($ObjectPDO) {
@@ -388,6 +420,7 @@ function show_users($ObjectPDO) {
 	$user = new User($ObjectPDO);
 	$results = $user->get_users_info();
 	return $results;
+
 }
 
 

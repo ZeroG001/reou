@@ -28,10 +28,6 @@
 			}
 
 		
-
-
-		// First we gotta create a query that 
-
 		if( $db_result ) {
 
 			echo " Entry sucessfully added to the database.";

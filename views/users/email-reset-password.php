@@ -4,11 +4,22 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 
+	user_mail_reset_password($db, $_GET);
+
+
+
 	# If the method is path then update the user
 	# update_user($db, $_POST);
 	
 	# Or show edit profile like normal
 	# $user = edit_profile($db);
+
+
+	# ****IMPORTANT IF SESSION ALREADY EXISTS DUMP THE SESSION*****
+
+	# ** If the session already exists make sure tha the requires is GET and that there is athe Toekn Parameter added
+
+
 
 
 	// ----------------- Header HTML --------------------
@@ -26,34 +37,35 @@
 <div class="main-content">
 
 	<div class="password-email-reset-container">
-s0n!cb00m
 
 		<h2> Reset Your Password </h2>
 		<h5> Please enter your new password below </h5>
 
 
-		<form class="password-email-update-form" action="">
+		<div class="profile__modal-alert alert">
+			<span id="modal-alert-message"> </span>
+		</div>
 
-			<div class="reou-form__input-group">
-				<label for="password"> Current Password </label>
-				<input type="password" id="modal-password" class="reou-form__input modal-password-input" name="password" required="true" /> 
-			</div>
+
+		<form class="password-email-update-form" id="profile__password-email-update-form" action="#">
+
+			<input type="hidden" name="token" value="<?php echo $token ?>" />
 			
 
 			<div class="reou-form__input-group">
 				<label for="modal-new-password"> New Password </label>
-				<input type="password" id="modal-new-password" class="reou-form__input  modal-new-password-input" name="newPassword" required="true" />
+				<input type="password" id="form-new-password" class="reou-form__input  modal-new-password-input" name="newPassword" required="true" />
 			</div>
 
 
 			<div class="reou-form__input-group">
 				<label for="confirm-password"> Confirm New Password </label>
-				<input type="password" class="reou-form__input" id="modal-confirm-password" name="modal-confirm-password" required="true" />
+				<input type="password" class="reou-form__input" id="form-confirm-password" name="confirmPassword" required="true" />
 			</div>
 			
 
 			<div class="reou-form__input-group">
-				<input type="button" class="reou-form__submit-button" value="Reset Password">
+				<input type="submit" class="reou-form__submit-button" id="profile__submit-password-reset" value="Reset Password">
 			</div>
 
 		</form>
@@ -67,4 +79,4 @@ s0n!cb00m
 
 
 <script type="text/javascript" src="<?php echo asset_route('js') . "jquery/dist/jquery.min.js" ?>"> </script>
-<!-- <script type="text/javascript" src="<?php # echo asset_route('js') . "" ?>"> </script> -->
+<script type="text/javascript" src="<?php echo asset_route('js') . "email-reset-password.js" ?>"> </script>

@@ -188,7 +188,7 @@
 
 
 						<div class="profile__modal-alert alert">
-							<span id="modal-alert-message"> The passwords entered do not match  </span>
+							<span id="modal-alert-message"> <!-- Alert message here  --> </span>
 						</div>
 
 
@@ -211,7 +211,7 @@
 								<input type="password" class="profile__input" id="modal-confirm-password" name="modal-confirm-password" required="true" />
 							</div>
 
-							<input type="submit" class="profile__submit-button" id="profile__submit-button-modal" value="Change Password">
+							<input type="submit" class="profile__password-submit-button-modal" id="profile__password-submit-button-modal" value="Change Password">
 							
 						</div>
 

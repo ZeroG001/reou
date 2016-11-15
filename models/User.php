@@ -226,6 +226,51 @@ class User {
 
 
 
+	/**
+	 * get_token_info
+	 *
+	 * Gets infomation from the email_confirm database that matches the token provided.
+	 *
+	 * @param (Array)
+	 * @return (Boolean)
+	 */
+	public function get_token_info($params) {
+
+		$query = "SELECT * FROM email_confirm WHERE token = ?";
+
+		$this->checkAcceptedParams($params);
+		$this->sanitizeParams($params);
+
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(1, $params['token'] );
+
+
+		try {
+
+			if($stmt->execute()) {
+			
+				$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			
+				return $result;
+
+			} else {
+
+				return false;
+			
+			}
+
+		} 
+		catch (Exception $e) {
+			echo "There was a problem getting the profile picture";
+		}
+		
+	}
+
+
+
+
+
+
 
 
 	 // Update User Info
@@ -267,6 +312,8 @@ class User {
 
 		// Todo. Automatically update the 'updatedAt' field in the database.
 	}
+
+
 
 
 
@@ -846,8 +893,6 @@ class User {
 
 
 
-
-
 	/**
 	 * checkAcceptedParams
 	 *
@@ -870,6 +915,7 @@ class User {
 		 "profilePicture",
 		 "role",
 		 "state",
+		 "token",
 		 "active",
 		 "studentNumber",
 		 "createdAt",

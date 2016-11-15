@@ -25,6 +25,11 @@
 	}
 
 
+	function signUserOut() {
+		session_destroy();
+	}
+
+
 	/**
 	 * userSignedIn()
 	 *
@@ -33,9 +38,7 @@
 	 * @param (none) about this param
 	 * @return (void)
 	 */
-	function replacePhoto() {
-
-	}
+	function replacePhoto() {}
 
 
 
