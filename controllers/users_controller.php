@@ -282,6 +282,7 @@ function update_user($ObjectPDO, $params) {
 			// If the user isn't an admin and they are trying to modify another user then throw message;
 
 			if(!userIsAdmin()) {
+				
 				if( $_SESSION['id'] != $_POST['userId'] ) {
 					add_message("error", "there was a problem updating the user");
 					header( "Location:" . $_SERVER['REQUEST_URI']);
@@ -292,7 +293,7 @@ function update_user($ObjectPDO, $params) {
 				// Prevent non-admin  from changing their role ( needs refactoring )
 				$_POST['role'] = "student"; 
 
-				// Prevent non-admin user from deactivating theit accoutn
+				// Prevent non-admin user from deactivating theit account
 				$_POST['active'] = '1';
 			}
 
