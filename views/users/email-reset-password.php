@@ -4,7 +4,10 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 
-	user_mail_reset_password($db, $_GET);
+	user_mail_reset_password($db, $_POST);
+
+
+	$token = $_GET['a'];
 
 
 
@@ -49,8 +52,7 @@
 
 		<form class="password-email-update-form" id="profile__password-email-update-form" action="#">
 
-			<input type="hidden" name="token" value="<?php echo $token ?>" />
-			
+			<input type="hidden" name="token" value="<?php echo $token ?>" />		
 
 			<div class="reou-form__input-group">
 				<label for="modal-new-password"> New Password </label>

@@ -182,7 +182,6 @@ class User {
 				die("There was a problem getting the user information.");
 			}
 
-
 			
 		}
 
@@ -242,7 +241,7 @@ class User {
 		$this->sanitizeParams($params);
 
 		$stmt = $this->db->prepare($query);
-		$stmt->bindParam(1, $params['token'] );
+		$stmt->bindParam( 1, $params['token'] );
 
 
 		try {
@@ -278,6 +277,9 @@ class User {
 
 	public function update_user($params) {
 
+		// For some reason at this point the email isn't coming in.
+
+
 		// Make sure params are accepted
 		$this->checkAcceptedParams($params);
 		$params = $this->sanitizeParams($params);
@@ -288,16 +290,16 @@ class User {
 			die();
 		}
 
-		$query = "UPDATE users SET first_name = ?, last_name = ?, email = ?, bio = ?, role = ?, active = ? WHERE id = ?";
+
+		$query = "UPDATE users SET first_name = ?, last_name = ?, bio = ?, role = ?, active = ? WHERE id = ?";
 		$stmt = $this->db->prepare($query);
 
 		$stmt->bindParam(1, $params['firstName']);
 		$stmt->bindParam(2, $params['lastName']);
-		$stmt->bindParam(3, $params['email']);
-		$stmt->bindParam(4, $params['bio']);
-		$stmt->bindParam(5, $params['role']);
-		$stmt->bindParam(6, $params['active']);
-		$stmt->bindParam(7, $params['userId']);
+		$stmt->bindParam(3, $params['bio']);
+		$stmt->bindParam(4, $params['role']);
+		$stmt->bindParam(5, $params['active']);
+		$stmt->bindParam(6, $params['userId']);
 
 		// Try to execute the query
 		try {
@@ -313,6 +315,21 @@ class User {
 		// Todo. Automatically update the 'updatedAt' field in the database.
 	}
 
+
+	// Update User email
+	// ==========================================
+
+	/**
+	 * 
+	 * @param (Array) the array will most likely only contain the userid were trying to update.
+	 * @return (Boolean) Return true of false if the update completes or not.
+	 */	
+	public function update_user_password($params) {
+		$query = "update SET password = ? WHERE userID = ?";
+
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(1, $params['userId']);
+	}
 
 
 
@@ -389,12 +406,13 @@ class User {
 
 	/**
 	*
-	*
-	*
-	*
 	* @param (Array) array of items provided by the form submitted.
+	* most likely going to only be user ID.
+	* @return (Bool) return if the query was successful or not.
+	*
 	*/
 	public function update_password($params) {
+
 		$query = "UPDATE users SET password = ? WHERE id = ?";
 
 		// Check Parameters
@@ -500,14 +518,13 @@ class User {
 	// ------------------------ Delete ------------------------
 
 	public function delete_user() {
-	// Not sure is im eveen going to code this one in. Udemy has it...so...
+		// Not sure is im eveen going to code this one in. Udemy has it...so...
 	}
 
 
 
 	public function delete_class() {
-	// Deletes a class (school) that a user is assigned to
-
+		// Deletes a class (school) that a user is assigned to
 	}
 
 
@@ -926,7 +943,7 @@ class User {
 
 		foreach ($params as $param => $value) {
 		 	if( !in_array($param, $accepted_params) ) {
-		 		die("Form Field " . $param . "is not acceptable.");	
+		 		die("Form Field " . $param . " is not acceptable.");	
 		 		return false;
 		 	}
 		}

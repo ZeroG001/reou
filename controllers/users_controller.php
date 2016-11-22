@@ -268,25 +268,13 @@ function update_user($ObjectPDO, $params) {
 
 			$user = new User($ObjectPDO);
 
-			// Die. If the user tried to edit another user. This wont work because a notmal user is able to edit
-			// from session while admin edits from get.
-			// if( $_GET['userId'] != $_POST['userId'] ) {
-			// 	add_message("error", "An error occured when trying to update the user");
-			// 	header( "Location:" . $_SERVER['REQUEST_URI']);
-			// 	die();
-			// }
-
-			// Make sure a user cannot edit another user unless they are an admin
-			// Do something if there is no session of the session is no loger tehr
-
-			// If the user isn't an admin and they are trying to modify another user then throw message;
 
 			if(!userIsAdmin()) {
 				
+				// If a non-admin is trying to edit another user then stop
 				if( $_SESSION['id'] != $_POST['userId'] ) {
 					add_message("error", "there was a problem updating the user");
 					header( "Location:" . $_SERVER['REQUEST_URI']);
-
 					die();
 				}
 
@@ -377,29 +365,45 @@ function update_user($ObjectPDO, $params) {
 
 function user_mail_reset_password($ObjectPDO, $params) {
 
+	// Sign the user out so sessions dont conflict.
 	if (userSignedIn()) {
 		signUserOut();
 	}
 
 
+
 	if ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['a']) ) {
+			$user_token = $_GET['a'];
+		 	// Load the actual page. 
+		}
 
 
+	// If the submit method
+ // 	if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['_method'] == "patch" ) {
+
+	// 	// ------ unset the method variabel -----
+	// 	unset($_POST['_method']);
+	// 	unset($params['_method']);
+	// 	// ---------- END ---------------------
 
 
-		$user = new User($ObjectPDO);
+	// 	$user = new User($ObjectPDO);
 
-		var_dump($params);
-		$params['token'] =
-		die();
-		$tokenInfo = $user->get_token_info($params);
+	// 	// Attemt to get the token information
+	// 	try {
 
-		
+	// 		$token_info = $user->get_token_info($_POST['token']);
 
-	} 
-	else {
-		die("Invalid request method used");
-	}
+	// 	} 
+	// 	catch (Exception $e) {
+
+	// 		echo "unable to retrieve token info. Reason: " . $e->getMessage();
+
+	// 	}
+
+	// } else {
+	// 	echo "the update method is invalid";
+	// }
 
 
 }

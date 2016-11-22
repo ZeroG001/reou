@@ -73,14 +73,15 @@
 		$.ajax({
 
 			// for now there is a fake userid and token entered
-			// data: {"userid" : "something", "token" : "95b7cfd6357057cb7062aa448550046a", "password" : "sonic002", "newPassword" : "sonic002" },
-			data: form_data,
+			data: {"userId" : "14", "token" : "72453864082aaef9e37dc0790b413643", "newPassword" : "sonic001", "confirmPassword" : "sonic001"},
+			//data: form_data,
 			type: "POST",
 			url: "../../helpers/ajax_actions/emailResetPassword.php",
 			success: function(response) {
 				// Get rid of any whitespace.
 				response = response.replace(/\s/, "");
-				alert(response);
+				 alert(response);
+				$('.modal-alert-message').text(response);
 			}
 		})
 

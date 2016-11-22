@@ -13,8 +13,6 @@
 	// ----------------- Header HTML --------------------
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
-	var_dump($user);
-
 ?>
 
 <head>
@@ -87,8 +85,7 @@
 					A user can change their email address to that of another user. (which they shouldn't)
 				 Dont make this site live until you can do that -->
 				<label for="lastName"> Email Address ( needs work see comments ) <a href="edit"> Edit </a> </label>
-				<input type="text" class="profile__input" id="email" name="email" disabled
-				 value="<?php echo $user['email'] ?>" /> 
+				<input type="text" class="profile__input" id="email" value="<?php echo $user['email'] ?>" /> 
 			</div>
 
 
