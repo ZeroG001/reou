@@ -209,6 +209,8 @@
 
 	});
 
+
+	// When the sned button is clicked
 	$('#profile__send-password-reset-button').click(function(event) {
 
 		event.preventDefault();

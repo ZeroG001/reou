@@ -175,6 +175,19 @@ Focus mainly on:
 	}
 
 
+	@include keyframes(spin) {
+
+		from {
+			@include transform( rotate(0deg) );
+		}
+
+		to {
+			@include transform( rotate(360deg) );
+		}
+
+	}
+
+
 
 	/* JavaScript-less menu 
 
@@ -435,6 +448,11 @@ input.field-invalid {
 		color: #727570;
 		display: block;
 		width: 100%;
+	}
+
+	.load-spinner {
+		position: relative;
+		-webkit-transform: rotate(20deg);
 	}
 
 

@@ -151,6 +151,13 @@
 
 				<div class="profile__password-reset-well">
 
+					<div class="password-reset__overlay">
+
+						
+						<img class="profile__modal-load-icon" src="<?php echo asset_route('img') . '/site_img/load_spinner.png' ?>" />
+
+					</div>
+
 
 					<?php if(userIsAdmin()) { ?>
 

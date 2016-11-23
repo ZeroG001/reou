@@ -177,6 +177,8 @@ function edit_profile($ObjectPDO) {
 }
 
 
+
+
 function create_user($ObjectPDO, $params) {
 
 	// This function is also used by the signup form so be careful for conflicts
@@ -370,47 +372,70 @@ function user_mail_reset_password($ObjectPDO, $params) {
 		signUserOut();
 	}
 
+	// If the submit method is patch then update the user
+ 	if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['_method'] == "patch" ) {
+
+		// ------ Unset the method variable -----
+		unset($_POST['confirmPassword']);
+		unset($_POST['_method']);
+		unset($params['_method']);
+		// ---------- END -----------------------
+
+		$user = new User($ObjectPDO);
+		$params = $_POST;
 
 
-	if ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['a']) ) {
-			$user_token = $_GET['a'];
-		 	// Load the actual page. 
+		// Get the oken information
+		try {
+
+			$token_info = $user->get_token_info($params);
+
+		} 
+		catch (Exception $e) {
+			echo "unable to retrieve token info. Reason: " . $e->getMessage();
 		}
 
 
-	// If the submit method
- // 	if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['_method'] == "patch" ) {
+		// See if the token has expired or not.
+		if( $token_info && time() < $token_info['expire_time'] ) {
 
-	// 	// ------ unset the method variabel -----
-	// 	unset($_POST['_method']);
-	// 	unset($params['_method']);
-	// 	// ---------- END ---------------------
+			// uneset unused variables - dont remove
+			$params['userId'] = $token_info['userid'];
+			unset($params['token']);
 
+			if ($user->update_password($params) ) {
 
-	// 	$user = new User($ObjectPDO);
+				die("password has been sucessfully updated");
 
-	// 	// Attemt to get the token information
-	// 	try {
+			} 
+			else {
+				add_message("alert", "token error occured when updating pass");
+			}
 
-	// 		$token_info = $user->get_token_info($_POST['token']);
+		} 
+		else {
+			// Show a message saying the token has expired.
+			add_message("alert", "Token has expired or is invalied");
+		}
 
-	// 	} 
-	// 	catch (Exception $e) {
-
-	// 		echo "unable to retrieve token info. Reason: " . $e->getMessage();
-
-	// 	}
-
-	// } else {
-	// 	echo "the update method is invalid";
-	// }
-
+	} 
+	elseif ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['a']) ) {
+		$user_token = $_GET['a'];
+		 // Load the actual page. 
+	} 
+	else {
+		
+		redirect404();
+		echo "Please come here with a token. Redirecting to 404 page";
+		die();
+	}
 
 }
 
 
-// --------------------------------- show_users.php -----------------------------
 
+
+// --------------------------------- show_users.php -----------------------------
 function show_users($ObjectPDO) {
 
 	//If the user isn't an admin then bring them back to the page they were on

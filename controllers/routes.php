@@ -64,7 +64,6 @@
 		} else {
 			$querystring = $getVars;
 		}
-
 		switch ($route) {
 
 			case 'edit':
@@ -100,6 +99,8 @@
 	}
 
 
+
+
 	// ===================== Courses Routes =====================
 
 	function course_route($route, $getVars = "") {
@@ -108,7 +109,8 @@
 		if (is_array($getVars)) {
 			// $querystring = "?".http_build_query($getVars);
 			$querystring = $getVars['id'];
-		} else {
+		} 
+		else {
 			$querystring = $getVars;
 		}
 
@@ -161,7 +163,8 @@
 
 
 
-// ===================== Asset Routes =====================
+
+	// ===================== Asset Routes =====================
 
 		function asset_route($route) {
 
@@ -200,7 +203,9 @@
 	}
 
 
-// ===================== Admin Routes =====================
+
+
+	// ===================== Admin Routes =====================
 
 	function admin_route($route, $getVars = "") {
 
@@ -228,13 +233,16 @@
 
 
 
-
-		function helpers_route($route) {
+	function helpers_route($route) {
 
 		switch ($route) {
 
 			case 'ajax_actions':
 				return "/reou/helpers/ajax_actions/";
+				break;
+
+			case '404':
+				return "/reou/views/main/404.php";
 				break;
 			
 			default:
@@ -244,12 +252,6 @@
 		}
 
 	}
-
-
-
-
-
-
 
 
 // --------------------------------------- Old Code ---------------------------------------

@@ -465,6 +465,58 @@ th {
     -ms-transform: scale(1, 1);
     -o-transform: scale(1, 1);
     transform: scale(1, 1); } }
+@-webkit-keyframes $name {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+@-moz-keyframes $name {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+@-o-keyframes $name {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+@keyframes $name {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
 	/* JavaScript-less menu 
 
 		bigSibling = menu title
@@ -531,6 +583,9 @@ input.field-invalid {
   color: #727570;
   display: block;
   width: 100%; }
+.reou__form-base .load-spinner, .password-email-update-form .load-spinner {
+  position: relative;
+  -webkit-transform: rotate(20deg); }
 .reou__form-base .reou-form__submit-button, .password-email-update-form .reou-form__submit-button {
   padding: 7px;
   border: 0px solid black;
@@ -1518,12 +1573,29 @@ User Partials
   display: none; }
 
 .profile__password-reset-well {
+  position: relative;
   box-sizing: border-box;
   padding: 20px;
   background-color: white;
   border-radius: 2px;
   margin: 0px auto;
   width: 100%; }
+
+/* overlay that is shown when the message is sending */
+.password-reset__overlay {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: gray; }
+
+.profile__modal-load-icon {
+  -webkit-animation: spin 10s ease;
+  background-color: red; }
 
 /* ------------------ Profile Modal End ------------------ */
 .profile__submit {

@@ -123,31 +123,34 @@
 	// When the user clicks the submit button. send the form dataa through ajax
 	$('#profile__submit-password-reset').click(function(event) {
 
-		event.preventDefault();
+		// Validate the password an confirm password
+		if( !password_reset_fields_valid() ) {
+			event.preventDefault();
+		}
 
-		$formItems = $('#profile__password-email-update-form').serializeArray();
-		$data = serialToObj($formItems);
+	
+		// $formItems = $('#profile__password-email-update-form').serializeArray();
+		// $data = serialToObj($formItems);
 
-		// remove this when finished
-		console.log($data);
+		// // remove this when finished
+		// console.log($data);
 
-
-
+		// Dont use Ajax
 		// if(password_reset_fields()) {
 		// 	update_password();
 		// }
 
 		// Submit the from if the passwords If the passwords entered do not match then show an alert
-		if( password_reset_fields_valid() ) {
+		// if( password_reset_fields_valid() ) {
 
-			console.log("first phase field validation passed");
+		// 	console.log("first phase field validation passed");
 
-			if($data.hasOwnProperty('form-confirm-password')) {
-				delete $data['form-confirm-password'];
-			}
+		// 	if($data.hasOwnProperty('form-confirm-password')) {
+		// 		delete $data['form-confirm-password'];
+		// 	}
 
-			update_password($data);
-		}
+		// 	update_password($data);
+		// }
 
 
 	});

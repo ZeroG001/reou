@@ -23,8 +23,6 @@
 	# ** If the session already exists make sure tha the requires is GET and that there is athe Toekn Parameter added
 
 
-
-
 	// ----------------- Header HTML --------------------
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
@@ -39,7 +37,11 @@
 
 <div class="main-content">
 
+
+
 	<div class="password-email-reset-container">
+
+		<?php display_alert('alert') ?>
 
 		<h2> Reset Your Password </h2>
 		<h5> Please enter your new password below </h5>
@@ -50,9 +52,10 @@
 		</div>
 
 
-		<form class="password-email-update-form" id="profile__password-email-update-form" action="#">
+		<form class="password-email-update-form" method="POST" id="profile__password-email-update-form" action="">
 
-			<input type="hidden" name="token" value="<?php echo $token ?>" />		
+			<input type="hidden" name="token" value="<?php echo $token ?>" />
+			<input type="hidden" name="_method" value="patch" /> 	
 
 			<div class="reou-form__input-group">
 				<label for="modal-new-password"> New Password </label>

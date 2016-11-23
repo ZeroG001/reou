@@ -136,6 +136,30 @@
 
 
 
+
+	/**
+	 * redirect404()
+	 *
+	 * Redirects the User to the 404 not found page
+	 *
+	 * @return void
+	 */
+	function redirect404() {
+
+		// Commented out because you could not sign out from  edit profile page
+		// if( !isset($_SERVER['HTTP_REFERER']) ) {
+		// 	header("Location:". course_route('home') );
+		// } else {
+		// 	header("Location:". $_SERVER['HTTP_REFERER']);
+		// }
+
+		header("Location:". helpers_route('404'));
+
+	}
+
+
+
+
 	/**
 	 * display_alert() [ERASE THIS FUNCTION] THIS IS BEING REPLACED BY THE FUNTION BELOW.
 	 *

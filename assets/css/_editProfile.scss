@@ -216,6 +216,7 @@
 
 
 .profile__password-reset-well {
+	position: relative;
 	box-sizing: border-box;
 	padding: 20px;
 	background-color: white;
@@ -223,6 +224,27 @@
 	margin: 0px auto;
 	width: 100%;
 
+}
+
+
+/* overlay that is shown when the message is sending */
+.password-reset__overlay {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	background-color: gray;
+}
+
+
+
+.profile__modal-load-icon {
+	-webkit-animation: spin 10s ease;
+	background-color: red;
 }
 
 
