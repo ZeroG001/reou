@@ -46,6 +46,8 @@
 
 	}
 
+
+
 	function close_modal() {
 		$('.profile__password-reset-modal').css("display", "none");
 		$('.profile__modal-alert').css('display', 'none');
@@ -56,10 +58,12 @@
 	}
 
 
+
 	function show_password_modal_message(message) {
 		$('.profile__modal-alert').css("display", "inline");
 		$('#modal-alert-message').text(message);
 	}
+
 
 
 	function send_update_password(form_data) {
@@ -69,14 +73,21 @@
 			url: "helpers/ajax_actions/sendPasswordReset.php",
 			success: function(response) {
 
+				console.log("removing loading overlay on modal");
+				$(".password-reset__overlay").css("display", "none");
+				close_modal();
+
 				// Get rid of any whitespace.
 				// response = response.replace(/\s/, "");
+
 				alert(response);
+				
 			}
 		});
 		
-
 	}
+
+
 
 	function update_password(form_data) {
 
@@ -177,6 +188,9 @@
 
 
 
+	// ----------------- Updating the Password ----------------- 
+
+
 	// When the user clicks the submit button check to see if the passwords match
 	$('#profile__password-submit-button-modal').click(function(event) {
 
@@ -216,11 +230,27 @@
 		event.preventDefault();
 
 		$formItems = $('.profile__send-password-reset-form').serializeArray();
-		$data = serialToObj($formItems)
+		$data = serialToObj($formItems);
+		
+			// Show fancy modal loading animation
+			console.log("show message overlay animation");
+			$(".password-reset__overlay").css("display", "flex");
 
-		console.log($data);
+			// Slign delay on the email send so you can see the cool animation!
+			setTimeout( function() {
 
-		send_update_password($data);
+				send_update_password($data);
+
+			}, 1000);
+
+		
 	})
+
+
+
+		// ----------------- Updating the email ----------------- 
+
+		// I'm really debating whether I should do this or not. A user should not have to updat the email
+
 
 })(jQuery)

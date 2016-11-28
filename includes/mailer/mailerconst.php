@@ -3,22 +3,23 @@ require 'phpmailer/PHPMailerAutoload.php';
 
 $reoumail = new PHPMailer;
 
-//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+$reoumail->SMTPDebug = 3;                               // Enable verbose debug output
 
 $reoumail->isSMTP();
+$reoumail->Timeout       = 10;
 $reoumail->Host          = "smtp.office365.com";
 $reoumail->SMTPAuth 	 = true;
 $reoumail->Username      = 'info@realestateone.com';
 $reoumail->Password      = 'N0tbl@nk!';
 $reoumail->SMTPSecure    = 'tls';
 $reoumail->port          = '587';
-$reoumail->isHTML(true);  
+$reoumail->WordWrap      =  50;
+$reoumail->isHTML(true);
 
 $reoumail->setFrom('info@realestateone.com', 'Info - RealEstateOne');
 
 $reoumail->addAddress('bholland@realestateone.com');               // Name is optional
 $reoumail->addReplyTo('info@realestateone.com', 'Info - RealEstateOne');
-
 
 // $reoumail->addCC('cc@example.com');
 // $reoumail->addBCC('bcc@example.com');
@@ -28,6 +29,7 @@ $reoumail->addReplyTo('info@realestateone.com', 'Info - RealEstateOne');
 $reoumail->Subject = 'Email Mailer Test';
 $reoumail->Body    = '<b> Hello this is an email mailer test instead you will use a template </b>';
 $reoumail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
 
 
 /**

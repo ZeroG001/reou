@@ -20,8 +20,14 @@
 		
 			if($db_result) {
 
-				echo "Sending the email now please wait";
-				
+
+				if(!$reoumail->send()) {
+				    echo 'Message could not be sent. For real this time.';
+				    echo 'Mailer Error: ' . $reoumail->ErrorInfo;
+				} else {
+				    echo 'Message has been sent for real this time';
+				}
+							
 			} else {
 
 				echo "Added entry to the database but was unable to send the email";

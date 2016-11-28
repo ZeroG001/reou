@@ -151,15 +151,14 @@
 
 				<div class="profile__password-reset-well">
 
+
+					<?php if ( userIsAdmin()) { ?>
+
+					<!-- overlay animation for sending -->
 					<div class="password-reset__overlay">
-
-						
 						<img class="profile__modal-load-icon" src="<?php echo asset_route('img') . '/site_img/load_spinner.png' ?>" />
-
+						<h3> Sending </h3>
 					</div>
-
-
-					<?php if(userIsAdmin()) { ?>
 
 					<form action="#" method="POST" class="profile__send-password-reset-form">
 
@@ -170,9 +169,10 @@
 							<span class="profile__modal-close"> X </span>
 						</div>
 
-						<div class="profile__modal-body">	
+						<div class="profile__modal-body">
+
 							<div class="profile__admin-reset-container">
-								<i class="fa fa-envelope-o"></i>
+							<i class="fa fa-envelope-o"></i>
 								<input type="submit" class="profile__send-password-reset-button" id="profile__send-password-reset-button" value="Send Password Reset Email">
 
 							</div>		
@@ -194,7 +194,7 @@
 
 
 						<div class="profile__modal-alert alert">
-							<span id="modal-alert-message"> <!-- Alert message here  --> </span>
+							<span id="modal-alert-message"> <!-- Alert message here --> </span>
 						</div>
 
 

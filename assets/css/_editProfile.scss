@@ -69,7 +69,7 @@
 	justify-content: center;
 	flex-direction: column;
 
-	i {margin: 15px 0px;font-size: 8em; color: #484848;}
+	i {margin: 15px 0px;font-size: 5em; color: #d4d4d4;}
 
 	button {
 		@include buttonFlatLarge;
@@ -81,6 +81,18 @@
 		&:hover {
 			background-color: #60ADDA;
 			@include transition(0.3s ease);
+		}
+	}
+
+	.profile__send-password-reset-button {
+		@include buttonFlatLarge;
+		background-color: $darkblue;
+		color: white;
+		margin: 20px 0px;
+
+		&:hover {
+			@include transition(0.2s ease);
+			background-color: $hoverDarkBlue;
 		}
 	}
 
@@ -143,7 +155,6 @@
 			background-color: $hoverDarkBlue;
 			@include transition(background-color 0.3s ease);
 		}
-
 
 	}
 
@@ -230,21 +241,28 @@
 /* overlay that is shown when the message is sending */
 .password-reset__overlay {
 	position: absolute;
-	display: flex;
+	display: none;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 	top: 0;
 	right: 0;
 	height: 100%;
 	width: 100%;
-	background-color: gray;
+	background-color: rgba(255,255,255,0.8);
+
+
+	h3 {
+		font-size: $th4;
+		display: block;
+		color: $darkblue;
+	}
 }
 
 
 
 .profile__modal-load-icon {
-	-webkit-animation: spin 10s ease;
-	background-color: red;
+	-webkit-animation: spin 1s linear infinite forwards;
 }
 
 

@@ -40,6 +40,7 @@ Focus mainly on:
 	$cleardarkblue: rgba(16,111,168, 0.9);
 	$lightblue: #3D96CC;
 	$lightgray: #F1F1F1;
+	$milk: #FEFEEB;
 	$bodygray: #6c6c6c;
 	$clearlightblue: rgba(97,189,244, 0.3);
 	$duskblue: #488DB6;
@@ -50,6 +51,7 @@ Focus mainly on:
 	$orange: #F5AC49;
 	$action: #F55818;
 	$headertext: #002942;
+
 
 	
 	
@@ -130,7 +132,6 @@ Focus mainly on:
 	 	-moz-transform: $options ;
 	 	-ms-transform: $options ;
 	 	-o-transform: $options ;
-	 	transform: $options ;
 	 }
 
 	/* Keyframe aniamtions 
@@ -175,17 +176,10 @@ Focus mainly on:
 	}
 
 
-	@include keyframes(spin) {
-
-		from {
-			@include transform( rotate(0deg) );
-		}
-
-		to {
-			@include transform( rotate(360deg) );
-		}
-
-	}
+ @-webkit-keyframes spin {
+	from { @include transform( rotate(0deg) ); }
+	to { @include transform( rotate(360deg) ); }
+ }
 
 
 

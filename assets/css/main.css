@@ -411,112 +411,63 @@ th {
     -webkit-transform: scale(0.95, 0.95);
     -moz-transform: scale(0.95, 0.95);
     -ms-transform: scale(0.95, 0.95);
-    -o-transform: scale(0.95, 0.95);
-    transform: scale(0.95, 0.95); }
+    -o-transform: scale(0.95, 0.95); }
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
     -moz-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
-    transform: scale(1, 1); } }
+    -o-transform: scale(1, 1); } }
 @-moz-keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
     -moz-transform: scale(0.95, 0.95);
     -ms-transform: scale(0.95, 0.95);
-    -o-transform: scale(0.95, 0.95);
-    transform: scale(0.95, 0.95); }
+    -o-transform: scale(0.95, 0.95); }
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
     -moz-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
-    transform: scale(1, 1); } }
+    -o-transform: scale(1, 1); } }
 @-o-keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
     -moz-transform: scale(0.95, 0.95);
     -ms-transform: scale(0.95, 0.95);
-    -o-transform: scale(0.95, 0.95);
-    transform: scale(0.95, 0.95); }
+    -o-transform: scale(0.95, 0.95); }
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
     -moz-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
-    transform: scale(1, 1); } }
+    -o-transform: scale(1, 1); } }
 @keyframes $name {
   from {
     opacity: 0;
     -webkit-transform: scale(0.95, 0.95);
     -moz-transform: scale(0.95, 0.95);
     -ms-transform: scale(0.95, 0.95);
-    -o-transform: scale(0.95, 0.95);
-    transform: scale(0.95, 0.95); }
+    -o-transform: scale(0.95, 0.95); }
   to {
     opacity: 1;
     -webkit-transform: scale(1, 1);
     -moz-transform: scale(1, 1);
     -ms-transform: scale(1, 1);
-    -o-transform: scale(1, 1);
-    transform: scale(1, 1); } }
-@-webkit-keyframes $name {
+    -o-transform: scale(1, 1); } }
+@-webkit-keyframes spin {
   from {
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg); }
+    -o-transform: rotate(0deg); }
   to {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-@-moz-keyframes $name {
-  from {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-@-o-keyframes $name {
-  from {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-@keyframes $name {
-  from {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg); } }
+    -o-transform: rotate(360deg); } }
 	/* JavaScript-less menu 
 
 		bigSibling = menu title
@@ -770,14 +721,12 @@ input.field-invalid {
     -webkit-transform: translate(0px, 0px);
     -moz-transform: translate(0px, 0px);
     -ms-transform: translate(0px, 0px);
-    -o-transform: translate(0px, 0px);
-    transform: translate(0px, 0px); }
+    -o-transform: translate(0px, 0px); }
   .main_nav--menu-button .menu-button--bar:nth-child(3) {
     -webkit-transform: translate(0px, 0px);
     -moz-transform: translate(0px, 0px);
     -ms-transform: translate(0px, 0px);
-    -o-transform: translate(0px, 0px);
-    transform: translate(0px, 0px); }
+    -o-transform: translate(0px, 0px); }
   .main_nav--menu-button:hover {
     cursor: pointer;
     background-color: rgba(97, 189, 244, 0.3); }
@@ -800,8 +749,7 @@ input.field-invalid {
     -webkit-transform: translate(0px, 10px) rotate(-135deg);
     -moz-transform: translate(0px, 10px) rotate(-135deg);
     -ms-transform: translate(0px, 10px) rotate(-135deg);
-    -o-transform: translate(0px, 10px) rotate(-135deg);
-    transform: translate(0px, 10px) rotate(-135deg); }
+    -o-transform: translate(0px, 10px) rotate(-135deg); }
   .main_nav--menu-button__active .menu-button--bar:nth-child(2), .main_nav--menu-button:hover .menu-button--bar:nth-child(2) {
     -webkit-transition: 0.4s ease;
     -moz-transition: 0.4s ease;
@@ -810,8 +758,7 @@ input.field-invalid {
     -webkit-transform: scaleX(0);
     -moz-transform: scaleX(0);
     -ms-transform: scaleX(0);
-    -o-transform: scaleX(0);
-    transform: scaleX(0); }
+    -o-transform: scaleX(0); }
   .main_nav--menu-button__active .menu-button--bar:nth-child(3), .main_nav--menu-button:hover .menu-button--bar:nth-child(3) {
     -webkit-transition: 0.4s ease;
     -moz-transition: 0.4s ease;
@@ -820,8 +767,7 @@ input.field-invalid {
     -webkit-transform: translate(0px, -10px) rotate(135deg);
     -moz-transform: translate(0px, -10px) rotate(135deg);
     -ms-transform: translate(0px, -10px) rotate(135deg);
-    -o-transform: translate(0px, -10px) rotate(135deg);
-    transform: translate(0px, -10px) rotate(135deg); }
+    -o-transform: translate(0px, -10px) rotate(135deg); }
 
 /* ------------------------------------ 
 Course Partials
@@ -859,8 +805,7 @@ Course Partials
     -webkit-transform: scale(1.02);
     -moz-transform: scale(1.02);
     -ms-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    transform: scale(1.02); }
+    -o-transform: scale(1.02); }
   .course-container--box:active {
     -webkit-transition: transform 0.2s ease;
     -moz-transition: transform 0.2s ease;
@@ -869,8 +814,7 @@ Course Partials
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1); }
+    -o-transform: scale(1); }
   .course-container--box .course-container--box-header {
     padding: 18px 15px;
     display: block;
@@ -966,8 +910,7 @@ Course Partials
     -webkit-transform: scale(1.02);
     -moz-transform: scale(1.02);
     -ms-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    transform: scale(1.02); }
+    -o-transform: scale(1.02); }
   .class-container--box:active {
     -webkit-transition: transform 0.2s ease;
     -moz-transition: transform 0.2s ease;
@@ -976,8 +919,7 @@ Course Partials
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1); }
+    -o-transform: scale(1); }
 
 .class-container--box-footer {
   display: block;
@@ -1203,8 +1145,7 @@ Course Partials
     -webkit-transform: scale(1.02);
     -moz-transform: scale(1.02);
     -ms-transform: scale(1.02);
-    -o-transform: scale(1.02);
-    transform: scale(1.02); }
+    -o-transform: scale(1.02); }
   .mycourse-container--box:active {
     -webkit-transition: transform 0.2s ease;
     -moz-transition: transform 0.2s ease;
@@ -1213,8 +1154,7 @@ Course Partials
     -webkit-transform: scale(1);
     -moz-transform: scale(1);
     -ms-transform: scale(1);
-    -o-transform: scale(1);
-    transform: scale(1); }
+    -o-transform: scale(1); }
 
 .mycourse-container--box-footer {
   display: block;
@@ -1452,8 +1392,8 @@ User Partials
   flex-direction: column; }
   .profile__admin-reset-container i {
     margin: 15px 0px;
-    font-size: 8em;
-    color: #484848; }
+    font-size: 5em;
+    color: #d4d4d4; }
   .profile__admin-reset-container button {
     border-radius: 2px;
     border: 0px solid black;
@@ -1472,6 +1412,20 @@ User Partials
       -moz-transition: 0.3s ease;
       -o-transition: 0.3s ease;
       transition: 0.3s ease; }
+  .profile__admin-reset-container .profile__send-password-reset-button {
+    border-radius: 2px;
+    border: 0px solid black;
+    padding: 10px;
+    text-align: center;
+    background-color: #106FA8;
+    color: white;
+    margin: 20px 0px; }
+    .profile__admin-reset-container .profile__send-password-reset-button:hover {
+      -webkit-transition: 0.2s ease;
+      -moz-transition: 0.2s ease;
+      -o-transition: 0.2s ease;
+      transition: 0.2s ease;
+      background-color: #60ADDA; }
 
 /* ------------------ Main Content ------------------ */
 .profile-container {
@@ -1584,18 +1538,22 @@ User Partials
 /* overlay that is shown when the message is sending */
 .password-reset__overlay {
   position: absolute;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   top: 0;
   right: 0;
   height: 100%;
   width: 100%;
-  background-color: gray; }
+  background-color: rgba(255, 255, 255, 0.8); }
+  .password-reset__overlay h3 {
+    font-size: 1.25rem;
+    display: block;
+    color: #106FA8; }
 
 .profile__modal-load-icon {
-  -webkit-animation: spin 10s ease;
-  background-color: red; }
+  -webkit-animation: spin 1s linear infinite forwards; }
 
 /* ------------------ Profile Modal End ------------------ */
 .profile__submit {

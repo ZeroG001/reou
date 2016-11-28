@@ -24,8 +24,7 @@
 				echo "user_mismatch";
 				die();
 			}
-
-			if($user->update_password($params)) {
+			if( $user->update_password($params) ) {
 				echo "success";
 				add_message("alert", "Password Sucessfully Updated");
 			} 
