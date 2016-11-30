@@ -1412,7 +1412,8 @@ User Partials
       -moz-transition: 0.3s ease;
       -o-transition: 0.3s ease;
       transition: 0.3s ease; }
-  .profile__admin-reset-container .profile__send-password-reset-button {
+  .profile__admin-reset-container .profile__send-password-reset-button,
+  .profile__admin-reset-container .profile__send-email-reset-button {
     border-radius: 2px;
     border: 0px solid black;
     padding: 10px;
@@ -1420,7 +1421,8 @@ User Partials
     background-color: #106FA8;
     color: white;
     margin: 20px 0px; }
-    .profile__admin-reset-container .profile__send-password-reset-button:hover {
+    .profile__admin-reset-container .profile__send-password-reset-button:hover,
+    .profile__admin-reset-container .profile__send-email-reset-button:hover {
       -webkit-transition: 0.2s ease;
       -moz-transition: 0.2s ease;
       -o-transition: 0.2s ease;
@@ -1440,23 +1442,28 @@ User Partials
   background-color: #dcdcdc; }
 
 .update_user--form .profile__input-group,
-.profile__password-form .profile__input-group {
+.profile__password-form .profile__input-group,
+.profile__email-form .profile__input-group {
   margin: 35px 0px; }
   .update_user--form .profile__input-group textarea,
-  .profile__password-form .profile__input-group textarea {
+  .profile__password-form .profile__input-group textarea,
+  .profile__email-form .profile__input-group textarea {
     resize: none; }
   .update_user--form .profile__input-group label,
-  .profile__password-form .profile__input-group label {
+  .profile__password-form .profile__input-group label,
+  .profile__email-form .profile__input-group label {
     margin-bottom: 10px; }
 .update_user--form .profile__input,
-.profile__password-form .profile__input {
+.profile__password-form .profile__input,
+.profile__email-form .profile__input {
   padding: 10px;
   margin-top: 5px;
   color: #727570;
   display: block;
   width: 100%; }
 .update_user--form .profile__submit-button,
-.profile__password-form .profile__submit-button {
+.profile__password-form .profile__submit-button,
+.profile__email-form .profile__submit-button {
   padding: 7px;
   border: 0px solid black;
   border-radius: 2px;
@@ -1466,7 +1473,8 @@ User Partials
   color: white;
   padding: 30px; }
   .update_user--form .profile__submit-button:hover,
-  .profile__password-form .profile__submit-button:hover {
+  .profile__password-form .profile__submit-button:hover,
+  .profile__email-form .profile__submit-button:hover {
     background-color: #60ADDA;
     -webkit-transition: background-color 0.3s ease;
     -moz-transition: background-color 0.3s ease;
@@ -1487,8 +1495,25 @@ User Partials
     -o-transition: background-color 0.2s ease;
     transition: background-color 0.2s ease; }
 
+#profile__email-submit-button,
+#profile__password-submit-button {
+  border-radius: 2px;
+  border: 0px solid black;
+  padding: 10px;
+  text-align: center;
+  background-color: #106FA8;
+  color: white; }
+  #profile__email-submit-button:hover,
+  #profile__password-submit-button:hover {
+    background-color: #60ADDA;
+    -webkit-transition: background-color 0.2s ease;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease; }
+
 /* ------------------ Profile Modal ------------------ */
-.profile__password-reset-modal {
+.profile__password-reset-modal,
+.profile__email-reset-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -1526,7 +1551,8 @@ User Partials
 .profile__modal-alert {
   display: none; }
 
-.profile__password-reset-well {
+.profile__password-reset-well,
+.profile__email-reset-well {
   position: relative;
   box-sizing: border-box;
   padding: 20px;
@@ -1536,7 +1562,7 @@ User Partials
   width: 100%; }
 
 /* overlay that is shown when the message is sending */
-.password-reset__overlay {
+.email-password-reset__overlay {
   position: absolute;
   display: none;
   align-items: center;
@@ -1547,7 +1573,7 @@ User Partials
   height: 100%;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.8); }
-  .password-reset__overlay h3 {
+  .email-password-reset__overlay h3 {
     font-size: 1.25rem;
     display: block;
     color: #106FA8; }
@@ -1608,7 +1634,8 @@ User Partials
     /* testing 
     background-color: $lightblue; */ }
 
-  .profile__password-reset-well {
+  .profile__password-reset-well,
+  .profile__email-reset-well {
     padding: 20px;
     background-color: white;
     margin: 0px auto;

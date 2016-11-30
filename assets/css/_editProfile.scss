@@ -84,7 +84,8 @@
 		}
 	}
 
-	.profile__send-password-reset-button {
+	.profile__send-password-reset-button,
+	.profile__send-email-reset-button {
 		@include buttonFlatLarge;
 		background-color: $darkblue;
 		color: white;
@@ -123,7 +124,8 @@
 
 
 .update_user--form,
-.profile__password-form {
+.profile__password-form,
+.profile__email-form {
 
 	.profile__input-group {
 		margin: 35px 0px;
@@ -172,9 +174,23 @@
 	}
 }
 
+
+#profile__email-submit-button,
+#profile__password-submit-button {
+	@include buttonFlatLarge;
+    background-color: $darkblue;
+    color: white;
+
+	&:hover {
+		background-color: $hoverDarkBlue;
+		@include transition(background-color 0.2s ease);
+	}
+}
+
 /* ------------------ Profile Modal ------------------ */
 
-.profile__password-reset-modal {
+.profile__password-reset-modal,
+.profile__email-reset-modal {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -226,7 +242,8 @@
 
 
 
-.profile__password-reset-well {
+.profile__password-reset-well,
+.profile__email-reset-well {
 	position: relative;
 	box-sizing: border-box;
 	padding: 20px;
@@ -239,7 +256,7 @@
 
 
 /* overlay that is shown when the message is sending */
-.password-reset__overlay {
+.email-password-reset__overlay {
 	position: absolute;
 	display: none;
 	align-items: center;
@@ -351,7 +368,8 @@
 
 
 
-	.profile__password-reset-well {
+	.profile__password-reset-well,
+	.profile__email-reset-well {
 		padding: 20px;
 		background-color: white;
 		margin: 0px auto;

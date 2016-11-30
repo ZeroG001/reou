@@ -3,7 +3,7 @@ require 'phpmailer/PHPMailerAutoload.php';
 
 $reoumail = new PHPMailer;
 
-$reoumail->SMTPDebug = 3;                               // Enable verbose debug output
+$reoumail->SMTPDebug = 1;                               // Enable verbose debug output
 
 $reoumail->isSMTP();
 $reoumail->Timeout       = 10;
@@ -89,6 +89,7 @@ function checkParams($params) {
  * requireToVar
  *
  * Takes and external HTML file and moves it to a variable. Used for PHP mailer $body
+ * Path is relative to where the function was created (this file)
  * 
  * @param (string) path to external file 
  * @return (string) html from resulting file

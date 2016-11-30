@@ -21,7 +21,6 @@
 </head>
 
 
-
 <div class="profile-container">
 
 	<div class="profile__sidebar-container">
@@ -53,6 +52,7 @@
 		</div>
 
 
+		<!-- ===== Main Profile Edit Form ===== -->
 		<form class="update_user--form" method="POST" enctype="multipart/form-data">
 
 			<!-- <h2> My Profile Information ( REO Academy ) </h2> -->
@@ -83,14 +83,16 @@
 				<!-- 
 					Need a way for a user to confirm their email address.
 					A user can change their email address to that of another user. (which they shouldn't)
-				 Dont make this site live until you can do that -->
-				<label for="lastName"> Email Address ( needs work see comments ) <a href="edit"> Edit </a> </label>
-				<input type="text" class="profile__input" id="email" value="<?php echo $user['email'] ?>" /> 
+				    Dont make this site live until you can do that 
+				-->
+				<label for="lastName"> Email Address <a href="#" class="profile__email-reset" id="profile__email-reset"> edit </a> </label>
+				<input type="text" class="profile__input" id="email" value="<?php echo $user['email'] ?>" disabled /> 
 			</div>
+	
 
 
 			<div class="profilt__input-group">
-				<input type="button" class="profile__password-reset" value="Reset Password">
+				<input type="button" class="profile__password-reset" id="profile__password-reset" value="Reset Password">
 			</div>
 
 
@@ -99,8 +101,6 @@
 				<textarea title="bio" class="profile__input" name="bio"><?php echo $user['bio'] ?> </textarea>
 			</div>
 
-
-			<!-- ===== Possably for instructor info ===== -->
 
 
 			<!-- ===== Admin Functions ===== -->
@@ -143,91 +143,149 @@
 
 			<!-- use the hiddent field to tell which user needs to be updated -->
 			<input type="hidden" id="userId" name="userId" value="<?php echo $user['id'] ?>">
+
 		</form>
+		<!-- ========== FORM END ========== -->
 
 
-		
-			<div style="display: none" class="profile__password-reset-modal">
 
-				<div class="profile__password-reset-well">
+		<!-- ===== Passowrd Reset Email ===== -->
 
+		<div style="display: none" class="profile__password-reset-modal">
 
-					<?php if ( userIsAdmin()) { ?>
+			<div class="profile__password-reset-well">
 
-					<!-- overlay animation for sending -->
-					<div class="password-reset__overlay">
-						<img class="profile__modal-load-icon" src="<?php echo asset_route('img') . '/site_img/load_spinner.png' ?>" />
-						<h3> Sending </h3>
-					</div>
+				<?php if ( userIsAdmin()) { ?>
 
-					<form action="#" method="POST" class="profile__send-password-reset-form">
-
-						<input type="hidden" name="userId" value="<?php echo $user['id'] ?>">
-
-						<div class="profile__modal-header">
-							<h2> Reset User Password </h2>
-							<span class="profile__modal-close"> X </span>
-						</div>
-
-						<div class="profile__modal-body">
-
-							<div class="profile__admin-reset-container">
-							<i class="fa fa-envelope-o"></i>
-								<input type="submit" class="profile__send-password-reset-button" id="profile__send-password-reset-button" value="Send Password Reset Email">
-
-							</div>		
-
-						</div>
-
-					</form>
-
-
-					<?php } else { ?>
-
-
-					<form action="#" method="POST" class="profile__password-form">
-
-						<div class="profile__modal-header">
-							<h2> Change your password. </h2>
-							<span class="profile__modal-close"> X </span>
-						</div>
-
-
-						<div class="profile__modal-alert alert">
-							<span id="modal-alert-message"> <!-- Alert message here --> </span>
-						</div>
-
-
-						<div class="profile__modal-body">			
-
-							<div class="profile__input-group">
-								<label for="password"> Current Password </label>
-								<input type="password" id="modal-password" class="profile__input modal-password-input" name="password" required="true" /> 
-							</div>
-							
-
-							<div class="profile__input-group">
-								<label for="modal-new-password"> New Password </label>
-								<input type="password" id="modal-new-password" class="profile__input modal-new-password-input" name="newPassword" required="true" />
-							</div>
-
-
-							<div class="profile__input-group">
-								<label for="confirm-password"> Confirm New Password </label>
-								<input type="password" class="profile__input" id="modal-confirm-password" name="modal-confirm-password" required="true" />
-							</div>
-
-							<input type="submit" class="profile__password-submit-button-modal" id="profile__password-submit-button-modal" value="Change Password">
-							
-						</div>
-
-					</form>
-
-					<?php } ?>
-
+				<!-- overlay animation for sending -->
+				<div class="email-password-reset__overlay">
+					<img class="profile__modal-load-icon" src="<?php echo asset_route('img') . '/site_img/load_spinner.png' ?>" />
+					<h3> Sending </h3>
 				</div>
 
-			</div>		
+				<form action="#" method="POST" class="profile__send-password-reset-form">
+
+					<input type="hidden" name="userId" value="<?php echo $user['id'] ?>">
+
+					<div class="profile__modal-header">
+						<h2> Reset User Password </h2>
+						<span class="profile__modal-close"> X </span>
+					</div>
+
+					<div class="profile__modal-body">
+
+						<div class="profile__admin-reset-container">
+							<i class="fa fa-envelope-o"></i>
+							<input type="submit" class="profile__send-password-reset-button" id="profile__send-password-reset-button" value="Send Password Reset">
+						</div>		
+
+					</div>
+
+				</form>
+
+
+				<?php } else { ?>
+
+
+				<form action="#" method="POST" class="profile__password-form">
+
+					<div class="profile__modal-header">
+						<h2> Change your password. </h2>
+						<span class="profile__modal-close"> X </span>
+					</div>
+
+
+					<div class="profile__modal-alert alert">
+						<span id="modal-alert-message"> <!-- Alert message here --> </span>
+					</div>
+
+
+					<div class="profile__modal-body">			
+
+						<div class="profile__input-group">
+							<label for="password"> Current Password </label>
+							<input type="password" id="modal-password" class="profile__input modal-password-input" name="password" required="true" /> 
+						</div>
+						
+
+						<div class="profile__input-group">
+							<label for="modal-new-password"> New Password </label>
+							<input type="password" id="modal-new-password" class="profile__input modal-new-password-input" name="newPassword" required="true" />
+						</div>
+
+
+						<div class="profile__input-group">
+							<label for="confirm-password"> Confirm New Password </label>
+							<input type="password" class="profile__input" id="modal-confirm-password" name="modal-confirm-password" required="true" />
+						</div>
+
+						<input type="submit" class="profile__password-submit-button" id="profile__password-submit-button" value="Change Password">
+						
+					</div>
+
+				</form>
+
+				<?php } ?>
+
+			</div>
+
+		</div>	
+
+
+
+			<!-- ===== Reset Email Modal ===== -->
+			<?php if ( true ) { // !userIsAdmin() ?>
+
+
+
+
+				<div style="display: none" class="profile__email-reset-modal">
+
+					<div class="profile__email-reset-well">
+									<!-- overlay animation for sending -->
+						<div class="email-password-reset__overlay">
+							<img class="profile__modal-load-icon" src="<?php echo asset_route('img') . '/site_img/load_spinner.png' ?>" />
+							<h3> Sending </h3>
+						</div>
+
+						<form action="#" method="POST" class="profile__email-form">
+
+							<div class="profile__modal-header">
+								<h2> Change your Email. </h2>
+								<span class="profile__modal-close"> X </span>
+							</div>
+
+
+							<div class="profile__modal-alert alert">
+								<span id="modal-alert-message"> <!-- Alert message here --> </span>
+							</div>
+
+
+							<div class="profile__modal-body">
+
+								<p> The process of changing your email is as follows </p>
+								<ul>
+									<li> Enter the new Email Address Below </li>
+									<li> A notice is sent to your old email address. </li>
+									<li> A Message is sent to your new address. </li>
+								</ul>
+		
+								<div class="profile__input-group">
+									<label for="modal-new-email"> New Email Address </label>
+									<input type="email" class="profile__input" id="modal-new-email" name="email" required="true" />
+								</div>
+
+								<input type="submit" class="profile__email-reset-button" id="profile__email-submit-button" value="Change Email">
+								
+							</div>
+
+						</form>
+
+					</div>
+
+				</div>	
+
+			<?php } ?>	
 
 
 	</div>

@@ -1,7 +1,7 @@
 ( function($) {
 
 
-	// Functions //
+	// Helper Functions //
 	// -------------------------------------- //
 
 	function password_reset_fields_valid() {
@@ -48,8 +48,8 @@
 
 
 
-	function close_modal() {
-		$('.profile__password-reset-modal').css("display", "none");
+	function close_modal(modalContainer) {
+		modalContainer.css("display", "none");
 		$('.profile__modal-alert').css('display', 'none');
 		$('#modal-password').val('');
 		$('#modal-new-password').val('');
@@ -74,18 +74,45 @@
 			success: function(response) {
 
 				console.log("removing loading overlay on modal");
-				$(".password-reset__overlay").css("display", "none");
-				close_modal();
+				$(".email-password-reset__overlay").css("display", "none");
+				close_modal($(".profile__password-reset-modal"));
 
 				// Get rid of any whitespace.
 				// response = response.replace(/\s/, "");
 
-				alert(response);
+				location.reload();
 				
 			}
 		});
 		
 	}
+
+
+
+	function send_update_email(form_data) {
+		$.ajax({
+			data: form_data,
+			type: "POST",
+			url: "helpers/ajax_actions/sendEmailReset.php",
+			success: function(response) {
+
+				console.log("removing loading overlay on modal");
+				$(".email-password-reset__overlay").css("display", "none");
+				close_modal($(".profile__email-reset-modal"));
+
+				// Get rid of any whitespace.
+				// response = response.replace(/\s/, "");
+				alert(response);
+
+				//location.reload();
+				
+			}
+		});
+		
+	}
+
+
+
 
 
 
@@ -164,7 +191,9 @@
 	// -------------------------------------- //
 
 
-	// Show the password display modal
+	// --------------------- Updating the Password ------------------------
+
+	// Show the password reset modal
 	$(".profile__password-reset").click(function() {
 
 		// Open The Password Reset Modal
@@ -179,16 +208,11 @@
 		$('.profile__modal-close').click( function() {
 
 			console.log("closing modal");
-			close_modal();
+			close_modal($(".profile__password-reset-modal"));
 
 		});
 
 	});
-
-
-
-
-	// ----------------- Updating the Password ----------------- 
 
 
 	// When the user clicks the submit button check to see if the passwords match
@@ -224,7 +248,7 @@
 	});
 
 
-	// When the sned button is clicked
+	// When the password send button is clicked. Send password reset email
 	$('#profile__send-password-reset-button').click(function(event) {
 
 		event.preventDefault();
@@ -234,7 +258,7 @@
 		
 			// Show fancy modal loading animation
 			console.log("show message overlay animation");
-			$(".password-reset__overlay").css("display", "flex");
+			$(".email-password-reset__overlay").css("display", "flex");
 
 			// Slign delay on the email send so you can see the cool animation!
 			setTimeout( function() {
@@ -248,9 +272,42 @@
 
 
 
-		// ----------------- Updating the email ----------------- 
+		// ----------------- Updating the Email Address ----------------- 
 
 		// I'm really debating whether I should do this or not. A user should not have to updat the email
+
+
+
+	// Show the email reset modal 
+	$('.profile__email-reset').click(function(event) {
+		event.preventDefault();
+
+		// Show the modal
+		console.log("Email reset modal open");
+		$(".profile__email-reset-modal").css("display", "inline");
+
+
+		$('.profile__modal-close').click( function() {
+			console.log("closing modal");
+			close_modal($(".profile__email-reset-modal"));
+		});
+
+
+		$('#profile__email-submit-button').click(function( event ) {
+
+			event.preventDefault();
+			// Serialize Form
+			// $formItems = $('.profile__send-password-reset-form').serializeArray();
+			// $data = serialToObj($formItems);
+
+			// Send Data Via Ajax
+			// send_update_email($data);
+
+			alert("you clicked this button...sending")
+
+		});
+
+	});
 
 
 })(jQuery)

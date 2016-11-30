@@ -2,9 +2,7 @@
 
 	
 
-	function scrub_data() {
-
-	}
+	function scrub_data() {	}
 
 	function is_arrayEmpty($arr) {
 		return count($arr) == 0;
