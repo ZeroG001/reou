@@ -236,9 +236,6 @@
 			<!-- ===== Reset Email Modal ===== -->
 			<?php if ( true ) { // !userIsAdmin() ?>
 
-
-
-
 				<div style="display: none" class="profile__email-reset-modal">
 
 					<div class="profile__email-reset-well">
@@ -248,7 +245,9 @@
 							<h3> Sending </h3>
 						</div>
 
-						<form action="#" method="POST" class="profile__email-form">
+						<form action="#" method="POST" class="profile__send-email-reset-form">
+
+							<input type="hidden" name="userId" value="<?php echo $user['id'] ?>">
 
 							<div class="profile__modal-header">
 								<h2> Change your Email. </h2>

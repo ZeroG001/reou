@@ -4,9 +4,9 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/users_controller.php");
 
-	reset_password($db, $_POST);
+	reset_email($db, $_POST);
 
-
+	
 	$token = $_GET['a'];
 
 
@@ -57,20 +57,10 @@
 			<input type="hidden" name="token" value="<?php echo $token ?>" />
 			<input type="hidden" name="_method" value="patch" /> 	
 
-			<div class="reou-form__input-group">
-				<label for="modal-new-password"> New Password </label>
-				<input type="password" id="form-new-password" class="reou-form__input  modal-new-password-input" name="newPassword" required="true" />
-			</div>
 
 
 			<div class="reou-form__input-group">
-				<label for="confirm-password"> Confirm New Password </label>
-				<input type="password" class="reou-form__input" id="form-confirm-password" name="confirmPassword" required="true" />
-			</div>
-			
-
-			<div class="reou-form__input-group">
-				<input type="submit" class="reou-form__submit-button" id="profile__submit-password-reset" value="Reset Password">
+				<input type="submit" class="reou-form__submit-button" id="profile__submit-email-reset" value="Update Email Address">
 			</div>
 
 		</form>

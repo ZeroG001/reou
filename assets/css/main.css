@@ -1341,10 +1341,7 @@ User Partials
 /* ------------------------ Extra Large Screen Size ------------------- */
 /* editProfile ( User )
 ------------------------ */
-/*
-	* Remember that styles are mobile first
-*/
-/* ------------------ Left Sidebar ------------------ */
+abcdefghijklmnopqrstuvwxyz
 .profile__sidebar-container {
   box-sizing: border-box; }
 
@@ -1443,19 +1440,19 @@ User Partials
 
 .update_user--form .profile__input-group,
 .profile__password-form .profile__input-group,
-.profile__email-form .profile__input-group {
+.profile__send-password-reset-form .profile__input-group {
   margin: 35px 0px; }
   .update_user--form .profile__input-group textarea,
   .profile__password-form .profile__input-group textarea,
-  .profile__email-form .profile__input-group textarea {
+  .profile__send-password-reset-form .profile__input-group textarea {
     resize: none; }
   .update_user--form .profile__input-group label,
   .profile__password-form .profile__input-group label,
-  .profile__email-form .profile__input-group label {
+  .profile__send-password-reset-form .profile__input-group label {
     margin-bottom: 10px; }
 .update_user--form .profile__input,
 .profile__password-form .profile__input,
-.profile__email-form .profile__input {
+.profile__send-password-reset-form .profile__input {
   padding: 10px;
   margin-top: 5px;
   color: #727570;
@@ -1463,7 +1460,7 @@ User Partials
   width: 100%; }
 .update_user--form .profile__submit-button,
 .profile__password-form .profile__submit-button,
-.profile__email-form .profile__submit-button {
+.profile__send-password-reset-form .profile__submit-button {
   padding: 7px;
   border: 0px solid black;
   border-radius: 2px;
@@ -1474,7 +1471,7 @@ User Partials
   padding: 30px; }
   .update_user--form .profile__submit-button:hover,
   .profile__password-form .profile__submit-button:hover,
-  .profile__email-form .profile__submit-button:hover {
+  .profile__send-password-reset-form .profile__submit-button:hover {
     background-color: #60ADDA;
     -webkit-transition: background-color 0.3s ease;
     -moz-transition: background-color 0.3s ease;

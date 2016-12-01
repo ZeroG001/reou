@@ -135,6 +135,9 @@ ALTER TABLE `course_schedules` ADD `class_end_date` DATE NOT NULL AFTER `class_b
 
 CREATE TABLE `reou`.`email_confirm` ( `id` INT NOT NULL AUTO_INCREMENT , `userid` INT NOT NULL COMMENT 'foreign key userid' , `token` VARCHAR(255) NOT NULL , `type` VARCHAR(10) NOT NULL COMMENT 'pass or email' , `expire_time` TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
+[26. Added email column to table]
+ALTER TABLE `email_confirm` ADD `email` VARCHAR(255) NOT NULL;
+
 
 
 

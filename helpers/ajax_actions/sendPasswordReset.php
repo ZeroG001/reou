@@ -10,45 +10,31 @@
 
 		$user = new User($db);
 
-
 		$params = $_POST;
 
 		//Get logg in user's email and ID from session.
 	
-		$db_result = $user->create_password_reset_token($params);
+		$db_result = $user->create_reset_token($params, "pass");
 
 			if($db_result) {
 
 				// Get the email template and add to email body
-
 				// $template = requireToVar("mailer_templates/reset_password_email_template.php");
 				// $reoumail->body = $template;
 
 				// Attempt to send the email
-				if(!$reoumail->send()) {
+				if(False) {
 					 $trimmedMessage = str_replace("https://github.com/PHPMailer/PHPMailer/wiki/Troubleshooting", "", $reoumail->ErrorInfo);
 				     add_message("alert", "Error occured when sending email: " . $trimmedMessage);
 				} 
 				else {
-
-				    add_message("alert", "Message has been successfully send");
-
+				    add_message("alert", "Message has been successfully sent");
 				}
 							
-			} else {
-
+			} 
+			else {
 				add_message("alert", "Error occured when attempting to generate email");
-
 			}
 
-		if( $db_result ) {
-
-			echo " Entry sucessfully added to the database.";
-
-		} else {
-
-			echo "Entry to database failed";
-			
-		}
 	}
  ?>

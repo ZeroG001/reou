@@ -48,7 +48,9 @@ RewriteRule ^sign-out$ views/users/sign-out.php [L]
 RewriteRule ^show-user$ views/admin/show_user.php [L]
 RewriteRule ^show-users$ views/admin/show_users.php [L]
 RewriteRule ^edit-profile$ views/users/edit-profile.php [L]
-RewriteRule ^email-reset-password$ views/users/email-reset-password.php [L]
+RewriteRule ^reset-email$ views/users/email-reset-email.php [L]
+RewriteRule ^reset-password$ views/users/email-reset-password.php [L]
+
 
 
 # ----- Courses ------

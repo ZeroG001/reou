@@ -90,6 +90,7 @@ function sign_up($ObjectPDO, $params) {
 				header("Location:". course_route('course_category'));
 				sign_in($ObjectPDO, $params);
 			} else {
+				add_message("alert", "This user account already exists");
 				header( "Location:" . $_SERVER['REQUEST_URI']);
 				die();
 			}
@@ -364,8 +365,73 @@ function update_user($ObjectPDO, $params) {
 
 
 
+function reset_password($ObjectPDO, $params) {
 
-function user_mail_reset_password($ObjectPDO, $params) {
+	// Sign the user out so sessions dont conflict.
+	if (userSignedIn()) {
+		signUserOut();
+	}
+
+	// If the submit method is patch then update the user
+ 	if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['_method'] == "patch" ) {
+
+		// ------ Unset the method variable -----
+		unset($_POST['confirmPassword']);
+		unset($_POST['_method']);
+		unset($params['_method']);
+		// ---------- END -----------------------
+
+		$user = new User($ObjectPDO);
+		$params = $_POST;
+
+
+		// Get the oken information
+		try {
+			$token_info = $user->get_token_info($params);
+		} 
+		catch (Exception $e) {
+			echo "unable to retrieve token info. Reason: " . $e->getMessage();
+		}
+
+
+		// See if the token has expired or not.
+		if( $token_info && time() < $token_info['expire_time'] ) {
+
+			// uneset unused variables - dont remove
+			$params['userId'] = $token_info['userid'];
+			unset($params['token']);
+
+			if ($user->update_password($params) ) {
+
+				die("password has been sucessfully updated");
+
+			} 
+			else {
+				add_message("alert", "token error occured when updating pass");
+			}
+
+		} 
+		else {
+			// Show a message saying the token has expired.
+			add_message("alert", "Token has expired or is invalied");
+		}
+
+	} 
+	elseif ( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['a']) ) {
+		$user_token = $_GET['a'];
+		 // Load the actual page. 
+	} 
+	else {
+		
+		redirect404();
+		echo "Please come here with a token. Redirecting to 404 page";
+		die();
+	}
+
+}
+
+
+function reset_email($ObjectPDO, $params) {
 
 	// Sign the user out so sessions dont conflict.
 	if (userSignedIn()) {
@@ -431,6 +497,7 @@ function user_mail_reset_password($ObjectPDO, $params) {
 	}
 
 }
+
 
 
 

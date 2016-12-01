@@ -323,6 +323,7 @@ class User {
 	 * 
 	 * @param (Array) the array will most likely only contain the userid were trying to update.
 	 * @return (Boolean) Return true of false if the update completes or not.
+	 * I dont think this function is being used...remove it?
 	 */	
 	public function update_user_password($params) {
 		$query = "update SET password = ? WHERE userID = ?";
@@ -448,26 +449,113 @@ class User {
 	}
 
 
-	public function create_password_reset_token($params) {
 
-		$q_addToken = "INSERT INTO email_confirm (userid, type, expire_time, token) VALUES (?, 'pass', ?, ?)";
-		$q_checkExists = "SELECT * FROM email_confirm WHERE userid = ? AND type = 'pass'";
+	// /**
+	// *
+	// * @param (Array) array of items provided by the form submitted.
+	// * most likely going to only be user ID.
+	// * @return (Bool) return if the query was successful or not.
+	// *
+	// */
+	// public function update_email($params) {
+
+	// 	$query = "UPDATE users SET password = ? WHERE id = ?";
+
+	// 	// Check Parameters
+	// 	$this->checkAcceptedParams($params);
+	// 	$this->sanitizeParams($params);
+
+	// 	if( !$this->validateParams($params, false) ) {
+	// 		return false;
+	// 	}
+
+
+	// 	// Update the password
+	// 	$stmt = $this->db->prepare($query);
+	// 	$stmt->bindParam(1, md5($params['newPassword']));
+	// 	$stmt->bindParam(2, $params['userId']);
+
+
+	// 	try {
+
+	// 		if ( $stmt->execute() ) {
+	// 			return true;
+	// 		} 
+	// 		else {
+	// 			return false;
+	// 		}
+	// 	} 
+	// 	catch (Exception $e) {
+
+	// 		// There was a problem connecting to the database.
+	// 		return false;
+	// 	}
+
+	// }
+
+
+
+	/**
+	* Create Reset Toekn
+	*
+	* Used to help reset a user password or email address via email confirmation. T
+	*
+	* @param (Array) array of items provided by the form submitted.
+	* @params (String) type is eaither "email" or "pass"
+	* most likely going to only be user ID.
+	* @return (Bool) return if the query was successful or not.
+	*
+	*/
+	public function create_reset_token($params, $type) {
+
+		$acceptable_token_types = array("email", "pass");
+		if(!in_array(strtolower($type), $acceptable_token_types) && is_string($type)) {
+			throw new Exception("The function accepts types of email or pass", 1);
+		}
+
+		/* -- Create Queries based on type entered -- */
+
+		// Create Insert query
+		if ($type == "pass") {
+			$q_addToken = "INSERT INTO email_confirm (userid, type, expire_time, token) VALUES (?, 'pass', ?, ?)";
+		} 
+		elseif ($type == "email") {
+			$q_addToken = "INSERT INTO email_confirm (userid, type, expire_time, token, email) VALUES (?, 'email', ?, ?, ?)";
+		} 
+		else {
+			$q_addToken = "INSERT INTO email_confirm (userid, type, expire_time, token) VALUES (?, 'pass', ?, ?)";
+		}
+
+		// Create check exists query
+		if($type == "pass") {
+			$q_checkExists = "SELECT * FROM email_confirm WHERE userid = ? AND type = 'pass'";
+		}
+		else if ($type == "email") {
+			$q_checkExists = "SELECT * FROM email_confirm WHERE userid = ? AND type = 'email'";
+		}
+
 		$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ?";
 
 
 
-		// Check Parameters
+		/* -- Parameter Check -- */
 		$this->checkAcceptedParams($params);
 		$this->sanitizeParams($params);
-
 		if( !$this->validateParams($params, false) ) {
 			return false;
 		}
 
 		// Create Token and Expire Time
 		$token = md5(uniqid($params['userId'],true));
-		$expire_time = time() + 3600; # 1hr
 
+
+		// Set the expire time of token. if type is incorrect create an expired token.
+		if( $type == "pass" || $type == "email") {
+			$expire_time = time() + 3600; # 1hr
+		} else {
+			$expire_time = time() - 10;
+		}
+		
 
 		# Prepare Select Query
 		$stmt_checkExists = $this->db->prepare($q_checkExists);
@@ -499,6 +587,9 @@ class User {
 					$stmt_addToken->bindParam(1, $params['userId']);
 					$stmt_addToken->bindParam(2, $expire_time);
 					$stmt_addToken->bindParam(3, $token);
+					if($type == "email") {
+						$stmt_addToken->bindParam(4, $params['email']);
+					}
 
 					$stmt_addToken->execute();
 
@@ -509,10 +600,79 @@ class User {
 
 		} 
 		catch (Exception $e) {
+			echo $e->getMessage();
+			die();
 			return false;
 		}
 
 	}
+
+	// This function is no longer used
+	// public function create_password_reset_token($params) {
+
+	// 	$q_addToken = "INSERT INTO email_confirm (userid, type, expire_time, token) VALUES (?, 'pass', ?, ?)";
+	// 	$q_checkExists = "SELECT * FROM email_confirm WHERE userid = ? AND type = 'pass'";
+	// 	$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ?";
+
+
+
+	// 	// Check Parameters
+	// 	$this->checkAcceptedParams($params);
+	// 	$this->sanitizeParams($params);
+
+	// 	if( !$this->validateParams($params, false) ) {
+	// 		return false;
+	// 	}
+
+	// 	// Create Token and Expire Time
+	// 	$token = md5(uniqid($params['userId'],true));
+	// 	$expire_time = time() + 3600; # 1hr
+
+
+	// 	# Prepare Select Query
+	// 	$stmt_checkExists = $this->db->prepare($q_checkExists);
+	// 	$stmt_checkExists->bindParam(1, $params['userId']);
+
+
+	// 	try {
+
+	// 		if( $stmt_checkExists->execute() ) {
+
+	// 			// If something is found  
+	// 			if( $stmt_checkExists->rowCount() >= 1 ) {
+
+
+	// 				$stmt_updateToken = $this->db->prepare($q_updateToken);
+	// 				$stmt_updateToken->bindParam(1, $expire_time);
+	// 				$stmt_updateToken->bindParam(2, $token);
+	// 				$stmt_updateToken->bindParam(3, $params['userId']);
+
+	// 				$stmt_updateToken->execute();
+
+	// 				return true;
+
+	// 			} 
+	// 			else {
+
+	// 				#Prepare Insert Query
+	// 				$stmt_addToken = $this->db->prepare($q_addToken);
+	// 				$stmt_addToken->bindParam(1, $params['userId']);
+	// 				$stmt_addToken->bindParam(2, $expire_time);
+	// 				$stmt_addToken->bindParam(3, $token);
+
+	// 				$stmt_addToken->execute();
+
+	// 				return true;
+	// 			}
+
+	// 		}
+
+	// 	} 
+	// 	catch (Exception $e) {
+	// 		return false;
+	// 	}
+
+	// }
 
 
 	// ------------------------ Delete ------------------------
@@ -661,7 +821,6 @@ class User {
 
 	 	# If row count is 1, another user was found.
 	 	if($stmt->rowCount() == 1) {
-	 		$this->add_message('alert', 'This user already exists');
 	 		return true;
 	 	} else {
 	 		return false;

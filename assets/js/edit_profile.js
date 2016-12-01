@@ -53,6 +53,7 @@
 		$('.profile__modal-alert').css('display', 'none');
 		$('#modal-password').val('');
 		$('#modal-new-password').val('');
+		$('#modal-new-email').val('');
 		$('#modal-confirm-password').val('');
 		$('.profile__password-reset-modal input').removeClass('field-invalid');
 	}
@@ -79,7 +80,6 @@
 
 				// Get rid of any whitespace.
 				// response = response.replace(/\s/, "");
-
 				location.reload();
 				
 			}
@@ -95,24 +95,33 @@
 			type: "POST",
 			url: "helpers/ajax_actions/sendEmailReset.php",
 			success: function(response) {
+				// remove the loading overlay
+				$(".email-password-reset__overlay").css("display", "none");
+
+				// location.reload();
+				if(response = "account-exists") {
+					// show the message in the box
+					$('.profile__modal-alert').css("display", "inline");
+					$('#modal-alert-message').text("Error occured while trying to change email. Try again later");
+					return false;
+				}
+
 
 				console.log("removing loading overlay on modal");
-				$(".email-password-reset__overlay").css("display", "none");
+				
 				close_modal($(".profile__email-reset-modal"));
 
 				// Get rid of any whitespace.
 				// response = response.replace(/\s/, "");
-				alert(response);
 
-				//location.reload();
+
+
+				location.reload();
 				
 			}
 		});
 		
 	}
-
-
-
 
 
 
@@ -215,6 +224,7 @@
 	});
 
 
+
 	// When the user clicks the submit button check to see if the passwords match
 	$('#profile__password-submit-button-modal').click(function(event) {
 
@@ -235,7 +245,7 @@
 		// Submit the from if the passwords If the passwords entered do not match then show an alert
 		if( password_reset_fields_valid() ) {
 
-			console.log("first phase field validation passed");
+			console.log("first phase validation passed");
 
 			if($data.hasOwnProperty('modal-confirm-password')) {
 				delete $data['modal-confirm-password'];
@@ -248,6 +258,7 @@
 	});
 
 
+
 	// When the password send button is clicked. Send password reset email
 	$('#profile__send-password-reset-button').click(function(event) {
 
@@ -256,25 +267,24 @@
 		$formItems = $('.profile__send-password-reset-form').serializeArray();
 		$data = serialToObj($formItems);
 		
-			// Show fancy modal loading animation
-			console.log("show message overlay animation");
-			$(".email-password-reset__overlay").css("display", "flex");
+		// Show fancy modal loading animation
+		console.log("show message overlay animation");
+		$(".email-password-reset__overlay").css("display", "flex");
 
-			// Slign delay on the email send so you can see the cool animation!
-			setTimeout( function() {
+		// Slign delay on the email send so you can see the cool animation!
+		setTimeout( function() {
 
-				send_update_password($data);
+			send_update_password($data);
 
-			}, 1000);
-
+		}, 1000);
 		
 	})
 
 
 
-		// ----------------- Updating the Email Address ----------------- 
+	// ----------------- Updating the Email Address ----------------- 
 
-		// I'm really debating whether I should do this or not. A user should not have to updat the email
+	// I'm really debating whether I should do this or not. A user should not have to updat the email
 
 
 
@@ -292,20 +302,37 @@
 			close_modal($(".profile__email-reset-modal"));
 		});
 
+	});
 
-		$('#profile__email-submit-button').click(function( event ) {
 
-			event.preventDefault();
-			// Serialize Form
-			// $formItems = $('.profile__send-password-reset-form').serializeArray();
-			// $data = serialToObj($formItems);
 
-			// Send Data Via Ajax
-			// send_update_email($data);
 
-			alert("you clicked this button...sending")
+	$('#profile__email-submit-button').click(function( event ) {
 
-		});
+		event.preventDefault();
+
+		// Serialize Form
+		$formItems = $('.profile__send-email-reset-form').serializeArray();
+
+		$data = serialToObj($formItems);
+
+		// Check if email address is valid
+		var email_re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if(!$data['email'].match(email_re)) {
+			$('#modal-new-email').addClass('field-invalid');
+			return false;
+		} else {
+			$('#modal-new-email').removeClass('field-invalid');
+		}
+		// -------- Email field validation end ------------------
+
+		// Send form data via ajax
+		$(".email-password-reset__overlay").css("display", "flex");
+
+		// Slight delay to show loading animation. Remove this if send the email is slow anyways.
+		setTimeout( function() {
+			send_update_email($data);
+		}, 1000);
 
 	});
 
