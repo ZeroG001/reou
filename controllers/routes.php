@@ -38,6 +38,10 @@
 				// return something
 				break;
 
+			case '404':
+				return "/reou/views/main/404.php";
+				break;
+
 			case '':
 				// return something
 				break;
@@ -239,10 +243,6 @@
 
 			case 'ajax_actions':
 				return "/reou/helpers/ajax_actions/";
-				break;
-
-			case '404':
-				return "/reou/views/main/404.php";
 				break;
 			
 			default:

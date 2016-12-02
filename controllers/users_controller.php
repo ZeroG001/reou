@@ -441,14 +441,16 @@ function reset_email($ObjectPDO, $params) {
 	// If the submit method is patch then update the user
  	if ($_SERVER['REQUEST_METHOD'] == "POST" && $_POST['_method'] == "patch" ) {
 
+ 		// The token is used to get both the userId and email
+
 		// ------ Unset the method variable -----
-		unset($_POST['confirmPassword']);
 		unset($_POST['_method']);
 		unset($params['_method']);
 		// ---------- END -----------------------
 
 		$user = new User($ObjectPDO);
 		$params = $_POST;
+		$emailToken = $_POST['token'];
 
 
 		// Get the oken information
@@ -467,11 +469,16 @@ function reset_email($ObjectPDO, $params) {
 
 			// uneset unused variables - dont remove
 			$params['userId'] = $token_info['userid'];
+			$params['email'] = $token_info['email'];
 			unset($params['token']);
 
-			if ($user->update_password($params) ) {
+			if ($user->update_email($params) ) {
 
-				die("password has been sucessfully updated");
+				// Make it do sometheing else other than say the message.
+				// Direct user to login page
+				add_message("alert", "Email address sucessfully updated");
+				redirectLogin();
+				die();
 
 			} 
 			else {

@@ -116,20 +116,27 @@
 	/**
 	 * redirectHome()
 	 *
-	 * REdirects the user back to the home page
+	 * Redirects the user back to the home page
 	 *
 	 * @return void
 	 */
 	function redirectHome() {
 
-		// Commented out because you could not sign out from  edit profile page
-		// if( !isset($_SERVER['HTTP_REFERER']) ) {
-		// 	header("Location:". course_route('home') );
-		// } else {
-		// 	header("Location:". $_SERVER['HTTP_REFERER']);
-		// }
-
 		header("Location:". course_route('home'));
+
+	}
+
+
+	/**
+	 * redirectLogin()
+	 *
+	 * Redirects the user back to the home page
+	 *
+	 * @return void
+	 */
+	function redirectLogin() {
+
+		header("Location:" . user_route('sign-in'));
 
 	}
 
@@ -153,7 +160,7 @@
 		// 	header("Location:". $_SERVER['HTTP_REFERER']);
 		// }
 
-		header("Location:". helpers_route('404'));
+		header( "Location:". main_route('404') );
 
 	}
 

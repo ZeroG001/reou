@@ -450,53 +450,57 @@ class User {
 
 
 
-	// /**
-	// *
-	// * @param (Array) array of items provided by the form submitted.
-	// * most likely going to only be user ID.
-	// * @return (Bool) return if the query was successful or not.
-	// *
-	// */
-	// public function update_email($params) {
+	/**
+	*
+	* @param (Array) array of items provided by the form submitted.
+	* most likely going to only be user ID.
+	* @return (Bool) return if the query was successful or not.
+	*
+	*/
+	public function update_email($params) {
 
-	// 	$query = "UPDATE users SET password = ? WHERE id = ?";
+		$query = "UPDATE users SET email = ? WHERE id = ?";
 
-	// 	// Check Parameters
-	// 	$this->checkAcceptedParams($params);
-	// 	$this->sanitizeParams($params);
+		// Check Parameters
+		$this->checkAcceptedParams($params);
+		$this->sanitizeParams($params);
 
-	// 	if( !$this->validateParams($params, false) ) {
-	// 		return false;
-	// 	}
-
-
-	// 	// Update the password
-	// 	$stmt = $this->db->prepare($query);
-	// 	$stmt->bindParam(1, md5($params['newPassword']));
-	// 	$stmt->bindParam(2, $params['userId']);
+		if( !$this->validateParams($params, false) ) {
+			return false;
+		}
 
 
-	// 	try {
+		// Update the password
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(1, $params['email']);
+		$stmt->bindParam(2, $params['userId']);
 
-	// 		if ( $stmt->execute() ) {
-	// 			return true;
-	// 		} 
-	// 		else {
-	// 			return false;
-	// 		}
-	// 	} 
-	// 	catch (Exception $e) {
 
-	// 		// There was a problem connecting to the database.
-	// 		return false;
-	// 	}
+		try {
 
-	// }
+			if ( $stmt->execute() ) {
+				return true;
+			} 
+			else {
+				return false;
+			}
+		} 
+		catch (Exception $e) {
+
+			// There was a problem connecting to the database.
+			return false;
+		}
+
+	}
+
+
+
+
 
 
 
 	/**
-	* Create Reset Toekn
+	* Create Reset Token
 	*
 	* Used to help reset a user password or email address via email confirmation. T
 	*
@@ -534,9 +538,16 @@ class User {
 			$q_checkExists = "SELECT * FROM email_confirm WHERE userid = ? AND type = 'email'";
 		}
 
-		$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ?";
+		if($type == "pass") {
+			$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ? and type = 'pass'";
+		} 
+		else if ($type == "email") {
+			$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ? and type = 'email'";
+		} 
+		else {
+			$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ? and type = 'pass'";
 
-
+		}
 
 		/* -- Parameter Check -- */
 		$this->checkAcceptedParams($params);
@@ -807,9 +818,7 @@ class User {
 	 	}
 
 
-
-	 	$query = "SELECT email FROM users
-	 	WHERE email = :username";
+	 	$query = "SELECT email FROM users WHERE email = :username";
 
 	 	$stmt = $this->db->prepare($query);
 	 	$stmt->bindParam(':username', $username, PDO::PARAM_STR);

@@ -43,8 +43,8 @@
 
 		<?php display_alert('alert') ?>
 
-		<h2> Reset Your Password </h2>
-		<h5> Please enter your new password below </h5>
+		<h2> Reset Your Email </h2>
+		<h5> Click the button below to update your email address. </h5>
 
 
 		<div class="profile__modal-alert alert">

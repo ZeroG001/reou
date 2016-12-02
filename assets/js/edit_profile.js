@@ -98,8 +98,10 @@
 				// remove the loading overlay
 				$(".email-password-reset__overlay").css("display", "none");
 
-				// location.reload();
-				if(response = "account-exists") {
+				// Get rid of any whitespace. from response.
+				response = response.replace(/\s/, "");
+				
+				if(response == "account_exists") {
 					// show the message in the box
 					$('.profile__modal-alert').css("display", "inline");
 					$('#modal-alert-message').text("Error occured while trying to change email. Try again later");
@@ -108,11 +110,8 @@
 
 
 				console.log("removing loading overlay on modal");
-				
+	
 				close_modal($(".profile__email-reset-modal"));
-
-				// Get rid of any whitespace.
-				// response = response.replace(/\s/, "");
 
 
 
