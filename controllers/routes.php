@@ -235,6 +235,24 @@
 
 	}
 
+	function mailer_route($route) {
+
+		switch ($route) {
+
+			case 'password_reset_template':
+			return "/";
+			break;
+			
+			case 'email_reset_template';
+			return "/";
+			break;
+
+		}
+
+
+
+	}
+
 
 
 	function helpers_route($route) {

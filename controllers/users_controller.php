@@ -383,6 +383,7 @@ function reset_password($ObjectPDO, $params) {
 
 		$user = new User($ObjectPDO);
 		$params = $_POST;
+		$passwordToken = $_POST['token'];
 
 
 		// Get the oken information
@@ -403,8 +404,10 @@ function reset_password($ObjectPDO, $params) {
 
 			if ($user->update_password($params) ) {
 
-				die("password has been sucessfully updated");
-
+				$user->expireToken($passwordToken); 
+				add_message("alert", "Password sucessfully updated");
+				redirectLogin();
+				die();
 			} 
 			else {
 				add_message("alert", "token error occured when updating pass");
@@ -476,6 +479,8 @@ function reset_email($ObjectPDO, $params) {
 
 				// Make it do sometheing else other than say the message.
 				// Direct user to login page
+				
+				$user->expire_reset_token($emailToken); 
 				add_message("alert", "Email address sucessfully updated");
 				redirectLogin();
 				die();

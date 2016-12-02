@@ -329,8 +329,11 @@
          </td>
       </tr>
       <tr style="">
+
+        <!-- Link should be for http://www.realestateoneacademy.com on launch -->
         <td style="text-align: center; padding: 50px 0px 0px 0px;">  
-          <a href="<?php echo 'http://10.9.63.109/reou/reset-password?a=72453864082aaef9e37dc0790b413643' ?>" style="background-color:#106fa8;border:1px solid #3b7aa0;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;box-sizing: border-box">Reset Email &rarr;</a>
+          <a href="<?php echo $_POST['test'] ?>" style="background-color:#106fa8;border:1px solid #3b7aa0;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;box-sizing: border-box">Reset Email &rarr;</a>
+
         </td>
       </tr>
       

@@ -539,14 +539,13 @@ class User {
 		}
 
 		if($type == "pass") {
-			$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ? and type = 'pass'";
+			$q_updateToken = "UPDATE email_confirm SET expire_time = :expireTime, token = :token WHERE userid = :userId and type = 'pass'";
 		} 
 		else if ($type == "email") {
-			$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ? and type = 'email'";
+			$q_updateToken = "UPDATE email_confirm SET email = :email, expire_time = :expireTime, token = :token WHERE userid = :userId and type = 'email'";
 		} 
 		else {
-			$q_updateToken = "UPDATE email_confirm SET expire_time = ?, token = ? WHERE userid = ? and type = 'pass'";
-
+			$q_updateToken = "UPDATE email_confirm SET expire_time = :expireTime, token = :token WHERE userid = :userId and type = 'pass'";
 		}
 
 		/* -- Parameter Check -- */
@@ -582,9 +581,13 @@ class User {
 
 
 					$stmt_updateToken = $this->db->prepare($q_updateToken);
-					$stmt_updateToken->bindParam(1, $expire_time);
-					$stmt_updateToken->bindParam(2, $token);
-					$stmt_updateToken->bindParam(3, $params['userId']);
+					$stmt_updateToken->bindParam(":expireTime", $expire_time);
+					$stmt_updateToken->bindParam(":token", $token);
+					$stmt_updateToken->bindParam(":userId", $params['userId']);
+
+					if ($type == "email") {
+						$stmt_updateToken->bindParam(":email", $params['email']);
+					}
 
 					$stmt_updateToken->execute();
 
@@ -617,6 +620,26 @@ class User {
 		}
 
 	}
+
+
+	public function expire_reset_token($tokenId) {
+
+		$query = "UPDATE email_confirm SET expire_time = :expireTime WHERE token = :token";
+		$expire_time = time() - 1;
+
+		$stmt = $this->db->prepare($query);
+		$stmt->bindParam(":expireTime", $expire_time);
+		$stmt->bindParam(":token", $tokenId);
+
+		try {
+			$stmt->execute();
+			return true;
+		} 
+		catch(Exception $e) {
+			return false;
+		}
+	}
+
 
 	// This function is no longer used
 	// public function create_password_reset_token($params) {

@@ -18,18 +18,11 @@ $reoumail->isHTML(true);
 
 $reoumail->setFrom('info@realestateone.com', 'Info - RealEstateOne');
 
-$reoumail->addAddress('bholland@realestateone.com');               // Name is optional
-$reoumail->addReplyTo('info@realestateone.com', 'Info - RealEstateOne');
 
 // $reoumail->addCC('cc@example.com');
 // $reoumail->addBCC('bcc@example.com');
 // $reoumail->addAttachment('/var/tmp/file.tar.gz');      // Add attachments
 // $reoumail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-$reoumail->Subject = 'Email Mailer Test';
-$reoumail->Body    = '<b> Hello this is an email mailer test instead you will use a template </b>';
-$reoumail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
 
 
 /**
