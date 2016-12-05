@@ -404,7 +404,7 @@ function reset_password($ObjectPDO, $params) {
 
 			if ($user->update_password($params) ) {
 
-				$user->expireToken($passwordToken); 
+				$user->expire_reset_token($passwordToken); 
 				add_message("alert", "Password sucessfully updated");
 				redirectLogin();
 				die();

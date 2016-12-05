@@ -330,7 +330,7 @@
       </tr>
       <tr style="">
         <td style="text-align: center; padding: 50px 0px 0px 0px;">  
-          <a href="#" style="background-color:#106fa8;border:1px solid #3b7aa0;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;box-sizing: border-box">Reset Password &rarr;</a>
+          <a href="<?php echo W_ROOT ."reset-password?a=" . $_POST['token']?>" style="background-color:#106fa8;border:1px solid #3b7aa0;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:150px;-webkit-text-size-adjust:none;mso-hide:all;box-sizing: border-box">Reset Password &rarr;</a>
         </td>
       </tr>
       

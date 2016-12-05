@@ -4,7 +4,8 @@
 
 	define('D_ROOT', $_SERVER['DOCUMENT_ROOT']);
 	define('P_ROOT', $_SERVER['DOCUMENT_ROOT'] . "/reou");
-	define('W_ROOT', 'http://127.0.0.1/reou/');
+	define('W_ROOT', 'http://10.9.63.109/reou/');
+	define('L_ROOT', 'http://127.0.0.1/reou/');
 
 
 	// --------------- ** MySQL settings ** --------------- //

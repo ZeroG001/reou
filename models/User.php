@@ -507,8 +507,8 @@ class User {
 	* @param (Array) array of items provided by the form submitted.
 	* @params (String) type is eaither "email" or "pass"
 	* most likely going to only be user ID.
-	* @return (Bool) return if the query was successful or not.
-	*
+	* @return (Mixed bool[false] $token value) return if the query was successful or not.
+	* I usually don't like having two return types but itll make things slightly easier for me.
 	*/
 	public function create_reset_token($params, $type) {
 
@@ -591,7 +591,7 @@ class User {
 
 					$stmt_updateToken->execute();
 
-					return true;
+					return $token;
 
 				} 
 				else {
@@ -607,7 +607,7 @@ class User {
 
 					$stmt_addToken->execute();
 
-					return true;
+					return $token;
 				}
 
 			}

@@ -74,7 +74,6 @@
 			url: "helpers/ajax_actions/sendPasswordReset.php",
 			success: function(response) {
 
-				alert(response);
 
 				console.log("removing loading overlay on modal");
 				$(".email-password-reset__overlay").css("display", "none");
@@ -82,7 +81,7 @@
 
 				// Get rid of any whitespace.
 				// response = response.replace(/\s/, "");
-				//location.reload();
+				location.reload();
 				
 			}
 		});
@@ -114,8 +113,6 @@
 				console.log("removing loading overlay on modal");
 	
 				close_modal($(".profile__email-reset-modal"));
-
-
 
 				location.reload();
 				
