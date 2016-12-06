@@ -1,7 +1,7 @@
 RewriteEngine on
 
 # This sets the index of the page
-DirectoryIndex views/courses/course_category.php
+DirectoryIndex views/main/home.php
 
 
 # Restrict User from accessing other files they shouldn't. Uncomment any items below

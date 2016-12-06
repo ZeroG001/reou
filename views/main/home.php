@@ -1,6 +1,13 @@
 <?php
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
-	require_once(D_ROOT . "/reou/controllers/users_controller.php");
+
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
+	$categories = course_category($db);
+	$categories = array_slice($categories, 2);
+
+	//Header HTML
+
+	
 	# users helpers also included
 
 	//$sign_in_page = "../../controllers/signin.php";
@@ -11,6 +18,7 @@
 
 	<head>
 		<title> Sign In </title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
 	</head>
 
@@ -29,10 +37,50 @@
 				<div class="main__header-container">
 
 					<h1>  Join the REO Family. Become an Agent. </h1>
-					<h3> Some random text. Hi Blayne, put an awesome slogan in here! Loreum ipsum.</h3>
+					<h3> Be the One. One with nature</h3>
 					<a href="<?php echo user_route('sign-up') ?>" class="main__signup-button"> Sign up today </a>
 
 				</div>
+
+			</div>
+
+		</section>
+
+
+
+		<section class="home__subsection"> 
+
+			<h2> Join <em> the </em> top ranked Real Estate Company in Michigan </h2>
+
+			<p> Lorem ipsum dolor sit amet, consectetur adipi*scing elit, sed do eiusmod tem*por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat </p>
+
+		</section>
+
+
+
+		<section class="home__subsection"> 
+
+			<h2> Choose from some of our great programs </h2>
+
+			<div class="home__course-container">
+
+				<!-- Show Course Categories -->
+				<?php  foreach ($categories as $k => $category) { ?>
+						<!-- background image refactor needed. Right now its just an inline style. -->
+						<a class="home__course-container--box" href='<?php echo course_route("course_classes", array("id" => $category["category_id"]) ) ?>'
+						style='background: linear-gradient( rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05) ), url( "<?php echo asset_route('dbimg') . $category['image_filename'] ?>" )'>
+
+							<div class="home__course-container--box-header">
+									<?php echo $category['category_name'] ?>
+							</div>
+
+							<div class="home__course-container--box-body">
+								
+							</div>
+
+							<div class="home__course-container--box-footer"></div>
+						</a>
+				<?php } ?>
 
 			</div>
 

@@ -1,8 +1,15 @@
-.main__hero-container {
-	background-image: url("http://10.9.63.40/reou/assets/img/site_img/house-car-gradient.jpg");
+section.main__hero-container {
+	background-image: url("http://10.9.63.109/reou/assets/img/site_img/house-car-gradient.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	height: 800px;
+	height: 500px;
+}
+
+
+.main__signup-button {
+	background-color: red;
+	padding: 50px;
+	text-decoration: none;
 }
 
 
@@ -13,9 +20,11 @@
 	text-align: center;
 	margin: 100px auto 0px auto;
 
+	@include roboto;
+
 	h1 {
 		text-shadow: 1px 1px gray;
-		font-size: 2.5rem;
+		font-size: $th1;
 		padding: 30px 0px;
 		margin: 15px 0px;
 		padding: 0px;
@@ -24,6 +33,7 @@
 
 	h3 {
 		text-shadow: 1px 1px gray;
+		font-size: $th3;
 		box-sizing: border-box;
 		padding: 10px 0px;
 		margin: 15px 0px;
@@ -52,13 +62,86 @@
 
 }
 
+section.home__subsection {
 
 
-.main__signup-button {
-	background-color: red;
-	padding: 50px;
-	text-decoration: none;
+	padding: 45px 17px;
+	font-size: $baseSize;
+	text-align: justify;
+
+	@include roboto;
+
+	h2 {
+		font-size: $th2;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	p {
+		font-size: $tpara;
+		@include bodyCopyStyleOne;
+	}
 }
+
+.home__course-container {
+	@include clearfix;
+}
+
+.home__course-container--box {
+
+	@include mdlBoxShadow;
+	@include transition(transform 0.3s ease);
+
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	background-position: center !important;
+   
+	box-sizing: border-box;
+
+	position: relative;
+	display: block;
+
+	text-decoration: none;
+	height: 270px;
+	max-height: 270px;
+	min-height: 270px;
+	background-color: white;
+
+	margin-bottom: 15px;
+
+	&:hover {
+		@include transition(transform 0.2s ease);
+		@include transform(scale(1.02));
+	}
+
+
+	&:active {
+		@include transition(transform 0.2s ease);
+		@include transform(scale(1.0));
+	}
+
+
+	.home__course-container--box-header {
+		@include smallPadding;
+		@include sectionHeader;
+		text-shadow: 0px 1.2px #000000;
+		color: white;
+
+	}
+
+	.home__course-container--box-body {
+		@include smallPadding;
+	}
+
+	.course-container--box-footer {
+		
+	}
+
+
+}
+
+
+
 
 
 
@@ -74,10 +157,37 @@
 		}
 	}
 
+
+	.home__course-container--box {
+		display: inline-block;
+		float: left;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 47.91%;
+		vertical-align: top;
+	}
+
+
+
+	section.home__subsection {
+		padding: 45px 50px;
+		font-size: $baseSize;
+	}
+
 }
 
 
 @include mquery("large") {
+
+		.home__course-container--box {
+		display: inline-block;
+		float: left;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		width: 31.76%;
+		vertical-align: top;
+	}
+
 
 }
 

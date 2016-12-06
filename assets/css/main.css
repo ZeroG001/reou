@@ -387,8 +387,10 @@ th {
 -------------------------- */
 /* Font and typographpy 
 ---------------------------- */
+/* Base font size */
 /* major third */
 /* major second */
+/* Typography Mixins */
 /* SASS Mixins
 --------------------------------------------- */
 /* Clearfix 
@@ -397,6 +399,7 @@ th {
 ----------------------- */
 /* Box Shadow 
 ----------------------- */
+/* Margin Center */
 /* Transitions 
 --------------------------- */
 /* Transform 
@@ -586,25 +589,32 @@ input.field-invalid {
  Main Pages
 --------------------------------------- */
 /* home is alias for main.php styles */
-.main__hero-container {
-  background-image: url("http://10.9.63.40/reou/assets/img/site_img/house-car-gradient.jpg");
+section.main__hero-container {
+  background-image: url("http://10.9.63.109/reou/assets/img/site_img/house-car-gradient.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 800px; }
+  height: 500px; }
+
+.main__signup-button {
+  background-color: red;
+  padding: 50px;
+  text-decoration: none; }
 
 .main__header-container {
   max-width: 500px;
   text-align: center;
-  margin: 100px auto 0px auto; }
+  margin: 100px auto 0px auto;
+  font-family: 'Roboto', sans-serif; }
   .main__header-container h1 {
     text-shadow: 1px 1px gray;
-    font-size: 2.5rem;
+    font-size: 2.441rem;
     padding: 30px 0px;
     margin: 15px 0px;
     padding: 0px;
     color: white; }
   .main__header-container h3 {
     text-shadow: 1px 1px gray;
+    font-size: 1.563rem;
     box-sizing: border-box;
     padding: 10px 0px;
     margin: 15px 0px;
@@ -626,17 +636,99 @@ input.field-invalid {
     .main__header-container .main__signup-button:hover {
       background-color: #106FA8; }
 
-.main__signup-button {
-  background-color: red;
-  padding: 50px;
-  text-decoration: none; }
+section.home__subsection {
+  padding: 45px 17px;
+  font-size: 16px;
+  text-align: justify;
+  font-family: 'Roboto', sans-serif; }
+  section.home__subsection h2 {
+    font-size: 1.953rem;
+    text-align: center;
+    margin-bottom: 20px; }
+  section.home__subsection p {
+    font-size: 1rem;
+    font-size: 1rem;
+    color: #6c6c6c;
+    line-height: 1.5; }
+
+.home__course-container::after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.home__course-container--box {
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  height: 270px;
+  max-height: 270px;
+  min-height: 270px;
+  background-color: white;
+  margin-bottom: 15px; }
+  .home__course-container--box:hover {
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    -o-transform: scale(1.02); }
+  .home__course-container--box:active {
+    -webkit-transition: transform 0.2s ease;
+    -moz-transition: transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
+    transition: transform 0.2s ease;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1); }
+  .home__course-container--box .home__course-container--box-header {
+    padding: 18px 15px;
+    display: block;
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    font-weight: bold;
+    text-shadow: 0px 1.2px #000000;
+    color: white; }
+  .home__course-container--box .home__course-container--box-body {
+    padding: 18px 15px; }
 
 @media screen and (min-width: 52em) {
   .main__header-container {
     text-align: left;
     margin: 100px 0px 0px 0px; }
     .main__header-container .main__signup-button {
-      width: 200px; } }
+      width: 200px; }
+
+  .home__course-container--box {
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    width: 47.91%;
+    vertical-align: top; }
+
+  section.home__subsection {
+    padding: 45px 50px;
+    font-size: 16px; } }
+@media screen and (min-width: 70em) {
+  .home__course-container--box {
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    width: 31.76%;
+    vertical-align: top; } }
 /* Layout -- Navigation
 ------------------------- */
 /* ---------- Navigation ---------- */

@@ -58,6 +58,9 @@ Focus mainly on:
 	/* Font and typographpy 
 	---------------------------- */
 	
+	/* Base font size */
+	$baseSize: 16px;
+
 	/* major third */
 	$fontStack: 'Open Sans', sans-serif;
 	$tpara: 1rem;
@@ -74,6 +77,19 @@ Focus mainly on:
 	$th2Small: 1.424rem;
 	$th3Small: 1.266rem;
 	$th4Small: 1.125rem;
+
+
+	/* Typography Mixins */
+
+	@mixin bodyCopyStyleOne {
+		font-size: 1rem;
+		color: #6c6c6c;
+		line-height: 1.5
+	}
+
+	@mixin roboto {
+		font-family: 'Roboto', sans-serif;
+	}
 
 
 
@@ -109,6 +125,17 @@ Focus mainly on:
 	----------------------- */
 	@mixin mdlBoxShadow {
 		box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
+	}
+
+	@mixin headingTextShadow {
+		text-shadow: 0px 2px rgba(0, 0, 0, 0.14), 0px 1.1px  rgba(0, 0, 0, 0.12), 0px 1.6px rgba(0, 0, 0, 0.2);
+	}
+
+
+	/* Margin Center */
+	@mixin marginCenter {
+		display: block;
+		margin: 0px auto;
 	}
 
 
