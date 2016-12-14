@@ -256,7 +256,7 @@
 
 
 							<div class="profile__modal-alert alert">
-								<span id="modal-alert-message"> <!-- Alert message here --> </span>
+								<span id="modal-alert-message-email"> <!-- Alert message here --> </span>
 							</div>
 
 

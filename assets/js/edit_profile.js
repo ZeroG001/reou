@@ -104,8 +104,9 @@
 				
 				if(response == "account_exists") {
 					// show the message in the box
+
 					$('.profile__modal-alert').css("display", "inline");
-					$('#modal-alert-message').text("Error occured while trying to change email. Try again later");
+					$('#modal-alert-message-email').text("Error occured while trying to change email. Try again later");
 					return false;
 				}
 

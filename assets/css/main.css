@@ -593,12 +593,17 @@ section.main__hero-container {
   background-image: url("http://10.9.63.109/reou/assets/img/site_img/house-car-gradient.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   height: 500px; }
 
 .main__signup-button {
   background-color: red;
   padding: 50px;
   text-decoration: none; }
+
+.section-wrap {
+  max-width: 1000px;
+  margin: 0px auto; }
 
 .main__header-container {
   max-width: 500px;
@@ -703,12 +708,36 @@ section.home__subsection {
   .home__course-container--box .home__course-container--box-body {
     padding: 18px 15px; }
 
+.icon-text-block .icon-text-block__image {
+  display: block;
+  margin: 0px auto; }
+.icon-text-block .icon-box-container {
+  padding: 20px 0px; }
+
 @media screen and (min-width: 52em) {
+  .section-wrap::after {
+    content: "";
+    display: table;
+    clear: both; }
+
   .main__header-container {
     text-align: left;
     margin: 100px 0px 0px 0px; }
     .main__header-container .main__signup-button {
       width: 200px; }
+
+  .icon-text-block {
+    display: inline-block;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    width: 47.91%;
+    vertical-align: top; }
+    .icon-text-block .icon-box-container {
+      padding: 20px; }
+    .icon-text-block .icon-text-block__image {
+      display: block;
+      margin: 0px auto; }
 
   .home__course-container--box {
     display: inline-block;
