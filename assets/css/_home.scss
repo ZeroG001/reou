@@ -70,7 +70,6 @@ section.main__hero-container {
 
 section.home__subsection {
 
-
 	padding: 45px 17px;
 	font-size: $baseSize;
 	text-align: justify;
@@ -188,7 +187,7 @@ section.home__subsection {
 		float: left;
 		margin-left: 15px;
 		margin-bottom: 15px;
-		width: 47.91%;
+		width: $oneThird;
 		vertical-align: top;
 
 		.icon-box-container {
@@ -217,8 +216,6 @@ section.home__subsection {
 		vertical-align: top;
 	}
 
-
-
 	section.home__subsection {
 		padding: 45px 50px;
 		font-size: $baseSize;
@@ -237,7 +234,6 @@ section.home__subsection {
 		width: 31.76%;
 		vertical-align: top;
 	}
-
 
 }
 

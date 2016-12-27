@@ -52,7 +52,7 @@
 
 			<div class="section-wrap">
 
-				<h2> Join <em> the </em> top ranked Real Estate Company in Michigan </h2>
+				<h2> Join the top ranked Real Estate Company in Michigan </h2>
 
 				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat </p>
 
@@ -122,15 +122,6 @@
 				<div class="icon-box-container">
 					<img class="icon-text-block__image" src="http://placehold.it/66x68" width="66" height="68">
 					<h2 class="icon-text-block__header"> Specialty Classes </h2>
-					<p class="icon-text-block__para"> sed do eiusmod tem*por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-				</div>
-			</div>
-
-
-			<div class="icon-text-block">
-				<div class="icon-box-container">
-					<img class="icon-text-block__image" src="http://placehold.it/66x68" width="66" height="68">
-					<h2 class="icon-text-block__header"> Continuing Education </h2>
 					<p class="icon-text-block__para"> sed do eiusmod tem*por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
 				</div>
 			</div>
