@@ -4,6 +4,9 @@ section.main__hero-container {
 	background-size: cover;
 	background-position: center;
 	height: 500px;
+	height: 50vw;
+	max-height: 600px;
+	min-height: 420px;
 }
 
 
@@ -17,6 +20,8 @@ section.main__hero-container {
 .section-wrap {
 	max-width: 1000px;
 	margin: 0px auto;
+
+	@include clearfix;
 }
 
 
@@ -205,8 +210,6 @@ section.home__subsection {
 	}
 
 
-
-
 	.home__course-container--box {
 		display: inline-block;
 		float: left;
@@ -221,6 +224,11 @@ section.home__subsection {
 		font-size: $baseSize;
 	}
 
+ 
+	section.home__subsection.icon-box {
+		background-color: #e2e2e2;
+	}
+
 }
 
 
@@ -231,15 +239,13 @@ section.home__subsection {
 		float: left;
 		margin-left: 15px;
 		margin-bottom: 15px;
-		width: 31.76%;
+		width: 31.46%;
 		vertical-align: top;
 	}
 
 }
 
 
-@include mquery("xlarge") {
-
-}
+@include mquery("xlarge") {  }
 
 

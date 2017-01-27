@@ -17,7 +17,7 @@
 <html>
 
 	<head>
-		<title> Sign In </title>
+		<title> Home </title>
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
 	</head>
@@ -96,15 +96,15 @@
 
 
 
-		<section class="home__subsection"> 
+		<section class="home__subsection icon-box"> 
 
 			<div class="section-wrap">
 
 			<div class="icon-text-block">
 				<div class="icon-box-container">
 					<img class="icon-text-block__image" src="http://placehold.it/66x68" width="66" height="68">
-					<h2 class="icon-text-block__header"> Learn About Us </h2>
-					<p class="icon-text-block__para"> sed do eiusmod tem*por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+					<h2 class="icon-text-block__header"> Header 1 </h2>
+					<p class="icon-text-block__para">sed do eiusmod tempor incididunt ut labore et dolore ma*gna aliqua. Ut enim a*d minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
 				</div>
 			</div>
 
@@ -112,8 +112,8 @@
 			<div class="icon-text-block">
 				<div class="icon-box-container">
 					<img class="icon-text-block__image" src="http://placehold.it/66x68" width="66" height="68">
-					<h2 class="icon-text-block__header"> Item 2 </h2>
-					<p class="icon-text-block__para"> sed do eiusmod tem*por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+					<h2 class="icon-text-block__header"> Header 2 </h2>
+					<p class="icon-text-block__para">sed do eiusmod tempor incididunt ut labore et dolore ma*gna aliqua. Ut enim a*d minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
 				</div>
 			</div>
 
@@ -121,8 +121,8 @@
 			<div class="icon-text-block">
 				<div class="icon-box-container">
 					<img class="icon-text-block__image" src="http://placehold.it/66x68" width="66" height="68">
-					<h2 class="icon-text-block__header"> Specialty Classes </h2>
-					<p class="icon-text-block__para"> sed do eiusmod tem*por incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+					<h2 class="icon-text-block__header"> Header 3 </h2>
+					<p class="icon-text-block__para">sed do eiusmod tempor incididunt ut labore et dolore ma*gna aliqua. Ut enim a*d minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
 				</div>
 			</div>
 

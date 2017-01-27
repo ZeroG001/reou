@@ -139,6 +139,14 @@ CREATE TABLE `reou`.`email_confirm` ( `id` INT NOT NULL AUTO_INCREMENT , `userid
 ALTER TABLE `email_confirm` ADD `email` VARCHAR(255) NOT NULL;
 
 
+schedules_table 
+
+
+[ 26. Create schedules table ]
+
+CREATE TABLE `reou`.`schedules` ( `id` INT NOT NULL AUTO_INCREMENT , `course_id` INT NOT NULL COMMENT 'course attached to schedule' , `updated_at` TIMESTAMP NOT NULL , `created_at` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
 
 
 

@@ -594,7 +594,10 @@ section.main__hero-container {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 500px; }
+  height: 500px;
+  height: 50vw;
+  max-height: 600px;
+  min-height: 420px; }
 
 .main__signup-button {
   background-color: red;
@@ -604,6 +607,10 @@ section.main__hero-container {
 .section-wrap {
   max-width: 1000px;
   margin: 0px auto; }
+  .section-wrap::after {
+    content: "";
+    display: table;
+    clear: both; }
 
 .main__header-container {
   max-width: 500px;
@@ -731,7 +738,7 @@ section.home__subsection {
     float: left;
     margin-left: 15px;
     margin-bottom: 15px;
-    width: 31.76%;
+    width: 31.26%;
     vertical-align: top; }
     .icon-text-block .icon-box-container {
       padding: 20px; }
@@ -749,14 +756,17 @@ section.home__subsection {
 
   section.home__subsection {
     padding: 45px 50px;
-    font-size: 16px; } }
+    font-size: 16px; }
+
+  section.home__subsection.icon-box {
+    background-color: #e2e2e2; } }
 @media screen and (min-width: 70em) {
   .home__course-container--box {
     display: inline-block;
     float: left;
     margin-left: 15px;
     margin-bottom: 15px;
-    width: 31.76%;
+    width: 31.46%;
     vertical-align: top; } }
 /* Layout -- Navigation
 ------------------------- */

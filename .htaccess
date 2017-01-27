@@ -32,9 +32,6 @@ RewriteRule models - [F,L]
 # RewriteRule ^404$ views/main/404.php [L]
 
 
-# ----- Main -------
-
-
 
 # ----- Admin -------
 RewriteRule ^admin$ views/admin/admin.php [L]
@@ -50,7 +47,6 @@ RewriteRule ^show-users$ views/admin/show_users.php [L]
 RewriteRule ^edit-profile$ views/users/edit-profile.php [L]
 RewriteRule ^reset-email$ views/users/email-reset-email.php [L]
 RewriteRule ^reset-password$ views/users/email-reset-password.php [L]
-
 
 
 # ----- Courses ------
