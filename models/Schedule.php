@@ -722,10 +722,10 @@ class Schedule {
 	/**
 	 * convert_camel_case
 	 *
-	 * the param key are in camel case format. This coverts said string to this_type_of_format.
+	 * the param key are in camel case format. This coverts said string from thisTypeOfFormat to this_type_of_format.
 	 * 
 	 *
-	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @param (String) snake_case string to be converted to camel case;
 	 * @return (Boolean)
 	 */
 	public function convert_camel_case($string) {
