@@ -14,6 +14,9 @@ class Schedule {
 	);
 
 
+	
+
+
 
 
 	// Class Dependencies
@@ -23,6 +26,7 @@ class Schedule {
 	}
 
 
+	public $date_enetered = date('m/d/Y');
 
 
 	 // -------- Get Schedule Information -------- //
@@ -237,19 +241,8 @@ class Schedule {
 
 
 
-
-	public function edit_course() {}
-
-
-
-
-	public function edit_course_category() {}
-
-
-
-
 	// ---------- Create Courses (admin) ----------
-	public function create_course($params) {
+	public function create_schedule($params) {
 
 	 	//Scrub the Params. Verify, Filter and Sanitize.
 	 	if(!$this->checkAcceptedParams($params)) {
@@ -257,13 +250,16 @@ class Schedule {
 	 	}
 
 
+	 	// if(!$this->validateScheduleParams($params, false)) {
+
 	 	// Validate Params Before Sending
-	 	if(!$this->validateCourseParams($params)) {
+	 	if(!$this->validateScheduleParams($params)) {
 	 		return false;
 	 	};
 
+
 	 	// Build the query
-		$query = $this->build_insert_query("courses", $params);
+		$query = $this->build_insert_query("schedules", $params);
 
 		// To to execute the query
 		try {
@@ -271,7 +267,7 @@ class Schedule {
 			$stmt = $this->db->prepare($query);
 
 			// bind params using parameters submitted.
-			foreach ($params as $key => $value) {
+			foreach ($params as $key => $valusse) {
 				$stmt->bindParam(':'.$key, $params[$key]);
 			}
 		 	
@@ -320,6 +316,8 @@ class Schedule {
 	 	
 	 	// Build the query
 		$query = $this->build_insert_query("course_schedules", $params);
+
+
 
 		// To to execute the query
 		try {
@@ -405,7 +403,12 @@ class Schedule {
 	 		"active",
 	 		"course_id",
 	 		"student_id",
-	 		"schedule_id"
+	 		"schedule_id",
+	 		"start_date",
+	 		"end_date",
+	 		"start_time",
+	 		"end_time",
+	 		"schedule_code"
 	 	);
 
 
@@ -496,12 +499,15 @@ class Schedule {
 
 	 	// Required Parameters
 	 	$required_vars = array (
-	 		"courseId", 
-	 		"classBeginDate", 
-	 		"classEndDate",
-	 		"daysAvailable"
+	 		"course_id",
+	 		"start_date",
+	 		"end_date",
+	 		"start_time",
+	 		"end_time",
+	 		"schedule_code"
 	 	);
 
+	 	// Make sure the values aren't empty
 	 	foreach ($required_vars as $key => $value) {
 	 		if(empty($params[$value]) || is_null($params[$value])) {
 	 			array_push($error_messages, array("type" => "alert", "message" => $this->convert_camel_case_space($value) . " is required" ));
@@ -886,4 +892,4 @@ class Schedule {
 }// end object
 
 ?>
-                                                                                                                                                                                                                                                                                                                                                                   
+              

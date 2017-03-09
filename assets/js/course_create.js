@@ -44,7 +44,7 @@
 
 		}
 
-		console.log("Results from serialToObj()")
+		console.log("Results from serialToObj()");
 		console.log(obj);
 
 		return obj;

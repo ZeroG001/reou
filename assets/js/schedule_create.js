@@ -173,7 +173,7 @@ Schedule.prototype.calendarCheckboxAction = function(obj) {
       obj.createBinaryArray(obj.weekDayDomElement);
       console.log("the binary array is " + obj.binArray );
 
-      schedule_code_hidden_input = doument.getElementById("schedule_code");
+      schedule_code_hidden_input = document.getElementById("schedule_code");
       schedule_code_hidden_input.value = obj.binArray;
 
     });
@@ -711,41 +711,41 @@ weekNumberInput.addEventListener("blur", function() {
 
 });
 
-courseForm.addEventListener('submit', function(e){
+courseForm.addEventListener('submit', function(e) {
 
   e.preventDefault();
 
+
+  // Serialize the form fields into an object
   $formItems = $('.class-schedule-form').serializeArray();
   $data = serialToObj($formItems);
-  console.log($data);
+
+  // Ok its serializing the data properly
+  //console.log($data);
 
   
+  // Use ajax to send the data
+  $.ajax({
+    data: $data,
+    type: "POST",
+    url: "../../helpers/ajax_actions/createScheduleAsync.php",
+    success: function(response) {
 
+      console.log("the response is... ");
+      console.log(response);
 
-  // Now were going to use ajax to submit it over to our dataase.
+      // console.log("removing loading overlay on modal");
+      // $(".email-password-reset__overlay").css("display", "none");
+      // close_modal($(".profile__password-reset-modal"));
 
+      // Get rid of any whitespace.
+      // response = response.replace(/\s/, "");
+      //location.reload();
+      
+    },
+    error: function() {
+      console.log("There was a problem connecting to the resource");
+    }
+  });
 
-  function send_update_password(form_data) {
-    $.ajax({
-      data: form_data,
-      type: "POST",
-      url: "helpers/ajax_actions/sendPasswordReset.php",
-      success: function(response) {
-
-
-        console.log("removing loading overlay on modal");
-        $(".email-password-reset__overlay").css("display", "none");
-        close_modal($(".profile__password-reset-modal"));
-
-        // Get rid of any whitespace.
-        // response = response.replace(/\s/, "");
-        location.reload();
-        
-      }
-    });
-    
-  }
-  // Are we doing this via ajax? yes
-
-
-});
+})

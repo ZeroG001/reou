@@ -6,6 +6,7 @@ require(D_ROOT . '/reou/helpers/courses_helper.php');
 require(D_ROOT . '/reou/controllers/routes.php');
 require(D_ROOT . '/reou/models/User.php');
 require(D_ROOT . '/reou/models/Course.php');
+require(D_ROOT . '/reou/models/Schedule.php');
 
 
 

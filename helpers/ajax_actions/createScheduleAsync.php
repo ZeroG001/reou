@@ -4,24 +4,53 @@
 
 	session_start();
 
-	if( $_SERVER['REQUEST_METHOD'] == "POST" ) {
+	if( $_SERVER['REQUEST_METHOD'] == "POST" && $_POST['_method'] == "post" ) {
+
+		// remove the _method if something does not go right
+
+
+
+		// If the user is signed in and they are an admin then go ahead and add the new schedule
+		// I'll handle the validation later. The goal is to get the information in the database.
+		if(userSignedIn() && userIsAdmin()) {
+
+			$params = $_POST;
+
+			unset($_POST['_method']);
+			unset($_POST['recur-day']);
+			unset($params['recur-day']);
+			unset($params['_method']);
+
+			$schedule = new Schedule($db);
+
+			if($schedule->create_schedule($params)) {
+				echo "The schedule has been added"; 
+			} else {
+				echo "Problem Creating Schedule. createScheduleAsync.php";
+			}
+
+			// echo "post vars";
+
+			// var_dump($_POST);
+
+		} else {
+			echo "invalid response";
+		}
 
 		$schedule = new Schedule($db);
 
-		if($schedule->create_course_schedule($params)) {
-			echo "course schedule sucessfully created";
-		} else {
-			echo "there was a problem creating the course schedule";
-		}
 
-
-
-		//Check to make sure the params are clemn
+		// Create the course
+		// if($schedule->create_course_schedule($params)) {
+		// 	echo "course schedule sucessfully created";
+		// } else {
+		// 	echo "there was a problem creating the course schedule";
+		// }
 
 
 		// $params = $_POST;
 
-		//Get logg in user's email and ID from session.
+		// Get logg in user's email and ID from session.
 		// $params['email'] = $_SESSION['email'];
 		// $params['userId'] = $_SESSION['id'];
 
