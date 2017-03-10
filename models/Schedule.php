@@ -14,8 +14,12 @@ class Schedule {
 	);
 
 
-	
-
+	// Currently Not used??!? erase if not used anymore...
+	public function createDbTimestamp($format = "") {
+		$date = new DateTime('now');
+		$timestamp = $date->getTimestamp();
+		return $timestamp;
+	}
 
 
 
@@ -26,7 +30,7 @@ class Schedule {
 	}
 
 
-	public $date_enetered = date('m/d/Y');
+
 
 
 	 // -------- Get Schedule Information -------- //
@@ -129,6 +133,8 @@ class Schedule {
 
 	// Gets all course schedules based on the course_id you pass in;
 	public function get_course_schedule($course_id) {
+
+		//these aren't even being used.
 	 	$cols = array(
 	 		"schedule_id",
 	 		"course_id",
@@ -144,7 +150,7 @@ class Schedule {
 	 		"days_available",
 	 	);
 
-	 	$query = "SELECT * FROM course_schedules cs 
+	 	$query = "SELECT * FROM schedules cs 
 		INNER JOIN courses c 
 		ON cs.course_id=c.course_id 
 		WHERE cs.course_id = ?";
@@ -244,6 +250,9 @@ class Schedule {
 	// ---------- Create Courses (admin) ----------
 	public function create_schedule($params) {
 
+		// Add the created_at field
+		$params["createdAt"] = date("Y-m-d H:i:s");
+
 	 	//Scrub the Params. Verify, Filter and Sanitize.
 	 	if(!$this->checkAcceptedParams($params)) {
 	 		die("those params aren't acceptable");
@@ -257,17 +266,21 @@ class Schedule {
 	 		return false;
 	 	};
 
+	 	//Add CreatedAt Field
+	
 
 	 	// Build the query
 		$query = $this->build_insert_query("schedules", $params);
-
+		
 		// To to execute the query
 		try {
 
 			$stmt = $this->db->prepare($query);
 
+
+
 			// bind params using parameters submitted.
-			foreach ($params as $key => $valusse) {
+			foreach ($params as $key => $value) {
 				$stmt->bindParam(':'.$key, $params[$key]);
 			}
 		 	
@@ -400,6 +413,7 @@ class Schedule {
 	 		"maxClassSize",
 	 		"courseHours",
 	 		"courseDuration",
+	 		"createdAt",
 	 		"active",
 	 		"course_id",
 	 		"student_id",
@@ -755,9 +769,12 @@ class Schedule {
 
 
 	/** 
+	* @param (String) $table you're inserint into
+	* @param (Array) $params from POST to be converted to a query
+	* @param (Array[assoc]) additional fields you would like to add to the insert query 
 	* @return (String) the insert query in all its
 	*/
-	public function build_insert_query($table, $params) {
+	public function build_insert_query($table, $params, $additionalFields = array()) {
 
 		//This insert query uses PDO style params
 
@@ -775,6 +792,12 @@ class Schedule {
 	 		array_push($columnNames, convert_camel_case($key));
 	 		array_push($columnValues, ":".$key);
 	 	}
+        
+        // Add additional Fields to the query
+        foreach($additionalFields as $key => $value) {
+            array_push($columnNames, convert_camel_case($key));
+            array_push($columnValues, ":".$key);
+        }
 
 	 	$nameString = implode(",", $columnNames);
 	 	$valueString = implode("," , $columnValues);
@@ -892,4 +915,4 @@ class Schedule {
 }// end object
 
 ?>
-              
+                                                                                                                                                                                                                                           

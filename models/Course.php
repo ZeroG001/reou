@@ -255,17 +255,6 @@ class Course {
 
 
 
-
-	public function edit_course() {}
-
-
-
-
-	public function edit_course_category() {}
-
-
-
-
 	// ---------- Create Courses (admin) ----------
 	public function create_course($params) {
 
@@ -904,3 +893,4 @@ class Course {
 }// end object
 
 ?>
+                                                                                                 

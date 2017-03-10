@@ -6,6 +6,7 @@ require_once(D_ROOT . '/reou/helpers/courses_helper.php');
 require_once(D_ROOT . '/reou/helpers/users_helper.php');
 require_once(D_ROOT . '/reou/controllers/routes.php');
 require_once(D_ROOT . "/reou/models/Course.php");
+require_once(D_ROOT . "/reou/models/Schedule.php");
 require_once(D_ROOT . "/reou/models/User.php");
 
 
@@ -68,12 +69,13 @@ function course_detail($ObjectPDO) {
 	}
 
 	$course = new Course($ObjectPDO);
+	$schedule = new Schedule($ObjectPDO);
 	$result_array = Array();
 
 
 	// Get Course Details and Schedules
 	$course_details = $course->get_class_details($course_class_id);
-	$course_schedules = $course->get_course_schedule($course_class_id);
+	$course_schedules = $schedule->get_course_schedule($course_class_id);
 
 	if (empty($course_details)) {
 		// Should go to course list page instead of home.
