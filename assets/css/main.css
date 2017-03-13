@@ -905,6 +905,35 @@ Course Partials
 --------------------------------------- */
 /* Course Category
 -------------------- */
+/* Remember - MOBILE FIRST STYLES! */
+.course-search-container {
+  padding: 30px 50px;
+  background-color: #d8d8d8;
+  /* course search form */ }
+  .course-search-container h1 {
+    text-align: center;
+    padding: 0px 0px 25px 0px;
+    margin: 0px;
+    font-size: 1.953rem; }
+  .course-search-container #course-search-from {
+    margin-bottom: 0px; }
+    .course-search-container #course-search-from input {
+      display: block; }
+    .course-search-container #course-search-from .course_search {
+      width: 100%;
+      margin: 0px auto;
+      padding: 10px; }
+    .course-search-container #course-search-from .course_search_button {
+      padding: 7px;
+      border: 0px solid black;
+      border-radius: 2px;
+      text-align: center;
+      width: 200px;
+      margin: 30px auto 0px auto;
+      padding: 15px;
+      background-color: #3d96cc;
+      color: white; }
+
 .course-container::after {
   content: "";
   display: table;
@@ -960,6 +989,11 @@ Course Partials
 /* Media Queries 
 ===================== */
 @media screen and (min-width: 52em) {
+  .course-search-wrap {
+    padding: 25px 50px;
+    width: 49em;
+    margin: 0px auto; }
+
   .course-container--box {
     display: inline-block;
     float: left;
@@ -968,6 +1002,15 @@ Course Partials
     width: 47.91%;
     vertical-align: top; } }
 @media screen and (min-width: 70em) {
+  .course-search-wrap {
+    padding: 25px 50px;
+    width: 60em;
+    margin: 0px auto; }
+    .course-search-wrap::after {
+      content: "";
+      display: table;
+      clear: both; }
+
   .course-container--box {
     display: inline-block;
     float: left;
@@ -977,6 +1020,15 @@ Course Partials
     .course-container--box:first-child {
       width: 65%; } }
 @media screen and (min-width: 88em) {
+  .course-search-wrap {
+    padding: 25px 50px;
+    width: 75em;
+    margin: 0px auto; }
+    .course-search-wrap::after {
+      content: "";
+      display: table;
+      clear: both; }
+
   .course-container--box {
     display: inline-block;
     float: left;
@@ -1183,6 +1235,10 @@ Course Partials
     height: 1.5rem;
     width: 2rem;
     margin-left: 5px; }
+
+.course_schedule--table {
+  width: 100%;
+  text-align: center; }
 
 /* Media Queries 
 ===================== */

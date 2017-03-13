@@ -10,6 +10,21 @@
 
 
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css" />
+
+	<div class="course-search-container">
+
+		<div class="course-search-wrap">
+
+			<h1> Choose from our awesome courses </h1>
+
+			<form id="course-search-from" action="#">
+				<input type="text" class="course_search" name="course_search" placeholder="Search classes">
+				<input type="submit" class="course_search_button" type="sibmit" value="search">
+			</form>
+
+		</div>
+	</div>
+
 	<div class="main-content">
 
 		<div class="course-container">

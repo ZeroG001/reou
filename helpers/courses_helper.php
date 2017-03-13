@@ -190,7 +190,6 @@
 	}
 
 
-
 	/**
 	 * decToBinArray()
 	 *
@@ -222,6 +221,23 @@
 		}
 
 		return $decArray;
+	}
+
+
+
+	/**
+	 * decToBinArray()
+	 *
+	 * Used to help display the calendars on the course detail page.
+	 * @param (String) dateCode - a comma-separated string of 1s and 0s (ie "1,1,0,0,1,1")
+	 * @param (String) startDate - the starting date string in mm/dd/yyyy formay
+	 * @return (String) the HTML to be displayed
+	 */
+	function createCalendarHTML(startdateCode = "0,0,0,1") {
+		$html = "";
+		$date DateTime::createFromFormat("now");
+		$dateCodeArr = explode(",", $dateCode);
+
 	}
 
 

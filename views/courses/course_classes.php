@@ -24,6 +24,20 @@
 		<?php display_alert('alert') ?>
 
 
+		<div class="course-search-container">
+
+			<div class="course-search-wrap">
+
+				<h1> Choose from our awesome courses </h1>
+
+				<form id="course-search-from" action="#">
+					<input type="text" class="course_search" name="course_search" placeholder="Search classes">
+					<input type="submit" class="course_search_button" type="sibmit" value="search">
+				</form>
+
+			</div>
+		</div>
+
 		<div class="page-banner">
 			<div class="banner-title-wrapper">
 				<h1> <?php echo $one_category['category_name'] ?> </h1>
@@ -34,7 +48,9 @@
 			</div>
 		</div>
 
+
 		<div class="main-content">
+
 			<div class="class-container">
 
 				<?php foreach ($categories as $k => $category) { ?>

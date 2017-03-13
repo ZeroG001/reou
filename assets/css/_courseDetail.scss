@@ -50,7 +50,6 @@
 }
 
 
-
 .course_schedule--wrap {
 	@include smallPadding;
 	@include mdlBoxShadow;
@@ -71,6 +70,13 @@
 	display: block;
 	margin: 0px auto;
 }
+
+.course_schedule--table {
+	width:100%;
+	text-align: center;
+}
+
+
 
 
 

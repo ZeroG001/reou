@@ -1,5 +1,45 @@
+/* Remember - MOBILE FIRST STYLES! */
 
 
+.course-search-container {
+	padding: 30px 50px;
+	background-color: #d8d8d8;
+
+	h1 {
+		text-align: center;
+		padding: 0px 0px 25px 0px;
+		margin: 0px;
+		font-size: $th2;
+	}
+
+
+	/* course search form */
+	#course-search-from {
+		margin-bottom: 0px;
+
+		input {
+			display: block;
+		}
+
+		.course_search {
+			width: 100%;
+			margin:0px auto;
+			padding: 10px;
+		}
+
+		.course_search_button {
+			@include buttonFlatMedium;
+			width: 200px;
+			margin: 30px auto 0px auto;
+			padding: 15px;
+			background-color: #3d96cc;
+			color: white;
+		}
+	}
+
+
+
+}
 
 .course-container {
 	@include clearfix;
@@ -57,11 +97,19 @@
 
 }
 
+
+
 /* Media Queries 
 ===================== */
 
 
 @include mquery("medium") {
+
+	.course-search-wrap {
+		@include mediumPadding;
+		width: 49em;
+		margin: 0px auto;
+	}
 
 	.course-container--box {
 		display: inline-block;
@@ -74,7 +122,15 @@
 	
 }
 
+
 @include mquery("large") {
+
+	.course-search-wrap {
+		@include mediumPadding;
+		width: 60em;
+		margin: 0px auto;
+		@include clearfix;
+	}
 
 
 	.course-container--box {
@@ -89,12 +145,18 @@
 		}
 
 	}
-
-
 	
 }
 
 @include mquery("xlarge") {
+
+
+	.course-search-wrap {
+		@include mediumPadding;
+		width: 75em;
+		margin: 0px auto;
+		@include clearfix;
+	}
 
 	.course-container--box {
 		display: inline-block;
