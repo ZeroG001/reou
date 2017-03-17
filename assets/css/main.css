@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 ================ PLEASE READ THIS =============== 
 To other web dev that possibly see this. 
@@ -1230,11 +1231,37 @@ Course Partials
   font-size: 0.8rem;
   border-radius: 5px; }
 
+/* ------- Course schedule list table -------- */
 .course_schedule--table {
   width: 100%;
-  text-align: center; }
+  display: block;
+  /* -------- table modifications ------- */
+ /* 	table, thead, tbody, th, td ,tr  { π
+		display: block; 
+	}
+*/
+  text-align: center;
+  /* -------- table modifications ------- */ }
+  .course_schedule--table > tbody {
+    display: block; }
+  .course_schedule--table thead {
+    display: none; }
+  .course_schedule--table td:before {
+    position: absolute;
+    top: 0px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    content: attr(data-label); }
+  .course_schedule--table .course_schedule--data-row > td,
+  .course_schedule--table .course_schedule--data-row {
+    display: block; }
+  .course_schedule--table .course_schedule--data-row > td {
+    position: relative; }
+  .course_schedule--table .course_schedule--calendar {
+    display: none; }
 
-/* Presented claendar styles */
 .course_schedule--calendar {
   background-color: white;
   display: none; }
@@ -1244,6 +1271,8 @@ Course Partials
     clear: both; }
   .course_schedule--calendar td {
     padding: 15px; }
+  .course_schedule--calendar > td {
+    width: 900px; }
 
 .course_schedule--show-calendar {
   display: block;
@@ -1259,7 +1288,8 @@ Course Partials
   display: inline-block;
   box-sizing: border-box;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-  float: left; }
+  float: left;
+  margin-left: 10px; }
   .course-detail-schedule__container h3 {
     margin: 0px;
     background-color: #4778CD;
@@ -1289,10 +1319,33 @@ Course Partials
   color: #eaeaea;
   background-color: #4778CD; }
 
+/*-------------------------- */
 /* Media Queries 
 ===================== */
 /* ------------------------ Medium Screen Size ------------------- */
 @media screen and (min-width: 52em) {
+  .course_schedule--table {
+    width: 100%;
+    display: block;
+    /* -------- table modifications ------- */
+    /*  	table, thead, tbody, th, td ,tr  { π
+    		display: block; 
+    	}*/
+    text-align: center;
+    /* -------- table modifications ------- */ }
+    .course_schedule--table > tbody {
+      display: table-row-group; }
+    .course_schedule--table thead {
+      display: table-header-group; }
+    .course_schedule--table td:before {
+      display: none; }
+    .course_schedule--table .course_schedule--data-row {
+      display: table-row; }
+    .course_schedule--table .course_schedule--data-row > td {
+      display: table-cell; }
+    .course_schedule--table .course_schedule--calendar {
+      display: none; }
+
   .banner-title-wrapper p {
     display: inline;
     width: 650px;
@@ -1380,69 +1433,12 @@ Course Partials
   border: 0px solid black;
   padding: 5px;
   color: white;
-  font-size: 0.8rem;
-  border-radius: 5px; }
-
-.course_schedule--table {
   width: 100%;
-  text-align: center; }
-
-/* Presented claendar styles */
-.course_schedule--calendar {
-  background-color: white;
-  display: none; }
-  .course_schedule--calendar::after {
-    content: "";
-    display: table;
-    clear: both; }
-  .course_schedule--calendar td {
-    padding: 15px; }
-
-.course_schedule--show-calendar {
-  display: block;
-  margin: 10px auto;
-  background-color: #43C3AE;
-  border: 0px solid black;
-  padding: 5px;
-  color: white;
   font-size: 0.8rem;
   border-radius: 5px; }
 
-.course-detail-schedule__container {
-  display: inline-block;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-  float: left;
-  margin: 0px 20px 0px 0px; }
-  .course-detail-schedule__container h3 {
-    margin: 0px;
-    background-color: #4778CD;
-    color: white;
-    padding: 10px;
-    font-family: helvetica; }
-  .course-detail-schedule__container td {
-    text-align: center;
-    box-sizing: border-box;
-    margin: 0px auto;
-    padding: 5px;
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    -o-transition: 0.5s ease;
-    transition: 0.5s ease; }
-  .course-detail-schedule__container th {
-    padding: 5px 0px; }
-
-.course_schedule--sign-up-form {
-  margin-bottom: 0px; }
-
-.course-detail-schedule {
-  font-size: 0.8rem;
-  background-color: white; }
-
-.course-detail-date__selected {
-  color: #eaeaea;
-  background-color: #4778CD; }
-
+/* ------------ Presented claendar styles course schedule list styles ------------- */
+/* ------- course schedule list end -------  */
 /* Media Queries 
 ===================== */
 /* ------------------------ Medium Screen Size ------------------- */
