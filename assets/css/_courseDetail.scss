@@ -75,6 +75,16 @@
 }
 
 
+/* -------------- course schedule ------------ */
+
+	.course_schedule--container {
+		width: 100% !important;
+	}
+
+
+/* ------------ course grid end ------------------ */
+
+
 
 
 /* ------- Course schedule list table -------- */
@@ -85,50 +95,13 @@
 	width:100%;
 	display: block;
 
-	/* -------- table modifications ------- */
-	> tbody {
-		display: block;
-	}
 
-
- /* 	table, thead, tbody, th, td ,tr  { π
-		display: block; 
-	}
-*/
-	
 	text-align: center;
-
-	thead {
-		display: none;
-	}
-
-	td:before { 
-		position: absolute;
-		top: 0px;
-		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-   		content: attr(data-label);
-	}
-
-
-	.course_schedule--data-row > td,
-	.course_schedule--data-row {
-		display: block;
-	}
-
-	.course_schedule--data-row > td {
-		position: relative;
-	}
 
 
 	.course_schedule--calendar {
-
 		display: none;
 	}
-
-/* -------- table modifications ------- */
 
 }
 
@@ -143,28 +116,23 @@
 		display: table;
 		clear: both;
 	}
-	td {
-		padding: 15px;
-
-	}
-
-	> td {
-		width: 900px;
-	}
 
 	
 }
 
 
 .course_schedule--show-calendar {
-    display: block;
+    /* display: block;
     margin: 10px auto;
-    background-color: #43C3AE;
+    background-color: #43C3AE; 
     border: 0px solid black;
     padding: 5px;
     color: white;
     font-size: 0.8rem;
-    border-radius: 5px;
+    border-radius: 5px;*/
+    position: relative;
+    display: inline-block;
+    -moz-transition: 0.2s ease;
 }
 
 
@@ -217,7 +185,25 @@
 }
 
 
-/*-------------------------- */
+/*------- course detail end ------------------- */
+
+/* 
+Animation Classes
+======================== */
+
+.show-calendar_selected {
+	-moz-transition: 0.2s ease;
+	@include transform(rotate(90deg));
+}
+
+/*@-moz-keyframes rotate90 {
+		100% { 
+			-moz-transform: rotate(90deg);
+		}
+}
+*/
+
+
 
 
 /* Media Queries 
@@ -419,77 +405,3 @@
 
 /* ------- course schedule list end -------  */
 
-
-
-
-
-
-
-
-
-/* Media Queries 
-===================== */
-
-
-/* ------------------------ Medium Screen Size ------------------- */
-
-@include mquery("medium") {
-
-
-	.banner-title-wrapper {
-
-		p {
-			display: inline;
-	 		width: 650px;
-		 	display: block;
-		    margin: 0px auto;
-		    text-align: justify;
-		}
-	 	
-	}
-
-	.course_info--wrap {
-
-		@include clearfix;
-
-		.course_info--title {
-			text-align: center;
-		}
-
-		.course_info--item {
-			display: inline-block;
-			box-sizing: border-box;
-			float: left;
-			text-align: center;
-			height: 155px;
-			width: 33.33333%;
-		}
-
-
-		.course_info--item__notes {
-			display: block;
-			width: 100%;
-		}
-
-	}
-
-
-	.course_schedule--wrap {
-		display: inline-block;
-		float: left;
-		margin-left: 15px;
-		margin-bottom: 15px;
-		width: 47.91%;
-	}
-
-
-}
-
-
-/* ------------------------------- Large Screen Size ------------------------------- */
-
-@include mquery("large") {	}
-
-
-/* ------------------------------- xLarge Screen Size ------------------------------- */
-@include mquery("xlarge") {  }

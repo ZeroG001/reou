@@ -172,8 +172,12 @@ Focus mainly on:
 		@keyframes $name { @content }
 	}
 
-	@mixin animation($options) {
 
+	/* 
+
+		exmaple @include animation("spin 1s ease forwards")
+	*/
+	@mixin animation($options) {
 		-webkit-animation: $options;
 		-moz-aniamtion: $options;
 		-o-animation: $options;
@@ -203,6 +207,8 @@ Focus mainly on:
 			@include transform(scale(1, 1));
 		}
 	}
+
+
 
 
  @-webkit-keyframes spin {

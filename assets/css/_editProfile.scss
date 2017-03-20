@@ -1,4 +1,3 @@
-abcdefghijklmnopqrstuvwxyz
 /*
 	* Remember that styles are mobile first
 */
@@ -281,6 +280,9 @@ abcdefghijklmnopqrstuvwxyz
 
 .profile__modal-load-icon {
 	-webkit-animation: spin 1s linear infinite forwards;
+	-moz-animation: spin 1s linear infinite forwards;
+	-o-animation: spin 1s linear infinite forwards;
+	animation: spin 1s linear infinite forwards;
 }
 
 

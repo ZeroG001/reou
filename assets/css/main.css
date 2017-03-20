@@ -407,6 +407,10 @@ th {
 -------------------------- */
 /* Keyframe aniamtions 
 ----------------------------------------------------- */
+	/* 
+
+		exmaple @include animation("spin 1s ease forwards")
+	*/
 /* Animation properties */
 /* Helper Animations */
 @-webkit-keyframes $name {
@@ -1231,34 +1235,16 @@ Course Partials
   font-size: 0.8rem;
   border-radius: 5px; }
 
+/* -------------- course schedule ------------ */
+.course_schedule--container {
+  width: 100% !important; }
+
+/* ------------ course grid end ------------------ */
 /* ------- Course schedule list table -------- */
 .course_schedule--table {
   width: 100%;
   display: block;
-  /* -------- table modifications ------- */
- /* 	table, thead, tbody, th, td ,tr  { π
-		display: block; 
-	}
-*/
-  text-align: center;
-  /* -------- table modifications ------- */ }
-  .course_schedule--table > tbody {
-    display: block; }
-  .course_schedule--table thead {
-    display: none; }
-  .course_schedule--table td:before {
-    position: absolute;
-    top: 0px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    content: attr(data-label); }
-  .course_schedule--table .course_schedule--data-row > td,
-  .course_schedule--table .course_schedule--data-row {
-    display: block; }
-  .course_schedule--table .course_schedule--data-row > td {
-    position: relative; }
+  text-align: center; }
   .course_schedule--table .course_schedule--calendar {
     display: none; }
 
@@ -1269,20 +1255,19 @@ Course Partials
     content: "";
     display: table;
     clear: both; }
-  .course_schedule--calendar td {
-    padding: 15px; }
-  .course_schedule--calendar > td {
-    width: 900px; }
 
 .course_schedule--show-calendar {
-  display: block;
+  /* display: block;
   margin: 10px auto;
-  background-color: #43C3AE;
+  background-color: #43C3AE; 
   border: 0px solid black;
   padding: 5px;
   color: white;
   font-size: 0.8rem;
-  border-radius: 5px; }
+  border-radius: 5px;*/
+  position: relative;
+  display: inline-block;
+  -moz-transition: 0.2s ease; }
 
 .course-detail-schedule__container {
   display: inline-block;
@@ -1319,7 +1304,23 @@ Course Partials
   color: #eaeaea;
   background-color: #4778CD; }
 
-/*-------------------------- */
+/*------- course detail end ------------------- */
+/* 
+Animation Classes
+======================== */
+.show-calendar_selected {
+  -moz-transition: 0.2s ease;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg); }
+
+/*@-moz-keyframes rotate90 {
+		100% { 
+			-moz-transform: rotate(90deg);
+		}
+}
+*/
 /* Media Queries 
 ===================== */
 /* ------------------------ Medium Screen Size ------------------- */
@@ -1439,42 +1440,6 @@ Course Partials
 
 /* ------------ Presented claendar styles course schedule list styles ------------- */
 /* ------- course schedule list end -------  */
-/* Media Queries 
-===================== */
-/* ------------------------ Medium Screen Size ------------------- */
-@media screen and (min-width: 52em) {
-  .banner-title-wrapper p {
-    display: inline;
-    width: 650px;
-    display: block;
-    margin: 0px auto;
-    text-align: justify; }
-
-  .course_info--wrap::after {
-    content: "";
-    display: table;
-    clear: both; }
-  .course_info--wrap .course_info--title {
-    text-align: center; }
-  .course_info--wrap .course_info--item {
-    display: inline-block;
-    box-sizing: border-box;
-    float: left;
-    text-align: center;
-    height: 155px;
-    width: 33.33333%; }
-  .course_info--wrap .course_info--item__notes {
-    display: block;
-    width: 100%; }
-
-  .course_schedule--wrap {
-    display: inline-block;
-    float: left;
-    margin-left: 15px;
-    margin-bottom: 15px;
-    width: 47.91%; } }
-/* ------------------------------- Large Screen Size ------------------------------- */
-/* ------------------------------- xLarge Screen Size ------------------------------- */
 /* My Courses
 --------------- */
 /* Has url: reou/courses/## */
@@ -1727,7 +1692,10 @@ User Partials
 /* ------------------------ Extra Large Screen Size ------------------- */
 /* editProfile ( User )
 ------------------------ */
-abcdefghijklmnopqrstuvwxyz
+/*
+	* Remember that styles are mobile first
+*/
+/* ------------------ Left Sidebar ------------------ */
 .profile__sidebar-container {
   box-sizing: border-box; }
 
@@ -1968,7 +1936,10 @@ abcdefghijklmnopqrstuvwxyz
     color: #106FA8; }
 
 .profile__modal-load-icon {
-  -webkit-animation: spin 1s linear infinite forwards; }
+  -webkit-animation: spin 1s linear infinite forwards;
+  -moz-animation: spin 1s linear infinite forwards;
+  -o-animation: spin 1s linear infinite forwards;
+  animation: spin 1s linear infinite forwards; }
 
 /* ------------------ Profile Modal End ------------------ */
 .profile__submit {
