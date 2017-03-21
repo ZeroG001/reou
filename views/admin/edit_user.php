@@ -4,7 +4,6 @@
 
 	update_user($db, $_POST);
 	
-
 	var_dump($_SESSION);	
 ?>
 

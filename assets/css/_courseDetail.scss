@@ -1,3 +1,5 @@
+ /* I can't use mobile first approach since the skeleton grid does not allow this.
+
  .banner-title-wrapper {
  	p { display: none; }
  }
@@ -32,8 +34,6 @@
 		box-sizing: border-box;
 		max-height: 190px;
 		overflow: hidden;
-
-		
 	}
 
 
@@ -82,6 +82,82 @@
 	}
 
 
+	.course_schedule--calendar {
+		display: none;
+		padding-bottom: 15px;
+
+		
+
+		&::after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	}
+
+
+	.course_schedule--show-calendar {
+	    /* display: block;
+	    margin: 0px auto;
+	    background-color: #43C3AE; 
+	    border: 0px solid black;
+	    padding: 5px;
+	    color: white;
+	    font-size: 0.8rem;
+	    border-radius: 5px;*/
+	    position: relative;
+	    display: inline-block;
+	    -moz-transition: 0.2s ease;
+	}
+
+
+	.course-detail-schedule__container {
+		
+		display: inline-block;
+		box-sizing: border-box;
+		float: left;
+		margin-left: 10px;
+		
+
+		h3 {
+			margin: 0px;
+		    background-color: #4778CD;
+		    color: white;
+		    padding: 10px;
+		    font-family: helvetica;
+		}
+
+		td {
+		    text-align: center;
+		    box-sizing: border-box;
+		    margin: 0px auto;
+		    padding: 5px;
+		    -webkit-transition: 0.5s ease;
+		    -moz-transition: 0.5s ease;
+		    -o-transition: 0.5s ease;
+		    transition: 0.5s ease;
+		}
+
+		th {
+			padding: 5px 0px;
+		}
+	}
+
+
+	.course_schedule--info-row {
+		box-sizing: border-box;
+		padding: 10px
+	}
+
+
+	.course_schedule--row-container {
+		border-bottom: 1px solid #d4d4d4;
+		padding: 30px 0px 0px 0px;
+	}
+
+
+
+
 /* ------------ course grid end ------------------ */
 
 
@@ -90,84 +166,6 @@
 /* ------- Course schedule list table -------- */
 
 
-.course_schedule--table {
-
-	width:100%;
-	display: block;
-
-
-	text-align: center;
-
-
-	.course_schedule--calendar {
-		display: none;
-	}
-
-}
-
-
-.course_schedule--calendar {
-	background-color: white;
-	display: none;
-	
-
-	&::after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-
-	
-}
-
-
-.course_schedule--show-calendar {
-    /* display: block;
-    margin: 10px auto;
-    background-color: #43C3AE; 
-    border: 0px solid black;
-    padding: 5px;
-    color: white;
-    font-size: 0.8rem;
-    border-radius: 5px;*/
-    position: relative;
-    display: inline-block;
-    -moz-transition: 0.2s ease;
-}
-
-
-.course-detail-schedule__container {
-	
-	display: inline-block;
-	box-sizing: border-box;
-	box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-	float: left;
-	margin-left: 10px;
-	
-
-	h3 {
-		margin: 0px;
-	    background-color: #4778CD;
-	    color: white;
-	    padding: 10px;
-	    font-family: helvetica;
-	}
-
-	td {
-	    text-align: center;
-	    box-sizing: border-box;
-	    margin: 0px auto;
-	    padding: 5px;
-	    -webkit-transition: 0.5s ease;
-	    -moz-transition: 0.5s ease;
-	    -o-transition: 0.5s ease;
-	    transition: 0.5s ease;
-	}
-
-	th {
-		padding: 5px 0px;
-	}
-}
 
 .course_schedule--sign-up-form {
 	margin-bottom: 0px;
@@ -185,7 +183,7 @@
 }
 
 
-/*------- course detail end ------------------- */
+/*------------- course detail end ------------- */
 
 /* 
 Animation Classes
@@ -196,18 +194,49 @@ Animation Classes
 	@include transform(rotate(90deg));
 }
 
-/*@-moz-keyframes rotate90 {
-		100% { 
-			-moz-transform: rotate(90deg);
-		}
-}
-*/
-
 
 
 
 /* Media Queries 
 ===================== */
+
+
+/* ------- course detail media query workaround ----- */
+
+@media screen and (max-width: 832px) {
+
+	.course_schedule--info-row > div {
+
+		width: 100% !important;
+		margin: 0px;
+
+		&:before {
+			content: attr(data-label);
+			display: block;
+			font-weight: bold;
+		}
+
+	}
+
+	.course_schedule--row-header {
+		display: none;
+	}
+
+	.course_schedule--show-calendar {
+		transform: rotate(90deg);
+		margin: 0px auto;
+		display: block;
+	}
+
+
+	.course_schedule--info-column {
+		margin-bottom: 10px !important;
+	}
+
+	
+}
+
+
 
 
 /* ------------------------ Medium Screen Size ------------------- */
@@ -216,51 +245,7 @@ Animation Classes
 
 
 
-.course_schedule--table {
-
-	width:100%;
-	display: block;
-
-	/* -------- table modifications ------- */
-	> tbody {
-		display: table-row-group;
-	}
-
-
-/*  	table, thead, tbody, th, td ,tr  { π
-		display: block; 
-	}*/
-
-	
-	text-align: center;
-
-	thead {
-		display: table-header-group;
-	}
-
-	td:before { 
-		display: none;
-	}
-
-
-	.course_schedule--data-row {
-		display: table-row;
-	}
-
-	.course_schedule--data-row > td {
-		display: table-cell;
-	}
-
-
-	.course_schedule--calendar {
-		display: none;
-	}
-
-	
-
-/* -------- table modifications ------- */
-
-}
+/* ----- course detila rows end ----- */
 
 	.banner-title-wrapper {
 
@@ -312,9 +297,20 @@ Animation Classes
 }
 
 
+
+
+
+
 /* ------------------------------- Large Screen Size ------------------------------- */
 
 @include mquery("large") {	}
+
+
+
+
+
+
+
 
 
 /* ------------------------------- xLarge Screen Size ------------------------------- */
@@ -360,7 +356,6 @@ Animation Classes
 
 
 
-
 	.course_info--item__notes {
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -389,7 +384,7 @@ Animation Classes
 
 .schedule_signup_button {
 	display: block;
-	margin: 10px auto;
+	margin: 0px auto;
     background-color: #4778CD;
     border: 0px solid black;
     padding: 5px;

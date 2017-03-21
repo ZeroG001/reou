@@ -91,36 +91,39 @@
 
 			<div class="sk-container course_schedule--container">
 
-				<div class="row">
-					<div class="one columns"> Details </div>
+				<div class="row course_schedule--row-header">
+					
 					<div class="two columns"> Begin Date </div>
 					<div class="two columns"> End Date </div>
 					<div class="two columns"> Time </div>
 					<div class="three columns"> Location </div>
 					<div class="two columns"> Register course? </div>
+					<div class="one columns"> Details </div>
 				</div>
 
 			<?php foreach ($course_schedules as $detail) { ?>
-				<div class="row course_schedule--info-row">
-					<div class="one columns"> 
-						<img class="course_schedule--show-calendar" src="<?php echo asset_route('img')?>circle-right-green.png" /> 
-					</div>
-					<div class="two columns" data-label="Begin Date"> <?php echo $detail['start_date'] ?> </div>
-					<div class="two columns" data-label="End Date"> <?php echo $detail['end_date'] ?> </div>
-					<div class="two columns" data-label="Time"> <?php printf('%s - %s', $detail['start_time'], $detail['end_time']) ?></div>
-					<div class="three columns" data-label="Location"> <?php echo $detail['location'] ?> </div>
-					<div class="two columns">
-						<form class="course_schedule--sign-up-form" action="<?php echo course_route('course_register') ?>" method="POST">	
-							<input type="submit" class="schedule_signup_button" value="JOIN CLASS" > 
-							<input type="hidden" name="course_id" value="<?php echo $detail['course_id'] ?>">
-							<input type="hidden" name="student_id" value="<?php echo $_SESSION['id'] ?>">
-							<input type="hidden" name="schedule_id" value="<?php echo $detail['schedule_id'] ?>">
-						</form> 
-					</div>
+				<div class="course_schedule--row-container">
+					<div class="row course_schedule--info-row">
+						<div class="two columns course_schedule--info-column" data-label="Begin Date"> <?php echo $detail['start_date'] ?> </div>
+						<div class="two columns course_schedule--info-column" data-label="End Date"> <?php echo $detail['end_date'] ?> </div>
+						<div class="two columns course_schedule--info-column" data-label="Time"> <?php printf('%s - %s', $detail['start_time'], $detail['end_time']) ?></div>
+						<div class="three columns course_schedule--info-column" data-label="Location"> <?php echo $detail['location'] ?> </div>
+						<div class="two columns course_schedule--info-column">
+							<form class="course_schedule--sign-up-form" action="<?php echo course_route('course_register') ?>" method="POST">	
+								<input type="submit" class="schedule_signup_button" value="JOIN CLASS" > 
+								<input type="hidden" name="course_id" value="<?php echo $detail['course_id'] ?>">
+								<input type="hidden" name="student_id" value="<?php echo $_SESSION['id'] ?>">
+								<input type="hidden" name="schedule_id" value="<?php echo $detail['schedule_id'] ?>">
+							</form> 
+						</div>
+						<div class="one columns"> 
+							<img class="course_schedule--show-calendar" src="<?php echo asset_route('img')?>circle-right-gray.png" /> 
+						</div>
 
-				</div>
-				<div class="course_schedule--calendar">
-					<div class="show_calendar_section"> <?php echo createCalendarHTML($detail['start_date'], $detail['end_date'], explode(",", $detail['schedule_code']) ) ?> </div>
+					</div>
+					<div class="course_schedule--calendar">
+						<div class="show_calendar_section"> <?php echo createCalendarHTML($detail['start_date'], $detail['end_date'], explode(",", $detail['schedule_code']) ) ?> </div>
+					</div>
 				</div>
 			<?php } ?>
 

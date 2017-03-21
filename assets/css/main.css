@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*
 ================ PLEASE READ THIS =============== 
 To other web dev that possibly see this. 
@@ -1177,80 +1176,90 @@ Course Partials
     width: 47.91%; } }
 /* Course Detail
 ------------------ */
-.banner-title-wrapper p {
-  display: none; }
+ /* I can't use mobile first approach since the skeleton grid does not allow this.
 
-.course_info_title {
-  text-align: center;
-  display: block;
-  color: #757575; }
-  .course_info_title img {
-    margin-bottom: 19.20px; }
+ .banner-title-wrapper {
+ 	p { display: none; }
+ }
 
-.course_info--wrap {
-  padding: 18px 15px;
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-  color: #757575;
-  background-color: white;
-  box-sizing: border-box;
-  border-radius: 2px;
-  text-align: center; }
-  .course_info--wrap::after {
-    content: "";
-    display: table;
-    clear: both; }
-  .course_info--wrap .course_info--item {
-    display: block;
-    padding: 20px;
-    border-bottom: 1px solid black;
-    box-sizing: border-box;
-    max-height: 190px;
-    overflow: hidden; }
-  .course_info--wrap .course_info--item__notes {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: inherit;
-    box-sizing: border-box;
-    border-radius: 2px; }
+ .course_info_title {
+ 	text-align: center;
+ 	display: block;
+ 	color: #757575;
+
+ 	img {
+ 		margin-bottom: 19.20px;
+ 	}
+ }
+
+	.course_info--wrap {
+
+	@include clearfix;
+	@include smallPadding;
+	@include mdlBoxShadow;
+
+	color: #757575;
+	background-color: white;
+	box-sizing: border-box;
+	border-radius: 2px;
+
+	text-align: center;
+
+	.course_info--item {
+		display: block;
+		padding: 20px;
+		border-bottom: 1px solid black;
+		box-sizing: border-box;
+		max-height: 190px;
+		overflow: hidden;
+	}
+
+
+	.course_info--item__notes {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-height: inherit;
+		box-sizing: border-box;
+		border-radius: 2px;
+	}
+
+}
+
 
 .course_schedule--wrap {
-  padding: 18px 15px;
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #757575;
-  margin-bottom: 1.50em;
-  text-align: center;
-  background-color: white;
-  height: 385px; }
-  .course_schedule--wrap .course_info_title {
-    text-align: center; }
+	@include smallPadding;
+	@include mdlBoxShadow;
+	box-sizing: border-box;
+	color: #757575;
+	margin-bottom: 1.50em;
+	text-align: center;
+	background-color: white;
+	height: 385px;
+
+	.course_info_title {
+		text-align: center;
+	}
+}
 
 .schedule_signup_button {
-  display: block;
-  margin: 10px auto;
-  background-color: #4778CD;
-  border: 0px solid black;
-  padding: 5px;
-  color: white;
-  font-size: 0.8rem;
-  border-radius: 5px; }
+	display: block;
+	margin: 10px auto;
+    background-color: #4778CD;
+    border: 0px solid black;
+    padding: 5px;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 5px;
+}
+
 
 /* -------------- course schedule ------------ */
 .course_schedule--container {
   width: 100% !important; }
 
-/* ------------ course grid end ------------------ */
-/* ------- Course schedule list table -------- */
-.course_schedule--table {
-  width: 100%;
-  display: block;
-  text-align: center; }
-  .course_schedule--table .course_schedule--calendar {
-    display: none; }
-
 .course_schedule--calendar {
-  background-color: white;
-  display: none; }
+  display: none;
+  padding-bottom: 15px; }
   .course_schedule--calendar::after {
     content: "";
     display: table;
@@ -1258,7 +1267,7 @@ Course Partials
 
 .course_schedule--show-calendar {
   /* display: block;
-  margin: 10px auto;
+  margin: 0px auto;
   background-color: #43C3AE; 
   border: 0px solid black;
   padding: 5px;
@@ -1272,7 +1281,6 @@ Course Partials
 .course-detail-schedule__container {
   display: inline-block;
   box-sizing: border-box;
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
   float: left;
   margin-left: 10px; }
   .course-detail-schedule__container h3 {
@@ -1293,6 +1301,16 @@ Course Partials
   .course-detail-schedule__container th {
     padding: 5px 0px; }
 
+.course_schedule--info-row {
+  box-sizing: border-box;
+  padding: 10px; }
+
+.course_schedule--row-container {
+  border-bottom: 1px solid #d4d4d4;
+  padding: 30px 0px 0px 0px; }
+
+/* ------------ course grid end ------------------ */
+/* ------- Course schedule list table -------- */
 .course_schedule--sign-up-form {
   margin-bottom: 0px; }
 
@@ -1304,7 +1322,7 @@ Course Partials
   color: #eaeaea;
   background-color: #4778CD; }
 
-/*------- course detail end ------------------- */
+/*------------- course detail end ------------- */
 /* 
 Animation Classes
 ======================== */
@@ -1315,38 +1333,31 @@ Animation Classes
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg); }
 
-/*@-moz-keyframes rotate90 {
-		100% { 
-			-moz-transform: rotate(90deg);
-		}
-}
-*/
 /* Media Queries 
 ===================== */
+/* ------- course detail media query workaround ----- */
+@media screen and (max-width: 832px) {
+  .course_schedule--info-row > div {
+    width: 100% !important;
+    margin: 0px; }
+    .course_schedule--info-row > div:before {
+      content: attr(data-label);
+      display: block;
+      font-weight: bold; }
+
+  .course_schedule--row-header {
+    display: none; }
+
+  .course_schedule--show-calendar {
+    transform: rotate(90deg);
+    margin: 0px auto;
+    display: block; }
+
+  .course_schedule--info-column {
+    margin-bottom: 10px !important; } }
 /* ------------------------ Medium Screen Size ------------------- */
 @media screen and (min-width: 52em) {
-  .course_schedule--table {
-    width: 100%;
-    display: block;
-    /* -------- table modifications ------- */
-    /*  	table, thead, tbody, th, td ,tr  { π
-    		display: block; 
-    	}*/
-    text-align: center;
-    /* -------- table modifications ------- */ }
-    .course_schedule--table > tbody {
-      display: table-row-group; }
-    .course_schedule--table thead {
-      display: table-header-group; }
-    .course_schedule--table td:before {
-      display: none; }
-    .course_schedule--table .course_schedule--data-row {
-      display: table-row; }
-    .course_schedule--table .course_schedule--data-row > td {
-      display: table-cell; }
-    .course_schedule--table .course_schedule--calendar {
-      display: none; }
-
+  /* ----- course detila rows end ----- */
   .banner-title-wrapper p {
     display: inline;
     width: 650px;
@@ -1429,7 +1440,7 @@ Animation Classes
 
 .schedule_signup_button {
   display: block;
-  margin: 10px auto;
+  margin: 0px auto;
   background-color: #4778CD;
   border: 0px solid black;
   padding: 5px;
