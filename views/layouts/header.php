@@ -49,10 +49,12 @@
 
 
 				<?php  if( userIsAdmin() ) { ?>
+					<a class="main_subnav--item" href="<?php echo "/reou/views/admin/admin.php"?>"> Admin Center </a>
 					<a class="main_subnav--item" href="<?php echo user_route('show-users') ?>"> Edit Users </a>
 					<a class="main_subnav--item" href="<?php echo "/reou/views/admin" ?>"> Admin Center ( test ) </a>
 					<a class="main_subnav--item" href="<?php echo course_route('create_course')?>"> Create Course </a>
 					<a class="main_subnav--item" href="<?php echo "/reou/views/courses/course_create_schedule.php"?>"> Create Schedule </a>
+					
 				<?php } ?>
 
 			</nav>

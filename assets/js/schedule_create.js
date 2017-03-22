@@ -8,8 +8,6 @@
 
   this.scheduleDomElement;
   this.weekDayDomElement; 
-  this.testString = "test";
-
   // Prevent the user from adding a date
   if(!this.verifyDates()) {
     alert("the dates aren't valid");
@@ -711,6 +709,46 @@ weekNumberInput.addEventListener("blur", function() {
 
 });
 
+// When the user selectes One Day they cannot create a recurring schedule.
+$("#schedule_one_day").click( function() {
+
+  if( $(this).prop("checked") ) {
+
+    // The item is checked;
+    $('#schedule_end_date').prop("disabled", true);
+    $('.week-days-group').hide();
+
+    $('#number-of-weeks').hide();
+    $('#number-of-weeks').prev('label').hide();
+
+    $('#addDate').hide();
+
+    $('#schedule_code').val("1");
+  } 
+  else {
+    // The item is not checked;
+    $('#schedule_end_date').prop("disabled", false);
+    $('.week-days-group').show();
+
+    $('#number-of-weeks').show();
+    $('#number-of-weeks').prev('label').show();
+
+    $('#addDate').hide();
+    $('#schedule_code').val("");
+  }
+
+});
+
+$('#schedule_start_date').on("blur", function() {
+
+  if($('#schedule_one_day').prop("checked") && $(this).val != "" ) {
+    $('#schedule_end_date').val($(this).val());
+  }
+
+});
+
+
+
 courseForm.addEventListener('submit', function(e) {
 
   e.preventDefault();
@@ -733,6 +771,7 @@ courseForm.addEventListener('submit', function(e) {
 
       console.log("the response is... ");
       console.log(response);
+      alert("course schedule has been sucessfully added");
 
       // console.log("removing loading overlay on modal");
       // $(".email-password-reset__overlay").css("display", "none");

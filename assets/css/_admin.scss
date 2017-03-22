@@ -1,0 +1,27 @@
+/*
+admin_categoty--container
+	admin_categoty--header
+	admin_categoty--body
+	admin_categoty--footer
+*/
+
+.admin_category--container {
+
+	display: block;
+	padding: 10px;
+
+	.admin_category--header {
+		display: block;
+		background-color: $lightgray;
+
+		h3 { font-size: $th3 }
+	}
+
+	.admin_category--body {
+		a {
+			display: block;
+			padding: 10px 0px;
+		}
+	}
+	.admin_category--footer {}
+}

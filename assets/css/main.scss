@@ -35,29 +35,43 @@ Focus mainly on:
 
 	/* Color Scheme
 	-------------------------- */
+
+	/* Blues */
 	$darkblue: #106FA8;
+	$lightblue: #3D96CC;
 	$hoverDarkBlue: #60ADDA;
 	$cleardarkblue: rgba(16,111,168, 0.9);
-	$lightblue: #3D96CC;
-	$lightgray: #F1F1F1;
-	$milk: #FEFEEB;
-	$bodygray: #6c6c6c;
 	$clearlightblue: rgba(97,189,244, 0.3);
 	$duskblue: #488DB6;
 	$clearduskblue: rgba(72,141,182,0.9);
+
+	/* Grays */
+	$lightgray: #F1F1F1;
+	$bodygray: #6c6c6c;
+	
+	/* Whites */
+	$milk: #FEFEEB;
+
+	/* Greens */
 	$toadgreen: #08B599;
 	$hoverToadGreen: #2CBDA5;
 	$toadgreenclear: rgba(8,181,153,0.9);
+
 	$orange: #F5AC49;
 	$action: #F55818;
 	$headertext: #002942;
+
+
+
+	/* Size and positioning 
+	-------------------------------- */
 	$oneHalf: 47.91%;
 	$oneThird: 31.26%;
 
 
 	
 	
-	/* Font and typographpy 
+	/* Fonts and typographpy 
 	---------------------------- */
 	
 	/* Base font size */
@@ -624,3 +638,13 @@ User Partials
 /* Email or Password Reset Page 
 ------------------------------- */
 @import "resetEmailPass";
+
+
+/* Create Course Schedule Page 
+-------------------------- */
+@import "createCourseSchedule";
+
+
+/* Admin Page 
+-------------------------- */
+@import "admin";
