@@ -276,6 +276,16 @@ function getCourseSchedules($ObjectPDO) {
 		die("we weren't able to get the course schedules, maybe you need to code it correctly...");
 
 	}
+
+}
+
+
+
+function admin_get_courses() {
+
+	$params = $_POST;
+	$course = new Course($ObjectPDO);
+	
 }
 
 

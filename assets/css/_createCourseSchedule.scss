@@ -130,6 +130,7 @@
 					transition: 0.2s ease;
 				}
 				
-				.schedule-form__field:disabled {
-					background-color: #D2D2D2;
-				};
+				.schedule-form__field:disabled,
+				.schedule-form__field:read-only {
+					background-color: gray;
+				}

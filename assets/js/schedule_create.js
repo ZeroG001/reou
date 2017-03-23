@@ -715,7 +715,7 @@ $("#schedule_one_day").click( function() {
   if( $(this).prop("checked") ) {
 
     // The item is checked;
-    $('#schedule_end_date').prop("disabled", true);
+    $('#schedule_end_date').prop("readonly", true);
     $('.week-days-group').hide();
 
     $('#number-of-weeks').hide();
@@ -724,10 +724,15 @@ $("#schedule_one_day").click( function() {
     $('#addDate').hide();
 
     $('#schedule_code').val("1");
+
+    if($('#schedule_one_day').prop("checked") && $(this).val != "" ) {
+      $( '#schedule_end_date').val($('#schedule_start_date').val() );
+    }
   } 
   else {
+
     // The item is not checked;
-    $('#schedule_end_date').prop("disabled", false);
+    $('#schedule_end_date').prop("readonly", false);
     $('.week-days-group').show();
 
     $('#number-of-weeks').show();
@@ -739,10 +744,12 @@ $("#schedule_one_day").click( function() {
 
 });
 
+
+// This is a test
 $('#schedule_start_date').on("blur", function() {
 
-  if($('#schedule_one_day').prop("checked") && $(this).val != "" ) {
-    $('#schedule_end_date').val($(this).val());
+  if($('#schedule_one_day').prop("checked") && $('#schedule_start_date').val != "" ) {
+    $('#schedule_end_date').val( $('#schedule_start_date').val() );
   }
 
 });
@@ -788,3 +795,4 @@ courseForm.addEventListener('submit', function(e) {
   });
 
 })
+
