@@ -173,6 +173,20 @@ class Course {
 	 }
 
 
+
+	 public function get_courses() {
+
+	 	$query = "SELECT * FROM courses order by created_at desc";
+	 	$stmt = $this->db->prepare($query);
+	 	$stmt->execute();
+
+	 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	 	return $result;
+
+	 }
+
+
 	 
 	// ---------- edit courses ---------- //
 	public function register_course($params) {
@@ -893,4 +907,3 @@ class Course {
 }// end object
 
 ?>
-                                                                                                 

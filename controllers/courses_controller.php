@@ -281,11 +281,15 @@ function getCourseSchedules($ObjectPDO) {
 
 
 
-function admin_get_courses() {
+function admin_get_courses($ObjectPDO) {
 
 	$params = $_POST;
 	$course = new Course($ObjectPDO);
 	
+	// Get All courses
+	$result = $course->get_courses();
+
+	return $result;
 }
 
 

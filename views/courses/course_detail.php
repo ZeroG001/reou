@@ -89,6 +89,7 @@
 
 			<!-- Skeleton Course schedule thing -->
 
+
 			<div class="sk-container course_schedule--container">
 
 				<div class="row course_schedule--row-header">
@@ -102,6 +103,7 @@
 				</div>
 
 			<?php foreach ($course_schedules as $detail) { ?>
+			
 				<div class="course_schedule--row-container">
 					<div class="row course_schedule--info-row">
 						<div class="two columns course_schedule--info-column" data-label="Begin Date"> <?php echo $detail['start_date'] ?> </div>
@@ -127,66 +129,10 @@
 				</div>
 			<?php } ?>
 
-
-
 			</div> <!-- sk-grid container end -->
 
 		</div>
 
-			<!-- Course Schedule and Availibility
-			====================================================== -->
-<!-- 			<div class="course_info_title">
-				 <h1> Schedule </h1>
-				<img src="<?php # echo asset_route('img')?>schedule_icon.svg" />
-			</div>
-
-			<table class="course_schedule--table">
-
-				<thead>
-					<tr> 
-						<th> Begin Date </th>
-						<th> End Date </th>
-						<th> Time </th>
-						<th> Location </th>
-						<th> See Schedule </th>
-						<th> Register course? </th>
-					</tr>
-
-				</thead>
-
-				<?php # foreach ($course_schedules as $detail) { ?>
-
-					<tr class="course_schedule--data-row"> 
-						<td data-label="Begin Date"> <?php # echo $detail['start_date'] ?> </td>
-						<td data-label="End Date"> <?php # echo $detail['end_date'] ?> </td>
-						<td data-label="Time"> <?php # printf('%s - %s', $detail['start_time'], $detail['end_time']) ?></td>
-						<td data-label="Location"> <?php # echo $detail['location'] ?> </td>
-						<td> 
-							<div class="course_schedule--show-calendar"> SEE SCHEDULE </div>
-						</td>
-						<td>
-							<form class="course_schedule--sign-up-form" action="<?php # echo course_route('course_register') ?>" method="POST">	
-							<input type="submit" class="schedule_signup_button" value="JOIN CLASS" > 
-							<input type="hidden" name="course_id" value="<?php # echo $detail['course_id'] ?>">
-							<input type="hidden" name="student_id" value="<?php # echo $_SESSION['id'] ?>">
-							<input type="hidden" name="schedule_id" value="<?php # echo $detail['schedule_id'] ?>">
-							</form> 
-						</td>
-
-					</tr>
-
-					<tr class="course_schedule--calendar">
-					
-						<td colspan="100%">
-						<div class="show_calendar_section"> <?php # echo createCalendarHTML($detail['start_date'], $detail['end_date'], explode(",", $detail['schedule_code']) ) ?> </div>
-						</td>
-					</tr>
-
-				<?php # } ?>
-
-			</table> -->
-
-			<!-- ===================================================== -->
 
 		</div>
 
