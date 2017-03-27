@@ -2137,8 +2137,9 @@ User Partials
   -o-transition: 0.2s ease;
   transition: 0.2s ease; }
 
-.schedule-form__field:disabled {
-  background-color: #D2D2D2; }
+.schedule-form__field:disabled,
+.schedule-form__field:read-only {
+  background-color: gray; }
 
 /* Admin Page 
 -------------------------- */
@@ -2159,5 +2160,9 @@ admin_categoty--container
   .admin_category--container .admin_category--body a {
     display: block;
     padding: 10px 0px; }
+
+/* Admin Course List Page */
+.course_list_container {
+  width: 100% !important; }
 
 /*# sourceMappingURL=main.css.map */
