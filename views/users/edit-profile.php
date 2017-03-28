@@ -10,6 +10,8 @@
 	$user = edit_profile($db);
 
 
+
+
 	// ----------------- Header HTML --------------------
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 

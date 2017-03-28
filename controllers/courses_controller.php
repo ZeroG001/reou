@@ -293,6 +293,143 @@ function admin_get_courses($ObjectPDO) {
 }
 
 
+/**
+ * update_user($params) 
+ *
+ * Update a user using the parameters submitted. Don't worry only allowed params can be submitted.
+ *
+ * @param (Obect) Accepts the PDO Object
+ * @param (Array) params array submitted from form
+ * @return (params)
+ */
+function update_course($ObjectPDO, $params) {
+
+	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
+	require_once(D_ROOT . "/reou/helpers/users_helper.php");
+
+	// If the users data is being updated.
+	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
+
+		if ( ($_POST['_method']) == "patch" )  {
+
+
+			// ------ Quick Field Check -----
+			unset($_POST['_method']);
+			unset($params['_method']);
+			check_honeypot_fields($_POST);
+			unset($_POST['hpUsername']);
+			unset($params['hpUsername']);
+			// ---------- END ---------------
+
+			$user = new User($ObjectPDO);
+
+
+			if(!userIsAdmin()) {
+				
+				// If a non-admin is trying to edit another user then stop
+				if( $_SESSION['id'] != $_POST['userId'] ) {
+					add_message("error", "there was a problem updating the user");
+					header( "Location:" . $_SERVER['REQUEST_URI']);
+					die();
+				}
+
+				// Prevent non-admin  from changing their role ( needs refactoring )
+				//$_POST['role'] = "student"; 
+
+				// Prevent non-admin user from deactivating theit account
+				//$_POST['active'] = '1';
+			}
+
+			// The user should not be able to update if the email already exists in the system
+
+
+			// Admins Should not be able to change the email address
+
+			if( $user->update_user($_POST) ) {
+				add_message("alert", "Profile has been Successfully Updated");
+				header( "Location:" . $_SERVER['REQUEST_URI']);
+				die();
+			} 
+			else {
+				add_message("error", "there was a problem updating the user");
+			}
+
+		} 
+		else {
+			die("crital update user error. Incorrect update method used");
+		}
+	}
+
+}
+
+
+
+function edit_couse($ObjectPDO) {
+
+	// TODO - Mak sure that a user input is filtered.
+
+	// If User isn't signed in, go back to home page
+	if( !userSignedIn() ) {
+		redirectHome();
+		die("You should not be here");
+	}
+
+
+	// If the user is not an admin
+	if( userSignedIn() && !userIsAdmin() ) {
+
+		// If the session ID is not set or empty then redirect the user home
+		if(!isset($_SESSION['id']) || trim($_SESSION['id']) == "") {
+			redirectHome();
+		}
+
+		$userId = $_SESSION['id'];
+		$params = array("userId" => $userId);
+		$user = new User($ObjectPDO);
+		$results = $user->get_user_details($params);
+
+			//Convert created at time to mm/dd/yy format
+		$updated_at_date = DateTime::createFromFormat('Y-m-d H:m:s',$results['updated_at']);
+
+		$results['updated_at'] = $updated_at_date->format("m/d/Y");
+
+
+		
+		return $results;
+
+	}
+
+
+	// If the user is an Admin
+	if( userSignedIn() && userIsAdmin() ) {
+
+		if( !isset($_GET['userId']) || trim($_GET['userId'] == "") ) {
+			redirectHome();
+		}
+
+		$user = new User($ObjectPDO);
+
+
+		// Uses $_GET variable to show the user
+		$results = $user->get_user_details($_GET);
+
+
+		// Todo - Make this so that you get the count of the results instrad of boolean
+		if(!$results) {
+			redirectHome();
+			return false;
+		}
+
+
+		
+		return $results;
+
+	}
+
+	die("edit_profile ran into a critical error. You must be signed in to continue");
+	
+}
+
 // ----------------- Edit Course -------------------------
 
 /**
