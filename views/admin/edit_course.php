@@ -1,13 +1,13 @@
 <?php
 
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
-	require_once(D_ROOT . "/reou/controllers/users_controller.php");
+	require_once(D_ROOT . "/reou/controllers/courses_controller.php");
 
 	# If the method is path then update the user
 	update_course($db, $_POST);
 	
 	# Or show edit profile like normal
-	$couse = edit_couse($db);
+	$course = edit_couse($db);
 
 
 	// ----------------- Header HTML --------------------
