@@ -30,7 +30,7 @@
 
 				<h1> Choose from our awesome courses </h1>
 
-				<form id="course-search-from" action="#">
+				<form id="course-search-from" action="course_search">
 					<input type="text" class="course_search" name="course_search" placeholder="Search classes">
 					<input type="submit" class="course_search_button" type="sibmit" value="search">
 				</form>

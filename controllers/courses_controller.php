@@ -52,6 +52,25 @@ function course_classes($ObjectPDO) {
 }
 
 
+function course_search($ObjectPDO) {
+
+	$keyword = verify_get('q');
+	$course = new Course($ObjectPDO);
+	$result_array = Array();
+	
+	$courses = $course->search_courses($keyword);
+
+
+	// $categories = scrub_array_output($categories); //scrub output
+	// $one_category = scrub_array_output($one_category); //scrub output
+	scrub_array_output($courses); // Scrub Output with html entities
+
+	return $courses;
+
+}
+
+
+
 
 
 // --------------- course_detail.php ---------------------

@@ -48,6 +48,54 @@ class Course {
 
 
 
+	public function search_courses($keyword) {
+
+	 	$cols = array(
+	 		"course_id",
+			"course_name",
+			"course_number",
+			"course_duration_day",
+			"course_duration_evening",
+			"course_location",
+			"course_hours_day",
+			"course_credits",
+			"course_cost_day",
+			"course_cost_evening",
+			"course_hours_evening",
+			"course_duration_day",
+			"course_notes"
+	 	);
+
+	 	$cols = implode(", ", $cols);
+
+	 	$query = "SELECT $cols FROM courses c WHERE
+	 	WHERE c.course_name LIKE %?% AND active = 1";
+
+	 	try {
+
+	 		$stmt = $this->db->prepare($query);
+	 		$stmt->bindParam(1, $keyword);
+	 		$stmt->execute();
+	 		$result_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+	 		return $result_array;
+
+	 	} 
+	 	catch (Exception $e) {
+
+	 		// Flash message saying there wasy a porblem with the data
+	 		$this->add_message("alert", "There was a problem getting the course classes");
+
+	 		// Return empty array to surpress any other errors
+	 		return array();
+	 		
+	 	}
+
+	}
+
+
+
+
 	public function get_one_course_category($course_id) {
 	 	$query = "SELECT * FROM course_category WHERE category_id = ? LIMIT 1";
 	 	$stmt = $this->db->prepare($query);
