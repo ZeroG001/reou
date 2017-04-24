@@ -68,9 +68,7 @@ class Course {
 
 	 	$cols = implode(", ", $cols);
 
-	 	$query = "SELECT $cols FROM courses c WHERE
-	 	WHERE c.course_name LIKE %?% AND active = 1";
-
+	 	$query = "SELECT * FROM courses c WHERE c.course_name LIKE '%?%' OR c.course_number LIKE '%?%' AND active = 1";
 	 	try {
 
 	 		$stmt = $this->db->prepare($query);

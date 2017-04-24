@@ -19,7 +19,7 @@
 
 			<form id="course-search-from" action="#">
 				<input type="text" class="course_search" name="course_search" placeholder="Search classes">
-				<input type="submit" class="course_search_button" type="sibmit" value="search">
+				<input type="submit" class="course_search_button" type="submit" value="search">
 			</form>
 
 		</div>

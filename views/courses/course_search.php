@@ -2,7 +2,9 @@
 
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	// list($categories, $one_category) = course_search($db);
-	$courses = search_courses($db);
+	$courses = course_search($db);
+
+	var_dump($courses);
 
 	// Header HTML
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
@@ -29,11 +31,11 @@
 
 			<div class="course-search-wrap">
 
-				<h1> Choose from our awesome courses </h1>
+				<h1> Select a stage </h1>
 
-				<form id="course-search-from" action="course_search">
-					<input type="text" class="course_search" name="course_search" placeholder="Search classes">
-					<input type="submit" class="course_search_button" type="sibmit" value="search">
+				<form id="course-search-from" method="GET" action="<?php echo course_route( 'course_search' ) ?>">
+					<input type="text" class="course_search" name="q" placeholder="Search classes">
+					<input type="submit" class="course_search_button" type="submit" value="search">
 				</form>
 
 			</div>
@@ -67,13 +69,13 @@
 
 							<div class="box-footer--detail-box">
 								<div class="detail-box-title"> Hours </div>
-								<div class="detail-box-description"> <?php echo numExtract($course["course_duration_day"])?> </div>
+								<div class="detail-box-description"> <?php echo numExtract( $course["course_duration_day"] )?> </div>
 							</div>
 
 
 							<div class="box-footer--detail-box">
 								<div class="detail-box-title">Price</div>
-								<div class="detail-box-description"><?php echo numExtract($course["course_cost_day"])?></div>
+								<div class="detail-box-description"><?php echo numExtract( $course["course_cost_day"] )?></div>
 							</div>
 							
 						</div>
@@ -82,6 +84,7 @@
 				<?php } ?>
 
 			</div>
+
 		</div>
 
 

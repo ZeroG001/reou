@@ -141,6 +141,10 @@
 				return "/reou/course-register".$querystring;
 				break;
 
+			case 'course_search':
+				return "/reou/course/search/".$querystring;
+				break;
+
 			case 'admin':
 				return "/reou/admin";
 				break;
@@ -161,11 +165,10 @@
 				return "/reou/course-category/".$querystring;
 				break;
 
+
 		}
 
 	}
-
-
 
 
 	// ===================== Asset Routes =====================
