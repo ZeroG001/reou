@@ -68,7 +68,10 @@ class Course {
 
 	 	$cols = implode(", ", $cols);
 
-	 	$query = "SELECT * FROM courses c WHERE c.course_name LIKE '%?%' OR c.course_number LIKE '%?%' AND active = 1";
+	 	$keyword = "%" . $keyword . "%";
+
+	 	$query = "SELECT * FROM courses c WHERE c.course_name LIKE ? AND active = 1";
+
 	 	try {
 
 	 		$stmt = $this->db->prepare($query);
@@ -77,7 +80,6 @@ class Course {
 	 		$result_array = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	 		return $result_array;
-
 	 	} 
 	 	catch (Exception $e) {
 
@@ -439,52 +441,7 @@ class Course {
 
 
 
-	/**
-	 * checkAcceptedParams
-	 *
-	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. Script stops if the parameters are bad.
-	 * the params HAVE to the the camel case
-	 *
-	 * @param (Array) The Array containing $_POST params that are to be checked
-	 * @return (Boolean)
-	 */
-	public function checkAcceptedParams($params) {
-		$accepted_params = array(
-	 		"courseName",
-	 		"courseDesc",
-	 		"courseId",
-	 		"courseNumber",
-	 		"courseCost",
-	 		"categoryId",
-	 		"scheduleId",
-	 		"daysAvailable",
-	 		"location",
-	 		"classBeginDate",
-	 		"classEndDate",
-	 		"courseLocation",
-	 		"courseCredits",
-	 		"courseNotes",
-	 		"instructorId",
-	 		"minClassSize",
-	 		"maxClassSize",
-	 		"courseHours",
-	 		"courseDuration",
-	 		"active",
-	 		"course_id",
-	 		"student_id",
-	 		"schedule_id"
-	 	);
 
-
-		foreach ($params as $param => $value) {
-		 	if( !in_array($param, $accepted_params) ) {
-		 		die("Form Field " . $param . "is not acceptable.");	
-		 		return false;
-		 	}
-		}
-
-		return true;
-	}
 
 
 
@@ -949,7 +906,60 @@ class Course {
 
 
 
+
+	/**
+	 * checkAcceptedParams
+	 *
+	 * Checks to see if the POST parameters are on a lit of parameters that are acccepted. Script stops if the parameters are bad.
+	 * the params HAVE to the the camel case
+	 *
+	 * @param (Array) The Array containing $_POST params that are to be checked
+	 * @return (Boolean)
+	 */
+	public function checkAcceptedParams($params) {
+
+		$accepted_params = array(
+	 		"courseName",
+	 		"courseDesc",
+	 		"courseId",
+	 		"courseNumber",
+	 		"courseCost",
+	 		"categoryId",
+	 		"scheduleId",
+	 		"daysAvailable",
+	 		"location",
+	 		"classBeginDate",
+	 		"classEndDate",
+	 		"courseLocation",
+	 		"courseCredits",
+	 		"courseNotes",
+	 		"instructorId",
+	 		"minClassSize",
+	 		"maxClassSize",
+	 		"courseHours",
+	 		"courseDuration",
+	 		"active",
+	 		"course_id",
+	 		"student_id",
+	 		"schedule_id",
+	 		"q"
+	 	);
+
+
+		foreach ($params as $param => $value) {
+		 	if( !in_array($param, $accepted_params) ) {
+		 		die("Form Field " . $param . "is not acceptable.");	
+		 		return false;
+		 	}
+		}
+
+		return true;
+	}
+
+
+
 	
 }// end object
 
 ?>
+                                                                                                

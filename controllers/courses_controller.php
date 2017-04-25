@@ -60,6 +60,7 @@ function course_search($ObjectPDO) {
 
 	$courses = $course->search_courses($keyword);
 
+
 	// $categories = scrub_array_output($categories); //scrub output
 	// $one_category = scrub_array_output($one_category); //scrub output
 	scrub_array_output($courses); // Scrub Output with html entities
@@ -583,4 +584,4 @@ function my_courses($ObjectPDO) {
 }
 
 
-?>
+?>                     
