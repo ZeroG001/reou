@@ -231,12 +231,35 @@ Focus mainly on:
  }
 
 
+/* Browser Specific psudo Class */
 
-	/* JavaScript-less menu 
+@mixin placeholder {
 
-		bigSibling = menu title
-		littleSibline = sub menu
-	*/
+	&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		@content;
+	}
+
+	&::-moz-placeholder { /* Firefox 19+ */
+	 	@content;
+	}
+
+	&:-ms-input-placeholder { /* IE 10+ */
+		@content;
+	}
+
+	&:-moz-placeholder { /* Firefox 18- */
+		@content;
+	}
+
+}
+
+
+
+/* JavaScript-less menu 
+
+	bigSibling = menu title
+	littleSibline = sub menu
+*/
 
 
 

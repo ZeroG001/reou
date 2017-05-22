@@ -36,7 +36,7 @@
 
 
 		<div class="login__logo">
-			<div class="login__logo-image"> </div>
+			<img src="<?php echo asset_route('img') . "academy_logo_blue.png" ?>"P class="login__logo-image">
 		</div>
 
 

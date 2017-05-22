@@ -19,7 +19,7 @@
 
 	<body>
 
-		<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php'); ?>
+		<?php # require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php'); ?>
 
 		<div class="login-container"> 
 
@@ -28,7 +28,7 @@
 			<!-- ============== Login Form ==================== -->
 
 			<div class="login__logo">
-				<div class="login__logo-image"> </div>
+				<img src="<?php echo asset_route('img') . "academy_logo_blue.png" ?>"P class="login__logo-image">
 			</div>
 
 			<form method="POST" action="" class="login__form">

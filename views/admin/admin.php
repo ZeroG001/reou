@@ -95,7 +95,7 @@
 
 			<div class="admin_category--body">
 				<!-- Body Section -->
-				<a href=""> View Users </a>
+				<a href="<?php echo user_route('show-users') ?>"> View Users </a>
 				<a href=""> Add Users </a>
 				<a href=""> Create Course Category </a>
 			</div>

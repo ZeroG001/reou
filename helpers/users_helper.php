@@ -393,6 +393,22 @@
 	/**
 	 * convery_camel_case()
 	 *
+	 * takes time in yyyy-mm-dd format and converts it to mm/dd/yyyy
+	 *
+	 * @param (String) time  
+	 * @return (String)
+	 */
+	function convert_time_to_local($time) {
+
+		$date = new DateTime($time);
+		return $date->format('m/d/y');
+
+	}
+
+
+	/**
+	 * convery_camel_case()
+	 *
 	 * take a camel case word, adds underscaore between lower and upper case letter, then make it all lowercase.
 	 * ie(helloWorld becomes hello_world); 
 	 *

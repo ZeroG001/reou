@@ -481,11 +481,12 @@ th {
     -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     -o-transform: rotate(360deg); } }
-	/* JavaScript-less menu 
+/* Browser Specific psudo Class */
+/* JavaScript-less menu 
 
-		bigSibling = menu title
-		littleSibline = sub menu
-	*/
+	bigSibling = menu title
+	littleSibline = sub menu
+*/
 /* Font Sizes - Typography
 ---------------------------------- */
 /* Links and anchors 
@@ -794,6 +795,7 @@ section.home__subsection {
     display: table;
     clear: both; }
 
+/* ---------- Flex container test area ---------- */
 .flex-container {
   display: flex; }
 
@@ -815,17 +817,47 @@ section.home__subsection {
 .main_nav--logo,
 .nav-course-search,
 .nav-menu-items {
-  border: 1px solid black; }
+  border-left: 2px solid #028a74; }
 
 #course-search-form {
   width: 100%;
   position: relative;
-  padding: 10px 0px;
+  padding: 10px 10px;
   margin: 0px; }
 
 .course_search {
+  /* border-radius: 0px; */
   width: 100%;
-  height: 50px; }
+  height: 50px;
+  /* border: 0px; */
+  padding-left: 61px;
+  border: 1px solid #049e86;
+  background-color: transparent;
+  color: white; }
+  .course_search::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: white; }
+  .course_search::-moz-placeholder {
+    /* Firefox 19+ */
+    color: white; }
+  .course_search:-ms-input-placeholder {
+    /* IE 10+ */
+    color: white; }
+  .course_search:-moz-placeholder {
+    /* Firefox 18- */
+    color: white; }
+
+.course_search_button {
+  padding: 8px;
+  border-radius: 6px;
+  position: absolute;
+  top: 18px;
+  left: 23px;
+  background-color: #3D96CC;
+  color: white;
+  border: 0px solid black; }
+  .course_search_button i {
+    color: white; }
 
 .main_nav--logo {
   flex-grow: 1; }
@@ -847,8 +879,11 @@ section.home__subsection {
   .main_nav--item:hover > .main_subnav, .main_nav--item__menu-button:hover > .main_subnav {
     display: inline-block; }
 
+/* ---------- Flex container test area ---------- */
 .main_nav--item__menu-button {
-  width: inherit; }
+  width: inherit;
+  padding: 17px;
+  width: 100%; }
 
 .main_subnav {
   box-sizing: border-box;
@@ -856,7 +891,7 @@ section.home__subsection {
   display: none;
   position: absolute;
   right: -2px;
-  top: 71px;
+  top: 69px;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
   z-index: 10; }
   .main_subnav .main_subnav--item {
@@ -874,6 +909,7 @@ section.home__subsection {
   display: block;
   right: 0;
   top: 0;
+  margin: 0px auto;
   box-sizing: border-box;
   width: 30px;
   /*padding: 20px 0px 20px 20px;*/ }

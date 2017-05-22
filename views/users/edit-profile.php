@@ -129,7 +129,7 @@
 
 
 			<div class="profile__input-group profile__other-stats">
-				<span> Member Since: <?php echo $user['created_at'] ?> </span>
+				<span> Member Since: <?php echo convert_time_to_local($user['created_at']) ?> </span>
 				<span> Last Updated on: <?php echo $user['updated_at']?> </span>
 			</div>
 

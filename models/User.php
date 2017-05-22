@@ -179,7 +179,9 @@ class User {
 				return $result;
 			} 
 			catch (Exception $e) {
-				die("There was a problem getting the user information.");
+
+				die($e->getMessage());
+
 			}
 
 			
