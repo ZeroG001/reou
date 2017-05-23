@@ -13,6 +13,11 @@
 	// ----------------- Header HTML --------------------
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
+	if( !userIsAdmin() ) {
+		redirectHome();
+	}
+
+
 ?>
 
 <head>
