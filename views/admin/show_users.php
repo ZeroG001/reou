@@ -61,16 +61,30 @@
 		<!--- TEMP STYLES and HTML FOR ADMIN CENTER -->
 
 		<style> 
-
+		/* */
+			.profile_search_container {
+				width: 100%;
+			}
 
 		</style>
 
 		<!--- ** END ** TEMP STYLES and HTMl FOR ADMIN CENTER -->
 
+		<div class="profile_search_container">
+			<input type="text" />
+		</div>
+
 		<!-- ===== Main Main Admin Category Section ===== -->
-		<table>
+		<table class="show_user_table">
+			<tr>
+				<th>Email/Username</th>
+				<th> Full Name </th>
+				<th> Type </th>
+				<th> Active </th>
+				<th></th>
+			</tr>
 			<?php foreach ($users as $k => $user) { ?>
-					<tr>
+					<tr class="user_table--row">
 						
 						<td> <?php echo $user["email"] ?> </td>
 						<td> <?php echo $user["first_name"]  . " " . $user["last_name"] ?> </td>
