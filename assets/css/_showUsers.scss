@@ -1,9 +1,17 @@
 .users_search_input {
 	width:100%;
+	padding: 10px 0px 10px 35px;
+	border: 0px solid black;
+	background-color: transparent;
 }
 
 .users_search_button {
 	position: absolute;
+	left: 2px;
+	top: 11px;
+	background: none;
+	border: 0px;
+	color: #6c6c6c;
 }
 
 
@@ -12,7 +20,7 @@
 
 	th {
 		padding: 15px 0px;
-		background-color: gray;
+		background-color: transparent;
 	}
 }
 

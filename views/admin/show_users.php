@@ -39,7 +39,7 @@
 				<a href=""> Change Photo </a>
 			</div>
 
-			<a class="profile__sidebar-item" href="<?php ?>"> Users </a>
+			<a class="profile__sidebar-item" href="<?php echo admin_route('show-users') ?>"> Users </a>
 			<a class="profile__sidebar-item" href="<?php ?>"> Courses </a>
 			<a class="profile__sidebar-item" href="<?php ?>"> Payments </a>
 
@@ -60,13 +60,6 @@
 
 		<!--- TEMP STYLES and HTML FOR ADMIN CENTER -->
 
-		<style> 
-		/* */
-			.profile_search_container {
-				width: 100%;
-			}
-
-		</style>
 
 		<!--- ** END ** TEMP STYLES and HTMl FOR ADMIN CENTER -->
 
@@ -109,4 +102,4 @@
 
 
 <script type="text/javascript" src="<?php echo asset_route('js') . "jquery/dist/jquery.min.js" ?>"> </script>
-<script type="text/javascript" src="<?php echo asset_route('js') . "edit_profile.js" ?>"> </script>
+<script type="text/javascript" src="<?php echo asset_route('js') . "show_users.js" ?>"> </script>

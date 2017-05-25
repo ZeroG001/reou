@@ -1903,6 +1903,7 @@ User Partials
   margin-top: 5px;
   color: #727570;
   display: block;
+  border: 0px solid black;
   width: 100%; }
 .update_user--form .profile__submit-button,
 .profile__password-form .profile__submit-button,
@@ -2238,16 +2239,24 @@ admin_categoty--container
 
 /* Admin Show Users Page */
 .users_search_input {
-  width: 100%; }
+  width: 100%;
+  padding: 10px 0px 10px 35px;
+  border: 0px solid black;
+  background-color: transparent; }
 
 .users_search_button {
-  position: absolute; }
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  background: none;
+  border: 0px;
+  color: #6c6c6c; }
 
 .show_user_table {
   width: 100%; }
   .show_user_table th {
     padding: 15px 0px;
-    background-color: gray; }
+    background-color: transparent; }
 
 .user_table--row i {
   visibility: hidden; }

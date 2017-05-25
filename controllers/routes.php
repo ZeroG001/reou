@@ -226,14 +226,18 @@
 
 		switch ($route) {
 
-			case 'edit':
-				return "/reou/views/admin/edit_user.php" . $querystring;
-				break;
-
+			// case 'edit':
+			// 	return "/reou/views/admin/edit_user.php" . $querystring;
+			// 	break;
 
 			case 'create-user':
 				return "reou/admin/create-user";
-			
+
+
+			case 'show-users':
+				return "/reou/show-users";
+
+
 			default:
 				return "/reou/course-category" . $querystring;
 				break;

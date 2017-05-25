@@ -528,7 +528,7 @@ function show_users($ObjectPDO) {
 	}
 
 	$user = new User($ObjectPDO);
-	$results = $user->get_users_info();
+	$results = $user->get_users_info('all_users');
 	return $results;
 
 }

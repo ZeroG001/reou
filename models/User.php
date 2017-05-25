@@ -110,7 +110,7 @@ class User {
 	// ============================================================
 
 
-	 public function get_users_info() {
+	 public function get_users_info($method, $value = "") {
 
 	 	// Things needed from user search
 	 	/*
@@ -119,13 +119,21 @@ class User {
 			- Give me a list of users from a specified search
 	 	*/
 
+
+
 		$query = array (
 			"all_users" => "SELECT * FROM users",
-			"range_of_users" => " SELECT * FROM users LIMIT 10 OFFSET ?",
-			"search_users" => "SELECT * FROM users WHERE email LIKE %?%"
+			"range_of_users" => " SELECT * FROM users LIMIT 10 OFFSET :value",
+			"search_users" => "SELECT * FROM users WHERE email LIKE :value"
 		);
 
-			$stmt = $this->db->prepare($query["all_users"]);
+			$stmt = $this->db->prepare($query[$method]);
+
+			if($method == "range_of_users" || "search_users") {
+				$value = '%' . $value . '%';
+				$stmt->bindParam(':value', $value);
+			}
+			
 			$stmt->execute();
 
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
