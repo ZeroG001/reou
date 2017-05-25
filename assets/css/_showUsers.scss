@@ -1,7 +1,48 @@
+.users_search_input {
+	width:100%;
+}
+
+.users_search_button {
+	position: absolute;
+}
+
+
 .show_user_table {
-	
+	width: 100%;
+
+	th {
+		padding: 15px 0px;
+		background-color: gray;
+	}
 }
 
 .user_table--row {
-	
+
+	i {
+		visibility: hidden;
+	}
+
+
+	&:hover {
+		background-color: #E3E3E3;
+		cursor: pointer;
+	}
+
+	&:hover i {
+		visibility: visible;
+	}
+
 }
+
+
+.users_search_container {
+	width: 100%;
+	position: relative;	
+}
+
+
+.user_table--cell {
+	padding: 10px 0px;
+	text-align: center;
+}
+

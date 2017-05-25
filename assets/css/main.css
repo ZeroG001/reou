@@ -2236,4 +2236,33 @@ admin_categoty--container
 .course_list_container {
   width: 100% !important; }
 
+/* Admin Show Users Page */
+.users_search_input {
+  width: 100%; }
+
+.users_search_button {
+  position: absolute; }
+
+.show_user_table {
+  width: 100%; }
+  .show_user_table th {
+    padding: 15px 0px;
+    background-color: gray; }
+
+.user_table--row i {
+  visibility: hidden; }
+.user_table--row:hover {
+  background-color: #E3E3E3;
+  cursor: pointer; }
+.user_table--row:hover i {
+  visibility: visible; }
+
+.users_search_container {
+  width: 100%;
+  position: relative; }
+
+.user_table--cell {
+  padding: 10px 0px;
+  text-align: center; }
+
 /*# sourceMappingURL=main.css.map */

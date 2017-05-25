@@ -70,8 +70,9 @@
 
 		<!--- ** END ** TEMP STYLES and HTMl FOR ADMIN CENTER -->
 
-		<div class="profile_search_container">
-			<input type="text" />
+		<div class="users_search_container">
+			<input type="text" class="users_search_input" name="q" placeholder="Search">
+			<button class="users_search_button"><i class="fa fa-search fa-lg"></i></button>
 		</div>
 
 		<!-- ===== Main Main Admin Category Section ===== -->
@@ -86,11 +87,14 @@
 			<?php foreach ($users as $k => $user) { ?>
 					<tr class="user_table--row">
 						
-						<td> <?php echo $user["email"] ?> </td>
-						<td> <?php echo $user["first_name"]  . " " . $user["last_name"] ?> </td>
-						<td> <?php echo $user["role"] ?> </td>
-						<td> <?php var_dump($user['active'])?> </td>
-						<td> <a href="<?php echo user_route( 'edit',"?userId=${user['id']}" ) ?> "> Edit </a> </td>
+						<td class="user_table--cell"> <?php echo $user["email"] ?> </td>
+						<td class="user_table--cell"> <?php echo $user["first_name"]  . " " . $user["last_name"] ?> </td>
+						<td class="user_table--cell"> <?php echo $user["role"] ?> </td>
+						<td class="user_table--cell"> 
+							<?php if($user['active']) {	echo "yes"; } else { echo "no"; } ?> 
+						</td>
+						<td class="user_table--cell"> <a href="<?php echo user_route( 'edit',"?userId=${user['id']}" ) ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+ </a> </td>
 					</tr>
 			<?php  } ?>
 		</table>
