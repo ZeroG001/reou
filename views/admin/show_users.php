@@ -64,12 +64,15 @@
 		<!--- ** END ** TEMP STYLES and HTMl FOR ADMIN CENTER -->
 
 		<div class="users_search_container">
-			<input type="text" class="users_search_input" name="q" placeholder="Search">
-			<button class="users_search_button"><i class="fa fa-search fa-lg"></i></button>
+			<form id="search_users_form">
+				<input type="text" id="users_search_input" class="users_search_input" name="q" placeholder="Search">
+				<button class="users_search_button"><i class="fa fa-search fa-lg"></i></button>
+			</form>
 		</div>
 
 		<!-- ===== Main Main Admin Category Section ===== -->
 		<table class="show_user_table">
+
 			<tr>
 				<th>Email/Username</th>
 				<th> Full Name </th>
@@ -77,6 +80,7 @@
 				<th> Active </th>
 				<th></th>
 			</tr>
+
 			<?php foreach ($users as $k => $user) { ?>
 					<tr class="user_table--row">
 						

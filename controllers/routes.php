@@ -237,7 +237,6 @@
 			case 'show-users':
 				return "/reou/show-users";
 
-
 			default:
 				return "/reou/course-category" . $querystring;
 				break;

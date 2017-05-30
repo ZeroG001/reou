@@ -124,7 +124,7 @@ class User {
 		$query = array (
 			"all_users" => "SELECT * FROM users",
 			"range_of_users" => " SELECT * FROM users LIMIT 10 OFFSET :value",
-			"search_users" => "SELECT * FROM users WHERE email LIKE :value"
+			"search_users" => "SELECT * FROM users WHERE email LIKE :value OR first_name LIKE :value OR last_name LIKE :value"
 		);
 
 			$stmt = $this->db->prepare($query[$method]);
