@@ -117,6 +117,16 @@ function course_detail($ObjectPDO) {
 	return $result_array;
 }
 
+// --------------- course_show.php (admin) ---------------------
+
+function course_show($ObjectPDO) {
+
+	$course = new Course($ObjectPDO);
+	$courses = $course->get_courses();
+	return $courses;
+
+}
+
 
 
 
@@ -584,4 +594,4 @@ function my_courses($ObjectPDO) {
 }
 
 
-?>                     
+?>

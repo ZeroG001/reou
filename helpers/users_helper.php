@@ -10,19 +10,20 @@
 	 * @param (type) about this param
 	 * @return (type)
 	 */
-	function userSignedIn() {
-		if (session_status() == PHP_SESSION_NONE) {
-			session_start();
+		function userSignedIn() {
+			if (session_status() == PHP_SESSION_NONE) {
+				session_start();
+			}
+			
+			if( isset($_SESSION['id']) ) {
+				return true;
+			} else {
+				return false;
+			}
+			// check if a session variable is set
+			// Return true or false
 		}
-		
-		if( isset($_SESSION['id']) ) {
-			return true;
-		} else {
-			return false;
-		}
-		// check if a session variable is set
-		// Return true or false
-	}
+
 
 
 	function signUserOut() {
@@ -30,15 +31,19 @@
 	}
 
 
+
 	/**
-	 * userSignedIn()
+	 * replacePhoto()
 	 *
 	 * Uses the bulletproof class to upload a photo
 	 *
 	 * @param (none) about this param
 	 * @return (void)
 	 */
-	function replacePhoto() {}
+
+	function replacePhoto() {}	
+
+	
 
 
 
@@ -53,6 +58,8 @@
 	 * @param (string) value given from the database
 	 * @return String
 	 */
+
+
 	function displaySelected($value, $given) {
 
 		$value = strtolower($value);
@@ -76,6 +83,7 @@
 	 * @param (type) about this param
 	 * @return String
 	 */
+
 	function displayOption($value, $given) {
 
 		$value = strtolower($value);
@@ -87,6 +95,8 @@
 			return false;
 		}		
 	}
+
+
 
 
 
@@ -121,9 +131,7 @@
 	 * @return void
 	 */
 	function redirectHome() {
-
 		header("Location:". course_route('home'));
-
 	}
 
 
@@ -135,10 +143,9 @@
 	 * @return void
 	 */
 	function redirectLogin() {
-
 		header("Location:" . user_route('sign-in'));
-
 	}
+
 
 
 
@@ -247,7 +254,6 @@
 
 
 
-
 	/**
 	 * display_alert()
 	 *
@@ -320,7 +326,7 @@
 		} else {
 			return false;	
 		}
-	}
+	}	
 
 
 
@@ -390,6 +396,8 @@
 	}
 
 
+
+
 	/**
 	 * convery_camel_case()
 	 *
@@ -404,6 +412,7 @@
 		return $date->format('m/d/y');
 
 	}
+
 
 
 	/**
@@ -435,6 +444,7 @@
 	 * @param (String) camelCaseString 
 	 * @return (Void)
 	 */
+
 	function check_honeypot_fields($params) {
 		if(isset($params['hpUsername']) && !empty($params['hpUsername'])) {
 			die("There was an error processing an unknown field");	
@@ -445,8 +455,6 @@
 			return $params;
 		}
 	}
-
-
 
 
 ?>
