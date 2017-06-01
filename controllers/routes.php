@@ -8,7 +8,7 @@
 
 
 
-	// ===================== Users Routes =====================
+	// ===================== Home Routes =====================
 
 	function main_route($route, $getVars = "") {
 
@@ -91,7 +91,7 @@
 				break;
 
 			case 'show-users':
-				return "/reou/show-users";
+				return "/reou/admin/show-users";
 				break;
 			
 			default:
@@ -160,6 +160,10 @@
 			case 'course_edit':
 				return "/reou/course-edit".$querystring;
 				break;
+
+			case 'show_courses':
+				return '/reou/admin/show-courses'.$querystring;
+				break;
 			
 			default:
 				return "/reou/course-category/".$querystring;
@@ -169,6 +173,8 @@
 		}
 
 	}
+
+
 
 
 	// ===================== Asset Routes =====================
@@ -235,7 +241,7 @@
 
 
 			case 'show-users':
-				return "/reou/show-users";
+				return "/reou/admin/show-users";
 
 			default:
 				return "/reou/course-category" . $querystring;
@@ -244,6 +250,11 @@
 		}
 
 	}
+
+
+
+
+	// ===================== Mailer Routes =====================
 
 	function mailer_route($route) {
 
@@ -264,6 +275,8 @@
 	}
 
 
+
+	// ===================== Helper Routes =====================
 
 	function helpers_route($route) {
 

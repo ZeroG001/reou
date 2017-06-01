@@ -78,7 +78,7 @@
 					
 					<td class="user_table--cell"> <?php echo $course['course_name'] ?> </td>
 					</td>
-					<td class="user_table--cell"> <a href="<?php echo "fakeRoute" ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					<td class="user_table--cell"> <a href="<?php echo course_route('show') ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 				 	</a> 
 					</td>
 				</tr>

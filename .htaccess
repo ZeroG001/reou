@@ -12,11 +12,9 @@ RewriteRule models - [F,L]
 # RewriteRule scraps - [F,L]
 
 
-
 # RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteCond %{REQUEST_FILENAME} !-d
 # RewriteRule ^(.*)$ $1 [L,R=301]
-
 
 
 # -------- 404 Page Location ----------
@@ -24,7 +22,7 @@ RewriteRule models - [F,L]
 # = = = = = = = Development links = = = = = = =
 # ErrorDocument 404 http://10.9.63.86/reou/views/main/404.php
 # ErrorDocument 404 http://192.168.1.12/reou/main/404.php
-# ErrorDocument 4040 http://192.168.1.12/reou/404
+# ErrorDocument 404 http://192.168.1.12/reou/404
 # ErrorDocument 404 http://10.9.63.40/reou/404
 
 
@@ -44,7 +42,8 @@ RewriteRule ^sign-up$ views/users/sign-up.php [L]
 RewriteRule ^sign-in$ views/users/sign-in.php [L]
 RewriteRule ^sign-out$ views/users/sign-out.php [L]
 RewriteRule ^show-user$ views/admin/show_user.php [L]
-RewriteRule ^show-users$ views/admin/show_users.php [L]
+RewriteRule ^admin/show-users$ views/admin/show_users.php [L]
+RewriteRule ^edit-profile/([0-9])$ views/users/edit-profile.php?userId=$1 [L] 
 RewriteRule ^edit-profile$ views/users/edit-profile.php [L]
 RewriteRule ^reset-email$ views/users/email-reset-email.php [L]
 RewriteRule ^reset-password$ views/users/email-reset-password.php [L]
@@ -53,17 +52,20 @@ RewriteRule ^reset-password$ views/users/email-reset-password.php [L]
 
 # ----- Courses ------
 # RewriteCond %{QUERY_STRING} ^id=([0-9]+)$
+
 RewriteRule ^my-courses$ views/courses/my_courses.php [L]
+RewriteRule ^admin/show-courses$ views/admin/course_show.php [L]
 RewriteRule ^create-course$ views/courses/course_create.php [L]
+RewriteRule ^course/search$ views/courses/course_search.php [L]
 RewriteRule ^course-register$ views/courses/course_register.php [L]
 RewriteRule ^course-category$ views/courses/course_category.php [L]
 RewriteRule ^courses/([a-zA-Z0-9]+)$ views/courses/course_classes.php?id=$1 [L]
-RewriteRule ^course/search$ views/courses/course_search.php [L]
 RewriteRule ^course-detail/([a-zA-Z0-9]+)$ views/courses/course_detail.php?id=$1 [L]
 RewriteRule ^edit-course/([a-zA-Z0-9]+)$ views/courses/course_edit.php?courseId=$1 [L]
 
 
-# ---------- Examples ----------
+
+# -------------- Examples ---------------
 # ReqriteRule ^receipt.php$ /receipt [R=301]
 # RewriteRule ^shirts.php$ /shirts/ [R=301]
 # reqriteRule ^shirts/$ /shirts/shirts.php [L]

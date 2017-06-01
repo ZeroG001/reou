@@ -3,7 +3,7 @@
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/controllers/courses_controller.php");
 
-	# If the method is path then update the user
+	# If the method is path then update the course
 	update_course($db, $_POST);
 	
 	# Or show edit profile like normal
@@ -23,7 +23,7 @@
 
 <div class="profile-container">
 
-	<div class="profile__sidebar-container">
+	<div class="profile__sidebar-container">P
 
 		<div class="profile__sidebar">
 

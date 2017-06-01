@@ -469,13 +469,15 @@ function edit_course($ObjectPDO) {
 
 	// If User isn't signed in, go back to home page
 	if( !userSignedIn() ) {
-		redirectHome();
 		die("You should not be here");
+		redirectHome();
+		
 	}
 
 	// If the user is not an admin then take them back home.
 	// A normal user should not be able to see this page.
 	if( userSignedIn() && !userIsAdmin() ) {
+		die("You should really not be here");
 		redirectHome();
 	}
 
@@ -508,7 +510,6 @@ function edit_course($ObjectPDO) {
 	die("edit_profile ran into a critical error. You must be signed in to continue");
 	
 }
-
 
 
 

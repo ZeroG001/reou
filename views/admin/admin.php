@@ -38,8 +38,8 @@
 				<a href=""> Change Photo </a>
 			</div>
 
-			<a class="profile__sidebar-item" href="<?php ?>"> Users </a>
-			<a class="profile__sidebar-item" href="<?php ?>"> Courses </a>
+			<a class="profile__sidebar-item" href="<?php echo user_route('show-users')  ?>"> Users </a>
+			<a class="profile__sidebar-item" href="<?php echo course_route('show_courses') ?>"> Courses </a>
 			<a class="profile__sidebar-item" href="<?php ?>"> Payments </a>
 
 		</div>
@@ -79,7 +79,7 @@
 
 			<div class="admin_category--body">
 				<!-- Body Section -->
-				<a href=""> View Courses </a>
+				<a href="<?php echo course_route('show_courses') ?>"> View Courses </a>
 				<a href=""> Create Course </a>	
 				<a href=""> Create Course Category </a>
 			</div>

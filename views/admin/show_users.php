@@ -90,7 +90,7 @@
 						<td class="user_table--cell"> 
 							<?php if($user['active']) {	echo "yes"; } else { echo "no"; } ?> 
 						</td>
-						<td class="user_table--cell"> <a href="<?php echo user_route( 'edit',"?userId=${user['id']}" ) ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						<td class="user_table--cell"> <a href="<?php echo '/reou/edit-profile/' . $user['id'] ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
  </a> </td>
 					</tr>
 			<?php  } ?>
