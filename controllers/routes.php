@@ -149,6 +149,9 @@
 				return "/reou/admin";
 				break;
 
+			case 'edit':
+				return "/reou/admin/edit-course/".$querystring;
+
 			case 'my_courses':
 				return "/reou/my-courses".$querystring;
 				break;

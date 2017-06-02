@@ -43,7 +43,7 @@ RewriteRule ^sign-in$ views/users/sign-in.php [L]
 RewriteRule ^sign-out$ views/users/sign-out.php [L]
 RewriteRule ^show-user$ views/admin/show_user.php [L]
 RewriteRule ^admin/show-users$ views/admin/show_users.php [L]
-RewriteRule ^edit-profile/([0-9])$ views/users/edit-profile.php?userId=$1 [L] 
+RewriteRule ^edit-profile/([0-9]+)$ views/users/edit-profile.php?userId=$1 [L] 
 RewriteRule ^edit-profile$ views/users/edit-profile.php [L]
 RewriteRule ^reset-email$ views/users/email-reset-email.php [L]
 RewriteRule ^reset-password$ views/users/email-reset-password.php [L]
@@ -61,7 +61,7 @@ RewriteRule ^course-register$ views/courses/course_register.php [L]
 RewriteRule ^course-category$ views/courses/course_category.php [L]
 RewriteRule ^courses/([a-zA-Z0-9]+)$ views/courses/course_classes.php?id=$1 [L]
 RewriteRule ^course-detail/([a-zA-Z0-9]+)$ views/courses/course_detail.php?id=$1 [L]
-RewriteRule ^edit-course/([a-zA-Z0-9]+)$ views/courses/course_edit.php?courseId=$1 [L]
+RewriteRule ^admin/edit-course/([a-zA-Z0-9]+)$ views/courses/course_edit.php?courseId=$1 [L]
 
 
 
