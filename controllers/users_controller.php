@@ -189,7 +189,7 @@ function create_user($ObjectPDO, $params) {
 	// require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
 	// Only admin's can create a new user in this way.
-	if(userSignedIn() && userIsAdmin()) {
+	if( userSignedIn() && userIsAdmin() ) {
 
 		// If the users data is being updated.
 		if( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {

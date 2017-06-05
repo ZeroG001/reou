@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-
-
 	<?php
 
-		# For security reasons. I don't think admins should have the ability to create new users. There might be someone who creates a user using another person's name and end up buying classes they don't want.
+		# For security reasons. I don't think admins should really have the ability to create new users.
 
 		require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 		require_once(D_ROOT . "/reou/controllers/users_controller.php");

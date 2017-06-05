@@ -191,40 +191,41 @@ function course_edit($ObjectPDO) {
 // --------------- course_create.php -----------------------
 
 function course_create($ObjectPDO) {
+
+	if( userSignedIn() && userIsAdmin() ) {
+
 	
 	// if( $_SERVER['REQUEST_METHOD'] == 'POST' )
-	if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
-
-		//removeme
-		session_start(); // Might erase this because it might not be nessessary to start a session.
+	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['_method'])  ) {
 
 		$params = $_POST;
-
-		// _method needs to be removed on submit.
+		
 		unset($params['_method']);
-
-
-		//Check and scrub parameters
 
 		$course = new Course($ObjectPDO);
 
+				unset($_POST['_method']);
+				unset($params['_method']);
+				$_POST = check_honeypot_fields($_POST);
 
-		// If the course was created, show sucess message. Else, show an error message.
-		// if($course->create_course($params))
-		if( true ) {
+		if( $course->create_course($params) ) {
 
-			// add_message("alert", "the course was added sucessfully");
-			// header("Location:". $_SERVER['HTTP_REFERER']);
-			die("The course has been created");
-
-		} else {
-
-			add_message("alert", "there was a problem creating the class");
-			header("Location:". $_SERVER['HTTP_REFERER']);
-			die();
+			die("the course has been created");
+			add_message('alert', 'the course was created succesfully');
+			header("Location:". admin_route('admin-home'));
+		} 
+		else {
+			// Do nothing...
 		}
 		
-	} 
+		// add_message("alert", "there was a problem creating the class");
+		// header("Location:". $_SERVER['HTTP_REFERER']);
+		// die();
+
+		
+		}
+
+	}
 
 }
 
@@ -254,7 +255,7 @@ function course_create_schedule($ObjectPDO, $params) {
 
 			if( $course->create_course_schedule($params) ) {
 
-				add_message("alert", "the course was added sucessfully");
+				add_message("alert", "the course schedule was added successfully");
 				header("Location:". $_SERVER['HTTP_REFERER']);
 				die();
 

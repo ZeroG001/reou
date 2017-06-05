@@ -418,55 +418,16 @@
 
 	// Prevent default submti on all form.
 
-	schforms = document.forms;
-
-	for ( i = 0; i < schforms.length; i++ ) {
-
-		schforms[i].addEventListener("submit", function(event) {
-
-			event.preventDefault();
-
-			console.log("Prevented Form Submission");
+	// schforms = document.forms[1];
 
 
-		entered_dates = {
-			"start_date" : "",
-			"end_date" : ""
-		}
+	// schforms.addEventListener("submit", function(event) {
+
+	// 	event.preventDefault();
+	// 	console.log("Prevented Form Submission");
 
 
-		// Get start and end date inputs
-		entered_dates.start_date = document.getElementById("schedule_start_date").value;
-		entered_dates.end_date = document.getElementById("schedule_end_date").value;
-
-
-		// Create Start and End Date Objects
-		startDateObj = new Date(entered_dates.start_date);
-		endDateObj = new Date(entered_dates.end_date);
-
-
-		// Verify the date order and verify the format is correct
-		// If the dates are valid and in the right order then do it
-		if( verifyDates(startDateObj, endDateObj) ) {
-
-			number_of_weeks = calculateWeeks(startDateObj, endDateObj, DateDiff);
-			displayWeek(number_of_weeks, 'weeks-container');
-			disabledays(startDateObj, endDateObj);
-
-		} 
-		else {
-			alert("Dates are invalid");
-		}
-
-
-
-		// submitFormViaAjax();
-		// getScheduleData();
-
-
-		});
-	}
-
+	// });
 
 
 })()

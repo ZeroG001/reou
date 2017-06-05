@@ -459,7 +459,7 @@ class Course {
 	 	$paramsValid = true;
 	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
 
-	 	// List of required params
+	 	// List of required params / form fields
 	 	$required_vars = array("courseName", "courseNumber", "courseCost", "courseLocation");
 
 	 	foreach ($required_vars as $key => $value) {

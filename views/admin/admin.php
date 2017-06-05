@@ -80,7 +80,7 @@
 			<div class="admin_category--body">
 				<!-- Body Section -->
 				<a href="<?php echo course_route('show_courses') ?>"> View Courses </a>
-				<a href=""> Create Course </a>	
+				<a href="<?php echo course_route('create_course') ?>"> Create Course </a>	
 				<a href=""> Create Course Category </a>
 			</div>
 

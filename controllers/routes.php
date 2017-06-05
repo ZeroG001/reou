@@ -157,7 +157,7 @@
 				break;
 
 			case 'create_course':
-				return "/reou/create-course".$querystring;
+				return "/reou/admin/create-course".$querystring;
 				break;
 
 			case 'course_edit':
@@ -239,12 +239,18 @@
 			// 	return "/reou/views/admin/edit_user.php" . $querystring;
 			// 	break;
 
+			case 'admin-home':
+				return "reou/admin";
+				break;
+
 			case 'create-user':
 				return "reou/admin/create-user";
+				break;
 
 
 			case 'show-users':
 				return "/reou/admin/show-users";
+				break;
 
 			default:
 				return "/reou/course-category" . $querystring;

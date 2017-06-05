@@ -1,6 +1,7 @@
 <?php
 
 	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
+	require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
 
 	// Course is only created on submit
 	$params = course_create($db);
@@ -12,8 +13,7 @@
 	// 	var_dump($params);
 	// }
 
-	//Header HTML
-	 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/views/layouts/header.php');
+	
 
 ?>
 
@@ -62,8 +62,8 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
 </head>
-	<?php display_alert('error') ?>
-	<?php display_alert('alert') ?>
+	<?php display_alert('error'); ?>
+	<?php display_alert('alert'); ?>
 
 
 	<!-- Action should be the course acc place -->
@@ -83,12 +83,12 @@
 
 			<!-- Course Name -->
 			<label for="courseName"> Course Name </label>
-			<input type="text" name="courseName" id="courseName" value=""> </input>
+			<input type="text" name="courseName" id="courseName" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseName']; } ?>"> </input>
 
 
 			<!-- Course Description -->
 			<label for="courseDesc"> Course Descirption </label>
-			<input type="text" name="courseDesc" id="courseDesc" value="">
+			<input type="text" name="courseDesc" id="courseDesc" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseDesc']; } ?>">
 			
 
 			<!-- This information will have to pull in from the course category query -->
@@ -102,21 +102,21 @@
 
 			<!-- Course Number -->
 			<label for="courseNumber"> Course Number </label>
-			<input type="text" name="courseNumber" id="courseNumber" value="">
+			<input type="text" name="courseNumber" id="courseNumber" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseNumber']; } ?>">
 
 			<!-- Course Cost (Number Only) -->
 			<label for="courseCost"> Course Cost </label>
-			<input type="text" name="courseCost" id="courseCost" value="">
+			<input type="text" name="courseCost" id="courseCost" value="<?php if( isset( $_POST['courseCost']) ) { echo $_POST['courseCost']; } ?>">
 
 
 			<!-- Course Location -->
 			<label for="courseLocation"> Course Location </label>
-			<input type="text" name="courseLocation" id="courseLocation" value="">
+			<input type="text" name="courseLocation" id="courseLocation" value="<?php if( isset( $_POST['courseLocation']) ) { echo $_POST['courseLocation']; } ?>">
 
 
 			<!-- Course Credits (Number Only) -->
 			<label for="courseCredits"> Course Credits </label>
-			<input type="text" name="courseCredits" id="courseCredits" value="">
+			<input type="text" name="courseCredits" id="courseCredits" value="<?php if( isset( $_POST['courseCredits']) ) { echo $_POST['courseCredits']; } ?>">
 
 
 			<!-- Course Notes -->
@@ -125,31 +125,35 @@
 
 			<!-- Instructor ID-->
 			<label for="instructorId"> Instructor </label>
-			<input type="text" name="instructorId" value="">
+			<input type="text" name="instructorId" value="<?php if( isset( $_POST['instructorId']) ) { echo $_POST['instructorId']; } ?>">
 
 
 			<!-- Min Class Size -->
 			<label for="minClassSize"> Min Class Size </label>
-			<input type="text" name="minClassSize" id="minClassSize" value=""> 
+			<input type="text" name="minClassSize" id="minClassSize" value="<?php if( isset( $_POST['minClassSize']) ) { echo $_POST['minClassSize']; } ?>"> 
 
 
 			<!-- Max Class Size -->
 			<label for="maxClassSize"> Max Class Size </label>
-			<input type="text" name="maxClassSize" id="maxClassSize" value="">
+			<input type="text" name="maxClassSize" id="maxClassSize" value="<?php if( isset( $_POST['maxClassSize']) ) { echo $_POST['maxClassSize']; } ?>">
 
+
+			<!-- Course Active? -->
 			<label for="active"> Course Active </label>
-
 			<span> Yes </span>
-			<input type="radio" name="active" value="1" checked>
+			<input type="radio" name="active" value="1" <?php if( isset( $_POST['active'] ) && $_POST['active'] == '1' ) { echo "checked"; } elseif ( !isset( $_POST['active'] ) ) { echo "checked"; } ?>>
 
 			<span> No </span>
-			<input type="radio" name="active" value="0">
+			<input type="radio" name="active" value="0" <?php if( isset( $_POST['active'] ) && $_POST['active'] == '0' ) { echo "checked"; } ?>>
+
+			<input type="hidden" name="_method" value="post">
+			<input type="submit" value="Create Page">
 
 		</fieldset>
 
 
 		<!-- Items related to course timing -->
-		<fieldset>
+		<fieldset> </fieldset>
 
 
 	</form>

@@ -55,7 +55,7 @@ RewriteRule ^reset-password$ views/users/email-reset-password.php [L]
 
 RewriteRule ^my-courses$ views/courses/my_courses.php [L]
 RewriteRule ^admin/show-courses$ views/admin/course_show.php [L]
-RewriteRule ^create-course$ views/courses/course_create.php [L]
+RewriteRule ^admin/create-course$ views/courses/course_create.php [L]
 RewriteRule ^course/search$ views/courses/course_search.php [L]
 RewriteRule ^course-register$ views/courses/course_register.php [L]
 RewriteRule ^course-category$ views/courses/course_category.php [L]

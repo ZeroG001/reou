@@ -128,5 +128,5 @@
 	</body>
 
 	<script type="text/javascript" src="<?php echo asset_route('js') . "jquery/dist/jquery.min.js" ?>"> </script>
-	<script type="text/javascript" src="<?php echo asset_route('js') ?>schedule_create.js"></script>
+	<script type="text/javascript" src="<?php echo asset_route('js') ?> schedule_create.js" ></script>
 </html>
