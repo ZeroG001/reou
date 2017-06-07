@@ -43,7 +43,6 @@ $('#search_users_form').submit(function(e){
 			$('.show_user_table').html(tableHtml);
 
 
-
 		},
 		error: function(){
 			alert("it didn't work");

@@ -55,6 +55,38 @@
 	}
 
 
+	// ===================== Layout Routes =====================
+
+	function layout_route($route, $getVars = "") {
+
+		// Takes the array you pass in and converts it into a query string
+		if (is_array($getVars)) {
+			//$querystring = "?".http_build_query($getVars);
+			$querystring = $getVars['id'];
+		} else {
+			$querystring = $getVars;
+		}
+		switch ($route) {
+
+			case 'admin-sidebar':
+				return "/reou/views/layouts/admin_sidebar.php" . $querystring;
+				break;
+
+
+			case 'sidebar':
+				return "/reou/views/layouts/sidebar.php".$querystring;
+				break;
+
+
+			default:
+				return "/reou/course-category".$querystring;
+				break;
+
+		}
+
+	}
+
+
 
 
 	// ===================== Users Routes =====================

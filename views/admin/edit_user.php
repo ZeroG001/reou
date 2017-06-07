@@ -28,7 +28,7 @@
 		<!-- Bulletproof -->
 	    <input type="hidden" id="image-upload--size" name="MAX_FILE_SIZE" value="1000000"/>
 	    <input type="file" id="image-upload--file" name="profilePicture"/>
-
+	    
 		
 		<label for="firstName"> First Name </label>
 		<input type="text" id="firstName" name="firstName" value="<?php echo $user['first_name'] ?>">
@@ -80,6 +80,7 @@
 		<input type="hidden" id="userId" name="userId" value="<?php echo $user['id'] ?>">
 		
 		<input type="submit"> Update User </input>
+
 	</form>
 
 

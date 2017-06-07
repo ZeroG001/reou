@@ -24,24 +24,7 @@
 
 <div class="profile-container">
 
-	<!-- Sidebar -->
-	<div class="profile__sidebar-container">
-
-		<div class="profile__sidebar">
-
-			<div class="profile__logo">
-				<div class="profile__logo-image"> </div>
-				<a href=""> Change Photo </a>
-			</div>
-
-			<a class="profile__sidebar-item" href="<?php echo admin_route('show-users') ?>"> Users </a>
-			<a class="profile__sidebar-item" href="<?php ?>"> Courses </a>
-			<a class="profile__sidebar-item" href="<?php ?>"> Payments </a>
-
-		</div>
-
-	</div>
-
+	<?php require ( D_ROOT . layout_route('sidebar') ) ?>
 
 	<div class="profile__form-container">
 
@@ -77,7 +60,7 @@
 				<tr class="user_table--row">
 					<td class="user_table--cell"> <?php echo $course['course_name'] ?> </td>
 					</td>
-					<td class="user_table--cell"> <a href="<?php echo course_route('edit', '12') ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					<td class="user_table--cell"> <a href="<?php echo course_route('edit', $course['course_id']) ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 				 	</a> 
 					</td>
 				</tr>
@@ -87,8 +70,6 @@
 	</div>
 
 </div>
-
-
 
 
 <script type="text/javascript" src="<?php echo asset_route('js') . "jquery/dist/jquery.min.js" ?>"> </script>
