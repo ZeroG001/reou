@@ -498,7 +498,7 @@ input.field-invalid {
 
 
 /* form base styles. Please @extend from this style class */
-/* .reou__form-base { } */
+.reou__form-base { 
 
 	.reou-form__input-group {
 		margin: 35px 0px;
@@ -508,18 +508,21 @@ input.field-invalid {
 
 
 	.reou-form__input {
-
 		padding: 10px;
 		margin-top: 5px;
 		color: #727570;
 		display: block;
+		border: 0px solid #000;
 		width: 100%;
 	}
+
+
 
 	.load-spinner {
 		position: relative;
 		-webkit-transform: rotate(20deg);
 	}
+
 
 
 	.reou-form__submit-button {
@@ -534,9 +537,9 @@ input.field-invalid {
 			background-color: $hoverDarkBlue;
 			@include transition(background-color 0.3s ease);
 		}
-
-
 	}
+
+}
 
 
 

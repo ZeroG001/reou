@@ -547,6 +547,7 @@ input.field-invalid {
   margin-top: 5px;
   color: #727570;
   display: block;
+  border: 0px solid #000;
   width: 100%; }
 .reou__form-base .load-spinner, .password-email-update-form .load-spinner {
   position: relative;
@@ -1661,6 +1662,7 @@ Animation Classes
     margin-left: 15px;
     margin-bottom: 15px;
     width: 47.91%; } }
+/* Course Create */
 /* ------------------------------------ 
 User Partials
 --------------------------------------- */
