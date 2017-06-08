@@ -124,7 +124,6 @@ function course_show($ObjectPDO) {
 	$course = new Course($ObjectPDO);
 	$courses = $course->get_courses();
 	return $courses;
-
 }
 
 
@@ -194,21 +193,25 @@ function course_create($ObjectPDO) {
 
 	if( userSignedIn() && userIsAdmin() ) {
 
+		$results = array();
+		$course = new Course($ObjectPDO);
+		$results['course_category'] = $course->get_course_category();
+
+		
+
 	
 	// if( $_SERVER['REQUEST_METHOD'] == 'POST' )
 	if( $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['_method'])  ) {
 
-		$params = $_POST;
-		
-		unset($params['_method']);
+			$params = $_POST;
+			unset($params['_method']);
+			unset($_POST['_method']);
+			unset($params['_method']);
+			$_POST = check_honeypot_fields($_POST);
 
-		$course = new Course($ObjectPDO);
-
-				unset($_POST['_method']);
-				unset($params['_method']);
-				$_POST = check_honeypot_fields($_POST);
 
 		if( $course->create_course($params) ) {
+			# If the course creates sucessfully
 
 			die("the course has been created");
 			add_message('alert', 'the course was created succesfully');
@@ -216,6 +219,7 @@ function course_create($ObjectPDO) {
 		} 
 		else {
 			// Do nothing...
+			return $results;
 		}
 		
 		// add_message("alert", "there was a problem creating the class");
@@ -225,6 +229,8 @@ function course_create($ObjectPDO) {
 		
 		}
 
+		return $results;
+		
 	}
 
 }
@@ -431,7 +437,7 @@ function edit_couse($ObjectPDO) {
 
 
 	// If the user is an Admin
-	if( userSignedIn() && userIsAdmin() ) {
+	if ( userSignedIn() && userIsAdmin() ) {
 
 		if( !isset($_GET['userId']) || trim($_GET['userId'] == "") ) {
 			redirectHome();

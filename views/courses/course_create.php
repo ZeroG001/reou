@@ -5,13 +5,18 @@
 
 	// Course is only created on submit
 	$params = course_create($db);
+	$course_categories = $params['course_category'];
 
 	course_create($db);
+
+	var_dump($params);
+
 
 	// if ( isset($params) ) {
 	// 	echo "the params are....." ;
 	// 	var_dump($params);
 	// }
+
 
 ?>
 
@@ -61,6 +66,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
 	</head>
 
+	<div class="profile-container">
 
 
 	<!-- Sidebar -->
@@ -75,111 +81,116 @@
 
 
 		<!-- Action should be the course acc place -->
+
 		<div class="profile__form-container">
-		<form method="POST" action="">
 
-			<h1> Loreum ipsum title </h1>
+			<form method="POST" action="" id="course-create-form">
 
-			<input type="hidden" id="action" name="_method" value="patch">
+				<h1> Loreum ipsum title </h1>
 
-
-			<!-- Items Related to course details -->
-
-				<h3> Loreum Ipsum Info </h3>
-
-				<!-- Course Name -->
-				<div class="reou-form__input-group">
-					<label for="courseName"> Course Name </label>
-					<input type="text" name="courseName" id="courseName" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseName']; } ?>"> </input>
-				</div>
+				<input type="hidden" id="action" name="_method" value="patch">
 
 
-				<!-- Course Description -->
-				<div class="reou-form__input-group">
-					<label for="courseDesc"> Course Descirption </label>
-					<input type="text" name="courseDesc" id="courseDesc" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseDesc']; } ?>">
-				</div>
+				<!-- Items Related to course details -->
+
+					<h3> Loreum Ipsum Info </h3>
+
+					<!-- Course Name -->
+					<div class="reou-form__input-group">
+						<label for="courseName"> Course Name </label>
+						<input type="text" name="courseName" class="reou-form__input" id="courseName" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseName']; } ?>"> </input>
+					</div>
 
 
-				<!-- This information will have to pull in from the course category query -->
-				<label for="categoryId"> Category </label>
-				<select name="categoryId">
-					<option value="1"> Category One </option>
-					<option value="2"> Category Two </option>
-					<option value="3"> Category Three </option>
-				</select>
+					<!-- Course Description -->
+					<div class="reou-form__input-group">
+						<label for="courseDesc"> Course Descirption </label>
+						<input type="text" name="courseDesc" class="reou-form__input" id="courseDesc" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseDesc']; } ?>">
+					</div>
 
 
-				<!-- Course Number -->
-				<div class="reou-form__input-group">
-					<label for="courseNumber"> Course Number </label>
-					<input type="text" class="reou-form__input" name="courseNumber" id="courseNumber" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseNumber']; } ?>">
-				</div>
+					<!-- This information will have to pull in from the course category query -->
+					<label for="categoryId"> Category </label>
 
 
-				<!-- Course Cost (Number Only) -->
-				<div class="reou-form__input-group">
-					<label for="courseCost"> Course Cost </label>
-					<input type="text" class="reou-form__input" name="courseCost" id="courseCost" value="<?php if( isset( $_POST['courseCost']) ) { echo $_POST['courseCost']; } ?>">
-				</div>
+					<select name="categoryId">
+						<option value="1"> Category One </option>
+						<option value="2"> Category Two </option>
+						<option value="3"> Category Three </option>
+					</select>
 
 
-				<!-- Course Location -->
-				<div class="reou-form__input-group">
-					<label for="courseLocation"> Course Location </label>
-					<input type="text" class="reou-form__input" name="courseLocation" id="courseLocation" value="<?php if( isset( $_POST['courseLocation']) ) { echo $_POST['courseLocation']; } ?>">
-				</div>
+					<!-- Course Number -->
+					<div class="reou-form__input-group">
+						<label for="courseNumber"> Course Number </label>
+						<input type="text" class="reou-form__input" name="courseNumber" id="courseNumber" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseNumber']; } ?>">
+					</div>
 
 
-				<!-- Course Credits (Number Only) -->
-				<div class="reou-form__input-group">
-					<label for="courseCredits"> Course Credits </label>
-					<input type="text" class="reou-form__input" name="courseCredits" id="courseCredits" value="<?php if( isset( $_POST['courseCredits']) ) { echo $_POST['courseCredits']; } ?>">
-				</div>
+					<!-- Course Cost (Number Only) -->
+					<div class="reou-form__input-group">
+						<label for="courseCost"> Course Cost </label>
+						<input type="text" class="reou-form__input" name="courseCost" id="courseCost" value="<?php if( isset( $_POST['courseCost']) ) { echo $_POST['courseCost']; } ?>">
+					</div>
 
 
-				<!-- Course Notes -->
-				<div class="reou-form__input-group">
-					<label for="courseNotes"> Course Notes </label>
-					<textarea id="courseNotes" name="courseNotes"></textarea>
-				</div>
+					<!-- Course Location -->
+					<div class="reou-form__input-group">
+						<label for="courseLocation"> Course Location </label>
+						<input type="text" class="reou-form__input" name="courseLocation" id="courseLocation" value="<?php if( isset( $_POST['courseLocation']) ) { echo $_POST['courseLocation']; } ?>">
+					</div>
 
 
-				<!-- Instructor ID-->
-				<div class="reou-form__input-group">
-					<label for="instructorId"> Instructor </label>
-					<input type="text" class="reou-form__input" name="instructorId" value="<?php if( isset( $_POST['instructorId']) ) { echo $_POST['instructorId']; } ?>">
-				</div>
+					<!-- Course Credits (Number Only) -->
+					<div class="reou-form__input-group">
+						<label for="courseCredits"> Course Credits </label>
+						<input type="text" class="reou-form__input" name="courseCredits" id="courseCredits" value="<?php if( isset( $_POST['courseCredits']) ) { echo $_POST['courseCredits']; } ?>">
+					</div>
 
 
-				<!-- Min Class Size -->
-				<div class="reou-form__input-group">
-					<label for="minClassSize"> Min Class Size </label>
-					<input type="text" class="reou-form__input" name="minClassSize" id="minClassSize" value="<?php if( isset( $_POST['minClassSize']) ) { echo $_POST['minClassSize']; } ?>"> 
-				</div>
+					<!-- Course Notes -->
+					<div class="reou-form__input-group">
+						<label for="courseNotes"> Course Notes </label>
+						<textarea id="courseNotes" class="reou-form__input" name="courseNotes"></textarea>
+					</div>
 
 
-				<!-- Max Class Size -->
-				<div class="reou-form__input-group">
-					<label for="maxClassSize"> Max Class Size </label>
-					<input type="text" class="reou-form__input" name="maxClassSize" id="maxClassSize" value="<?php if( isset( $_POST['maxClassSize']) ) { echo $_POST['maxClassSize']; } ?>">
-				</div>
+					<!-- Instructor ID-->
+					<div class="reou-form__input-group">
+						<label for="instructorId"> Instructor </label>
+						<input type="text" class="reou-form__input" name="instructorId" value="<?php if( isset( $_POST['instructorId']) ) { echo $_POST['instructorId']; } ?>">
+					</div>
 
 
-				<!-- Course Active? -->
-				<label for="active"> Course Active </label>
+					<!-- Min Class Size -->
+					<div class="reou-form__input-group">
+						<label for="minClassSize"> Min Class Size </label>
+						<input type="text" class="reou-form__input" name="minClassSize" id="minClassSize" value="<?php if( isset( $_POST['minClassSize']) ) { echo $_POST['minClassSize']; } ?>"> 
+					</div>
 
-				<span> Yes </span>
-				<input type="radio" name="active" value="1" <?php if( isset( $_POST['active'] ) && $_POST['active'] == '1' ) { echo "checked"; } elseif ( !isset( $_POST['active'] ) ) { echo "checked"; } ?>>
 
-				<span> No </span>
-				<input type="radio" name="active" value="0" <?php if( isset( $_POST['active'] ) && $_POST['active'] == '0' ) { echo "checked"; } ?>>
+					<!-- Max Class Size -->
+					<div class="reou-form__input-group">
+						<label for="maxClassSize"> Max Class Size </label>
+						<input type="text" class="reou-form__input" name="maxClassSize" id="maxClassSize" value="<?php if( isset( $_POST['maxClassSize']) ) { echo $_POST['maxClassSize']; } ?>">
+					</div>
 
-				<input type="hidden" name="_method" value="post">
-				<input type="submit" value="Create Page">
 
-		</form>
-	</div>
+					<!-- Course Active? -->
+					<div class="profile__input-group">
+						<label for="active"> User Active </label>
+						<input type="checkbox" name="active" id="active" value="1" <?php if( isset( $_POST['active'] ) && $_POST['active'] == '1' ) { echo "checked"; } elseif ( !isset( $_POST['active'] ) ) { echo "checked"; } ?> />
+					</div>	
+
+					<div class="reou-form__input-group">
+						<input type="hidden" name="_method" value="post">
+						<input type="submit" class="reou-form__submit-button" value="Create Page">
+					</div>
+
+				</form>
+			</div>
+
+		</div>
 
 	</div>
 

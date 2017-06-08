@@ -672,13 +672,26 @@ User Partials
 @import "createCourseSchedule";
 
 
+
 /* Admin Page 
 -------------------------- */
 @import "admin";
 
 
-/* Admin Course List Page */
+
+/* Admin Course List
+--------------------------------- */
 @import "adminCourses";
 
-/* Admin Show Users Page */
+
+
+/* Admin Show Users Page 
+--------------------------------- */
 @import "showUsers";
+
+
+
+/* Create Course Page
+----------------------------------- */
+
+@import "courseCreate"
