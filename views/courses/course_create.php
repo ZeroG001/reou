@@ -7,11 +7,6 @@
 	$params = course_create($db);
 	$course_categories = $params['course_category'];
 
-	course_create($db);
-
-	var_dump($params);
-
-
 	// if ( isset($params) ) {
 	// 	echo "the params are....." ;
 	// 	var_dump($params);
@@ -53,13 +48,11 @@
 		- course_duration
 
 
-
-		Other
+Other
+		
 
 		- course_id
 		- active
-
-
 	-->
 
 	<head>
@@ -105,7 +98,7 @@
 					<!-- Course Description -->
 					<div class="reou-form__input-group">
 						<label for="courseDesc"> Course Descirption </label>
-						<input type="text" name="courseDesc" class="reou-form__input" id="courseDesc" value="<?php if( isset( $_POST['courseName']) ) { echo $_POST['courseDesc']; } ?>">
+						<textarea type="text" name="courseDesc" class="reou-form__input" id="courseDesc">  <?php if( isset( $_POST['courseName']) ) { echo $_POST['courseDesc']; } ?> </textarea>
 					</div>
 
 
@@ -114,9 +107,10 @@
 
 
 					<select name="categoryId">
-						<option value="1"> Category One </option>
-						<option value="2"> Category Two </option>
-						<option value="3"> Category Three </option>
+						<?php foreach ($course_categories as $key => $category) { ?>
+						<?php echo '<option value="'. $category['category_id'] .'"> ' . $category['category_name'] . ' </option>' ?>
+						<?php echo $value['category_id'] ?>
+						<?php } ?>
 					</select>
 
 
@@ -152,13 +146,6 @@
 					<div class="reou-form__input-group">
 						<label for="courseNotes"> Course Notes </label>
 						<textarea id="courseNotes" class="reou-form__input" name="courseNotes"></textarea>
-					</div>
-
-
-					<!-- Instructor ID-->
-					<div class="reou-form__input-group">
-						<label for="instructorId"> Instructor </label>
-						<input type="text" class="reou-form__input" name="instructorId" value="<?php if( isset( $_POST['instructorId']) ) { echo $_POST['instructorId']; } ?>">
 					</div>
 
 

@@ -218,7 +218,6 @@ function course_create($ObjectPDO) {
 			header("Location:". admin_route('admin-home'));
 		} 
 		else {
-			// Do nothing...
 			return $results;
 		}
 		

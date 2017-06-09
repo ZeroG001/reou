@@ -535,6 +535,15 @@ body {
 input.field-invalid {
   border: 1px solid #d03238; }
 
+/* --------- Form Styles ---------- */
+.reou__form-container {
+  padding: 18px 15px;
+  background-color: transparent;
+  display: inline-block;
+  width: 63%;
+  /* testing 
+  background-color: $lightblue; */ }
+
 /* form base styles. Please @extend from this style class */
 .reou__form-base .reou-form__input-group, .password-email-update-form .reou-form__input-group, #course-create-form .reou-form__input-group {
   margin: 35px 0px; }
@@ -574,7 +583,16 @@ input.field-invalid {
   .main-content {
     padding: 25px 50px;
     width: 49em;
-    margin: 0px auto; } }
+    margin: 0px auto; }
+
+  .content-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: red; }
+    .content-container::after {
+      content: "";
+      display: table;
+      clear: both; } }
 /* ---------- Large Screen Size ---------- */
 @media screen and (min-width: 70em) {
   .main-content {
@@ -2050,8 +2068,7 @@ User Partials
   .profile-container {
     width: 100%;
     overflow: hidden;
-    /* Testing 
-    background-color: gray; */ }
+    background-color: red; }
     .profile-container::after {
       content: "";
       display: table;

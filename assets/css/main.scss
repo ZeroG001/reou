@@ -497,6 +497,21 @@ input.field-invalid {
 }
 
 
+/* --------- Form Styles ---------- */
+
+
+.reou__form-container {
+	@include smallPadding;
+	background-color: transparent;
+	display: inline-block;
+	width: 63%;
+	
+	/* testing 
+	background-color: $lightblue; */
+}
+
+
+
 /* form base styles. Please @extend from this style class */
 .reou__form-base { 
 
@@ -559,6 +574,18 @@ input.field-invalid {
 		width: 49em;
 		margin: 0px auto;
 	}
+
+
+
+	.content-container {
+		width: 100%;
+		overflow: hidden;
+		@include clearfix;
+
+		
+		background-color: red; 
+	}
+
 }
 
 /* ---------- Large Screen Size ---------- */
