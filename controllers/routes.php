@@ -272,7 +272,7 @@
 			// 	break;
 
 			case 'admin-home':
-				return "reou/admin";
+				return "/reou/admin";
 				break;
 
 			case 'create-user':

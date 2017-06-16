@@ -629,6 +629,96 @@ class Course {
 	}
 
 
+
+
+	/**
+	 * validateParams();
+	 *
+	 * Ensures that the parameters sent are valid
+	 *
+	 * @param (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
+	 * @param (Bool) [optional] whether to add message to alet system or not
+	 * @param (Array) [optional] list of keys to igpre checking
+	 * @return (boolean (truthy) arraye
+	 */
+	public function validateParams($params, $display_errors = true, $ignore = array()) {
+
+	 	$paramsValid = true;
+	 	$error_messages = array(); // array("type" => "alert", "message" => "First name is invalid");
+
+
+	 	foreach ($params as $k => $param) {
+
+	 		if( in_array($k, $ignore) ) {
+	 			continue;
+	 		}
+
+	 		switch($k) {
+
+	 			case "courseName":
+	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Course Name is Invalid"));
+	 					$paramsValid = false;
+	 				}
+	 			break;
+
+
+	 			case "courseCost":
+	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\d]{1,50}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => ""));
+	 					$paramsValid = false;
+	 				}
+	 			break;
+
+
+	 			case "courseLocation" :
+	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Enter a course location"));
+	 					$paramsValid = false;
+	 				}
+	 			break;
+
+
+	 			case "minClassSize" :
+	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\d]{1,10}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Enter a min class size"));
+	 					$paramsValid = false;
+	 				}
+	 			break;
+
+
+	 			case "maxClassSize":
+	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\d]{1,10}/")))) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Enter a max class size"));
+	 					$paramsValid = false;
+	 				}
+	 			break;
+
+
+	 			default:
+	 				$params[$k] = $params[$k];
+	 			break;
+	 		}
+	 	}
+
+	 	//If display error is on then the error will show
+	 	if($display_errors) {
+	 		foreach ($error_messages as $k => $error_message) {
+	 		$this->add_message($error_message['type'], $error_message['message']);
+	 		}	
+	 	}
+
+
+	 	if($paramsValid) {
+	 		return true;
+	 	} else {
+	 		return false;
+	 	}
+
+	}
+
+
+
 	/**
 	 * scrubParams
 	 *
@@ -684,6 +774,12 @@ class Course {
 		if(!$this->validateParams($params)) {
 			header("Location:". $_SERVER['HTTP_REFERER']); 
 			die();
+		}
+
+		$stmt = $this->db->prepare($query);
+
+		foreach ($params as $key => $value) {
+
 		}
 
 		// Execute update quesy;
@@ -742,7 +838,6 @@ class Course {
 
 
 
-
 	/**
 	 * convert_camel_case
 	 *
@@ -762,6 +857,7 @@ class Course {
 
 
 
+
 	public function convert_camel_case_space($string) {
 		$pattern ="/([a-z])([A-Z])/";
 		$replacement = "$1" . " " . "$2";
@@ -769,6 +865,7 @@ class Course {
 		$string = ucwords($string);
 		return $string;
 	}
+
 
 
 
@@ -804,6 +901,11 @@ class Course {
 	}
 
 
+	public function build_update_query ($able, $params) {
+		// This required ---
+	}
+
+
 
 
 	/**
@@ -830,7 +932,6 @@ class Course {
 			return true;
 		}
 
-		
 	}
 
 

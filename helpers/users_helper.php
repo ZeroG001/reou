@@ -90,19 +90,15 @@
 		$given = strtolower($given);
 
 		if($value == $given) {
-			return "checked";
+			return "selected";
 		} else {
 			return false;
 		}		
 	}
 
 
-
-
-
-
 	/**
-	 * displayOption()
+	 * displayCheckbox()
 	 *
 	 * Used to help shorten the code that displays what checkbox or input box is selected
 	 *

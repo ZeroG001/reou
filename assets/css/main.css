@@ -545,23 +545,23 @@ input.field-invalid {
   background-color: $lightblue; */ }
 
 /* form base styles. Please @extend from this style class */
-.reou__form-base .reou-form__input-group, .password-email-update-form .reou-form__input-group, #course-create-form .reou-form__input-group {
+.reou__form-base .reou-form__input-group, .password-email-update-form .reou-form__input-group, #course-create-form .reou-form__input-group, #course-edit-form .reou-form__input-group {
   margin: 35px 0px; }
-  .reou__form-base .reou-form__input-group textarea, .password-email-update-form .reou-form__input-group textarea, #course-create-form .reou-form__input-group textarea {
+  .reou__form-base .reou-form__input-group textarea, .password-email-update-form .reou-form__input-group textarea, #course-create-form .reou-form__input-group textarea, #course-edit-form .reou-form__input-group textarea {
     resize: none; }
-  .reou__form-base .reou-form__input-group label, .password-email-update-form .reou-form__input-group label, #course-create-form .reou-form__input-group label {
+  .reou__form-base .reou-form__input-group label, .password-email-update-form .reou-form__input-group label, #course-create-form .reou-form__input-group label, #course-edit-form .reou-form__input-group label {
     margin-bottom: 10px; }
-.reou__form-base .reou-form__input, .password-email-update-form .reou-form__input, #course-create-form .reou-form__input {
+.reou__form-base .reou-form__input, .password-email-update-form .reou-form__input, #course-create-form .reou-form__input, #course-edit-form .reou-form__input {
   padding: 10px;
   margin-top: 5px;
   color: #727570;
   display: block;
   border: 0px solid #000;
   width: 100%; }
-.reou__form-base .load-spinner, .password-email-update-form .load-spinner, #course-create-form .load-spinner {
+.reou__form-base .load-spinner, .password-email-update-form .load-spinner, #course-create-form .load-spinner, #course-edit-form .load-spinner {
   position: relative;
   -webkit-transform: rotate(20deg); }
-.reou__form-base .reou-form__submit-button, .password-email-update-form .reou-form__submit-button, #course-create-form .reou-form__submit-button {
+.reou__form-base .reou-form__submit-button, .password-email-update-form .reou-form__submit-button, #course-create-form .reou-form__submit-button, #course-edit-form .reou-form__submit-button {
   padding: 7px;
   border: 0px solid black;
   border-radius: 2px;
@@ -570,7 +570,7 @@ input.field-invalid {
   background-color: #106FA8;
   color: white;
   padding: 30px; }
-  .reou__form-base .reou-form__submit-button:hover, .password-email-update-form .reou-form__submit-button:hover, #course-create-form .reou-form__submit-button:hover {
+  .reou__form-base .reou-form__submit-button:hover, .password-email-update-form .reou-form__submit-button:hover, #course-create-form .reou-form__submit-button:hover, #course-edit-form .reou-form__submit-button:hover {
     background-color: #60ADDA;
     -webkit-transition: background-color 0.3s ease;
     -moz-transition: background-color 0.3s ease;
@@ -2067,8 +2067,7 @@ User Partials
 @media screen and (min-width: 52em) {
   .profile-container {
     width: 100%;
-    overflow: hidden;
-    background-color: red; }
+    overflow: hidden; }
     .profile-container::after {
       content: "";
       display: table;
@@ -2296,6 +2295,8 @@ admin_categoty--container
   text-align: center; }
 
 /* Create Course Page
+----------------------------------- */
+/* Edit Course Page
 ----------------------------------- */
 
 /*# sourceMappingURL=main.css.map */

@@ -52,6 +52,7 @@ function course_classes($ObjectPDO) {
 }
 
 
+
 function course_search($ObjectPDO) {
 
 	$keyword = verify_get('q');
@@ -212,8 +213,6 @@ function course_create($ObjectPDO) {
 
 		if( $course->create_course($params) ) {
 			# If the course creates sucessfully
-
-			die("the course has been created");
 			add_message('alert', 'the course was created succesfully');
 			header("Location:". admin_route('admin-home'));
 		} 
@@ -342,58 +341,70 @@ function update_course($ObjectPDO, $params) {
 	require_once($_SERVER['DOCUMENT_ROOT'] . "/reou/includes/const.php");
 	require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
-	// If the users data is being updated.
-	// if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
 
-		// if ( ($_POST['_method']) == "patch" )  {
+	// If the users data is being updated.
+	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
+
+		if ( ($_POST['_method']) == "patch" )  {
+
 
 
 			// ------ Quick Field Check -----
-			// unset($_POST['_method']);
-			// unset($params['_method']);
-			// check_honeypot_fields($_POST);
-			// unset($_POST['hpUsername']);
-			// unset($params['hpUsername']);
+			unset($_POST['_method']);
+			unset($params['_method']);
+			check_honeypot_fields($_POST);
+			unset($_POST['hpUsername']);
+			unset($params['hpUsername']);
 			// ---------- END ---------------
 
-			// $course = new Course($ObjectPDO);
+
+			$course = new Course($ObjectPDO);
 
 
-			// if(!userIsAdmin()) {
+
+
+			if(!userIsAdmin()) {
 				
-			// 	// If a non-admin is trying to edit another user then stop
-			// 	if( $_SESSION['id'] != $_POST['userId'] ) {
-			// 		add_message("error", "there was a problem updating the user");
-			// 		header( "Location:" . $_SERVER['REQUEST_URI']);
-			// 		die();
-			// 	}
+				// If a non-admin is trying to edit another user then stop
+				if( $_SESSION['id'] != $_POST['userId'] ) {
+					add_message("error", "there was a problem updating the user");
+					header( "Location:" . $_SERVER['REQUEST_URI']);
+					die();
+				}
 
 				// Prevent non-admin  from changing their role ( needs refactoring )
-				//$_POST['role'] = "student"; 
+				$_POST['role'] = "student"; 
 
 				// Prevent non-admin user from deactivating theit account
-				//$_POST['active'] = '1';
-			// }
+				$_POST['active'] = '1';
+			}
+
+
 
 			// The user should not be able to update if the email already exists in the system
 
 
 			// Admins Should not be able to change the email address
 
-	// 		if( $user->update_user($_POST) ) {
-	// 			add_message("alert", "Profile has been Successfully Updated");
-	// 			header( "Location:" . $_SERVER['REQUEST_URI']);
-	// 			die();
-	// 		} 
-	// 		else {
-	// 			add_message("error", "there was a problem updating the user");
-	// 		}
+			// if( $course->update_course($_POST) ) {
+			// 	add_message("alert", "Profile has been Successfully Updated");
+			// 	header( "Location:" . $_SERVER['REQUEST_URI']);
+			// 	die();
+			// } 
+			// else {
+			// 	add_message("error", "there was a problem updating the user");
+			// }
 
-	// 	} 
-	// 	else {
-	// 		die("crital update user error. Incorrect update method used");
-	// 	}
-	// }
+		} 
+		else {
+			die("crital update user error. Incorrect update method used");
+		}
+	}
+
+	
+			var_dump($_POST);
+			die();
+
 
 }
 

@@ -98,7 +98,7 @@ Other
 					<!-- Course Description -->
 					<div class="reou-form__input-group">
 						<label for="courseDesc"> Course Descirption </label>
-						<textarea type="text" name="courseDesc" class="reou-form__input" id="courseDesc">  <?php if( isset( $_POST['courseName']) ) { echo $_POST['courseDesc']; } ?> </textarea>
+						<textarea type="text" name="courseDesc" class="reou-form__input" id="courseDesc"><?php if( isset( $_POST['courseName']) ) { echo $_POST['courseDesc']; } ?></textarea>
 					</div>
 
 
@@ -175,6 +175,7 @@ Other
 					</div>
 
 				</form>
+				
 			</div>
 
 		</div>

@@ -694,6 +694,7 @@ User Partials
 @import "resetEmailPass";
 
 
+
 /* Create Course Schedule Page 
 -------------------------- */
 @import "createCourseSchedule";
@@ -720,5 +721,10 @@ User Partials
 
 /* Create Course Page
 ----------------------------------- */
+@import "courseCreate";
 
-@import "courseCreate"
+
+
+/* Edit Course Page
+----------------------------------- */
+@import "courseEdit";
