@@ -10,19 +10,19 @@
 	 * @param (type) about this param
 	 * @return (type)
 	 */
-		function userSignedIn() {
-			if (session_status() == PHP_SESSION_NONE) {
-				session_start();
-			}
-			
-			if( isset($_SESSION['id']) ) {
-				return true;
-			} else {
-				return false;
-			}
-			// check if a session variable is set
-			// Return true or false
+	function userSignedIn() {
+		if (session_status() == PHP_SESSION_NONE) {
+			session_start();
 		}
+		
+		if( isset($_SESSION['id']) ) {
+			return true;
+		} else {
+			return false;
+		}
+		// check if a session variable is set
+		// Return true or false
+	}
 
 
 
@@ -43,10 +43,6 @@
 
 	function replacePhoto() {}	
 
-	
-
-
-
 
 
 	/**
@@ -58,6 +54,7 @@
 	 * @param (string) value given from the database
 	 * @return String
 	 */
+
 
 
 	function displaySelected($value, $given) {
@@ -75,49 +72,6 @@
 	}
 
 
-	/**
-	 * displayOption()
-	 *
-	 * Used to help shorten the code that displays what checkbox or input box is selected
-	 *
-	 * @param (type) about this param
-	 * @return String
-	 */
-
-	function displayOption($value, $given) {
-
-		$value = strtolower($value);
-		$given = strtolower($given);
-
-		if($value == $given) {
-			return "selected";
-		} else {
-			return false;
-		}		
-	}
-
-
-	/**
-	 * displayCheckbox()
-	 *
-	 * Used to help shorten the code that displays what checkbox or input box is selected
-	 *
-	 * @param (type) about this param
-	 * @return String
-	 */
-	function displayChekbox($given) {
-
-		$given = strtolower($given);
-
-		if($given == 1) {
-			return "checked";
-		} else {
-			return false;
-		}		
-	}
-
-
-
 
 	/**
 	 * redirectHome()
@@ -131,6 +85,7 @@
 	}
 
 
+
 	/**
 	 * redirectLogin()
 	 *
@@ -141,32 +96,6 @@
 	function redirectLogin() {
 		header("Location:" . user_route('sign-in'));
 	}
-
-
-
-
-
-
-	/**
-	 * redirect404()
-	 *
-	 * Redirects the User to the 404 not found page
-	 *
-	 * @return void
-	 */
-	function redirect404() {
-
-		// Commented out because you could not sign out from  edit profile page
-		// if( !isset($_SERVER['HTTP_REFERER']) ) {
-		// 	header("Location:". course_route('home') );
-		// } else {
-		// 	header("Location:". $_SERVER['HTTP_REFERER']);
-		// }
-
-		header( "Location:". main_route('404') );
-
-	}
-
 
 
 
@@ -249,7 +178,6 @@
 
 
 
-
 	/**
 	 * display_alert()
 	 *
@@ -295,12 +223,11 @@
 	}
 
 
+
 	// THis may need to be erased. Add flash message function should take care of clearing this out.
 	function clear_alert() {
 		unset($_SESSION['flash_message']);
 	}
-
-
 
 
 
@@ -362,7 +289,6 @@
 
 
 
-
 	/**
 	 * users_clean_output
 	 *
@@ -412,35 +338,15 @@
 
 
 	/**
-	 * convery_camel_case()
+	 * check_honeypot_fields()
 	 *
-	 * take a camel case word, adds underscaore between lower and upper case letter, then make it all lowercase.
-	 * ie(helloWorld becomes hello_world); 
-	 *
-	 * @param (String) camelCaseString 
-	 * @return (String)
-	 */
-	function convert_camel_case($string) {
-		$pattern ="/([a-z])([A-Z])/";
-		$replacement = "$1" . "_" . "$2";
-		$string = preg_replace($pattern, $replacement, $string);
-		$string = strtolower($string);
-		return $string;
-	}
-
-
-
-
-	/**
-	 * convery_camel_case()
-	 *
-	 * take a camel case word, adds underscaore between lower and upper case letter, then make it all lowercase.
+	 * Ensure that the honeypot field is not filled out. If it is then code execution stops.
+	 * should make it so a user received a message.
 	 * ie(helloWorld becomes hello_world); 
 	 *
 	 * @param (String) camelCaseString 
 	 * @return (Void)
 	 */
-
 	function check_honeypot_fields($params) {
 		if(isset($params['hpUsername']) && !empty($params['hpUsername'])) {
 			die("There was an error processing an unknown field");	

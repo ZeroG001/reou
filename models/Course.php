@@ -327,7 +327,8 @@ class Course {
 
 
 	 	// Validate Params Before Sending
-	 	if(!$this->validateCourseParams($params)) {
+	 	# if(!$this->validateCourseParams($params)) {
+	 	if(!$this->validateParams($params)) {
 	 		return false;
 	 	};
 
@@ -639,7 +640,8 @@ class Course {
 	 * @param (String) $message set the message type as "Alert", "Notice", "Success", or "Error"
 	 * @param (Bool) [optional] whether to add message to alet system or not
 	 * @param (Array) [optional] list of keys to igpre checking
-	 * @return (boolean (truthy) arraye
+	 * @return (boolean (truthy) array
+	 * All (or most) of the validators use a regular expression to validate input
 	 */
 	public function validateParams($params, $display_errors = true, $ignore = array()) {
 
@@ -656,23 +658,30 @@ class Course {
 	 		switch($k) {
 
 	 			case "courseName":
-	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
-	 					array_push($error_messages, array("type" => "alert", "message" => "Course Name is Invalid"));
+	 				if ( filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))) === false ) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Please enter a course name"));
 	 					$paramsValid = false;
 	 				}
 	 			break;
 
 
 	 			case "courseCost":
-	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\d]{1,50}/")))) {
-	 					array_push($error_messages, array("type" => "alert", "message" => ""));
+	 				if ( filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[\d]{1,50}$/"))) === false ) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Please enter a course cost"));
 	 					$paramsValid = false;
 	 				}
 	 			break;
 
 
+	 			case "courseNumber":
+	 				if ( filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{1,20}/"))) === false ) {
+	 					array_push($error_messages, array("type" => "alert", "message" => "Please Enter a course Number"));
+	 					$paramsValid = false;
+	 				}
+
+
 	 			case "courseLocation" :
-	 				if ( !filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/")))) {
+	 				if ( filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\w]{2,50}/"))) === false ) {
 	 					array_push($error_messages, array("type" => "alert", "message" => "Enter a course location"));
 	 					$paramsValid = false;
 	 				}
@@ -680,7 +689,7 @@ class Course {
 
 
 	 			case "minClassSize" :
-	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\d]{1,10}/")))) {
+	 				if(filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\d]{1,10}/"))) === false ) {
 	 					array_push($error_messages, array("type" => "alert", "message" => "Enter a min class size"));
 	 					$paramsValid = false;
 	 				}
@@ -688,7 +697,7 @@ class Course {
 
 
 	 			case "maxClassSize":
-	 				if(!filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\d]{1,10}/")))) {
+	 				if(filter_var(trim($param), FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/[\d]{1,10}/"))) === false ) {
 	 					array_push($error_messages, array("type" => "alert", "message" => "Enter a max class size"));
 	 					$paramsValid = false;
 	 				}
@@ -776,6 +785,11 @@ class Course {
 			die();
 		}
 
+		$query = "UPDATE courses";
+		foreach ($params as $k => $param) {
+			
+		}
+		$query = "UPDATE ";
 		$stmt = $this->db->prepare($query);
 
 		foreach ($params as $key => $value) {

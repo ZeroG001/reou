@@ -1,13 +1,13 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
 require_once(D_ROOT . "/reou/models/database.php");
+require(D_ROOT . '/reou/helpers/helpers.php');
 require(D_ROOT . '/reou/helpers/users_helper.php');
 require(D_ROOT . '/reou/helpers/courses_helper.php');
 require(D_ROOT . '/reou/controllers/routes.php');
 require(D_ROOT . '/reou/models/User.php');
 require(D_ROOT . '/reou/models/Course.php');
 require(D_ROOT . '/reou/models/Schedule.php');
-
 
 
 // --------------- signin.php --------------------- //

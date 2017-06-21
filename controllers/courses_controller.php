@@ -2,6 +2,7 @@
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
 require_once(D_ROOT . "/reou/models/database.php");
+require_once(D_ROOT . '/reou/helpers/helpers.php');
 require_once(D_ROOT . '/reou/helpers/courses_helper.php');
 require_once(D_ROOT . '/reou/helpers/users_helper.php');
 require_once(D_ROOT . '/reou/controllers/routes.php');
@@ -9,8 +10,6 @@ require_once(D_ROOT . "/reou/models/Course.php");
 require_once(D_ROOT . "/reou/models/Schedule.php");
 require_once(D_ROOT . "/reou/models/User.php");
 
-
-// decToBinArray
 
 // --------------- course_category.php ---------------------
 
@@ -379,6 +378,9 @@ function update_course($ObjectPDO, $params) {
 				$_POST['active'] = '1';
 			}
 
+			// Update the course
+			
+
 
 
 			// The user should not be able to update if the email already exists in the system
@@ -403,7 +405,6 @@ function update_course($ObjectPDO, $params) {
 
 	
 			var_dump($_POST);
-			die();
 
 
 }

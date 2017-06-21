@@ -48,8 +48,8 @@
 		- course_duration
 
 
-Other
-		
+
+		Other
 
 		- course_id
 		- active
@@ -71,7 +71,7 @@ Other
 
 		<?php display_alert('error'); ?>
 		<?php display_alert('alert'); ?>
-
+		<?php var_dump($_POST) ?>
 
 		<!-- Action should be the course acc place -->
 
@@ -108,7 +108,7 @@ Other
 
 					<select name="categoryId">
 						<?php foreach ($course_categories as $key => $category) { ?>
-						<?php echo '<option value="'. $category['category_id'] .'"> ' . $category['category_name'] . ' </option>' ?>
+						<?php echo '<option value="'. $category['category_id'] .'" ' . displayOption($category['category_id'], $_POST['categoryId']) . '> ' . $category['category_name'] . ' </option>' ?>
 						<?php echo $value['category_id'] ?>
 						<?php } ?>
 					</select>
@@ -124,7 +124,7 @@ Other
 					<!-- Course Cost (Number Only) -->
 					<div class="reou-form__input-group">
 						<label for="courseCost"> Course Cost </label>
-						<input type="text" class="reou-form__input" name="courseCost" id="courseCost" value="<?php if( isset( $_POST['courseCost']) ) { echo $_POST['courseCost']; } ?>">
+						<input type="text" class="reou-form__input" name="courseCost" id="courseCost" value="<?php if( isset( $_POST['courseCost']) ) { echo intval($_POST['courseCost']); } ?>">
 					</div>
 
 
@@ -141,12 +141,6 @@ Other
 						<input type="text" class="reou-form__input" name="courseCredits" id="courseCredits" value="<?php if( isset( $_POST['courseCredits']) ) { echo $_POST['courseCredits']; } ?>">
 					</div>
 
-
-					<!-- Course Notes -->
-					<div class="reou-form__input-group">
-						<label for="courseNotes"> Course Notes </label>
-						<textarea id="courseNotes" class="reou-form__input" name="courseNotes"></textarea>
-					</div>
 
 
 					<!-- Min Class Size -->
@@ -169,10 +163,23 @@ Other
 						<input type="checkbox" name="active" id="active" value="1" <?php if( isset( $_POST['active'] ) && $_POST['active'] == '1' ) { echo "checked"; } elseif ( !isset( $_POST['active'] ) ) { echo "checked"; } ?> />
 					</div>	
 
+
+					<!-- Course Notes -->
+					<div class="reou-form__input-group">
+						<label for="courseNotes"> Course Notes </label>
+						<textarea id="courseNotes" class="reou-form__input" name="courseNotes"></textarea>
+					</div>
+
+
+
 					<div class="reou-form__input-group">
 						<input type="hidden" name="_method" value="post">
 						<input type="submit" class="reou-form__submit-button" value="Create Page">
 					</div>
+
+
+
+
 
 				</form>
 				

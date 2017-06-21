@@ -659,7 +659,10 @@ function round7(x)
 }
 
 
-/* ------------------------ Testing Area --------------------- */
+/* --------------------------------- Execution Area --------------------------------------- */
+
+
+// --------------------------------------
 
 // Find the schedule button
 var scheduleButton = document.getElementById("addDate");

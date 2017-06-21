@@ -410,24 +410,12 @@
 	}
 
 
-
-	// =====================================
-	//			  	Testing Area
-	// =====================================
-
-
-	// Prevent default submti on all form.
-
-	// schforms = document.forms[1];
+// =====================================
+//		    Parsley Validation
+// =====================================
 
 
-	// schforms.addEventListener("submit", function(event) {
-
-	// 	event.preventDefault();
-	// 	console.log("Prevented Form Submission");
-
-
-	// });
+	$('#course-create-form').parsley();
 
 
 })()
