@@ -63,10 +63,10 @@
 		<input type="checkbox" name="active" id="active" checked>
 
 		<label> Date Created </label>
-		<span> <?php echo user['created_at'] ?> (filler text) </span>
+		<span> <?php echo $user['created_at'] ?> (filler text) </span>
 
 		<label> Last Updated On </label>
-		<span><?php echo user['updated_at'] ?> </span>
+		<span><?php echo $user['updated_at'] ?> </span>
 
 		
 

@@ -146,11 +146,10 @@
 
 	  if(!verifyDateOrder(startDateObj, endDateObj)) {return false;}
 
-	  return true;
 
-	  // Test
 
 	}
+
 
 
 	// REFACTOR THIS...relies on dom element...actually nevermind, you're good...
@@ -415,7 +414,7 @@
 // =====================================
 
 
-	$('#course-create-form').parsley();
+	// $('#course-create-form').parsley();
 
 
 })()

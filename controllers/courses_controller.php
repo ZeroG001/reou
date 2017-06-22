@@ -346,8 +346,6 @@ function update_course($ObjectPDO, $params) {
 
 		if ( ($_POST['_method']) == "patch" )  {
 
-
-
 			// ------ Quick Field Check -----
 			unset($_POST['_method']);
 			unset($params['_method']);
@@ -388,23 +386,23 @@ function update_course($ObjectPDO, $params) {
 
 			// Admins Should not be able to change the email address
 
-			// if( $course->update_course($_POST) ) {
-			// 	add_message("alert", "Profile has been Successfully Updated");
-			// 	header( "Location:" . $_SERVER['REQUEST_URI']);
-			// 	die();
-			// } 
-			// else {
-			// 	add_message("error", "there was a problem updating the user");
-			// }
+			if( $course->update_course($_POST) ) {
+				add_message("alert", "Profile has been Successfully Updated");
+				header( "Location:" . $_SERVER['REQUEST_URI']);
+				die();
+			} 
+			else {
+				add_message("error", "there was a problem updating the user");
+			}
 
 		} 
 		else {
 			die("crital update user error. Incorrect update method used");
 		}
+		
 	}
 
 	
-			var_dump($_POST);
 
 
 }

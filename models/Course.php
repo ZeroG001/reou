@@ -775,9 +775,13 @@ class Course {
 
 	public function update_course($params) {
 
+
+
+	// UPDATE courses SET course_number = '12', course_notes = "hello" WHERE course_number = 1 
 		// Make sure params are accepted
 		$this->checkAcceptedParams($params);
 		$params = $this->sanitizeParams($params);
+
 
 		// Validates the params
 		if(!$this->validateParams($params)) {
@@ -785,19 +789,49 @@ class Course {
 			die();
 		}
 
-		$query = "UPDATE courses";
-		foreach ($params as $k => $param) {
-			
-		}
-		$query = "UPDATE ";
+
+		// Build Query (it's long...I know);
+		$query = "UPDATE courses SET";
+		$query .= "course_name = ?,";
+		$query .= "course_desc = ?,";
+		$query .= "category_id = ?,";
+		$query .= "course_number = ?,";
+		$query .= "course_cost = ?,";
+		$query .= "course_location = ?,";
+		$query .= "course_credits = ?,";
+		$query .= "course_notes = ?,";
+		$query .= "min_class_size = ?,";
+		$query .= "max_class_size = ?,";
+		$query .= "active = ?,";
+		$query .= "updated_at =" . date('m/d/Y');
+
+
 		$stmt = $this->db->prepare($query);
 
-		foreach ($params as $key => $value) {
+		// Bind Params
+		$stmt->bindParam(1, $params['courseName']);
+		$stmt->bindParam(2, $params['courseDesc']);
+		$stmt->bindParam(3, $params['categoryId']);
+		$stmt->bindParam(4, $params['courseNumber']);
+		$stmt->bindParam(5, $params['courseCost']);
+		$stmt->bindParam(6, $params['courseLocation']);
+		$stmt->bindParam(7, $params['courseCredits']);
+		$stmt->bindParam(8, $params['courseNotes']);
+		$stmt->bindParam(9, $params['minClassSize']);
+		$stmt->bindParam(10, $params['maxClassSize']);
+		$stmt->bindParam(11, $params['active']);
+		
 
+		try {
+			$stmt->execute();
+			return true;
+		}
+		catch (Exception $e) {
+			echo $e->getMessage();
+			return false;
 		}
 
-		// Execute update quesy;
-		$query = "UPDATE course SET username = ?, password = ?, email = ?";
+
 	}
 
 
