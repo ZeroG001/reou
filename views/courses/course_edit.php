@@ -12,6 +12,8 @@
 		$instructors) = course_edit($db);
 
 
+
+
 	$weekdays = array("Sunday", "Monday", "Tuesday", "Wedesday", "Thursday", "Friday", "Saturday");
 
 
@@ -28,7 +30,7 @@
 
 
 
-<!-- Courses. Thisgs we would liek to update -->
+<!-- Courses. Thisgs we would like to update -->
 
 <!-- 
 
@@ -193,7 +195,7 @@
 					<input type="hidden" name="hpUsername" />
 				</div>
 
-				<input type="hidden" value="<?php echo $course_details['course_id'] ?>">
+				<input type="hidden" name="courseId" value="<?php echo $course_details['course_id'] ?>">
 
 				<input type="submit" class="reou-form__submit-button" value="Submit" >
 

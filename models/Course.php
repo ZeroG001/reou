@@ -775,7 +775,7 @@ class Course {
 
 	public function update_course($params) {
 
-
+		var_dump($params);
 
 	// UPDATE courses SET course_number = '12', course_notes = "hello" WHERE course_number = 1 
 		// Make sure params are accepted
@@ -790,21 +790,24 @@ class Course {
 		}
 
 
-		// Build Query (it's long...I know);
-		$query = "UPDATE courses SET";
-		$query .= "course_name = ?,";
-		$query .= "course_desc = ?,";
-		$query .= "category_id = ?,";
-		$query .= "course_number = ?,";
-		$query .= "course_cost = ?,";
-		$query .= "course_location = ?,";
-		$query .= "course_credits = ?,";
-		$query .= "course_notes = ?,";
-		$query .= "min_class_size = ?,";
-		$query .= "max_class_size = ?,";
-		$query .= "active = ?,";
-		$query .= "updated_at =" . date('m/d/Y');
+		// Build Query (it's long...I know)
+		$query = "UPDATE `courses` SET";
+		$query .= "`course_name` = ?,";
+		$query .= "`course_desc` = ?,";
+		$query .= "`category_id` = ?,";
+		$query .= "`course_number` = ?,";
+		$query .= "`course_cost` = ?,";
+		$query .= "`course_location` = ?,";
+		$query .= "`course_credits` = ?,";
+		$query .= "`course_notes` = ?,";
+		$query .= "`min_class_size` = ?,";
+		$query .= "`max_class_size` = ?,";
+		$query .= "`active` = ?,";
+		$query .= "`updated_at` = '" . date('m/d/Y') . "'";
+		$query .= " WHERE `course_id` = ?";
 
+		// echo $query;
+		// die();
 
 		$stmt = $this->db->prepare($query);
 
@@ -820,14 +823,15 @@ class Course {
 		$stmt->bindParam(9, $params['minClassSize']);
 		$stmt->bindParam(10, $params['maxClassSize']);
 		$stmt->bindParam(11, $params['active']);
-		
+		$stmt->bindParam(12, $params['courseId']);
+
 
 		try {
 			$stmt->execute();
 			return true;
 		}
 		catch (Exception $e) {
-			echo $e->getMessage();
+			die($e->getMessage());
 			return false;
 		}
 

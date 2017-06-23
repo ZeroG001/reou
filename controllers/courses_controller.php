@@ -341,8 +341,10 @@ function update_course($ObjectPDO, $params) {
 	require_once(D_ROOT . "/reou/helpers/users_helper.php");
 
 
+
 	// If the users data is being updated.
 	if(userSignedIn() && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['_method']) ) {
+
 
 		if ( ($_POST['_method']) == "patch" )  {
 
@@ -355,10 +357,17 @@ function update_course($ObjectPDO, $params) {
 			// ---------- END ---------------
 
 
+			// Check to see if you're updating the right course
+			if( $_GET['courseId'] != $_POST['courseId']) {
+					add_message("alert", "Error occured on update");
+					header( "Location:" . $_SERVER['REQUEST_URI']);
+				die();
+
+			} 
+
+
+
 			$course = new Course($ObjectPDO);
-
-
-
 
 			if(!userIsAdmin()) {
 				
@@ -387,6 +396,7 @@ function update_course($ObjectPDO, $params) {
 			// Admins Should not be able to change the email address
 
 			if( $course->update_course($_POST) ) {
+
 				add_message("alert", "Profile has been Successfully Updated");
 				header( "Location:" . $_SERVER['REQUEST_URI']);
 				die();

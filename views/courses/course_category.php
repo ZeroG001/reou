@@ -7,7 +7,6 @@
 
 	var_dump($_SESSION);
 ?>
-	
 
 
 	<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css" />
