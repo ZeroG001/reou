@@ -7,7 +7,7 @@ $('#search_users_form').submit(function(e){
 
 	$.ajax({
 		type : "POST",
-		url : "/reou/helpers/ajax_actions/getUsers.php",
+		url : "/reou/helpers/ajax_actions/getCourses.php",
 		data : {"keyword" : keyword},
 		success: function(response) {
 

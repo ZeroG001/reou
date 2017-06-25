@@ -11,9 +11,7 @@
 	 * @return void
 	 */
 	function redirect404() {
-
 		header( "Location:". main_route('404') );
-
 	}
 
 
@@ -34,7 +32,8 @@
 
 		if($value == $given) {
 			return "selected";
-		} else {
+		} 
+		else {
 			return false;
 		}
 

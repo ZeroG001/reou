@@ -360,6 +360,12 @@ class Course {
 	}
 
 
+	// Checks if there are any students registered with a course
+	public function check_students_registered_course() {
+		// Select from the course 
+	}
+
+
 
 	
 	public function create_course_schedule($params) {

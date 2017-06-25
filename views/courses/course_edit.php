@@ -74,17 +74,23 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo asset_route('css') ?>main.css">
 	</head>
 
-	<?php display_alert('error') ?>
-	<?php display_alert('alert') ?>
-
-
 	<div class="profile-container"> 
+
+
+
+
 
 		<!-- Sidebar -->
 		<?php require( D_ROOT . layout_route('admin-sidebar') ) ?>
 
 
 		<div class="profile__form-container">
+
+
+
+			<?php display_alert('error') ?>
+			<?php display_alert('alert') ?>
+
 
 
 			<!-- Action should be the course acc place -->
@@ -186,7 +192,7 @@
 
 
 					<div class="reou-form__input-group">
-						<label for="active"> User Active </label>
+						<label for="active"> Course Active </label>
 						<input type="checkbox" name="active" id="active" class="reou-form__input" value="1" <?php echo displayChekbox($course_details['active']) ?> />
 					</div>
 

@@ -1,3 +1,4 @@
+
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
@@ -397,7 +398,7 @@ function update_course($ObjectPDO, $params) {
 
 			if( $course->update_course($_POST) ) {
 
-				add_message("alert", "Profile has been Successfully Updated");
+				add_message("alert", "Course has been successfully updated");
 				header( "Location:" . $_SERVER['REQUEST_URI']);
 				die();
 			} 
