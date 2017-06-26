@@ -12,7 +12,7 @@
 
 
 				require_once("../../includes/const.php");
-				require_once(D_ROOT . "/reou/controllers/users_controller.php");
+				require_once(D_ROOT . "/reou/controllers/course_controller.php");
 
 				$search_keyword = $_POST['keyword'];
 

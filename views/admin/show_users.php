@@ -31,7 +31,7 @@
 
 	<!-- Sidebar -->
 	<div class="profile__sidebar-container">
-
+   
 		<div class="profile__sidebar">
 
 			<div class="profile__logo">

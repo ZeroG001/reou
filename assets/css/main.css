@@ -2294,6 +2294,44 @@ admin_categoty--container
   padding: 10px 0px;
   text-align: center; }
 
+/* Admin Show Courses Page 
+--------------------------------- */
+.course_search_input {
+  width: 100%;
+  padding: 10px 0px 10px 35px;
+  border: 0px solid black;
+  background-color: transparent; }
+
+.course_search_button {
+  position: absolute;
+  left: 2px;
+  top: 11px;
+  background: none;
+  border: 0px;
+  color: #6c6c6c; }
+
+.show_course_table {
+  width: 100%; }
+  .show_course_table th {
+    padding: 15px 0px;
+    background-color: transparent; }
+
+.course_table--row i {
+  visibility: hidden; }
+.course_table--row:hover {
+  background-color: #E3E3E3;
+  cursor: pointer; }
+.course_table--row:hover i {
+  visibility: visible; }
+
+.course_search_container {
+  width: 100%;
+  position: relative; }
+
+.course_table--cell {
+  padding: 10px 0px;
+  text-align: center; }
+
 /* Create Course Page
 ----------------------------------- */
 /* Edit Course Page

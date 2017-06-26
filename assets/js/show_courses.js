@@ -1,13 +1,13 @@
 
-$('#search_users_form').submit(function(e){
+$('#search_course_form').submit(function(e){
 	e.preventDefault();
 
 
-	keyword = $('#users_search_input').val();
+	keyword = $('#courses_search_input').val();
 
 	$.ajax({
 		type : "POST",
-		url : "/reou/helpers/ajax_actions/getUsers.php",
+		url : "/reou/helpers/ajax_actions/getCourses.php",
 		data : {"keyword" : keyword},
 		success: function(response) {
 

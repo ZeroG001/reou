@@ -1,4 +1,3 @@
-
 <?php
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/reou/includes/const.php');
@@ -53,7 +52,8 @@ function course_classes($ObjectPDO) {
 
 
 
-function course_search($ObjectPDO) {
+// Is this function being used?
+function course_search($ObjectPDO, $keyword) {
 
 	$keyword = verify_get('q');
 	$course = new Course($ObjectPDO);
