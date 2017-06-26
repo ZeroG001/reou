@@ -41,10 +41,10 @@
 
 		<!--- ** END ** TEMP STYLES and HTMl FOR ADMIN CENTER -->
 
-		<div class=course_search_container">
-			<form id="search_users_form">
+		<div class="course_search_container">
+			<form id="search_courses_form">
 				<input type="text" id="course_search_input" class="course_search_input" name="q" placeholder="Search">
-				<button class="course_search_button"><i class="fa fa-search fa-lg"></i></button>
+				<button class="admin_course_search_button"><i class="fa fa-search fa-lg"></i></button>
 			</form>
 		</div>
 
@@ -73,4 +73,4 @@
 
 
 <script type="text/javascript" src="<?php echo asset_route('js') . "jquery/dist/jquery.min.js" ?>"> </script>
-<script type="text/javascript" src="<?php echo asset_route('js') . "show_users.js" ?>"> </script>
+<script type="text/javascript" src="<?php echo asset_route('js') . "show_courses.js" ?>"> </script>

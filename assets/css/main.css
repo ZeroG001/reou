@@ -541,6 +541,7 @@ input.field-invalid {
   background-color: transparent;
   display: inline-block;
   width: 63%;
+  min-height: 100vh;
   /* testing 
   background-color: $lightblue; */ }
 
@@ -2098,6 +2099,7 @@ User Partials
     background-color: transparent;
     display: inline-block;
     width: 63%;
+    min-height: 100vh;
     /* testing 
     background-color: $lightblue; */ }
 
@@ -2302,7 +2304,7 @@ admin_categoty--container
   border: 0px solid black;
   background-color: transparent; }
 
-.course_search_button {
+.admin_course_search_button {
   position: absolute;
   left: 2px;
   top: 11px;

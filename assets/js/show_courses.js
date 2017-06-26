@@ -1,14 +1,15 @@
+$('#search_courses_form').submit(function(e) {
 
-$('#search_course_form').submit(function(e){
 	e.preventDefault();
 
 
-	keyword = $('#courses_search_input').val();
+	keyword = $('#course_search_input').val();
 
 	$.ajax({
+
 		type : "POST",
 		url : "/reou/helpers/ajax_actions/getCourses.php",
-		data : {"keyword" : keyword},
+		data : { "keyword" : keyword },
 		success: function(response) {
 
 			console.log(response);
@@ -16,12 +17,10 @@ $('#search_course_form').submit(function(e){
 			json_response = JSON.parse(response);
 			console.log(json_response[0]);
 
+
 			tableHtml = "";
 			tableHtml += '<tr>';
-			tableHtml += '<th>Email/Username</th>';
-			tableHtml += '<th> Full Name </th>';
-			tableHtml += '<th> Type </th>';
-			tableHtml += '<th> Active </th>';
+			tableHtml += '<th>Course Name</th>';
 			tableHtml += '<th></th>';
 			tableHtml += '</tr>';
 
@@ -29,13 +28,10 @@ $('#search_course_form').submit(function(e){
 			for (var i = json_response.length - 1; i >= 0; i--) {
 
 				tableHtml += '<tr class="user_table--row">';	
-				tableHtml += '<td class="user_table--cell">' + json_response[i].email  + '</td>';
-				tableHtml += '<td class="user_table--cell">' + json_response[i].first_name + ' ' + json_response[i].last_name + '</td>';
-			 	tableHtml += '<td class="user_table--cell">' + json_response[i].role + '</td>';
-			 	tableHtml += '<td class="user_table--cell">';
-			 	tableHtml += json_response[i].active == 1 ? "Yes" : "No";
-			 	tableHtml += '<td class="user_table--cell"> <a href="/reou/edit-profile?userId=' + json_response[i].id + '"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
-			 	tableHtml += '</tr>';
+				tableHtml += '<td class="user_table--cell">' + json_response[i].course_name  + '</td>';
+				tableHtml += '<td class="user_table--cell"> <a href="/reou/admin/edit-course/' + json_response[i].course_id + '"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
+			 	tableHtml += '</tr>'
+			 	 ;
 
 			};
 
@@ -51,4 +47,9 @@ $('#search_course_form').submit(function(e){
 
 
 })
+
+
+
+
+
 
