@@ -2278,7 +2278,8 @@ admin_categoty--container
   width: 100%; }
   .show_user_table th {
     padding: 15px 0px;
-    background-color: transparent; }
+    background-color: transparent;
+    text-align: left; }
 
 .user_table--row i {
   visibility: hidden; }
@@ -2294,7 +2295,7 @@ admin_categoty--container
 
 .user_table--cell {
   padding: 10px 0px;
-  text-align: center; }
+  text-align: left; }
 
 /* Admin Show Courses Page 
 --------------------------------- */
@@ -2316,7 +2317,8 @@ admin_categoty--container
   width: 100%; }
   .show_course_table th {
     padding: 15px 0px;
-    background-color: transparent; }
+    background-color: transparent;
+    text-align: left; }
 
 .course_table--row i {
   visibility: hidden; }
@@ -2332,7 +2334,7 @@ admin_categoty--container
 
 .course_table--cell {
   padding: 10px 0px;
-  text-align: center; }
+  text-align: left; }
 
 /* Create Course Page
 ----------------------------------- */

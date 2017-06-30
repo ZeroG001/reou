@@ -193,7 +193,7 @@
 
 					<div class="reou-form__input-group">
 						<label for="active"> Course Active </label>
-						<input type="checkbox" name="active" id="active" class="reou-form__input" value="1" <?php echo displayChekbox($course_details['active']) ?> />
+						<input type="checkbox" name="active" id="active" value="1" <?php echo displayChekbox($course_details['active']) ?> />
 					</div>
 
 				<?php // Please do not erase the required_hp div. This is a honeypot field to help reduce spam ?>
@@ -210,8 +210,6 @@
 		</div>
 
 	</div>
-
-
 
 
 

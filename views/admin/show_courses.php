@@ -49,7 +49,7 @@
 		</div>
 
 		<!-- ===== Main Main Admin Category Section ===== -->
-		<table class="show_user_table">
+		<table class="show_course_table">
 
 			<tr>
 				<th>Course Name</th>
@@ -57,10 +57,10 @@
 			</tr>
 
 			<?php foreach ($courses as $k => $course) { ?>
-				<tr class="user_table--row">
-					<td class="user_table--cell"> <?php echo $course['course_name'] ?> </td>
+				<tr class="course_table--row">
+					<td class="course_table--cell"> <?php echo $course['course_name'] ?> </td>
 					</td>
-					<td class="user_table--cell"> <a href="<?php echo course_route('edit', $course['course_id']) ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+					<td class="course_table--cell"> <a href="<?php echo course_route('edit', $course['course_id']) ?> "> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 				 	</a> 
 					</td>
 				</tr>

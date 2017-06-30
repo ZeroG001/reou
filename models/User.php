@@ -110,7 +110,7 @@ class User {
 	// ============================================================
 
 
-	 public function get_users_info($method, $value = "") {
+	 public function get_users_info($method, $value = "", $page = 0) {
 
 	 	// Things needed from user search
 	 	/*
@@ -124,14 +124,29 @@ class User {
 		$query = array (
 			"all_users" => "SELECT * FROM users",
 			"range_of_users" => " SELECT * FROM users LIMIT 10 OFFSET :value",
-			"search_users" => "SELECT * FROM users WHERE email LIKE :value OR first_name LIKE :value OR last_name LIKE :value"
+			"search_users" => "SELECT * FROM users WHERE email LIKE :value OR first_name LIKE :value OR last_name LIKE :value",
+			"search_range_of_users" => "SELECT * FROM users WHERE email LIKE :value OR first_name LIKE :value OR last_name LIKE :value LIMIT 10 offset :page"
 		);
 
 			$stmt = $this->db->prepare($query[$method]);
 
-			if($method == "range_of_users" || "search_users") {
+			if($method == "search_users") {
 				$value = '%' . $value . '%';
 				$stmt->bindParam(':value', $value);
+			}
+
+
+			if($method == "range_of_users") {
+				$value = $value * 10
+				$stmt->bindParam(':value', $value);
+			}
+
+
+			if($method == "search_range_of_users") {
+				$value = '%' . $value . '%';
+				$page = $page * 10;
+				$stmt->bindParam(':value', $value);
+				$stmt->bindParam(':page', $page);
 			}
 			
 			$stmt->execute();

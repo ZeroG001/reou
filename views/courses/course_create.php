@@ -71,7 +71,6 @@
 
 		<?php display_alert('error'); ?>
 		<?php display_alert('alert'); ?>
-		<?php var_dump($_POST) ?>
 
 		<!-- Action should be the course acc place -->
 

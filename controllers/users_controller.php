@@ -528,8 +528,22 @@ function show_users($ObjectPDO) {
 	}
 
 	$user = new User($ObjectPDO);
-	$results = $user->get_users_info('all_users');
-	return $results;
+
+	// Get a range of users
+	if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['pg'])) {
+
+		$results = $user->get_users_info('range_of_users','1');
+		return $results;
+
+
+	} 
+	else {
+
+		$results = $user->get_users_info('all_users');
+		return $results;
+
+	}
+
 
 }
 
