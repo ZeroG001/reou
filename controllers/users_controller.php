@@ -514,7 +514,6 @@ function reset_email($ObjectPDO, $params) {
 
 
 
-
 // --------------------------------- show_users.php -----------------------------
 function show_users($ObjectPDO) {
 
@@ -532,7 +531,10 @@ function show_users($ObjectPDO) {
 	// Get a range of users
 	if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['pg'])) {
 
-		$results = $user->get_users_info('range_of_users','1');
+		/* Set page from $_GET['pg'] variable */
+		$page = intval($_GET['pg']);
+
+		$results = $user->get_users_info('range_of_users', $page);
 		return $results;
 
 
@@ -552,7 +554,7 @@ function show_users($ObjectPDO) {
 /**
  * show_user($params) 
  *
- * Used to show only one users detail. Idealy the information of the person whose logged in
+ * Show user details for ONE user. Idealy the information of the person whose logged in
  *
  * @param (Array) $params - The parameters submitted from POST
  * @return (boolean)
@@ -582,7 +584,7 @@ function show_user() {
 
 
 /**
- * show_user($params) 
+ * my_courses($params) 
  *
  * Shows all the courses that belong to the currently logged in user.
  *

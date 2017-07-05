@@ -120,33 +120,45 @@ class User {
 	 	*/
 
 
-
+		/* might want to get rid of "all users, for when the database gets really big" */
 		$query = array (
 			"all_users" => "SELECT * FROM users",
 			"range_of_users" => " SELECT * FROM users LIMIT 10 OFFSET :value",
 			"search_users" => "SELECT * FROM users WHERE email LIKE :value OR first_name LIKE :value OR last_name LIKE :value",
-			"search_range_of_users" => "SELECT * FROM users WHERE email LIKE :value OR first_name LIKE :value OR last_name LIKE :value LIMIT 10 offset :page"
+			"search_range_of_users" => "SELECT * FROM users WHERE email LIKE :value OR first_name LIKE :value OR last_name LIKE :value LIMIT 10 "
 		);
 
-			$stmt = $this->db->prepare($query[$method]);
+			
 
 			if($method == "search_users") {
 				$value = '%' . $value . '%';
+
+				$stmt = $this->db->prepare($query[$method]);
 				$stmt->bindParam(':value', $value);
 			}
 
+			elseif ($method == "range_of_users") {
 
-			if($method == "range_of_users") {
-				$value = $value * 10
+				$value = $value * 10;
+				
+				$stmt = $this->db->prepare($query[$method]);
 				$stmt->bindParam(':value', $value);
+				
 			}
 
+			elseif ($method == "search_range_of_users") {
 
-			if($method == "search_range_of_users") {
 				$value = '%' . $value . '%';
 				$page = $page * 10;
+
+				$stmt = $this->db->prepare($query[$method]);
 				$stmt->bindParam(':value', $value);
 				$stmt->bindParam(':page', $page);
+				
+			}
+
+			else {
+				$stmt = $this->db->prepare($query[$method]);
 			}
 			
 			$stmt->execute();

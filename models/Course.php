@@ -45,8 +45,7 @@ class Course {
 
 
 
-
-	public function search_courses($keyword) {
+	public function search_courses($keyword, $page = 0) {
 
 	 	$cols = array(
 	 		"course_id",
@@ -64,11 +63,15 @@ class Course {
 			"course_notes"
 	 	);
 
+
+
 	 	$cols = implode(", ", $cols);
 
+	 	// Show 10 results per page
+	 	$page = $page * 10;
 	 	$keyword = "%" . $keyword . "%";
 
-	 	$query = "SELECT * FROM courses c WHERE c.course_name LIKE ? AND active = 1";
+	 	$query = "SELECT * FROM courses c WHERE c.course_name LIKE ? AND active = 1 LIMIT 20 OFFSET $page";
 
 	 	try {
 
@@ -220,9 +223,14 @@ class Course {
 
 
 
-	 public function get_courses() {
+	 public function get_courses($limit = 0) {
 
 	 	$query = "SELECT * FROM courses order by created_at desc";
+
+	 	if($limit > 0) {
+	 		$query .= " LIMIT " . $limit;
+	 	}
+
 	 	$stmt = $this->db->prepare($query);
 	 	$stmt->execute();
 

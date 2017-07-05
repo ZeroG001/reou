@@ -122,8 +122,12 @@ function course_detail($ObjectPDO) {
 
 function course_show($ObjectPDO) {
 
+
+	// Limit number of courses shown;
+	$limit = 20;
+
 	$course = new Course($ObjectPDO);
-	$courses = $course->get_courses();
+	$courses = $course->get_courses($limit);
 	return $courses;
 }
 
@@ -319,9 +323,10 @@ function admin_get_courses($ObjectPDO) {
 
 	$params = $_POST;
 	$course = new Course($ObjectPDO);
-	
+	$limit = 10;
+
 	// Get All courses
-	$result = $course->get_courses();
+	$result = $course->get_courses($limit);
 
 	return $result;
 }

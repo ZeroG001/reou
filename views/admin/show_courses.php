@@ -11,9 +11,7 @@
 		redirectHome();
 	}
 
-
 ?>
-
 
 
 <head>

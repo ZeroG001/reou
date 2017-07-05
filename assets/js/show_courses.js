@@ -30,13 +30,12 @@ $('#search_courses_form').submit(function(e) {
 				tableHtml += '<tr class="user_table--row">';	
 				tableHtml += '<td class="user_table--cell">' + json_response[i].course_name  + '</td>';
 				tableHtml += '<td class="user_table--cell"> <a href="/reou/admin/edit-course/' + json_response[i].course_id + '"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>';
-			 	tableHtml += '</tr>'
-			 	 ;
+			 	tableHtml += '</tr>';
 
 			};
 
 
-			$('.show_user_table').html(tableHtml);
+			$('.show_course_table').html(tableHtml);
 
 
 		},
