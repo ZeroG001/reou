@@ -7,7 +7,7 @@
 
 
 <!-- 
-	This migth be all php
+	This might be all PHP
 
 	1. Get the User ID
 	2. Get the class ID
