@@ -2,7 +2,7 @@
 
 	require($_SERVER['DOCUMENT_ROOT'] . '/reou/controllers/courses_controller.php');
 	// list($categories, $one_category) = course_search($db);
-	$courses = course_search($db);
+	$courses = course_search($db, $_GET['q']);
 
 
 	// Header HTML

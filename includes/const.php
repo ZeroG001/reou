@@ -4,7 +4,7 @@
 
 	define('D_ROOT', $_SERVER['DOCUMENT_ROOT']);
 	define('P_ROOT', $_SERVER['DOCUMENT_ROOT'] . "/reou");
-	define('W_ROOT', 'http://10.9.63.109/reou/');
+	define('W_ROOT', 'http://10.9.63.117/reou/');
 	define('L_ROOT', 'http://127.0.0.1/reou/');
 
 
@@ -19,7 +19,7 @@
 	define('DB_PORT', '3306');
 
 	/** MySQL database password */
-	define('DB_PASSWORD', 's0n!crush');
+	define('DB_PASSWORD', 'sonic001');
 
 	/** MySQL hostname */
 	define('DB_HOST', 'localhost');
