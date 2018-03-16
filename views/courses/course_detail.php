@@ -93,7 +93,6 @@
 			<div class="sk-container course_schedule--container">
 
 				<div class="row course_schedule--row-header">
-					
 					<div class="two columns"> Begin Date </div>
 					<div class="two columns"> End Date </div>
 					<div class="two columns"> Time </div>

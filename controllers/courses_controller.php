@@ -169,9 +169,9 @@ function course_edit($ObjectPDO) {
 
 
 	// Take the days_available result and convert it to binary arry
-	foreach ($schedules as $k => $course_schedule) {
-		$schedules[$k]['days_available'] = decToBinArray($course_schedule['days_available']);
-	}
+	//foreach ($schedules as $k => $course_schedule) {
+	//	$schedules[$k]['days_available'] = decToBinArray($course_schedule['days_available']);
+	//}
 	unset($couse_schedule);
 
 	// Push the result of each to the result array

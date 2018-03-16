@@ -199,15 +199,16 @@ class Course {
 	 		"location",
 	 		"class_date",
 	 		"active",
+	 		"schedule_code",
 	 		"class_begin_date",
 	 		"class_end_date",
 	 		"class_begin_time",
 	 		"class_end_time",
 	 		"course_id",
-	 		"days_available",
+	 		"days_available"
 	 	);
 
-	 	$query = "SELECT * FROM course_schedules cs 
+	 	$query = "SELECT * FROM schedules cs 
 		INNER JOIN courses c 
 		ON cs.course_id=c.course_id 
 		WHERE cs.course_id = ?";

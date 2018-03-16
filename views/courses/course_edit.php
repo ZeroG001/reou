@@ -207,12 +207,50 @@
 
 			</form>
 
+
+				<div class="row course_schedule--row-header">
+					<div class="two columns"> Begin Date </div>
+					<div class="two columns"> End Date </div>
+					<div class="two columns"> Time </div>
+					<div class="three columns"> Location </div>
+					<div class="two columns"> Register course? </div>
+					<div class="one columns"> Details </div>
+				</div>
+
+			<?php foreach ($course_schedules as $detail) { ?>
+			
+				<div class="course_schedule--row-container">
+					<div class="row course_schedule--info-row">
+						<div class="two columns course_schedule--info-column" data-label="Begin Date"> <?php echo $detail['start_date'] ?> </div>
+						<div class="two columns course_schedule--info-column" data-label="End Date"> <?php echo $detail['end_date'] ?> </div>
+						<div class="two columns course_schedule--info-column" data-label="Time"> <?php printf('%s - %s', $detail['start_time'], $detail['end_time']) ?></div>
+						<div class="three columns course_schedule--info-column" data-label="Location"> <?php echo $detail['location'] ?> </div>
+						<div class="two columns course_schedule--info-column">
+							<form class="course_schedule--sign-up-form" action="<?php echo course_route('course_register') ?>" method="POST">	
+								<input type="submit" class="schedule_signup_button" value="Edit Class" > 
+								<input type="hidden" name="course_id" value="<?php echo $detail['course_id'] ?>">
+								<input type="hidden" name="student_id" value="<?php echo $_SESSION['id'] ?>">
+								<input type="hidden" name="schedule_id" value="<?php echo $detail['schedule_id'] ?>">
+							</form> 
+						</div>
+						<div class="one columns"> 
+							<img class="course_schedule--show-calendar" src="<?php echo asset_route('img')?>circle-right-gray.png" /> 
+						</div>
+
+					</div>
+					<div class="course_schedule--calendar">
+						<div class="show_calendar_section"> <?php echo createCalendarHTML($detail['start_date'], $detail['end_date'], explode(",", $detail['schedule_code']) ) ?> </div>
+					</div>
+				</div>
+
+			<?php } ?>
+
 		</div>
 
 	</div>
 
 
-
 <!-- Javasript Sources -->
 <script type="text/javascript" src="<?php echo asset_route('js') . 'jquery/dist/jquery.min.js'?>"> </script>
-<script type="text/javascript" src="<?php echo asset_route('js') . 'course_create.js' ?>"> </script> 
+<script type="text/javascript" src="<?php echo asset_route('js') . 'course_edit.js' ?>"> </script>
+
